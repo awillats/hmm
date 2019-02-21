@@ -20,8 +20,8 @@ struct HMM_Data
     std::vector<int> states, spikes;
 };
 
-HMM_Data genHMM_Data(std::vector<double> frs, std::vector<double> trs, int numSteps);
-std::vector<int> genHMM_Spikes(std::vector<double> frs, std::vector<double> trs, int numSteps);
+HMM_Data genHMM_Data(std::vector<double> trs, std::vector<double> frs, int numSteps);
+std::vector<int> genHMM_Spikes(std::vector<double> trs, std::vector<double> frs, int numSteps);
 //std::tuple<std::vector<int>, std::vector<int>> genHMM_Tie(std::vector<double> frs, std::vector<double> trs, int numSteps);
 #endif /* hmmFuns_hpp */
 

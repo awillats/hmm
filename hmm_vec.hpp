@@ -18,6 +18,8 @@
 #include <vector>
 #include <algorithm>
 
+#include <random>
+
 
 //2d vectors http://thispointer.com/creating-a-matrix-using-2d-vector-in-c-vector-of-vectors/
 
@@ -26,17 +28,20 @@
 
 
 struct HMMv {
-    int states, events;
-    std::vector< std::vector<double> > A, B;
+    int nstates, nevents;
+    std::vector< std::vector<double> > TR, EM;
     std::vector<double> PI;
     
+    std::vector<int> states;
+    std::vector<int> spikes;
+    
     //https://stackoverflow.com/questions/18795776/error-no-matching-function-for-call-to-when-constructing-an-unintialized-stru
-    HMMv(): states(2), events(2) { ;}; 
+    HMMv(): nstates(2), nevents(2) { ;};
 
    //constructor where you just specify the firing and transition rate vectors, note should only work for 2 states...
-    HMMv(int states, int events, std::vector< double> vFr, std::vector< double> vTr, std::vector<double> PI):
-    states(states), events(events), PI(PI) {
-        assert(states > 0); assert(events > 0);
+    HMMv(int nstates, int nevents, std::vector< double> vTr, std::vector< double> vFr, std::vector<double> PI):
+    nstates(nstates), nevents(nevents), PI(PI) {
+        assert(nstates > 0); assert(nevents > 0);
         assert(!vFr.empty()); assert(!vTr.empty()); assert(!PI.empty());
 
 	    std::vector<double> Av0;
@@ -54,22 +59,34 @@ struct HMMv {
 	    Bv1.push_back(1-vFr[1]);
 	    Bv1.push_back(vFr[1]);
 	 
-	    A.push_back(Av0);
-	    A.push_back(Av1);
+	    TR.push_back(Av0);
+	    TR.push_back(Av1);
+        std::cout << "["<<TR[0][0]<< ","<<TR[0][1]<<"]\n[" << TR[1][0]<< ","<< TR[1][1]<<"]\n";
 
-	    B.push_back(Bv0);
-	    B.push_back(Bv1);
+	    EM.push_back(Bv0);
+	    EM.push_back(Bv1);
+        
+        std::cout << "\n\n["<<EM[0][0]<< ","<<EM[0][1]<<"]\n[" << EM[1][0]<< ","<< EM[1][1]<<"]\n";
+
     }
     //alternate more direct constructor? or just a consequence of the block above?
-    HMMv(int states, int events, std::vector< std::vector<double> > A, std::vector< std::vector<double> > B, std::vector<double> PI):
-    states(states), events(events), A(A), B(B), PI(PI) {
-        assert(states > 0); assert(events > 0);
-        assert(!A.empty()); assert(!B.empty()); assert(!PI.empty());
+    HMMv(int nstates, int nevents, std::vector< std::vector<double> > TR, std::vector< std::vector<double> > EM, std::vector<double> PI):
+    nstates(nstates), nevents(nevents), TR(TR), EM(EM), PI(PI) {
+        assert(nstates > 0); assert(nevents > 0);
+        assert(!TR.empty()); assert(!EM.empty()); assert(!PI.empty());
     }
 
-   friend std::vector<int> genStates(HMMv const& hmm);
-   friend int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n); 
+   //friend std::vector<int> genStates(HMMv const& hmm);
+   friend int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n);
+    
+    public:
+        std::vector<int> genSeq(int);
+    
 };
+
+
+
+
 
 
 

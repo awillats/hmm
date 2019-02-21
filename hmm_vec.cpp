@@ -26,12 +26,12 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
     int **prevs = new int*[n];
     
     for (int i = 0; i < n; i++) {
-        prob[i] = new double[hmm.states];
-        prevs[i] = new int[hmm.states];
+        prob[i] = new double[hmm.nstates];
+        prevs[i] = new int[hmm.nstates];
         //printf("%i.",n); //fixes
         //printf("x"); //insufficient
         //i;
-        for (int j = 0; j < hmm.states; j++) { 
+        for (int j = 0; j < hmm.nstates; j++) {
             prob[i][j] = 0;
             prevs[i][j] = 0;
             
@@ -41,27 +41,27 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
     //prob[0][0]=0.0; //why does this fix things!??!
         prob[0][0]=0.0;
 
-    for (int i = 0; i < hmm.states; i++) {
-        prob[0][i] = hmm.PI[i] * hmm.B[i][ observed[0] ];
+    for (int i = 0; i < hmm.nstates; i++) {
+        prob[0][i] = hmm.PI[i] * hmm.EM[i][ observed[0] ];
     }
     for (int i = 1; i < n; i++) {
-        for (int j = 0; j < hmm.states; j++) {
-            double pmax = 0, p; int dmax;
-            for (int k = 0; k < hmm.states; k++) {
-                p = prob[i-1][k] * hmm.A[k][j];
+        for (int j = 0; j < hmm.nstates; j++) {
+            double pmax = 0, p; int dmax=-1;
+            for (int k = 0; k < hmm.nstates; k++) {
+                p = prob[i-1][k] * hmm.TR[k][j];
                 if (p > pmax) {
                     pmax = p;
                     dmax = k;
                 }
             }
-            prob[i][j] = hmm.B[j][ observed[i] ] * pmax;
+            prob[i][j] = hmm.EM[j][ observed[i] ] * pmax;
             prevs[i-1][j] = dmax;
         }
     }
     
 
-    double pmax = 0; int dmax;
-    for (int i = 0; i < hmm.states; i++) {
+    double pmax = 0; int dmax=-1;
+    for (int i = 0; i < hmm.nstates; i++) {
         if (prob[n-1][i] > pmax) {
             pmax = prob[n-1][i];
             dmax = i;
@@ -76,7 +76,7 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
     //////////////////////////////////////////////////////////check
     for (int i = 0; i < n; i++) {
         ////cout << "t = " << i << endl;
-        for (int j = 0; j < hmm.states; j++) {
+        for (int j = 0; j < hmm.nstates; j++) {
             ////cout << '[' << j << ']' << prob[i][j] << ' ';
         }
         //cout << "\n\n";
@@ -84,7 +84,7 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
     
     for (int i = 0; i < n; i++) {
         ////cout << "t = " << i << endl;
-        for (int j = 0; j < hmm.states; j++) {
+        for (int j = 0; j < hmm.nstates; j++) {
             ////cout << '[' << j << ']' << prevs[i][j] << ' ';
         }
         ////cout << "\n\n";
@@ -115,6 +115,37 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
     
 }
 
+std::vector<int>  HMMv::genSeq(int nt)
+{
+    //zero out the class's vectors
+    states = std::vector<int> (nt,0);
+    spikes = std::vector<int> (nt,0);
+    
+    //set random seed
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<double> unif(0, 1);
+    
+    for (int i=0;i<nt; i++)
+    {
+        states[i] = 0;
+    };
+    
+    for (int i=0;i<nt; i++)
+    {
+        spikes[i] = (unif(gen) < EM[states[i]][1]) ? 1 : 0;
+        
+        if (i<(nt-1))
+        {
+            double pTr = TR[states[i]][0];
+            states[i+1] = (unif(gen) < pTr) ? 1-states[i] : states[i];
+        }
+    };
+    
+    //std::vector<int> whatev(nt,13);
+    //spikes = whatev;
+    return spikes;
+};
 
 
 
