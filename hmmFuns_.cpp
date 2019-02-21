@@ -6,7 +6,7 @@
 //  Copyright © 2017 Adam Willats. All rights reserved.
 //
 
-#include "hmmFuns.hpp" //not needed here?
+#include "hmmFuns_.hpp" //not needed here?
 //#include <iostream>
 //#include <vector>
 using namespace std;

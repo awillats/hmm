@@ -60,7 +60,7 @@ struct HMMv {
 	    B.push_back(Bv0);
 	    B.push_back(Bv1);
     }
-
+    //alternate more direct constructor? or just a consequence of the block above?
     HMMv(int states, int events, std::vector< std::vector<double> > A, std::vector< std::vector<double> > B, std::vector<double> PI):
     states(states), events(events), A(A), B(B), PI(PI) {
         assert(states > 0); assert(events > 0);
