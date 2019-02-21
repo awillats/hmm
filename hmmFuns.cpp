@@ -7,12 +7,14 @@
 //
 
 #include "hmmFuns.hpp" //not needed here?
-//#include <iostream>
+#include <iostream>
 //#include <vector>
 using namespace std;
 
 vector<int> genHMM(vector<double> frs, vector<double> trs, int numSteps){
-    vector<int> states(numSteps);
+    
+     vector<int> states(numSteps);
+
     vector<int> spikes(numSteps);
     
     states[0] = 0;
@@ -47,7 +49,6 @@ vector<int> genHMM(vector<double> frs, vector<double> trs, int numSteps){
 		spikes[0]=i;
 	}
     }
-
     
     return spikes;
 }

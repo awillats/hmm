@@ -17,7 +17,6 @@
 
 std::vector<int> genHMM(std::vector<double> frs, std::vector<double> trs, int numSteps);
 
-
 #endif /* hmmFuns_hpp */
 
 
