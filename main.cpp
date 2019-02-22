@@ -14,22 +14,31 @@
 
 #include "hmmFuns_.hpp"
 //#include "hmm_fs.hpp"
-//#include "convenienceFuns.hpp"
+//#include "convenienceFuns.hpp" //this causes the linker to fail for some reason
 
 //#include "legacy/dataFuns.h"
+
+std::string blockPrint(int bin)
+{
+    std::string block= ((bin==1) ? "\u2581":"\u2588");
+    return block;
+};
 
 int main(int argc, const char * argv[]) {
     // insert code here...
     std::cout << "Hello, World!\n";
     
-    std::vector<double> frs = {.03,.9};
-    std::vector<double> trs = {0.5,0.2};
+    std::vector<double> trs = {0.2,0.1}; //one of these elements is being interpretted as 1-X
+    std::vector<double> frs = {.005,.99};
     std::vector<double> pis = {.5,.5};
-    int nt = 100;
+    int nt = 1e2;
     
     
     HMMv myHMM = HMMv(2,2, trs, frs, pis);
+    myHMM.printMyParams();
     myHMM.genSeq(nt);
+    myHMM.fluffMethod();
+
     
     std::cout << myHMM.EM[1][1] << '\n';
     
@@ -47,23 +56,33 @@ int main(int argc, const char * argv[]) {
     
     for (int i=0;i<nt; i++)
     {
-        std::cout << ((myHMM.spikes[i]==1)?"\u2581":"\u2588");
+        std::cout << blockPrint(myHMM.spikes[i]==1);
     }
     std::cout<<"<spikes \n";
     
     
     for (int i=0;i<nt; i++)
     {
-        std::cout << ((myHMM.states[i]==1)?"\u2581":"\u2588");
+        std::cout << blockPrint(myHMM.states[i]==1);
     }
+    int stateSum = std::accumulate(myHMM.states.begin(),myHMM.states.end(),0);
+    double stateProb = double(stateSum)/double(nt);
+    std::cout<<stateProb;
     std::cout<<"<states \n";
     for (int i=0;i<nt; i++)
     {
-        std::cout << ((vguess[i]==1)?"\u2581":"\u2588");
+        std::cout << blockPrint(vguess[i]==1);
     }
     std::cout<<"<guessed states \n";
-    //std::vector<int> q_hat = viterbi(myHMM,myHMM.spikes,nt);
     
+    //std::vector<int> q_hat = viterbi(myHMM,myHMM.spikes,nt);
     //std::cout << q << '\n';
     return 0;
+}
+
+
+
+void printVec()
+{
+    
 }

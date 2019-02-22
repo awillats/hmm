@@ -15,6 +15,7 @@
 //#include "../../../module_help/StAC_rtxi/hmm_tests/hmm_fs.hpp"
 
 
+
 int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
     //printf("vit start vec");
     assert(n > 0); assert(!observed.empty());
@@ -115,6 +116,38 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
     
 }
 
+
+void HMMv::fluffMethod()
+{
+    std::cout<<"fluff";
+};
+
+void HMMv::printMat(std::vector< std::vector<double> > mat)
+{
+    std::cout<<"\n[";
+     for (int i=0;i<mat.size();i++)
+     {
+         for (int j=0; j<mat[i].size();j++)
+         {
+             std::cout<<mat[i][j];
+             if (j<mat[i].size()-1) {std::cout<<", ";};
+         }
+         
+         if (i<mat.size()-1){
+             std::cout<<"\n ";
+         }
+     }
+     std::cout<<"]\n";
+};
+
+void HMMv::printMyParams()
+{
+    std::cout<<"transition matrix:";
+    printMat(TR);
+    std::cout<<"\nemission matrix:";
+    printMat(EM);
+};
+
 std::vector<int>  HMMv::genSeq(int nt)
 {
     //zero out the class's vectors
@@ -146,6 +179,7 @@ std::vector<int>  HMMv::genSeq(int nt)
     //spikes = whatev;
     return spikes;
 };
+
 
 
 

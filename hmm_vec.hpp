@@ -28,6 +28,7 @@
 
 
 struct HMMv {
+
     int nstates, nevents;
     std::vector< std::vector<double> > TR, EM;
     std::vector<double> PI;
@@ -49,10 +50,13 @@ struct HMMv {
 	    std::vector<double> Bv0;
 	    std::vector<double> Bv1;
 
-	    Av0.push_back(1-vTr[0]);
-	    Av0.push_back(vTr[0]);
-	    Av1.push_back(vTr[1]);
-	    Av1.push_back(1-vTr[1]);
+        
+	    Av0.push_back(1-vTr[0]); //0,0
+	    Av0.push_back(vTr[0]); //0,1
+	    Av1.push_back(vTr[1]); //1,0
+	    Av1.push_back(1-vTr[1]); //1,1
+        
+  
 
 	    Bv0.push_back(1-vFr[0]);
 	    Bv0.push_back(vFr[0]);
@@ -61,13 +65,14 @@ struct HMMv {
 	 
 	    TR.push_back(Av0);
 	    TR.push_back(Av1);
-        std::cout << "["<<TR[0][0]<< ","<<TR[0][1]<<"]\n[" << TR[1][0]<< ","<< TR[1][1]<<"]\n";
+        //printMat(TR);
+        std::cout << "TRmat://["<<TR[0][0]<< ","<<TR[0][1]<<"]\n[" << TR[1][0]<< ","<< TR[1][1]<<"]\n";
 
 	    EM.push_back(Bv0);
 	    EM.push_back(Bv1);
         
         std::cout << "\n\n["<<EM[0][0]<< ","<<EM[0][1]<<"]\n[" << EM[1][0]<< ","<< EM[1][1]<<"]\n";
-
+        //fluffMethod();
     }
     //alternate more direct constructor? or just a consequence of the block above?
     HMMv(int nstates, int nevents, std::vector< std::vector<double> > TR, std::vector< std::vector<double> > EM, std::vector<double> PI):
@@ -78,10 +83,19 @@ struct HMMv {
 
    //friend std::vector<int> genStates(HMMv const& hmm);
    friend int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n);
+
+
+public:
     
-    public:
-        std::vector<int> genSeq(int);
+    std::vector<int> genSeq(int);
+    //void printMat(std::vector< std::vector<double> >);
+    void fluffMethod();
+    void printMat(std::vector< std::vector<double> >);
+    void printMyParams();
+
+
     
+//private:
 };
 
 
