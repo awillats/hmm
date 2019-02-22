@@ -20,7 +20,7 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
     //printf("vit start vec");
     assert(n > 0); assert(!observed.empty());
     //printf("vit start vec");
-    int *seq = new int[n];//holy cow, need to delete this memory
+    int *seq = new int[n];//holy cow, need to delete this memory, convert to vectorized to stop memory leak?
 
     for (int i = 0; i < n; i++) seq[i] = 0;
     double **prob = new double*[n];
@@ -162,17 +162,18 @@ std::vector<int>  HMMv::genSeq(int nt)
     for (int i=0;i<nt; i++)
     {
         int curState =states[i];
+        int otherState = 1-curState;
         //generate spikes
         spikes[i] = (unif(gen) < EM[curState][1]) ? 1 : 0;
         
         if (i<(nt-1))
         {
-            //only works for i={0,1}
-            double pTr = TR[curState][1-curState];
+            //only works for state={0,1}
+            double pTr = TR[curState][otherState];
+            
             //generate next steps transition rule
             //NB: do this with a matrix mult eventually?
-            
-            states[i+1] = (unif(gen) < pTr) ? 1-states[i] : states[i];
+            states[i+1] = (unif(gen) < pTr) ? otherState : curState;
         }
     };
     
