@@ -50,29 +50,25 @@ struct HMMv {
 	    std::vector<double> Bv0;
 	    std::vector<double> Bv1;
 
+        //NB:transpose the matrix representation rather than the execution rules
+        //NB:verify the matrix representation against standard approaches
         
-	    Av0.push_back(1-vTr[0]); //0,0
+        //Build tranistion matrix;
+        Av0.push_back(1-vTr[0]); //0,0
 	    Av0.push_back(vTr[0]); //0,1
 	    Av1.push_back(vTr[1]); //1,0
 	    Av1.push_back(1-vTr[1]); //1,1
+        TR.push_back(Av0);
+        TR.push_back(Av1);
         
-  
-
-	    Bv0.push_back(1-vFr[0]);
+        //Build emission matrix
+  	    Bv0.push_back(1-vFr[0]);
 	    Bv0.push_back(vFr[0]);
 	    Bv1.push_back(1-vFr[1]);
 	    Bv1.push_back(vFr[1]);
-	 
-	    TR.push_back(Av0);
-	    TR.push_back(Av1);
-        //printMat(TR);
-        std::cout << "TRmat://["<<TR[0][0]<< ","<<TR[0][1]<<"]\n[" << TR[1][0]<< ","<< TR[1][1]<<"]\n";
-
 	    EM.push_back(Bv0);
 	    EM.push_back(Bv1);
-        
-        std::cout << "\n\n["<<EM[0][0]<< ","<<EM[0][1]<<"]\n[" << EM[1][0]<< ","<< EM[1][1]<<"]\n";
-        //fluffMethod();
+        //printMyParams();
     }
     //alternate more direct constructor? or just a consequence of the block above?
     HMMv(int nstates, int nevents, std::vector< std::vector<double> > TR, std::vector< std::vector<double> > EM, std::vector<double> PI):
@@ -89,7 +85,6 @@ public:
     
     std::vector<int> genSeq(int);
     //void printMat(std::vector< std::vector<double> >);
-    void fluffMethod();
     void printMat(std::vector< std::vector<double> >);
     void printMyParams();
 

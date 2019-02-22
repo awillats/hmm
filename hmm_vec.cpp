@@ -117,11 +117,6 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
 }
 
 
-void HMMv::fluffMethod()
-{
-    std::cout<<"fluff";
-};
-
 void HMMv::printMat(std::vector< std::vector<double> > mat)
 {
     std::cout<<"\n[";
@@ -166,11 +161,17 @@ std::vector<int>  HMMv::genSeq(int nt)
     
     for (int i=0;i<nt; i++)
     {
-        spikes[i] = (unif(gen) < EM[states[i]][1]) ? 1 : 0;
+        int curState =states[i];
+        //generate spikes
+        spikes[i] = (unif(gen) < EM[curState][1]) ? 1 : 0;
         
         if (i<(nt-1))
         {
-            double pTr = TR[states[i]][0];
+            //only works for i={0,1}
+            double pTr = TR[curState][1-curState];
+            //generate next steps transition rule
+            //NB: do this with a matrix mult eventually?
+            
             states[i+1] = (unif(gen) < pTr) ? 1-states[i] : states[i];
         }
     };
