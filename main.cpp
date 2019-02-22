@@ -20,7 +20,7 @@
 
 std::string blockPrint(int bin)
 {
-    std::string block= ((bin==1) ? "\u2581":"\u2588");
+    std::string block= ((bin==0) ? "\u2581":"\u2588");
     return block;
 };
 
@@ -29,9 +29,9 @@ int main(int argc, const char * argv[]) {
     std::cout << "Hello, World!\n";
     
     std::vector<double> trs = {0.1,0.1}; //one of these elements is being interpretted as 1-X
-    std::vector<double> frs = {.005,.99};
+    std::vector<double> frs = {.1,.6};
     std::vector<double> pis = {.5,.5};
-    int nt = 1e3;
+    int nt = 2e2;
     
     HMMv myHMM = HMMv(2,2, trs, frs, pis);
     myHMM.printMyParams();
@@ -75,7 +75,4 @@ int main(int argc, const char * argv[]) {
 
 
 
-void printVec()
-{
-    
-}
+
