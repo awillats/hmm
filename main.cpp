@@ -14,15 +14,24 @@
 
 #include "hmmFuns_.hpp"
 //#include "hmm_fs.hpp"
-//#include "convenienceFuns.hpp" //this causes the linker to fail for some reason
+#include "printFuns.hpp" //this causes the linker to fail for some reason
 
 //#include "legacy/dataFuns.h"
 
-std::string blockPrint(int bin)
-{
-    std::string block= ((bin==0) ? "\u2581":"\u2588");
-    return block;
-};
+//figure out how to fold this nicely into a header
+template<typename T>
+std::ostream& operator<< (std::ostream& out, const std::vector<T>& v) {
+    out << "[";
+    size_t last = v.size() - 1;
+    for(size_t i = 0; i < v.size(); ++i) {
+        out << v[i];
+        if (i != last)
+            out << ", ";
+    }
+    out << "]";
+    return out;
+}
+
 
 int main(int argc, const char * argv[]) {
     // insert code here...
@@ -38,34 +47,25 @@ int main(int argc, const char * argv[]) {
     myHMM.genSeq(nt);
 
     //std::vector<int> q = genHMM(frs,trs,nt); //from hmmFuns.cpp
-    HMM_Data myHMMD = genHMM_Data(trs,frs,nt); //from hmmFuns_.cpp
+    //HMM_Data myHMMD = genHMM_Data(trs,frs,nt); //from hmmFuns_.cpp
     //std::cout << myHMM.spikes[1] << '\n';
     
     
     //friend int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n)
     int* vguess = viterbi(myHMM, myHMM.spikes, nt);
 
-    
     //from here on out is just printing vectors
-    for (int i=0;i<nt; i++)
-    {
-        std::cout << blockPrint(myHMM.spikes[i]==1);
-    }
+    printVecAsBlock(&myHMM.spikes[0], nt);
     std::cout<<"<spikes \n";
     
-    
-    for (int i=0;i<nt; i++)
-    {
-        std::cout << blockPrint(myHMM.states[i]==1);
-    }
+    printVecAsBlock(&myHMM.states[0], nt);
+    std::cout<<"<states";
     int stateSum = std::accumulate(myHMM.states.begin(),myHMM.states.end(),0);
     double stateProb = double(stateSum)/double(nt);
-    std::cout<<stateProb;
-    std::cout<<"<states \n";
-    for (int i=0;i<nt; i++)
-    {
-        std::cout << blockPrint(vguess[i]==1);
-    }
+    std::cout<<stateProb<<'\n';
+    
+    
+    printVecAsBlock(&vguess[0], nt);
     std::cout<<"<guessed states \n";
     
     //std::vector<int> q_hat = viterbi(myHMM,myHMM.spikes,nt);

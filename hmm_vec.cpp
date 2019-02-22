@@ -117,23 +117,7 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
 }
 
 
-void HMMv::printMat(std::vector< std::vector<double> > mat)
-{
-    std::cout<<"\n[";
-     for (int i=0;i<mat.size();i++)
-     {
-         for (int j=0; j<mat[i].size();j++)
-         {
-             std::cout<<mat[i][j];
-             if (j<mat[i].size()-1) {std::cout<<", ";};
-         }
-         
-         if (i<mat.size()-1){
-             std::cout<<"\n ";
-         }
-     }
-     std::cout<<"]\n";
-};
+
 
 void HMMv::printMyParams()
 {

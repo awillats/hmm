@@ -20,6 +20,7 @@
 
 #include <random>
 
+#include "printFuns.hpp"
 
 //2d vectors http://thispointer.com/creating-a-matrix-using-2d-vector-in-c-vector-of-vectors/
 
@@ -79,16 +80,12 @@ struct HMMv {
 
    //friend std::vector<int> genStates(HMMv const& hmm);
    friend int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n);
+   friend void printMat(std::vector< std::vector<double> >); // should be friend?
 
 
 public:
-    
     std::vector<int> genSeq(int);
-    //void printMat(std::vector< std::vector<double> >);
-    void printMat(std::vector< std::vector<double> >);
     void printMyParams();
-
-
     
 //private:
 };
