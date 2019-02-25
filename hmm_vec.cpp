@@ -137,11 +137,16 @@ std::vector<int>  HMMv::genSeq(int nt)
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_real_distribution<double> unif(0, 1);
+    std::discrete_distribution<int> piDist({.999,.0001});
+    //std::discrete_distribution<int> trDist(PI);
+
+    
     
     for (int i=0;i<nt; i++)
     {
         states[i] = 0;
     };
+    states[0] = piDist(gen);
     
     for (int i=0;i<nt; i++)
     {

@@ -11,9 +11,6 @@
 #include <vector>
 
 #include "hmm_vec.hpp"
-
-#include "hmmFuns_.hpp"
-//#include "hmm_fs.hpp"
 #include "printFuns.hpp" //this causes the linker to fail for some reason
 
 //#include "legacy/dataFuns.h"
@@ -37,10 +34,10 @@ int main(int argc, const char * argv[]) {
     // insert code here...
     std::cout << "Hello, World!\n";
     
-    std::vector<double> trs = {0.1,0.1}; //one of these elements is being interpretted as 1-X
-    std::vector<double> frs = {.1,.6};
-    std::vector<double> pis = {.5,.5};
-    int nt = 2e2;
+    std::vector<double> trs = {0.1,0.1}; //transition rates
+    std::vector<double> frs = {.1,.6}; //firing rates
+    std::vector<double> pis = {.1,.9}; //initial state probabilities
+    int nt = 1.4e2;
     
     HMMv myHMM = HMMv(2,2, trs, frs, pis);
     myHMM.printMyParams();
