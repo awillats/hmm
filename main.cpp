@@ -25,6 +25,8 @@ int main(int argc, const char * argv[]) {
     std::vector<double> pis = {.5,.5}; //initial state probabilities
     int nt = 3e2;
     
+    
+    
     HMMv myHMM = HMMv(2,2, trs, frs, pis);
     myHMM.printMyParams();
     myHMM.genSeq(nt);
@@ -44,7 +46,6 @@ int main(int argc, const char * argv[]) {
     
     printVecAsBlock(&vguess[0], nt);
     std::cout<<"<guessed states \n";
-    
     return 0;
 }
 
