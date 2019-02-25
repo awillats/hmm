@@ -43,3 +43,4 @@ void printVecAsBlock(int* v,int veclen)
         std::cout<<blockPrint(v[i]);
     }
 };
+

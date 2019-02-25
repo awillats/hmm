@@ -19,11 +19,18 @@ std::string blockPrint(int);
 void printMat(std::vector< std::vector<double> >);
 void printVecAsBlock(int*,int);
 
-
 //Overloaded << operator to print out vectors!
-//template<typename T>
-//ostream& operator<< (ostream& out, const vector<T>& v);
-//std::ostream& operator<< (std::ostream&, const std::vector<T>&);
-
+template<typename T>
+std::ostream& operator<< (std::ostream& out, const std::vector<T>& v) {
+    out << "[";
+    size_t last = v.size() - 1;
+    for(size_t i = 0; i < v.size(); ++i) {
+        out << v[i];
+        if (i != last)
+            out << ", ";
+    }
+    out << "]";
+    return out;
+}
 
 #endif /* convenienceFuns_hpp */

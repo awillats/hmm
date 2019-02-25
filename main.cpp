@@ -15,40 +15,20 @@
 
 //#include "legacy/dataFuns.h"
 
-//figure out how to fold this nicely into a header
-template<typename T>
-std::ostream& operator<< (std::ostream& out, const std::vector<T>& v) {
-    out << "[";
-    size_t last = v.size() - 1;
-    for(size_t i = 0; i < v.size(); ++i) {
-        out << v[i];
-        if (i != last)
-            out << ", ";
-    }
-    out << "]";
-    return out;
-}
+
 
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
     
-    std::vector<double> trs = {0.1,0.1}; //transition rates
-    std::vector<double> frs = {.1,.6}; //firing rates
-    std::vector<double> pis = {.1,.9}; //initial state probabilities
-    int nt = 1.4e2;
+    std::vector<double> trs = {0.2,0.2}; //transition rates
+    std::vector<double> frs = {.1,.8}; //firing rates
+    std::vector<double> pis = {.5,.5}; //initial state probabilities
+    int nt = 3e2;
     
     HMMv myHMM = HMMv(2,2, trs, frs, pis);
     myHMM.printMyParams();
     myHMM.genSeq(nt);
 
-    //std::vector<int> q = genHMM(frs,trs,nt); //from hmmFuns.cpp
-    //HMM_Data myHMMD = genHMM_Data(trs,frs,nt); //from hmmFuns_.cpp
-    //std::cout << myHMM.spikes[1] << '\n';
-    
-    
-    //friend int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n)
     int* vguess = viterbi(myHMM, myHMM.spikes, nt);
 
     //from here on out is just printing vectors
@@ -65,8 +45,6 @@ int main(int argc, const char * argv[]) {
     printVecAsBlock(&vguess[0], nt);
     std::cout<<"<guessed states \n";
     
-    //std::vector<int> q_hat = viterbi(myHMM,myHMM.spikes,nt);
-    //std::cout << q << '\n';
     return 0;
 }
 

@@ -43,7 +43,8 @@ struct HMMv {
    //constructor where you just specify the firing and transition rate vectors, note should only work for 2 states...
     HMMv(int nstates, int nevents, std::vector< double> vTr, std::vector< double> vFr, std::vector<double> PI):
     nstates(nstates), nevents(nevents), PI(PI) {
-        assert(nstates > 0); assert(nevents > 0);
+        //assert(nstates > 0); assert(nevents > 0);
+        assert(nstates==2); assert(nevents==2); //for now building the matrices only works for n=2
         assert(!vFr.empty()); assert(!vTr.empty()); assert(!PI.empty());
 
 	    std::vector<double> Av0;
@@ -80,8 +81,7 @@ struct HMMv {
 
    //friend std::vector<int> genStates(HMMv const& hmm);
    friend int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n);
-   friend void printMat(std::vector< std::vector<double> >); // should be friend?
-
+   friend void printMat(std::vector< std::vector<double> >);
 
 public:
     std::vector<int> genSeq(int);

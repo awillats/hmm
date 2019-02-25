@@ -14,8 +14,6 @@
 #include "hmm_vec.hpp"
 //#include "../../../module_help/StAC_rtxi/hmm_tests/hmm_fs.hpp"
 
-
-
 int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
     //printf("vit start vec");
     assert(n > 0); assert(!observed.empty());
@@ -117,8 +115,6 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
 }
 
 
-
-
 void HMMv::printMyParams()
 {
     std::cout<<"transition matrix:";
@@ -135,39 +131,38 @@ std::vector<int>  HMMv::genSeq(int nt)
     
     //set random seed
     std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_real_distribution<double> unif(0, 1);
-    std::discrete_distribution<int> piDist({.999,.0001});
-    //std::discrete_distribution<int> trDist(PI);
+    std::mt19937 gen(rd()); //choose a specific integer to "freeze" the random seed
+    
+    std::discrete_distribution<int> piDist(PI.begin(),PI.end());
+    std::vector< std::discrete_distribution <int> > trDistrs;
+    std::vector< std::discrete_distribution <int> > emDistrs;
 
-    
-    
-    for (int i=0;i<nt; i++)
+    //build distributions for emission and transition
+    for (int k=0;k<nstates;k++)
     {
-        states[i] = 0;
-    };
-    states[0] = piDist(gen);
+        std::discrete_distribution<int> trDistr(TR[k].begin(),TR[k].end());
+        trDistrs.push_back(trDistr);
+        
+        std::discrete_distribution<int> emDistr(EM[k].begin(),EM[k].end());
+        emDistrs.push_back(emDistr);
+    }
+    
+
+    states[0] = piDist(gen); //gen the first state
     
     for (int i=0;i<nt; i++)
     {
         int curState =states[i];
-        int otherState = 1-curState;
+        
         //generate spikes
-        spikes[i] = (unif(gen) < EM[curState][1]) ? 1 : 0;
+        spikes[i] = emDistrs[curState](gen);
         
         if (i<(nt-1))
         {
-            //only works for state={0,1}
-            double pTr = TR[curState][otherState];
-            
             //generate next steps transition rule
-            //NB: do this with a matrix mult eventually?
-            states[i+1] = (unif(gen) < pTr) ? otherState : curState;
+            states[i+1] = trDistrs[curState](gen);
         }
     };
-    
-    //std::vector<int> whatev(nt,13);
-    //spikes = whatev;
     return spikes;
 };
 
