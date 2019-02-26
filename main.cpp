@@ -10,7 +10,7 @@
 #include <iostream>
 #include <vector>
 
-#include "hmm_vec.hpp"
+//#include "hmm_vec.hpp"
 #include "printFuns.hpp" //this causes the linker to fail for some reason
 
 //#include "legacy/dataFuns.h"
@@ -25,8 +25,12 @@ int main(int argc, const char * argv[]) {
     std::vector<double> pis = {.5,.5}; //initial state probabilities
     int nt = 3e2;
     
-    
-    
+    int in=1;
+    //std::cout<<blockPrint(1);
+    std::string block= ((in==0) ? "\u2581":"\u2588");
+    std::cout << block;
+
+    /*
     HMMv myHMM = HMMv(2,2, trs, frs, pis);
     myHMM.printMyParams();
     myHMM.genSeq(nt);
@@ -46,6 +50,7 @@ int main(int argc, const char * argv[]) {
     
     printVecAsBlock(&vguess[0], nt);
     std::cout<<"<guessed states \n";
+     */
     return 0;
 }
 

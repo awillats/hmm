@@ -45,8 +45,6 @@ SYS_INCLUDE = $(ML_INCLUDES)
 
 SYS_INCLUDE += -I "/Users/adam/Documents/GitHub/hmmX/hmm/codegen/mex/call_hmmcpp"
 SYS_INCLUDE += -I "/Users/adam/Documents/GitHub/hmmX/hmm"
-SYS_INCLUDE += -I "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Kernel.framework/Versions/A/Headers"
-SYS_INCLUDE += -I "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Kernel.framework/Versions/A/Headers/IOKit/stream"
 SYS_INCLUDE += -I "./interface"
 SYS_INCLUDE += -I "$(MATLAB_ROOT)/extern/include"
 SYS_INCLUDE += -I "."

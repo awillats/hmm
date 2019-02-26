@@ -16,9 +16,16 @@ nt = 3e2;
 cfg = coder.config('mex');
 %cfg.CustomHeaderCode = '#include <iostream>';
 %cfg.CustomHeaderCode = '#include <cassert>';
+%cfg.CustomHeaderCode = '#include "printFuns.hpp"';
 
 cfg.TargetLang = 'C++';
 codegen call_hmmcpp -config cfg -args {1} -report
-%codegen call_hmmcpp -args {1}
+
+%codegen printFuns.cpp call_hmmcpp -config cfg -args {1} -report
 disp('done!')
 
+
+%%
+call_hmmcpp_mex(1);
+call_hmmcpp_mex(0);
+disp('done')
