@@ -36,6 +36,7 @@ struct HMMv {
     
     std::vector<int> states;
     std::vector<int> spikes;
+    int nt;
     
     //https://stackoverflow.com/questions/18795776/error-no-matching-function-for-call-to-when-constructing-an-unintialized-stru
     HMMv(): nstates(2), nevents(2) { ;};
@@ -86,6 +87,8 @@ struct HMMv {
 public:
     std::vector<int> genSeq(int);
     void printMyParams();
+    void printSeqs();
+
     
 //private:
 };

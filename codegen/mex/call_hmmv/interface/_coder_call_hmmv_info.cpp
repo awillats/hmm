@@ -37,7 +37,7 @@ mxArray *emlrtMexFcnProperties()
   emlrtSetField(xEntryPoints, 0, "FullPath", emlrtMxCreateString(
     "/Users/adam/Documents/GitHub/hmmX/hmm/call_hmmv.m"));
   emlrtSetField(xEntryPoints, 0, "TimeStamp", emlrtMxCreateDoubleScalar
-                (737482.5745601852));
+                (737482.67372685182));
   xResult = emlrtCreateStructMatrix(1, 1, 4, *(const char * (*)[4])&b_fldNames[0]);
   emlrtSetField(xResult, 0, "Version", emlrtMxCreateString(
     "9.5.0.1033004 (R2018b) Update 2"));

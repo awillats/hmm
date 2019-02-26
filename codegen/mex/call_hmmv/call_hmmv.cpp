@@ -13,24 +13,24 @@
 #include "rt_nonfinite.h"
 #include "call_hmmv.h"
 #include "printFuns.cpp"
-#include "printFuns.hpp"
 #include "hmm_vec.cpp"
-#include "hmm_vec.hpp"
 
 /* Function Definitions */
 void call_hmmv(const emlrtStack *, const real_T [2], const real_T [2], const
                real_T [2])
 {
-  std::vector<double> invec;
-
-  /* res_ = coder.opaque('string'); */
+  /* coder.cinclude('printFuns.hpp'); */
+  /* coder.cinclude('hmm_vec.hpp'); */
   blockPrint(1.0);
 
   /* convert mat-vec to std::vector<double> */
-  invec = { .1, .9 };
+  HMMv myHMM = HMMv(2.0, 2.0, { .1, .2 }, { .01, .7 }, {
+                    .5,.5
+                    } );
 
-  HMMv myHMM = HMMv(2.0, 2.0, invec, invec, invec);
   myHMM.printMyParams();
+  myHMM.genSeq(1000.0);
+  myHMM.printSeqs();
 }
 
 /* End of code generation (call_hmmv.cpp) */

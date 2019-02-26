@@ -28,15 +28,18 @@ int main(int argc, const char * argv[]) {
     HMMv myHMM = HMMv(2,2, trs, frs, pis);
     myHMM.printMyParams();
     myHMM.genSeq(nt);
+    myHMM.printSeqs();
 
     int* vguess = viterbi(myHMM, myHMM.spikes, nt);
 
+    /*
     //from here on out is just printing vectors
     printVecAsBlock(&myHMM.spikes[0], nt);
     std::cout<<"<spikes \n";
     
     printVecAsBlock(&myHMM.states[0], nt);
     std::cout<<"<states";
+     */
     int stateSum = std::accumulate(myHMM.states.begin(),myHMM.states.end(),0);
     double stateProb = double(stateSum)/double(nt);
     std::cout<<stateProb<<'\n';

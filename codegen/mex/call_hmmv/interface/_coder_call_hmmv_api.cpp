@@ -20,8 +20,8 @@ static real_T (*b_emlrt_marshallIn(const emlrtStack *sp, const mxArray *u, const
   emlrtMsgIdentifier *parentId))[2];
 static real_T (*c_emlrt_marshallIn(const emlrtStack *sp, const mxArray *src,
   const emlrtMsgIdentifier *msgId))[2];
-static real_T (*emlrt_marshallIn(const emlrtStack *sp, const mxArray *trs, const
-  char_T *identifier))[2];
+static real_T (*emlrt_marshallIn(const emlrtStack *sp, const mxArray *trs_,
+  const char_T *identifier))[2];
 
 /* Function Definitions */
 static real_T (*b_emlrt_marshallIn(const emlrtStack *sp, const mxArray *u, const
@@ -45,23 +45,23 @@ static real_T (*b_emlrt_marshallIn(const emlrtStack *sp, const mxArray *u, const
   return ret;
 }
 
-static real_T (*emlrt_marshallIn(const emlrtStack *sp, const mxArray *trs, const
-  char_T *identifier))[2]
+static real_T (*emlrt_marshallIn(const emlrtStack *sp, const mxArray *trs_,
+  const char_T *identifier))[2]
 {
   real_T (*y)[2];
   emlrtMsgIdentifier thisId;
   thisId.fIdentifier = const_cast<const char *>(identifier);
   thisId.fParent = NULL;
   thisId.bParentIsCell = false;
-  y = b_emlrt_marshallIn(sp, emlrtAlias(trs), &thisId);
-  emlrtDestroyArray(&trs);
+  y = b_emlrt_marshallIn(sp, emlrtAlias(trs_), &thisId);
+  emlrtDestroyArray(&trs_);
   return y;
 }
   void call_hmmv_api(const mxArray * const prhs[3], int32_T)
 {
-  real_T (*trs)[2];
-  real_T (*frs)[2];
-  real_T (*pis)[2];
+  real_T (*trs_)[2];
+  real_T (*frs_)[2];
+  real_T (*pis_)[2];
   emlrtStack st = { NULL,              /* site */
     NULL,                              /* tls */
     NULL                               /* prev */
@@ -70,12 +70,12 @@ static real_T (*emlrt_marshallIn(const emlrtStack *sp, const mxArray *trs, const
   st.tls = emlrtRootTLSGlobal;
 
   /* Marshall function inputs */
-  trs = emlrt_marshallIn(&st, emlrtAlias(prhs[0]), "trs");
-  frs = emlrt_marshallIn(&st, emlrtAlias(prhs[1]), "frs");
-  pis = emlrt_marshallIn(&st, emlrtAlias(prhs[2]), "pis");
+  trs_ = emlrt_marshallIn(&st, emlrtAlias(prhs[0]), "trs_");
+  frs_ = emlrt_marshallIn(&st, emlrtAlias(prhs[1]), "frs_");
+  pis_ = emlrt_marshallIn(&st, emlrtAlias(prhs[2]), "pis_");
 
   /* Invoke the target function */
-  call_hmmv(&st, *trs, *frs, *pis);
+  call_hmmv(&st, *trs_, *frs_, *pis_);
 }
 
 /* End of code generation (_coder_call_hmmv_api.cpp) */

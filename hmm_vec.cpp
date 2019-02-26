@@ -123,8 +123,18 @@ void HMMv::printMyParams()
     printMat(EM);
 };
 
-std::vector<int>  HMMv::genSeq(int nt)
+void HMMv::printSeqs()
 {
+    printVecAsBlock(&spikes[0], nt);
+    std::cout<<"<spikes \n";
+    
+    printVecAsBlock(&states[0], nt);
+    std::cout<<"<states";
+};
+
+std::vector<int>  HMMv::genSeq(int nt_)
+{
+    nt =nt_;
     //zero out the class's vectors
     states = std::vector<int> (nt,0);
     spikes = std::vector<int> (nt,0);

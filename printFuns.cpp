@@ -13,7 +13,9 @@
 
 std::string blockPrint(int bin)
 {
-    std::string block= ((bin==0) ? "\u2581":"\u2588");
+    //std::string block= ((bin==0) ? "\u2581":"\u2588");
+    std::string block= ((bin==0) ? "_":"^");
+
     return block;
 };
  
