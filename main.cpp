@@ -26,7 +26,7 @@ int main(int argc, const char * argv[]) {
     int nt = 3e2;
     
     int in=1;
-    //std::cout<<blockPrint(1);
+    std::cout<<blockPrint(0);
     std::string block= ((in==0) ? "\u2581":"\u2588");
     std::cout << block;
 

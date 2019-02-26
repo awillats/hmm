@@ -15,7 +15,9 @@
 
 using namespace std;
 
-std::string blockPrint(int);
+//std::string blockPrint(int);
+int blockPrint(int);
+
 void printMat(std::vector< std::vector<double> >);
 void printVecAsBlock(int*,int);
 

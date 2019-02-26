@@ -26,6 +26,6 @@ disp('done!')
 
 
 %%
-call_hmmcpp_mex(1);
-call_hmmcpp_mex(0);
+call_hmmcpp_mex(1)
+call_hmmcpp_mex(0)
 disp('done')

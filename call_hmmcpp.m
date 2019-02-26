@@ -1,4 +1,4 @@
-function call_hmmcpp(in)
+function res=call_hmmcpp(in)
 %#codegen
     if coder.target('MATLAB')
         disp('whoops! accidentally called it instead of codegening it')
@@ -8,10 +8,9 @@ function call_hmmcpp(in)
         %coder.cinclude('printFuns.hpp')
         coder.cinclude('printFuns.cpp')
 
-        str = 'blah';
-        res_ = coder.opaque('string');
-        res_=coder.ceval('blockPrint',in);
-        res = cast(res_,'char')
+        res_ = coder.opaque('int');
+        res_= coder.ceval('blockPrint',in);
+        res = cast(res_,'int32');
         %res= coder.ceval('((in==0) ? "\u2581":"\u2588")',in);
     end
 end

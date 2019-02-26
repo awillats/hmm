@@ -10,10 +10,17 @@
 
 //using namespace std;
 
-
+/*
 std::string blockPrint(int bin)
 {
     std::string block= ((bin==0) ? "\u2581":"\u2588");
+    return block;
+};
+ */
+
+int blockPrint(int bin)
+{
+    int block= ((bin==0) ? 2581:2588);
     return block;
 };
 
