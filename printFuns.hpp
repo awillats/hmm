@@ -15,11 +15,11 @@
 
 using namespace std;
 
-std::string blockPrint(int);
+std::string blockPrint(int,int);
 
 
 void printMat(std::vector< std::vector<double> >);
-void printVecAsBlock(int*,int);
+void printVecAsBlock(int*,int, int);
 
 //Overloaded << operator to print out vectors!
 template<typename T>

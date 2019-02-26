@@ -87,7 +87,7 @@ struct HMMv {
 public:
     std::vector<int> genSeq(int);
     void printMyParams();
-    void printSeqs();
+    void printSeqs(int);
 
     
 //private:

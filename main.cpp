@@ -19,7 +19,7 @@
 
 
 int main(int argc, const char * argv[]) {
-    
+    int printMode = 2;
     std::vector<double> trs = {0.2,0.2}; //transition rates
     std::vector<double> frs = {.1,.8}; //firing rates
     std::vector<double> pis = {.5,.5}; //initial state probabilities
@@ -28,7 +28,7 @@ int main(int argc, const char * argv[]) {
     HMMv myHMM = HMMv(2,2, trs, frs, pis);
     myHMM.printMyParams();
     myHMM.genSeq(nt);
-    myHMM.printSeqs();
+    myHMM.printSeqs(printMode);
 
     int* vguess = viterbi(myHMM, myHMM.spikes, nt);
 
@@ -45,7 +45,7 @@ int main(int argc, const char * argv[]) {
     std::cout<<stateProb<<'\n';
     
     
-    printVecAsBlock(&vguess[0], nt);
+    printVecAsBlock(&vguess[0], nt,printMode);
     std::cout<<"<guessed states \n";
     return 0;
 }

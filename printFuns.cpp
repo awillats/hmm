@@ -11,10 +11,22 @@
 //using namespace std;
 
 
-std::string blockPrint(int bin)
+std::string blockPrint(int bin, int printMode)
 {
-    //std::string block= ((bin==0) ? "\u2581":"\u2588");
-    std::string block= ((bin==0) ? "_":"^");
+    std::string block;
+   // block=((bin==0) ? "\u2581":"\u2588");
+
+    switch (printMode)
+    {
+        case 1:
+             block=((bin==0) ? "\u2581":"\u2588");
+        case 2:
+            block= ((bin==0) ? "_":"^");
+        case 0:
+            block = std::to_string(bin);
+            //((bin==0) ? "0":"1");
+            //generalize http://www.cplusplus.com/reference/cstdlib/itoa/
+    }
 
     return block;
 };
@@ -39,11 +51,11 @@ void printMat(std::vector< std::vector<double> > mat)
 };
 
 
-void printVecAsBlock(int* v,int veclen)
+void printVecAsBlock(int* v,int veclen, int printMode)
 {
     for (int i=0; i<veclen; i++)
     {
-        std::cout<<blockPrint(v[i]);
+        std::cout<<blockPrint(v[i],printMode);
     }
 };
 

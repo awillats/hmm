@@ -123,12 +123,12 @@ void HMMv::printMyParams()
     printMat(EM);
 };
 
-void HMMv::printSeqs()
+void HMMv::printSeqs(int printMode)
 {
-    printVecAsBlock(&spikes[0], nt);
+    printVecAsBlock(&spikes[0], nt, printMode);
     std::cout<<"<spikes \n";
     
-    printVecAsBlock(&states[0], nt);
+    printVecAsBlock(&states[0], nt, printMode);
     std::cout<<"<states";
 };
 
