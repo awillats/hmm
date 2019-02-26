@@ -3,16 +3,16 @@
  * course requirements at degree granting institutions only.  Not for
  * government, commercial, or other organizational use.
  *
- * _coder_call_blockprint_info.cpp
+ * _coder_call_hmmv_info.cpp
  *
- * Code generation for function '_coder_call_blockprint_info'
+ * Code generation for function '_coder_call_hmmv_info'
  *
  */
 
 /* Include files */
 #include "rt_nonfinite.h"
-#include "call_blockprint.h"
-#include "_coder_call_blockprint_info.h"
+#include "call_hmmv.h"
+#include "_coder_call_hmmv_info.h"
 
 /* Function Definitions */
 mxArray *emlrtMexFcnProperties()
@@ -28,16 +28,16 @@ mxArray *emlrtMexFcnProperties()
 
   xEntryPoints = emlrtCreateStructMatrix(1, 1, 6, *(const char * (*)[6])&
     fldNames[0]);
-  xInputs = emlrtCreateLogicalMatrix(1, 1);
-  emlrtSetField(xEntryPoints, 0, "Name", emlrtMxCreateString("call_blockprint"));
-  emlrtSetField(xEntryPoints, 0, "NumberOfInputs", emlrtMxCreateDoubleScalar(1.0));
+  xInputs = emlrtCreateLogicalMatrix(1, 3);
+  emlrtSetField(xEntryPoints, 0, "Name", emlrtMxCreateString("call_hmmv"));
+  emlrtSetField(xEntryPoints, 0, "NumberOfInputs", emlrtMxCreateDoubleScalar(3.0));
   emlrtSetField(xEntryPoints, 0, "NumberOfOutputs", emlrtMxCreateDoubleScalar
                 (0.0));
   emlrtSetField(xEntryPoints, 0, "ConstantInputs", xInputs);
   emlrtSetField(xEntryPoints, 0, "FullPath", emlrtMxCreateString(
-    "/Users/adam/Documents/GitHub/hmmX/hmm/call_blockprint.m"));
+    "/Users/adam/Documents/GitHub/hmmX/hmm/call_hmmv.m"));
   emlrtSetField(xEntryPoints, 0, "TimeStamp", emlrtMxCreateDoubleScalar
-                (737482.56596064812));
+                (737482.5745601852));
   xResult = emlrtCreateStructMatrix(1, 1, 4, *(const char * (*)[4])&b_fldNames[0]);
   emlrtSetField(xResult, 0, "Version", emlrtMxCreateString(
     "9.5.0.1033004 (R2018b) Update 2"));
@@ -59,4 +59,4 @@ const mxArray *emlrtMexFcnResolvedFunctionsInfo()
   return nameCaptureInfo;
 }
 
-/* End of code generation (_coder_call_blockprint_info.cpp) */
+/* End of code generation (_coder_call_hmmv_info.cpp) */
