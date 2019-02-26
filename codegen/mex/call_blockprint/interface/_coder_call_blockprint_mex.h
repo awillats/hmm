@@ -3,14 +3,14 @@
  * course requirements at degree granting institutions only.  Not for
  * government, commercial, or other organizational use.
  *
- * _coder_call_hmmcpp_api.h
+ * _coder_call_blockprint_mex.h
  *
- * Code generation for function '_coder_call_hmmcpp_api'
+ * Code generation for function '_coder_call_blockprint_mex'
  *
  */
 
-#ifndef _CODER_CALL_HMMCPP_API_H
-#define _CODER_CALL_HMMCPP_API_H
+#ifndef _CODER_CALL_BLOCKPRINT_MEX_H
+#define _CODER_CALL_BLOCKPRINT_MEX_H
 
 /* Include files */
 #include <math.h>
@@ -21,11 +21,13 @@
 #include "mex.h"
 #include "emlrt.h"
 #include "rtwtypes.h"
-#include "call_hmmcpp_types.h"
+#include "call_blockprint_types.h"
 
 /* Function Declarations */
-extern void call_hmmcpp_api(const mxArray * const prhs[1], int32_T nlhs);
+extern void mexFunction(int32_T nlhs, mxArray *plhs[], int32_T nrhs, const
+  mxArray *prhs[]);
+extern emlrtCTX mexFunctionCreateRootTLS();
 
 #endif
 
-/* End of code generation (_coder_call_hmmcpp_api.h) */
+/* End of code generation (_coder_call_blockprint_mex.h) */

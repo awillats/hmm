@@ -3,17 +3,17 @@
  * course requirements at degree granting institutions only.  Not for
  * government, commercial, or other organizational use.
  *
- * _coder_call_hmmcpp_api.cpp
+ * _coder_call_blockprint_api.cpp
  *
- * Code generation for function '_coder_call_hmmcpp_api'
+ * Code generation for function '_coder_call_blockprint_api'
  *
  */
 
 /* Include files */
 #include "rt_nonfinite.h"
-#include "call_hmmcpp.h"
-#include "_coder_call_hmmcpp_api.h"
-#include "call_hmmcpp_data.h"
+#include "call_blockprint.h"
+#include "_coder_call_blockprint_api.h"
+#include "call_blockprint_data.h"
 
 /* Function Declarations */
 static real_T b_emlrt_marshallIn(const emlrtStack *sp, const mxArray *u, const
@@ -58,7 +58,7 @@ static real_T emlrt_marshallIn(const emlrtStack *sp, const mxArray *in, const
   return y;
 }
 
-void call_hmmcpp_api(const mxArray * const prhs[1], int32_T)
+void call_blockprint_api(const mxArray * const prhs[1], int32_T)
 {
   real_T in;
   emlrtStack st = { NULL,              /* site */
@@ -72,7 +72,7 @@ void call_hmmcpp_api(const mxArray * const prhs[1], int32_T)
   in = emlrt_marshallIn(&st, emlrtAliasP(prhs[0]), "in");
 
   /* Invoke the target function */
-  call_hmmcpp(&st, in);
+  call_blockprint(&st, in);
 }
 
-/* End of code generation (_coder_call_hmmcpp_api.cpp) */
+/* End of code generation (_coder_call_blockprint_api.cpp) */

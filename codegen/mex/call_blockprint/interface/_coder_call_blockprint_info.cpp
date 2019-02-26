@@ -3,16 +3,16 @@
  * course requirements at degree granting institutions only.  Not for
  * government, commercial, or other organizational use.
  *
- * _coder_call_hmmcpp_info.cpp
+ * _coder_call_blockprint_info.cpp
  *
- * Code generation for function '_coder_call_hmmcpp_info'
+ * Code generation for function '_coder_call_blockprint_info'
  *
  */
 
 /* Include files */
 #include "rt_nonfinite.h"
-#include "call_hmmcpp.h"
-#include "_coder_call_hmmcpp_info.h"
+#include "call_blockprint.h"
+#include "_coder_call_blockprint_info.h"
 
 /* Function Definitions */
 mxArray *emlrtMexFcnProperties()
@@ -29,13 +29,13 @@ mxArray *emlrtMexFcnProperties()
   xEntryPoints = emlrtCreateStructMatrix(1, 1, 6, *(const char * (*)[6])&
     fldNames[0]);
   xInputs = emlrtCreateLogicalMatrix(1, 1);
-  emlrtSetField(xEntryPoints, 0, "Name", emlrtMxCreateString("call_hmmcpp"));
+  emlrtSetField(xEntryPoints, 0, "Name", emlrtMxCreateString("call_blockprint"));
   emlrtSetField(xEntryPoints, 0, "NumberOfInputs", emlrtMxCreateDoubleScalar(1.0));
   emlrtSetField(xEntryPoints, 0, "NumberOfOutputs", emlrtMxCreateDoubleScalar
                 (0.0));
   emlrtSetField(xEntryPoints, 0, "ConstantInputs", xInputs);
   emlrtSetField(xEntryPoints, 0, "FullPath", emlrtMxCreateString(
-    "/Users/adam/Documents/GitHub/hmmX/hmm/call_hmmcpp.m"));
+    "/Users/adam/Documents/GitHub/hmmX/hmm/call_blockprint.m"));
   emlrtSetField(xEntryPoints, 0, "TimeStamp", emlrtMxCreateDoubleScalar
                 (737482.4724305555));
   xResult = emlrtCreateStructMatrix(1, 1, 4, *(const char * (*)[4])&b_fldNames[0]);
@@ -59,4 +59,4 @@ const mxArray *emlrtMexFcnResolvedFunctionsInfo()
   return nameCaptureInfo;
 }
 
-/* End of code generation (_coder_call_hmmcpp_info.cpp) */
+/* End of code generation (_coder_call_blockprint_info.cpp) */

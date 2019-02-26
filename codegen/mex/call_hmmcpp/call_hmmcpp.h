@@ -24,7 +24,7 @@
 #include "call_hmmcpp_types.h"
 
 /* Function Declarations */
-extern int64_T call_hmmcpp(const emlrtStack *sp, real_T in);
+extern void call_hmmcpp(const emlrtStack *sp, real_T in);
 
 #endif
 
