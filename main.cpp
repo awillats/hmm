@@ -28,6 +28,9 @@ int main(int argc, const char * argv[]) {
     int nt = 3e2;
     
     
+    //std::cout<<returnDub();
+    
+    
     HMMv myHMM = HMMv(2,2, trs, frs, pis);
     myHMM.printMyParams();
     myHMM.genSeq(nt);

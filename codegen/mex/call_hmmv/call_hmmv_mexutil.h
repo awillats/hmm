@@ -3,14 +3,14 @@
  * course requirements at degree granting institutions only.  Not for
  * government, commercial, or other organizational use.
  *
- * _coder_call_hmmv_api.h
+ * call_hmmv_mexutil.h
  *
- * Code generation for function '_coder_call_hmmv_api'
+ * Code generation for function 'call_hmmv_mexutil'
  *
  */
 
-#ifndef _CODER_CALL_HMMV_API_H
-#define _CODER_CALL_HMMV_API_H
+#ifndef CALL_HMMV_MEXUTIL_H
+#define CALL_HMMV_MEXUTIL_H
 
 /* Include files */
 #include <math.h>
@@ -24,9 +24,8 @@
 #include "call_hmmv_types.h"
 
 /* Function Declarations */
-extern void call_hmmv_api(const mxArray * const prhs[3], int32_T nlhs, const
-  mxArray *plhs[1]);
+extern const mxArray *emlrt_marshallOut(const real_T u);
 
 #endif
 
-/* End of code generation (_coder_call_hmmv_api.h) */
+/* End of code generation (call_hmmv_mexutil.h) */

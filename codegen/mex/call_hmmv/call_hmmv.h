@@ -24,8 +24,8 @@
 #include "call_hmmv_types.h"
 
 /* Function Declarations */
-extern void call_hmmv(const emlrtStack *sp, const real_T trs_[2], const real_T
-                      frs_[2], const real_T pis_[2]);
+extern real_T call_hmmv(const emlrtStack *sp, const real_T trs_[2], const real_T
+  frs_[2], const real_T pis_[2]);
 
 #endif
 

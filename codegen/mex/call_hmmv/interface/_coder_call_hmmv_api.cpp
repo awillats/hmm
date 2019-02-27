@@ -13,6 +13,7 @@
 #include "rt_nonfinite.h"
 #include "call_hmmv.h"
 #include "_coder_call_hmmv_api.h"
+#include "call_hmmv_mexutil.h"
 #include "call_hmmv_data.h"
 
 /* Function Declarations */
@@ -57,11 +58,13 @@ static real_T (*emlrt_marshallIn(const emlrtStack *sp, const mxArray *trs_,
   emlrtDestroyArray(&trs_);
   return y;
 }
-  void call_hmmv_api(const mxArray * const prhs[3], int32_T)
+  void call_hmmv_api(const mxArray * const prhs[3], int32_T, const mxArray *
+                     plhs[1])
 {
   real_T (*trs_)[2];
   real_T (*frs_)[2];
   real_T (*pis_)[2];
+  real_T dub;
   emlrtStack st = { NULL,              /* site */
     NULL,                              /* tls */
     NULL                               /* prev */
@@ -75,7 +78,10 @@ static real_T (*emlrt_marshallIn(const emlrtStack *sp, const mxArray *trs_,
   pis_ = emlrt_marshallIn(&st, emlrtAlias(prhs[2]), "pis_");
 
   /* Invoke the target function */
-  call_hmmv(&st, *trs_, *frs_, *pis_);
+  dub = call_hmmv(&st, *trs_, *frs_, *pis_);
+
+  /* Marshall function outputs */
+  plhs[0] = emlrt_marshallOut(dub);
 }
 
 /* End of code generation (_coder_call_hmmv_api.cpp) */

@@ -10,8 +10,6 @@
 
 //using namespace std;
 
-
-
 std::string blockPrint(int bin, int printMode)
 {
     std::string block;

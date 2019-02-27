@@ -12,18 +12,31 @@
 /* Include files */
 #include "rt_nonfinite.h"
 #include "call_hmmv.h"
+#include "call_hmmv_mexutil.h"
 #include "printFuns.cpp"
 #include "shuttleFuns.cpp"
 #include "hmm_vec.cpp"
 
+/* Variable Definitions */
+static emlrtRTEInfo emlrtRTEI = { 14,  /* lineNo */
+  9,                                   /* colNo */
+  "call_hmmv",                         /* fName */
+  "/Users/adam/Documents/GitHub/hmmX/hmm/call_hmmv.m"/* pName */
+};
+
 /* Function Definitions */
-void call_hmmv(const emlrtStack *, const real_T trs_[2], const real_T frs_[2],
-               const real_T pis_[2])
+real_T call_hmmv(const emlrtStack *sp, const real_T trs_[2], const real_T frs_[2],
+                 const real_T pis_[2])
 {
+  real_T dub;
+  double dub_;
   real_T b_trs_[2];
   std::vector<double> trs;
   std::vector<double> frs;
   std::vector<double> pis;
+  dub_ = returnDub();
+  dub = (real_T)dub_;
+  emlrtDisplayR2012b(emlrt_marshallOut((real_T)dub_), "dub", &emlrtRTEI, sp);
 
   /* coder.ceval('blockPrint',1,printMode); */
   /* convert input vecs to c++ */
@@ -49,6 +62,7 @@ void call_hmmv(const emlrtStack *, const real_T trs_[2], const real_T frs_[2],
   myHMM.printMyParams();
   myHMM.genSeq(1000.0);
   myHMM.printSeqs(2.0);
+  return dub;
 }
 
 /* End of code generation (call_hmmv.cpp) */

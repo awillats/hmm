@@ -18,3 +18,8 @@ std::vector<double> buildVectorFromAry(double ary[], int len)
     }
     return v;
 };
+
+double returnDub()
+{
+    return 42.1;
+}
