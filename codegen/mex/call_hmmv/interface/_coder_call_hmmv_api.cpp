@@ -22,7 +22,7 @@ static real_T (*c_emlrt_marshallIn(const emlrtStack *sp, const mxArray *src,
   const emlrtMsgIdentifier *msgId))[2];
 static real_T (*emlrt_marshallIn(const emlrtStack *sp, const mxArray *trs_,
   const char_T *identifier))[2];
-static const mxArray *emlrt_marshallOut(const real_T u);
+static const mxArray *emlrt_marshallOut(const real_T u[2]);
 
 /* Function Definitions */
 static real_T (*b_emlrt_marshallIn(const emlrtStack *sp, const mxArray *u, const
@@ -58,28 +58,35 @@ static real_T (*emlrt_marshallIn(const emlrtStack *sp, const mxArray *trs_,
   emlrtDestroyArray(&trs_);
   return y;
 }
-  static const mxArray *emlrt_marshallOut(const real_T u)
+  static const mxArray *emlrt_marshallOut(const real_T u[2])
 {
   const mxArray *y;
   const mxArray *m0;
+  static const int32_T iv0[2] = { 0, 0 };
+
+  static const int32_T iv1[2] = { 1, 2 };
+
   y = NULL;
-  m0 = emlrtCreateDoubleScalar(u);
+  m0 = emlrtCreateNumericArray(2, iv0, mxDOUBLE_CLASS, mxREAL);
+  emlrtMxSetData((mxArray *)m0, (void *)&u[0]);
+  emlrtSetDimensions((mxArray *)m0, *(int32_T (*)[2])&iv1[0], 2);
   emlrtAssign(&y, m0);
   return y;
 }
 
 void call_hmmv_api(const mxArray * const prhs[3], int32_T, const mxArray *plhs[1])
 {
+  real_T (*out)[2];
   real_T (*trs_)[2];
   real_T (*frs_)[2];
   real_T (*pis_)[2];
-  real_T out;
   emlrtStack st = { NULL,              /* site */
     NULL,                              /* tls */
     NULL                               /* prev */
   };
 
   st.tls = emlrtRootTLSGlobal;
+  out = (real_T (*)[2])mxMalloc(sizeof(real_T [2]));
 
   /* Marshall function inputs */
   trs_ = emlrt_marshallIn(&st, emlrtAlias(prhs[0]), "trs_");
@@ -87,10 +94,10 @@ void call_hmmv_api(const mxArray * const prhs[3], int32_T, const mxArray *plhs[1
   pis_ = emlrt_marshallIn(&st, emlrtAlias(prhs[2]), "pis_");
 
   /* Invoke the target function */
-  out = call_hmmv(&st, *trs_, *frs_, *pis_);
+  call_hmmv(&st, *trs_, *frs_, *pis_, *out);
 
   /* Marshall function outputs */
-  plhs[0] = emlrt_marshallOut(out);
+  plhs[0] = emlrt_marshallOut(*out);
 }
 
 /* End of code generation (_coder_call_hmmv_api.cpp) */

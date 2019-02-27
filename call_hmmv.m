@@ -14,8 +14,8 @@ function out= call_hmmv(trs_,frs_,pis_)
         dub = cast(dub_,'like',[1.0,1.0])
         %}
         
-        v = [1.2];
-        coder.ceval('modDub',coder.ref(v));
+        v = [1, 2];
+        coder.ceval('modDubVec',coder.ref(v),length(v));
         out=v;
         
         myHMMv = coder.opaque('HMMv');

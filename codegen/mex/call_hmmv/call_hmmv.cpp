@@ -17,10 +17,9 @@
 #include "hmm_vec.cpp"
 
 /* Function Definitions */
-real_T call_hmmv(const emlrtStack *, const real_T trs_[2], const real_T frs_[2],
-                 const real_T pis_[2])
+void call_hmmv(const emlrtStack *, const real_T trs_[2], const real_T frs_[2],
+               const real_T pis_[2], real_T out[2])
 {
-  real_T out;
   real_T b_trs_[2];
   std::vector<double> trs;
   std::vector<double> frs;
@@ -31,10 +30,10 @@ real_T call_hmmv(const emlrtStack *, const real_T trs_[2], const real_T frs_[2],
   /*         dub_ = coder.ceval('returnDub'); */
   /*         dub = cast(dub_,'like',[1.0,1.0]) */
   /*         %} */
-  out = 1.2;
-  modDub(&out);
+  out[0] = 1.0;
+  out[1] = 2.0;
+  modDubVec(out, 2.0);
 
-  /* cast(v,'like',[1.0]); */
   /* coder.ceval('blockPrint',1,printMode); */
   /* convert input vecs to c++ */
   /* pre-allocates a std::vec */
@@ -59,7 +58,6 @@ real_T call_hmmv(const emlrtStack *, const real_T trs_[2], const real_T frs_[2],
   myHMM.printMyParams();
   myHMM.genSeq(1000.0);
   myHMM.printSeqs(2.0);
-  return out;
 }
 
 /* End of code generation (call_hmmv.cpp) */

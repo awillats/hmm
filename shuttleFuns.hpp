@@ -16,6 +16,7 @@
 std::vector<double> buildVectorFromAry(double[],int);
 double * returnDub(void);
 void modDub(double*);
+void modDubVec(double *,int);
 
 
 

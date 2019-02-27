@@ -37,7 +37,7 @@ mxArray *emlrtMexFcnProperties()
   emlrtSetField(xEntryPoints, 0, "FullPath", emlrtMxCreateString(
     "/Users/adam/Documents/GitHub/hmmX/hmm/call_hmmv.m"));
   emlrtSetField(xEntryPoints, 0, "TimeStamp", emlrtMxCreateDoubleScalar
-                (737483.51532407408));
+                (737483.51621527784));
   xResult = emlrtCreateStructMatrix(1, 1, 4, *(const char * (*)[4])&b_fldNames[0]);
   emlrtSetField(xResult, 0, "Version", emlrtMxCreateString(
     "9.5.0.1033004 (R2018b) Update 2"));
@@ -51,17 +51,18 @@ const mxArray *emlrtMexFcnResolvedFunctionsInfo()
 {
   const mxArray *nameCaptureInfo;
   const char * data[5] = {
-    "789cdd545b4ac34014bd955af4a322880bf05bc8b42aa81f82f1d9625b45ab168b8f6932dac179914c4bdd8b1f2ec145b806d7e1124cd28e464d8808fae185c9"
-    "e4e40ef79c7b7213c855eb3900980a162880970244510c56f87c7a08610c3e4671b49b7c2e6957efe7c7211fe1e2a773f7a3dd914293811e02460569f4788778",
-    "01109893b732aee45460a19b778a80477cc9fac48d32d7949126e5a42663a04203c07762a93710a6c2fbcd2e716e8f7a1cbcaeff2e97c5018cfc09353fa4f49f"
-    "4ff2477df5672dc59fe91136f9f6f6393af689e723ec628eb6a4d3e344681fed525de9755097f35678410e66ec32b8e95b7c8e63bde0f48913d37b95a2b790a4",
-    "17beff3e2761228637d70ddf20a5ff447f12f86653f88c3f26ef489778160d86c61398598c881bdd85ecbeb3747c8e341d260cdf63bcde0ffadecfe033f976b5"
-    "d60a46c3568a51076b2a858fea76b3666f5c1e2e94ca2b1d0b2b85b494ac2307887016adf9c82e346ffc4243bf2cfe8773b27ef134f36c27f2a9df9acb9479f8",
-    "877c7ff5dd356b2767abdc6d79f6e9d2f2a0bc78c24b8dbd988e830c9e2c1d10c7097d7ea89ff07ffd69fd57bbf38826",
-    "" };
+    "789ced54dd4ae340143e952a0a5604d907f05ae8d4aea05e0866fdc7ea2e5ab528fe4c93d10ece4f48a6a5fb267be1c53ec23ec45eec13ecf36c9266bad39a21"
+    "a2d80be981e9e4eb09e7fbcec7c981c2c1510100e6a2033ec09f5948a2149df8fff91e8409188c527aeb7c61e8bd425a4fc72414135c1a7aff29bd5d2914e9aa",
+    "1e605490e3366f9220020273d22fe3494e0516aafedd27109050b20ef192cc3d65a44e39a94903ecd308f05d23d507712a7ede6a11f7f1b4cd216885ffe53213"
+    "40ea4facf987a5ff62963ffe737f562cfecca758e7af76aed159488210610f73b42ddd36274285688faafd7613b5386fc43fc8c58cdd460f9d323775de59744e",
+    "65e984e73a076e43e70c4c1bb8baa9f9ba96be337dc9e0fb64e1d3bee8bc2b3d129469342c81c0accc8878502dc8ef3b4fc770d874e8d07cbfcc7aafe8fb6b0e"
+    "9fce5f1dd41ad14838becfa88b15952244474ebde67cb93da95696d79a65ecfb4849c99ab28b0867c9594aec424bda2fd4f32b1a95d1cdc9e6cdef85bf4e269f",
+    "ff5e736999870fc837aaefae5e3bbf5ce75e23702e5656bbcb9fcf79e5f8d0d0f12d87274f079838a3cf81fa197bf5adf57f5aeabfd4c70d4b7deda3cebf66af"
+    "2f72acaa6e87b830eafdbe35deef66bdf17eefc778bf8f866fbcdfdf56ff1f77b3e07e", ""
+  };
 
   nameCaptureInfo = NULL;
-  emlrtNameCaptureMxArrayR2016a(data, 1800U, &nameCaptureInfo);
+  emlrtNameCaptureMxArrayR2016a(data, 3296U, &nameCaptureInfo);
   return nameCaptureInfo;
 }
 

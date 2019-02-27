@@ -31,3 +31,12 @@ void modDub(double * pDub)
     *pDub= *pDub + 1;
     //return modVal;
 }
+
+void modDubVec(double * pDub,int lenDub)
+{
+    for (int i = 0; i<lenDub; i++)
+    {
+        *(pDub+i)= *(pDub+i) + 1;
+    }
+    //return modVal;
+}
