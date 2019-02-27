@@ -44,14 +44,13 @@ int main(int argc, const char * argv[]) {
     myHMM.genSeq(nt);
     myHMM.printSeqs(printMode);
     
-    int spikeAry[nt];
-    int stateAry[nt];
-    myHMM.exportSeqs(spikeAry, stateAry);
-    
-    std::cout <<'\n'<< spikeAry[0] <<spikeAry[1]<<spikeAry[2]<<'\n';
-    
 
     int* vguess = viterbi(myHMM, myHMM.spikes, nt);
+    
+    int spkAry[nt];
+    int stateAry[nt];
+    int vguess2[nt];
+    myHMM.exportSeqsGuess(nt,spkAry,stateAry,vguess2);
 
     //print percent of states which are 0. Just as a sanity check that transition probabilities are reasonably implemented
     int stateSum = std::accumulate(myHMM.states.begin(),myHMM.states.end(),0);
@@ -60,6 +59,9 @@ int main(int argc, const char * argv[]) {
     
     printVecAsBlock(&vguess[0], nt,printMode);
     std::cout<<"<guessed states \n";
+    
+    printVecAsBlock(&vguess2[0], nt,printMode);
+
     return 0;
 }
 

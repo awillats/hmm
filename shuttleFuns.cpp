@@ -23,6 +23,8 @@ void vec2array(std::vector<double> vIn,double *ary)
 {
     //return &vIn[0];
     std::copy(vIn.begin(),vIn.end(),ary);
+    //https://stackoverflow.com/questions/2923272/how-to-convert-vector-to-array
+    //*ary = vIn.data();
 };
 
 

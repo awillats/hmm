@@ -29,6 +29,7 @@ function [spikes,states]= call_hmmv(nt, trs_,frs_,pis_)
         myHMMv = coder.ceval('HMMv myHMM = HMMv',2,2, trs, frs, pis);
         coder.ceval('myHMM.printMyParams');
         coder.ceval('myHMM.genSeq',nt);
+        coder.ceval('viterbi(myHMM, myHMM.spikes, nt)');
         
         spikes = cast(zeros(1,nt),'int32');
         states = cast(zeros(1,nt),'int32');

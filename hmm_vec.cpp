@@ -138,6 +138,16 @@ void HMMv::exportSeqs(int * spikeLoc, int * stateLoc)
     std::copy(states.begin(), states.end(), stateLoc);
 };
 
+void HMMv::exportSeqsGuess(int nt, int * spikeLoc, int * stateLoc, int * stateGuess)
+{
+    std::copy(spikes.begin(), spikes.end(), spikeLoc);
+    std::copy(states.begin(), states.end(), stateLoc);
+    
+    int* vguess = viterbi(*this , spikes, nt);
+    std::copy(vguess, vguess+nt, stateGuess);
+};
+
+
 
 std::vector<int>  HMMv::genSeq(int nt_)
 {

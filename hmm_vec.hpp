@@ -17,6 +17,7 @@
 
 #include <vector>
 #include <algorithm>
+#include <iterator>
 
 #include <random>
 
@@ -89,8 +90,8 @@ public:
     void printMyParams();
     void printSeqs(int);
     void exportSeqs(int *, int *);
+    void exportSeqsGuess(int, int *, int *, int *);
 
-    
 //private:
 };
 

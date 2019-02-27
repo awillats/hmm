@@ -19,47 +19,47 @@
 #include "hmm_vec.cpp"
 
 /* Variable Definitions */
-static emlrtRTEInfo emlrtRTEI = { 33,  /* lineNo */
+static emlrtRTEInfo emlrtRTEI = { 34,  /* lineNo */
   9,                                   /* colNo */
   "call_hmmv",                         /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_hmmv.m"/* pName */
 };
 
-static emlrtRTEInfo b_emlrtRTEI = { 34,/* lineNo */
+static emlrtRTEInfo b_emlrtRTEI = { 35,/* lineNo */
   9,                                   /* colNo */
   "call_hmmv",                         /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_hmmv.m"/* pName */
 };
 
-static emlrtDCInfo emlrtDCI = { 33,    /* lineNo */
+static emlrtDCInfo emlrtDCI = { 34,    /* lineNo */
   31,                                  /* colNo */
   "call_hmmv",                         /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_hmmv.m",/* pName */
   1                                    /* checkKind */
 };
 
-static emlrtDCInfo b_emlrtDCI = { 33,  /* lineNo */
+static emlrtDCInfo b_emlrtDCI = { 34,  /* lineNo */
   31,                                  /* colNo */
   "call_hmmv",                         /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_hmmv.m",/* pName */
   4                                    /* checkKind */
 };
 
-static emlrtDCInfo c_emlrtDCI = { 34,  /* lineNo */
+static emlrtDCInfo c_emlrtDCI = { 35,  /* lineNo */
   31,                                  /* colNo */
   "call_hmmv",                         /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_hmmv.m",/* pName */
   1                                    /* checkKind */
 };
 
-static emlrtDCInfo d_emlrtDCI = { 33,  /* lineNo */
+static emlrtDCInfo d_emlrtDCI = { 34,  /* lineNo */
   9,                                   /* colNo */
   "call_hmmv",                         /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_hmmv.m",/* pName */
   1                                    /* checkKind */
 };
 
-static emlrtDCInfo e_emlrtDCI = { 34,  /* lineNo */
+static emlrtDCInfo e_emlrtDCI = { 35,  /* lineNo */
   9,                                   /* colNo */
   "call_hmmv",                         /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_hmmv.m",/* pName */
@@ -110,6 +110,7 @@ void call_hmmv(const emlrtStack *sp, real_T nt, const real_T trs_[2], const
   HMMv myHMM = HMMv(2.0, 2.0, trs, frs, pis);
   myHMM.printMyParams();
   myHMM.genSeq(nt);
+  viterbi(myHMM, myHMM.spikes, nt)();
   i0 = spikes->size[0] * spikes->size[1];
   spikes->size[0] = 1;
   if (!(nt >= 0.0)) {

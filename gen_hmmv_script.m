@@ -21,8 +21,6 @@ disp('done!')
 
 %%
 [spk,st]= call_hmmv_mex(nt, trs,frs,pis);
-%%
-%clc
 vecPrint(st);
 %call_hmmv_mex(0);
-disp('done')
+disp('matlab states')
