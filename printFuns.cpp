@@ -10,27 +10,15 @@
 
 //using namespace std;
 
-//extract to a different header
-std::vector<double> buildVectorFromAry(double ary[], int len)
-{
-    std::vector<double> v(len,0);
-    for (int i=0; i<len;i++)
-    {
-        v[i] =ary[i];
-    }
-    return v;
-};
+
 
 std::string blockPrint(int bin, int printMode)
 {
     std::string block;
-   // block=((bin==0) ? "\u2581":"\u2588");
-
     switch (printMode)
     {
         case 0:
             block = std::to_string(bin);
-            //block = "_";
             break;
         case 1:
              block=((bin==0) ? "\u2581":"\u2588");
@@ -38,11 +26,7 @@ std::string blockPrint(int bin, int printMode)
         case 2:
             block= ((bin==0) ? "_":"^");
             break;
-
-            //((bin==0) ? "0":"1");
-            //generalize http://www.cplusplus.com/reference/cstdlib/itoa/
     }
-
     return block;
 };
  

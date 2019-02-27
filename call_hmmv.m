@@ -5,6 +5,7 @@ function call_hmmv(trs_,frs_,pis_)
     else
         printMode=2;
         coder.cinclude('printFuns.cpp'); 
+        coder.cinclude('shuttleFuns.cpp'); 
         coder.cinclude('hmm_vec.cpp');
         
         myHMMv = coder.opaque('HMMv');

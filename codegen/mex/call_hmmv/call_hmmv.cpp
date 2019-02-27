@@ -13,6 +13,7 @@
 #include "rt_nonfinite.h"
 #include "call_hmmv.h"
 #include "printFuns.cpp"
+#include "shuttleFuns.cpp"
 #include "hmm_vec.cpp"
 
 /* Function Definitions */

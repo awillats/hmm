@@ -16,7 +16,6 @@
 using namespace std;
 
 
-std::vector<double> buildVectorFromAry(double[],int);
 
 std::string blockPrint(int,int);
 

@@ -27,17 +27,17 @@ emlrtContext emlrtContextGlobal = { true,/* bFirstTime */
   NULL                                 /* fSigMem */
 };
 
-emlrtRSInfo emlrtRSI = { 14,           /* lineNo */
+emlrtRSInfo emlrtRSI = { 15,           /* lineNo */
   "call_hmmv",                         /* fcnName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_hmmv.m"/* pathName */
 };
 
-emlrtRSInfo b_emlrtRSI = { 15,         /* lineNo */
+emlrtRSInfo b_emlrtRSI = { 16,         /* lineNo */
   "call_hmmv",                         /* fcnName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_hmmv.m"/* pathName */
 };
 
-emlrtRSInfo c_emlrtRSI = { 16,         /* lineNo */
+emlrtRSInfo c_emlrtRSI = { 17,         /* lineNo */
   "call_hmmv",                         /* fcnName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_hmmv.m"/* pathName */
 };
