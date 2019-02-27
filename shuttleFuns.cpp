@@ -19,10 +19,11 @@ std::vector<double> buildVectorFromAry(double ary[], int len)
     return v;
 };
 
+
 double * returnDub()
 {
     double ary[2] = {4.0,3.2};
-    return &ary[0];
+    return &ary[0]; //this is bad
 }
 
 void modDub(double * pDub)

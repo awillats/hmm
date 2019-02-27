@@ -15,9 +15,8 @@ function out= call_hmmv(trs_,frs_,pis_)
         %}
         
         v = [1.2];
-        v2=coder.opaque('double');
-        v2=coder.ceval('modDub',coder.ref(v));
-        out=cast(v,'like',[1.0]);
+        coder.ceval('modDub',coder.ref(v));
+        out=v;
         
         myHMMv = coder.opaque('HMMv');
         %coder.ceval('blockPrint',1,printMode);

@@ -34,6 +34,7 @@ real_T call_hmmv(const emlrtStack *, const real_T trs_[2], const real_T frs_[2],
   out = 1.2;
   modDub(&out);
 
+  /* cast(v,'like',[1.0]); */
   /* coder.ceval('blockPrint',1,printMode); */
   /* convert input vecs to c++ */
   /* pre-allocates a std::vec */
