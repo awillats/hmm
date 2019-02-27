@@ -18,14 +18,15 @@
 #include "call_hmmv_data.h"
 
 /* Function Declarations */
-static void call_hmmv_mexFunction(int32_T nlhs, mxArray *plhs[1], int32_T nrhs,
-  const mxArray *prhs[3]);
+static void call_hmmv_mexFunction(int32_T nlhs, mxArray *plhs[2], int32_T nrhs,
+  const mxArray *prhs[4]);
 
 /* Function Definitions */
-static void call_hmmv_mexFunction(int32_T nlhs, mxArray *plhs[1], int32_T nrhs,
-  const mxArray *prhs[3])
+static void call_hmmv_mexFunction(int32_T nlhs, mxArray *plhs[2], int32_T nrhs,
+  const mxArray *prhs[4])
 {
-  const mxArray *outputs[1];
+  const mxArray *outputs[2];
+  int32_T b_nlhs;
   emlrtStack st = { NULL,              /* site */
     NULL,                              /* tls */
     NULL                               /* prev */
@@ -34,12 +35,12 @@ static void call_hmmv_mexFunction(int32_T nlhs, mxArray *plhs[1], int32_T nrhs,
   st.tls = emlrtRootTLSGlobal;
 
   /* Check for proper number of arguments. */
-  if (nrhs != 3) {
-    emlrtErrMsgIdAndTxt(&st, "EMLRT:runTime:WrongNumberOfInputs", 5, 12, 3, 4, 9,
+  if (nrhs != 4) {
+    emlrtErrMsgIdAndTxt(&st, "EMLRT:runTime:WrongNumberOfInputs", 5, 12, 4, 4, 9,
                         "call_hmmv");
   }
 
-  if (nlhs > 1) {
+  if (nlhs > 2) {
     emlrtErrMsgIdAndTxt(&st, "EMLRT:runTime:TooManyOutputArguments", 3, 4, 9,
                         "call_hmmv");
   }
@@ -48,7 +49,13 @@ static void call_hmmv_mexFunction(int32_T nlhs, mxArray *plhs[1], int32_T nrhs,
   call_hmmv_api(prhs, nlhs, outputs);
 
   /* Copy over outputs to the caller. */
-  emlrtReturnArrays(1, plhs, outputs);
+  if (nlhs < 1) {
+    b_nlhs = 1;
+  } else {
+    b_nlhs = nlhs;
+  }
+
+  emlrtReturnArrays(b_nlhs, plhs, outputs);
 }
 
 void mexFunction(int32_T nlhs, mxArray *plhs[], int32_T nrhs, const mxArray

@@ -132,6 +132,13 @@ void HMMv::printSeqs(int printMode)
     std::cout<<"<states";
 };
 
+void HMMv::exportSeqs(int * spikeLoc, int * stateLoc)
+{
+    std::copy(spikes.begin(), spikes.end(), spikeLoc);
+    std::copy(states.begin(), states.end(), stateLoc);
+};
+
+
 std::vector<int>  HMMv::genSeq(int nt_)
 {
     nt =nt_;

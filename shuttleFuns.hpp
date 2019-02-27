@@ -13,8 +13,10 @@
 #include "printFuns.hpp"
 
 
-std::vector<double> buildVectorFromAry(double[],int);
-double * returnDub(void);
+std::vector<double> array2vec(double[],int);
+void vec2array(std::vector<double>, double *);
+
+//double * returnDub(void);
 void modDub(double*);
 void modDubVec(double *,int);
 

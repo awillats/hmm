@@ -24,8 +24,8 @@
 #include "call_hmmv_types.h"
 
 /* Function Declarations */
-extern void call_hmmv_api(const mxArray * const prhs[3], int32_T nlhs, const
-  mxArray *plhs[1]);
+extern void call_hmmv_api(const mxArray * const prhs[4], int32_T nlhs, const
+  mxArray *plhs[2]);
 
 #endif
 

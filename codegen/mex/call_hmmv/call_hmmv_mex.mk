@@ -12,6 +12,7 @@ SRC_FILES =  \
 	_coder_call_hmmv_info.cpp \
 	_coder_call_hmmv_api.cpp \
 	_coder_call_hmmv_mex.cpp \
+	call_hmmv_emxutil.cpp \
 	cpp_mexapi_version.cpp
 
 MEX_FILE_NAME_WO_EXT = call_hmmv_mex

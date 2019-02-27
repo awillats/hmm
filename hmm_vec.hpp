@@ -88,6 +88,7 @@ public:
     std::vector<int> genSeq(int);
     void printMyParams();
     void printSeqs(int);
+    void exportSeqs(int *, int *);
 
     
 //private:

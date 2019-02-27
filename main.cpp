@@ -24,10 +24,17 @@ int main(int argc, const char * argv[]) {
     int printMode = 1;
     std::vector<double> trs = {0.2,0.2}; //transition rates
     std::vector<double> frs = {.1,.8}; //firing rates
-    std::vector<double> pis = {.5,.5}; //initial state probabilities
+    std::vector<double> pis = {.1,.9}; //initial state probabilities
     int nt = 3e2;
     
+    double trsAry[2];
+
+    vec2array(trs, &trsAry[0]);
+    std::cout<<trsAry[0]<<trsAry[1];
     
+   
+
+
     
     //std::cout<<returnDub();
     
@@ -36,6 +43,13 @@ int main(int argc, const char * argv[]) {
     myHMM.printMyParams();
     myHMM.genSeq(nt);
     myHMM.printSeqs(printMode);
+    
+    int spikeAry[nt];
+    int stateAry[nt];
+    myHMM.exportSeqs(spikeAry, stateAry);
+    
+    std::cout <<'\n'<< spikeAry[0] <<spikeAry[1]<<spikeAry[2]<<'\n';
+    
 
     int* vguess = viterbi(myHMM, myHMM.spikes, nt);
 

@@ -1,9 +1,9 @@
-function out= call_hmmv(trs_,frs_,pis_)
+function [spikes,states]= call_hmmv(nt, trs_,frs_,pis_)
 %#codegen
     if coder.target('MATLAB')
         disp('whoops! accidentally called it instead of codegening it')
     else
-        printMode=2;
+        printMode=0;
         coder.cinclude('printFuns.cpp'); 
         coder.cinclude('shuttleFuns.cpp'); 
         coder.cinclude('hmm_vec.cpp');
@@ -28,12 +28,19 @@ function out= call_hmmv(trs_,frs_,pis_)
         
         myHMMv = coder.ceval('HMMv myHMM = HMMv',2,2, trs, frs, pis);
         coder.ceval('myHMM.printMyParams');
-        coder.ceval('myHMM.genSeq',1e3);
+        coder.ceval('myHMM.genSeq',nt);
+        
+        spikes = cast(zeros(1,nt),'int32');
+        states = cast(zeros(1,nt),'int32');
+
+        
+        %export vector to workspace
+        coder.ceval('myHMM.exportSeqs',coder.ref(spikes),coder.ref(states));
         coder.ceval('myHMM.printSeqs',printMode);
     end
 end
 
 function cvec = mat2cvec(matv)
     cvec = coder.opaque('std::vector<double>'); %pre-allocates a std::vec
-    cvec = coder.ceval('buildVectorFromAry',matv,length(matv)); %populates the std::vec from matlab vecs
+    cvec = coder.ceval('array2vec',matv,length(matv)); %populates the std::vec from matlab vecs
 end
