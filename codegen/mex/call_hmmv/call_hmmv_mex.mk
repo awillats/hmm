@@ -5,7 +5,6 @@ include call_hmmv_mex.mki
 
 
 SRC_FILES =  \
-	call_hmmv_mexutil.cpp \
 	call_hmmv_data.cpp \
 	call_hmmv_initialize.cpp \
 	call_hmmv_terminate.cpp \

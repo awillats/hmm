@@ -1,4 +1,4 @@
-function dub = call_hmmv(trs_,frs_,pis_)
+function out= call_hmmv(trs_,frs_,pis_)
 %#codegen
     if coder.target('MATLAB')
         disp('whoops! accidentally called it instead of codegening it')
@@ -8,10 +8,16 @@ function dub = call_hmmv(trs_,frs_,pis_)
         coder.cinclude('shuttleFuns.cpp'); 
         coder.cinclude('hmm_vec.cpp');
         
-        
-        dub_ = coder.opaque('double');
+        %{
+        dub_ = coder.opaque('double []');
         dub_ = coder.ceval('returnDub');
-        dub = cast(dub_,'like',1.0)
+        dub = cast(dub_,'like',[1.0,1.0])
+        %}
+        
+        v = [1.2];
+        v2=coder.opaque('double');
+        v2=coder.ceval('modDub',coder.ref(v));
+        out=cast(v,'like',[1.0]);
         
         myHMMv = coder.opaque('HMMv');
         %coder.ceval('blockPrint',1,printMode);

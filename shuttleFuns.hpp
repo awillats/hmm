@@ -14,7 +14,9 @@
 
 
 std::vector<double> buildVectorFromAry(double[],int);
-double returnDub(void);
+double * returnDub(void);
+void modDub(double*);
+
 
 
 #endif /* shuttleFuns_hpp */

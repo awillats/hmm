@@ -19,7 +19,14 @@ std::vector<double> buildVectorFromAry(double ary[], int len)
     return v;
 };
 
-double returnDub()
+double * returnDub()
 {
-    return 42.1;
+    double ary[2] = {4.0,3.2};
+    return &ary[0];
+}
+
+void modDub(double * pDub)
+{
+    *pDub= *pDub + 1;
+    //return modVal;
 }

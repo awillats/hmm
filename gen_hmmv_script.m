@@ -20,6 +20,6 @@ disp('done!')
 
 
 %%
-call_hmmv_mex(trs,frs,pis);
+call_hmmv_mex(trs,frs,pis)
 %call_hmmv_mex(0);
 disp('done')
