@@ -15,9 +15,12 @@
 
 using namespace std;
 
+
+std::vector<double> buildVectorFromAry(double[],int);
+
 std::string blockPrint(int,int);
 
-
+void printVec(std::vector<double>);
 void printMat(std::vector< std::vector<double> >);
 void printVecAsBlock(int*,int, int);
 

@@ -19,11 +19,12 @@
 
 
 int main(int argc, const char * argv[]) {
-    int printMode = 2;
+    int printMode = 1;
     std::vector<double> trs = {0.2,0.2}; //transition rates
     std::vector<double> frs = {.1,.8}; //firing rates
     std::vector<double> pis = {.5,.5}; //initial state probabilities
     int nt = 3e2;
+    
     
     HMMv myHMM = HMMv(2,2, trs, frs, pis);
     myHMM.printMyParams();

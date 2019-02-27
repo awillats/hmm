@@ -16,21 +16,38 @@
 #include "hmm_vec.cpp"
 
 /* Function Definitions */
-void call_hmmv(const emlrtStack *, const real_T [2], const real_T [2], const
-               real_T [2])
+void call_hmmv(const emlrtStack *, const real_T trs_[2], const real_T frs_[2],
+               const real_T pis_[2])
 {
-  /* coder.cinclude('printFuns.hpp'); */
-  /* coder.cinclude('hmm_vec.hpp'); */
-  blockPrint(1.0);
+  real_T b_trs_[2];
+  std::vector<double> trs;
+  std::vector<double> frs;
+  std::vector<double> pis;
 
-  /* convert mat-vec to std::vector<double> */
-  HMMv myHMM = HMMv(2.0, 2.0, { .1, .2 }, { .01, .7 }, {
-                    .5,.5
-                    } );
+  /* coder.ceval('blockPrint',1,printMode); */
+  /* convert input vecs to c++ */
+  /* pre-allocates a std::vec */
+  b_trs_[0] = trs_[0];
+  b_trs_[1] = trs_[1];
+  trs = buildVectorFromAry(b_trs_, 2.0);
 
+  /* populates the std::vec from matlab vecs */
+  /* pre-allocates a std::vec */
+  b_trs_[0] = frs_[0];
+  b_trs_[1] = frs_[1];
+  frs = buildVectorFromAry(b_trs_, 2.0);
+
+  /* populates the std::vec from matlab vecs */
+  /* pre-allocates a std::vec */
+  b_trs_[0] = pis_[0];
+  b_trs_[1] = pis_[1];
+  pis = buildVectorFromAry(b_trs_, 2.0);
+
+  /* populates the std::vec from matlab vecs */
+  HMMv myHMM = HMMv(2.0, 2.0, trs, frs, pis);
   myHMM.printMyParams();
   myHMM.genSeq(1000.0);
-  myHMM.printSeqs();
+  myHMM.printSeqs(2.0);
 }
 
 /* End of code generation (call_hmmv.cpp) */
