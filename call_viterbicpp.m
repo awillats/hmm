@@ -1,4 +1,4 @@
-function [spikes,states,statesGuess]= call_hmmv(nt, trs_,frs_,pis_)
+function [statesGuess,spikes,states]= call_viterbicpp(nt, spikes_, trs_,frs_,pis_)
 %#codegen
     if coder.target('MATLAB')
         disp('whoops! accidentally called it instead of codegening it')
@@ -7,14 +7,9 @@ function [spikes,states,statesGuess]= call_hmmv(nt, trs_,frs_,pis_)
         coder.cinclude('printFuns.cpp'); 
         coder.cinclude('shuttleFuns.cpp'); 
         coder.cinclude('hmm_vec.cpp');
-       
-        v = [1, 2];
-        coder.ceval('modDubVec',coder.ref(v),length(v));
-        out=v;
         
         myHMMv = coder.opaque('HMMv');
-        %coder.ceval('blockPrint',1,printMode);
-        
+               
         %convert input vecs to c++
         trs = mat2cvec(trs_);
         frs = mat2cvec(frs_);
@@ -22,15 +17,19 @@ function [spikes,states,statesGuess]= call_hmmv(nt, trs_,frs_,pis_)
         
         myHMMv = coder.ceval('HMMv myHMM = HMMv',2,2, trs, frs, pis);
         coder.ceval('myHMM.printMyParams');
-        coder.ceval('myHMM.genSeq',nt);
+        coder.ceval('myHMM.genSeq',nt); 
+         
+       
         
-        
-        
-        spikes = cast(zeros(1,nt),'int32');
+        %spikes = cast(double(spikes_),'int32');%this casting in redundant with hard limits on input types
+        spikes = cast(zeros(1,nt),'int32');%this casting in redundant with hard limits on input types
+
         states = cast(zeros(1,nt),'int32');
+        
         statesGuess = cast(zeros(1,nt),'int32');
         
-        coder.ceval('myHMM.printSeqs',printMode);
+          coder.ceval('myHMM.printSeqs',printMode);        %%segfault here?
+
         %export vector to workspace
         coder.ceval('myHMM.exportSeqsGuess',nt,coder.ref(spikes),coder.ref(states),coder.ref(statesGuess));
     end
