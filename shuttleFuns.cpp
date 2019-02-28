@@ -12,11 +12,14 @@
 //template <typename T>
 std::vector<int> array2vec(int ary[], int len)
 {
+    std::vector<int> v(ary,ary+len);
+    /*
     std::vector<int> v(len,0);
     for (int i=0; i<len;i++)
     {
         v[i] =ary[i];
     }
+     */
     return v;
 };
 

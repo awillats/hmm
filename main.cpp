@@ -46,7 +46,7 @@ int main(int argc, const char * argv[]) {
     
     printVecAsBlock(&vguess[0], nt,printMode);
     
-    //std::vector<int> v = array2vec(&vguess[0], nt);
+    std::vector<int> v = array2vec(&vguess[0], nt);
     
     std::cout<<"<guessed states \n";
     
