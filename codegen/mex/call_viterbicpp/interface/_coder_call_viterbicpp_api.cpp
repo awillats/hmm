@@ -13,11 +13,20 @@
 #include "rt_nonfinite.h"
 #include "call_viterbicpp.h"
 #include "_coder_call_viterbicpp_api.h"
+#include "call_viterbicpp_emxutil.h"
 #include "call_viterbicpp_data.h"
+
+/* Variable Definitions */
+static emlrtRTEInfo b_emlrtRTEI = { 1, /* lineNo */
+  1,                                   /* colNo */
+  "_coder_call_viterbicpp_api",        /* fName */
+  ""                                   /* pName */
+};
 
 /* Function Declarations */
 static real_T b_emlrt_marshallIn(const emlrtStack *sp, const mxArray *u, const
   emlrtMsgIdentifier *parentId);
+static const mxArray *b_emlrt_marshallOut(const int32_T u[300]);
 static boolean_T (*c_emlrt_marshallIn(const emlrtStack *sp, const mxArray
   *spikes_, const char_T *identifier))[300];
 static boolean_T (*d_emlrt_marshallIn(const emlrtStack *sp, const mxArray *u,
@@ -26,6 +35,7 @@ static real_T (*e_emlrt_marshallIn(const emlrtStack *sp, const mxArray *trs_,
   const char_T *identifier))[2];
 static real_T emlrt_marshallIn(const emlrtStack *sp, const mxArray *nt, const
   char_T *identifier);
+static const mxArray *emlrt_marshallOut(const emxArray_int32_T *u);
 static real_T (*f_emlrt_marshallIn(const emlrtStack *sp, const mxArray *u, const
   emlrtMsgIdentifier *parentId))[2];
 static real_T g_emlrt_marshallIn(const emlrtStack *sp, const mxArray *src, const
@@ -42,6 +52,22 @@ static real_T b_emlrt_marshallIn(const emlrtStack *sp, const mxArray *u, const
   real_T y;
   y = g_emlrt_marshallIn(sp, emlrtAlias(u), parentId);
   emlrtDestroyArray(&u);
+  return y;
+}
+
+static const mxArray *b_emlrt_marshallOut(const int32_T u[300])
+{
+  const mxArray *y;
+  const mxArray *m1;
+  static const int32_T iv1[2] = { 0, 0 };
+
+  static const int32_T iv2[2] = { 1, 300 };
+
+  y = NULL;
+  m1 = emlrtCreateNumericArray(2, iv1, mxINT32_CLASS, mxREAL);
+  emlrtMxSetData((mxArray *)m1, (void *)&u[0]);
+  emlrtSetDimensions((mxArray *)m1, *(int32_T (*)[2])&iv2[0], 2);
+  emlrtAssign(&y, m1);
   return y;
 }
 
@@ -91,6 +117,20 @@ static real_T (*e_emlrt_marshallIn(const emlrtStack *sp, const mxArray *trs_,
   return y;
 }
 
+static const mxArray *emlrt_marshallOut(const emxArray_int32_T *u)
+{
+  const mxArray *y;
+  const mxArray *m0;
+  static const int32_T iv0[2] = { 0, 0 };
+
+  y = NULL;
+  m0 = emlrtCreateNumericArray(2, iv0, mxINT32_CLASS, mxREAL);
+  emlrtMxSetData((mxArray *)m0, &u->data[0]);
+  emlrtSetDimensions((mxArray *)m0, u->size, 2);
+  emlrtAssign(&y, m0);
+  return y;
+}
+
 static real_T (*f_emlrt_marshallIn(const emlrtStack *sp, const mxArray *u, const
   emlrtMsgIdentifier *parentId))[2]
 {
@@ -136,10 +176,15 @@ static boolean_T (*h_emlrt_marshallIn(const emlrtStack *sp, const mxArray *src,
   return ret;
 }
 
-void call_viterbicpp_api(const mxArray * const prhs[5], int32_T)
+void call_viterbicpp_api(const mxArray * const prhs[6], int32_T nlhs, const
+  mxArray *plhs[3])
 {
+  int32_T (*spikes)[300];
+  int32_T (*states)[300];
+  emxArray_int32_T *statesGuess;
   real_T nt;
   boolean_T (*spikes_)[300];
+  boolean_T (*states_)[300];
   real_T (*trs_)[2];
   real_T (*frs_)[2];
   real_T (*pis_)[2];
@@ -149,16 +194,36 @@ void call_viterbicpp_api(const mxArray * const prhs[5], int32_T)
   };
 
   st.tls = emlrtRootTLSGlobal;
+  spikes = (int32_T (*)[300])mxMalloc(sizeof(int32_T [300]));
+  states = (int32_T (*)[300])mxMalloc(sizeof(int32_T [300]));
+  emlrtHeapReferenceStackEnterFcnR2012b(&st);
+  emxInit_int32_T(&st, &statesGuess, 2, &b_emlrtRTEI, true);
 
   /* Marshall function inputs */
   nt = emlrt_marshallIn(&st, emlrtAliasP(prhs[0]), "nt");
   spikes_ = c_emlrt_marshallIn(&st, emlrtAlias(prhs[1]), "spikes_");
-  trs_ = e_emlrt_marshallIn(&st, emlrtAlias(prhs[2]), "trs_");
-  frs_ = e_emlrt_marshallIn(&st, emlrtAlias(prhs[3]), "frs_");
-  pis_ = e_emlrt_marshallIn(&st, emlrtAlias(prhs[4]), "pis_");
+  states_ = c_emlrt_marshallIn(&st, emlrtAlias(prhs[2]), "states_");
+  trs_ = e_emlrt_marshallIn(&st, emlrtAlias(prhs[3]), "trs_");
+  frs_ = e_emlrt_marshallIn(&st, emlrtAlias(prhs[4]), "frs_");
+  pis_ = e_emlrt_marshallIn(&st, emlrtAlias(prhs[5]), "pis_");
 
   /* Invoke the target function */
-  call_viterbicpp(&st, nt, *spikes_, *trs_, *frs_, *pis_);
+  call_viterbicpp(&st, nt, *spikes_, *states_, *trs_, *frs_, *pis_, statesGuess,
+                  *spikes, *states);
+
+  /* Marshall function outputs */
+  statesGuess->canFreeData = false;
+  plhs[0] = emlrt_marshallOut(statesGuess);
+  emxFree_int32_T(&statesGuess);
+  if (nlhs > 1) {
+    plhs[1] = b_emlrt_marshallOut(*spikes);
+  }
+
+  if (nlhs > 2) {
+    plhs[2] = b_emlrt_marshallOut(*states);
+  }
+
+  emlrtHeapReferenceStackLeaveFcnR2012b(&st);
 }
 
 /* End of code generation (_coder_call_viterbicpp_api.cpp) */

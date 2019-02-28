@@ -1,4 +1,4 @@
-function call_viterbicpp(nt, spikes_, trs_,frs_,pis_)
+function [statesGuess, spikes, states] = call_viterbicpp(nt, spikes_, states_, trs_,frs_,pis_)
 %#codegen
     if coder.target('MATLAB')
         disp('whoops! accidentally called it instead of codegening it')
@@ -17,13 +17,13 @@ function call_viterbicpp(nt, spikes_, trs_,frs_,pis_)
         
         myHMMv = coder.ceval('HMMv myHMM = HMMv',2,2, trs, frs, pis);
         coder.ceval('myHMM.printMyParams');
-        coder.ceval('myHMM.genSeq',nt); 
+        %coder.ceval('myHMM.genSeq',nt); 
          
         %import to C++
         spikes = cast(double(spikes_),'int32');
-        
+        states = cast(double(states_),'int32');
+
         %prep to export from C++
-         states = cast(zeros(1,nt),'int32');
         statesGuess = cast(zeros(1,nt),'int32');
         
         %void HMMv::importSpksExportGuess(int nt, int * spikeIn, int * stateIn, int * stateGuessOut)

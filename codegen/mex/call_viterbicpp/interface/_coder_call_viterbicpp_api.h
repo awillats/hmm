@@ -24,7 +24,8 @@
 #include "call_viterbicpp_types.h"
 
 /* Function Declarations */
-extern void call_viterbicpp_api(const mxArray * const prhs[5], int32_T nlhs);
+extern void call_viterbicpp_api(const mxArray * const prhs[6], int32_T nlhs,
+  const mxArray *plhs[3]);
 
 #endif
 

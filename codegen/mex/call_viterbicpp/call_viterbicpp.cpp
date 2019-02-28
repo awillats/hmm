@@ -19,47 +19,27 @@
 #include "hmm_vec.cpp"
 
 /* Variable Definitions */
-static emlrtRTEInfo emlrtRTEI = { 26,  /* lineNo */
-  10,                                  /* colNo */
-  "call_viterbicpp",                   /* fName */
-  "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m"/* pName */
-};
-
-static emlrtRTEInfo b_emlrtRTEI = { 27,/* lineNo */
+static emlrtRTEInfo emlrtRTEI = { 27,  /* lineNo */
   9,                                   /* colNo */
   "call_viterbicpp",                   /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m"/* pName */
 };
 
-static emlrtDCInfo emlrtDCI = { 26,    /* lineNo */
-  32,                                  /* colNo */
-  "call_viterbicpp",                   /* fName */
-  "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m",/* pName */
-  1                                    /* checkKind */
-};
-
-static emlrtDCInfo b_emlrtDCI = { 26,  /* lineNo */
-  32,                                  /* colNo */
-  "call_viterbicpp",                   /* fName */
-  "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m",/* pName */
-  4                                    /* checkKind */
-};
-
-static emlrtDCInfo c_emlrtDCI = { 27,  /* lineNo */
+static emlrtDCInfo emlrtDCI = { 27,    /* lineNo */
   36,                                  /* colNo */
   "call_viterbicpp",                   /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m",/* pName */
   1                                    /* checkKind */
 };
 
-static emlrtDCInfo d_emlrtDCI = { 26,  /* lineNo */
-  10,                                  /* colNo */
+static emlrtDCInfo b_emlrtDCI = { 27,  /* lineNo */
+  36,                                  /* colNo */
   "call_viterbicpp",                   /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m",/* pName */
-  1                                    /* checkKind */
+  4                                    /* checkKind */
 };
 
-static emlrtDCInfo e_emlrtDCI = { 27,  /* lineNo */
+static emlrtDCInfo c_emlrtDCI = { 27,  /* lineNo */
   9,                                   /* colNo */
   "call_viterbicpp",                   /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m",/* pName */
@@ -68,19 +48,17 @@ static emlrtDCInfo e_emlrtDCI = { 27,  /* lineNo */
 
 /* Function Definitions */
 void call_viterbicpp(const emlrtStack *sp, real_T nt, const boolean_T spikes_
-                     [300], const real_T trs_[2], const real_T frs_[2], const
-                     real_T pis_[2])
+                     [300], const boolean_T states_[300], const real_T trs_[2],
+                     const real_T frs_[2], const real_T pis_[2],
+                     emxArray_int32_T *statesGuess, int32_T spikes[300], int32_T
+                     states[300])
 {
   real_T b_trs_[2];
   std::vector<double> trs;
   std::vector<double> frs;
   std::vector<double> pis;
   int32_T i0;
-  emxArray_int32_T *states;
-  int32_T spikes[300];
   int32_T loop_ub;
-  emxArray_int32_T *statesGuess;
-  emlrtHeapReferenceStackEnterFcnR2012b(sp);
 
   /* convert input vecs to c++ */
   /* pre-allocates a std::vec */
@@ -103,18 +81,20 @@ void call_viterbicpp(const emlrtStack *sp, real_T nt, const boolean_T spikes_
   /* populates the std::vec from matlab vecs */
   HMMv myHMM = HMMv(2.0, 2.0, trs, frs, pis);
   myHMM.printMyParams();
-  myHMM.genSeq(nt);
 
+  /* coder.ceval('myHMM.genSeq',nt);  */
   /* import to C++ */
   for (i0 = 0; i0 < 300; i0++) {
     spikes[i0] = spikes_[i0];
   }
 
-  emxInit_int32_T(sp, &states, 2, &emlrtRTEI, true);
+  for (i0 = 0; i0 < 300; i0++) {
+    states[i0] = states_[i0];
+  }
 
   /* prep to export from C++ */
-  i0 = states->size[0] * states->size[1];
-  states->size[0] = 1;
+  i0 = statesGuess->size[0] * statesGuess->size[1];
+  statesGuess->size[0] = 1;
   if (!(nt >= 0.0)) {
     emlrtNonNegativeCheckR2012b(nt, &b_emlrtDCI, sp);
   }
@@ -123,28 +103,10 @@ void call_viterbicpp(const emlrtStack *sp, real_T nt, const boolean_T spikes_
     emlrtIntegerCheckR2012b(nt, &emlrtDCI, sp);
   }
 
-  states->size[1] = (int32_T)nt;
-  emxEnsureCapacity_int32_T(sp, states, i0, &emlrtRTEI);
-  if (nt != (int32_T)muDoubleScalarFloor(nt)) {
-    emlrtIntegerCheckR2012b(nt, &d_emlrtDCI, sp);
-  }
-
-  loop_ub = (int32_T)nt;
-  for (i0 = 0; i0 < loop_ub; i0++) {
-    states->data[i0] = 0;
-  }
-
-  emxInit_int32_T(sp, &statesGuess, 2, &b_emlrtRTEI, true);
-  i0 = statesGuess->size[0] * statesGuess->size[1];
-  statesGuess->size[0] = 1;
+  statesGuess->size[1] = (int32_T)nt;
+  emxEnsureCapacity_int32_T(sp, statesGuess, i0, &emlrtRTEI);
   if (nt != (int32_T)muDoubleScalarFloor(nt)) {
     emlrtIntegerCheckR2012b(nt, &c_emlrtDCI, sp);
-  }
-
-  statesGuess->size[1] = (int32_T)nt;
-  emxEnsureCapacity_int32_T(sp, statesGuess, i0, &b_emlrtRTEI);
-  if (nt != (int32_T)muDoubleScalarFloor(nt)) {
-    emlrtIntegerCheckR2012b(nt, &e_emlrtDCI, sp);
   }
 
   loop_ub = (int32_T)nt;
@@ -153,7 +115,7 @@ void call_viterbicpp(const emlrtStack *sp, real_T nt, const boolean_T spikes_
   }
 
   /* void HMMv::importSpksExportGuess(int nt, int * spikeIn, int * stateIn, int * stateGuessOut) */
-  myHMM.importSpksExportGuess(nt, spikes, &states->data[0], &statesGuess->data[0]);
+  myHMM.importSpksExportGuess(nt, spikes, states, &statesGuess->data[0]);
 
   /* coder.ceval('int* vguess = viterbi(myHMM, myHMM.spikes, nt)'); */
   /*         %{ */
@@ -168,9 +130,6 @@ void call_viterbicpp(const emlrtStack *sp, real_T nt, const boolean_T spikes_
   /*         coder.ceval('myHMM.exportSeqsGuess',nt,coder.ref(spikes),coder.ref(states),coder.ref(statesGuess)); */
   /*  */
   /*         %} */
-  emxFree_int32_T(&statesGuess);
-  emxFree_int32_T(&states);
-  emlrtHeapReferenceStackLeaveFcnR2012b(sp);
 }
 
 /* End of code generation (call_viterbicpp.cpp) */
