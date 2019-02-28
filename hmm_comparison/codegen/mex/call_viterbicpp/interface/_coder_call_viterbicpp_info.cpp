@@ -28,16 +28,16 @@ mxArray *emlrtMexFcnProperties()
 
   xEntryPoints = emlrtCreateStructMatrix(1, 1, 6, *(const char * (*)[6])&
     fldNames[0]);
-  xInputs = emlrtCreateLogicalMatrix(1, 5);
+  xInputs = emlrtCreateLogicalMatrix(1, 6);
   emlrtSetField(xEntryPoints, 0, "Name", emlrtMxCreateString("call_viterbicpp"));
-  emlrtSetField(xEntryPoints, 0, "NumberOfInputs", emlrtMxCreateDoubleScalar(5.0));
+  emlrtSetField(xEntryPoints, 0, "NumberOfInputs", emlrtMxCreateDoubleScalar(6.0));
   emlrtSetField(xEntryPoints, 0, "NumberOfOutputs", emlrtMxCreateDoubleScalar
-                (1.0));
+                (3.0));
   emlrtSetField(xEntryPoints, 0, "ConstantInputs", xInputs);
   emlrtSetField(xEntryPoints, 0, "FullPath", emlrtMxCreateString(
-    "/Users/adam/Documents/GitHub/hmmX/hmm/hmm_comparison/call_viterbicpp.m"));
+    "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m"));
   emlrtSetField(xEntryPoints, 0, "TimeStamp", emlrtMxCreateDoubleScalar
-                (737484.61798611109));
+                (737484.6988773148));
   xResult = emlrtCreateStructMatrix(1, 1, 4, *(const char * (*)[4])&b_fldNames[0]);
   emlrtSetField(xResult, 0, "Version", emlrtMxCreateString(
     "9.5.0.1033004 (R2018b) Update 2"));
@@ -51,17 +51,17 @@ const mxArray *emlrtMexFcnResolvedFunctionsInfo()
 {
   const mxArray *nameCaptureInfo;
   const char * data[5] = {
-    "789cdd53cd6ed340109ea002e5105409f1009c2b79db8204dceaf2d78ab4a0124a4405e97a3d90153bbbabf5260a371e8487e0c803f00c3c0fb6936d36958325"
-    "043d30d278fdf9b366e6fb3c86cec16107006e96091660fd3ad4d12db37abe3183700596a33b3f03df693aede2fdabb056e3ee85f7bece4f61b4c7a99f012535",
-    "1e8d29435702cd09cfcbe486a4e6daf73f5b0487855113cc6be68354d897843d13817d59027a1a51e7a0a2aafb4723149f5e8d09dca8588cab6200737faa99bf"
-    "c7facf16fad71afc89fd0b7a8f57f8b331c7813f7df28ebd2ed0158ce79cd86323c684da17ec99f4fbe38c8d8806d5a5caa13064b99385d14c70a58613e9d165",
-    "52589bd01de27e474c502ceb388b7544735e6bd011f36ddff906ac2ff097bdddd06f1ad7b3bff7ada9dfed15fd826f8117264797c872999ce62a51a83ffa11b4"
-    "eb6e9be362ac9a2344e8f72daef707ba5fb4f40bfce9416f50ae4c6aad92827b6974c10ed37e2fdd1b1eef6c6d3fc8126e2df3c6a8cc4c1992aa73b3b68b6d06",
-    "bfd8ccaf842e714f76dfffb8f5336dec67ffd15ec28a7df80ffb5dd67fd7ef9dbc7d48f9c0a56feedd9f6edf3da1ada3e7d11c2f5bfab4cd01316ed0b954dffe"
-    "bdfabf005c10907c", "" };
+    "789cdd53cb4edb4014bd4101d1452a24c407748de421b412b0c3055a2881566d8008c4633cbe9011f3923d89c2bff403baec47f41bfa2d5dd6763264821c2c55"
+    "8505238dc7c7c7bae7dce36ba8ed1dd400e075b6c100fc99836235b29d3f5f18429881c9d5189d8eaf959d66fcfe2cd40bdc78f0def7d1c9b4b238b04320b8c2",
+    "c39e8c30c980a212efcbc45a7245956ddf198404532dfa1817cc3517d8e6125bda03bb3c03f28347dd839ccaefb7bac86ebff52424dd746c57f80046f9e49e7f"
+    "f8fd5f8dfbaf97e4e3e7e7fadd9a92cfc2083bfe6ce79c1ca598a484c654926dcd7a12954dc9476e777b11e94ad9c92f8451212efbdc621271664c20df486a57",
+    "591fd984ef2bdfb7e76baec4b7cf577dd75730efe14f9b4e6fe0d7338fe754a6b73445cfe5e478a6634c029e0d4fa2a80804aa1bdb85eabeab7c3c5cd37cb8e5"
+    "f47efaf5fea1efcf157a8e3fdb6b75b211098d119c51cbb54ac941d86e85ef2fbfaeae34d7a3801a43acd622d2038252147bb9888b2cbbbcc830af403ee39c6c",
+    "5efc5afc1d96ea99a79acb29f3f002f59eebbf6bb78e4f3764dc49c293776b83e6db63b972b8eff9f852a153e5037c5cd2e7447df3ffeaff057b138aba",
+    "" };
 
   nameCaptureInfo = NULL;
-  emlrtNameCaptureMxArrayR2016a(data, 1824U, &nameCaptureInfo);
+  emlrtNameCaptureMxArrayR2016a(data, 1808U, &nameCaptureInfo);
   return nameCaptureInfo;
 }
 

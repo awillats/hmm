@@ -27,4 +27,19 @@ emlrtContext emlrtContextGlobal = { true,/* bFirstTime */
   NULL                                 /* fSigMem */
 };
 
+emlrtRSInfo emlrtRSI = { 14,           /* lineNo */
+  "call_viterbicpp",                   /* fcnName */
+  "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m"/* pathName */
+};
+
+emlrtRSInfo b_emlrtRSI = { 15,         /* lineNo */
+  "call_viterbicpp",                   /* fcnName */
+  "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m"/* pathName */
+};
+
+emlrtRSInfo c_emlrtRSI = { 16,         /* lineNo */
+  "call_viterbicpp",                   /* fcnName */
+  "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m"/* pathName */
+};
+
 /* End of code generation (call_viterbicpp_data.cpp) */

@@ -24,8 +24,8 @@
 #include "call_viterbicpp_types.h"
 
 /* Function Declarations */
-extern void call_viterbicpp(const emlrtStack *sp, real_T nt, const boolean_T
-  spikes_[300], const boolean_T states_[300], const real_T trs_[2], const real_T
+extern void call_viterbicpp(const emlrtStack *sp, real_T nt, const real_T
+  spikes_[300], const real_T states_[300], const real_T trs_[2], const real_T
   frs_[2], const real_T pis_[2], emxArray_int32_T *statesGuess, int32_T spikes
   [300], int32_T states[300]);
 

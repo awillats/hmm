@@ -26,6 +26,9 @@
 /* Variable Declarations */
 extern emlrtCTX emlrtRootTLSGlobal;
 extern emlrtContext emlrtContextGlobal;
+extern emlrtRSInfo emlrtRSI;
+extern emlrtRSInfo b_emlrtRSI;
+extern emlrtRSInfo c_emlrtRSI;
 
 #endif
 

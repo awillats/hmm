@@ -7,7 +7,8 @@ trs = [0.2,0.21]; %transition rates
 frs = [.1,.6]; %firing rates
 pis = [.5,.5]; %initial state probabilitiesco
 nt = 3e2;
-states = rand(1,nt)<.2;
+
+states = double(rand(1,nt)<.2);
 spikes = states;%rand(1,nt)<.2;%cast(double(rand(1,nt)<.2),'int32'); %currently placeholder
 
 %https://www.mathworks.com/matlabcentral/answers/63047-calling-c-functions-from-matlab
@@ -24,7 +25,7 @@ disp('done!')
 
 %vecPrint(st);
 %call_hmmv_mex(0);
-disp('matlab states')
+%disp('matlab states')
 
 figure(1)
 clf
