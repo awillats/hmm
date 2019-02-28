@@ -18,14 +18,14 @@
 #include "call_hmmv_data.h"
 
 /* Function Declarations */
-static void call_hmmv_mexFunction(int32_T nlhs, mxArray *plhs[2], int32_T nrhs,
+static void call_hmmv_mexFunction(int32_T nlhs, mxArray *plhs[3], int32_T nrhs,
   const mxArray *prhs[4]);
 
 /* Function Definitions */
-static void call_hmmv_mexFunction(int32_T nlhs, mxArray *plhs[2], int32_T nrhs,
+static void call_hmmv_mexFunction(int32_T nlhs, mxArray *plhs[3], int32_T nrhs,
   const mxArray *prhs[4])
 {
-  const mxArray *outputs[2];
+  const mxArray *outputs[3];
   int32_T b_nlhs;
   emlrtStack st = { NULL,              /* site */
     NULL,                              /* tls */
@@ -40,7 +40,7 @@ static void call_hmmv_mexFunction(int32_T nlhs, mxArray *plhs[2], int32_T nrhs,
                         "call_hmmv");
   }
 
-  if (nlhs > 2) {
+  if (nlhs > 3) {
     emlrtErrMsgIdAndTxt(&st, "EMLRT:runTime:TooManyOutputArguments", 3, 4, 9,
                         "call_hmmv");
   }

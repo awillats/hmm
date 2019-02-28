@@ -109,9 +109,7 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
    // printf("lastlast\n");
     delete[] prob;
     delete[] prevs;
-   
     return seq;
-    
 }
 
 

@@ -17,7 +17,7 @@
 #include "call_hmmv_data.h"
 
 /* Variable Definitions */
-static emlrtRTEInfo c_emlrtRTEI = { 1, /* lineNo */
+static emlrtRTEInfo d_emlrtRTEI = { 1, /* lineNo */
   1,                                   /* colNo */
   "_coder_call_hmmv_api",              /* fName */
   ""                                   /* pName */
@@ -121,10 +121,11 @@ static real_T (*f_emlrt_marshallIn(const emlrtStack *sp, const mxArray *src,
   return ret;
 }
   void call_hmmv_api(const mxArray * const prhs[4], int32_T nlhs, const mxArray *
-                     plhs[2])
+                     plhs[3])
 {
   emxArray_int32_T *spikes;
   emxArray_int32_T *states;
+  emxArray_int32_T *statesGuess;
   real_T nt;
   real_T (*trs_)[2];
   real_T (*frs_)[2];
@@ -136,8 +137,9 @@ static real_T (*f_emlrt_marshallIn(const emlrtStack *sp, const mxArray *src,
 
   st.tls = emlrtRootTLSGlobal;
   emlrtHeapReferenceStackEnterFcnR2012b(&st);
-  emxInit_int32_T(&st, &spikes, 2, &c_emlrtRTEI, true);
-  emxInit_int32_T(&st, &states, 2, &c_emlrtRTEI, true);
+  emxInit_int32_T(&st, &spikes, 2, &d_emlrtRTEI, true);
+  emxInit_int32_T(&st, &states, 2, &d_emlrtRTEI, true);
+  emxInit_int32_T(&st, &statesGuess, 2, &d_emlrtRTEI, true);
 
   /* Marshall function inputs */
   nt = emlrt_marshallIn(&st, emlrtAliasP(prhs[0]), "nt");
@@ -146,7 +148,7 @@ static real_T (*f_emlrt_marshallIn(const emlrtStack *sp, const mxArray *src,
   pis_ = c_emlrt_marshallIn(&st, emlrtAlias(prhs[3]), "pis_");
 
   /* Invoke the target function */
-  call_hmmv(&st, nt, *trs_, *frs_, *pis_, spikes, states);
+  call_hmmv(&st, nt, *trs_, *frs_, *pis_, spikes, states, statesGuess);
 
   /* Marshall function outputs */
   spikes->canFreeData = false;
@@ -158,6 +160,12 @@ static real_T (*f_emlrt_marshallIn(const emlrtStack *sp, const mxArray *src,
   }
 
   emxFree_int32_T(&states);
+  if (nlhs > 2) {
+    statesGuess->canFreeData = false;
+    plhs[2] = emlrt_marshallOut(statesGuess);
+  }
+
+  emxFree_int32_T(&statesGuess);
   emlrtHeapReferenceStackLeaveFcnR2012b(&st);
 }
 

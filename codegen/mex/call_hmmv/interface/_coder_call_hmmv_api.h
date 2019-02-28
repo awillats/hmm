@@ -25,7 +25,7 @@
 
 /* Function Declarations */
 extern void call_hmmv_api(const mxArray * const prhs[4], int32_T nlhs, const
-  mxArray *plhs[2]);
+  mxArray *plhs[3]);
 
 #endif
 

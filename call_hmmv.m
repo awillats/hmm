@@ -1,4 +1,4 @@
-function [spikes,states]= call_hmmv(nt, trs_,frs_,pis_)
+function [spikes,states,statesGuess]= call_hmmv(nt, trs_,frs_,pis_)
 %#codegen
     if coder.target('MATLAB')
         disp('whoops! accidentally called it instead of codegening it')
@@ -29,15 +29,16 @@ function [spikes,states]= call_hmmv(nt, trs_,frs_,pis_)
         myHMMv = coder.ceval('HMMv myHMM = HMMv',2,2, trs, frs, pis);
         coder.ceval('myHMM.printMyParams');
         coder.ceval('myHMM.genSeq',nt);
-        coder.ceval('viterbi(myHMM, myHMM.spikes, nt)');
+        
+        
         
         spikes = cast(zeros(1,nt),'int32');
         states = cast(zeros(1,nt),'int32');
-
+        statesGuess = cast(zeros(1,nt),'int32');
         
-        %export vector to workspace
-        coder.ceval('myHMM.exportSeqs',coder.ref(spikes),coder.ref(states));
         coder.ceval('myHMM.printSeqs',printMode);
+        %export vector to workspace
+        coder.ceval('myHMM.exportSeqsGuess',nt,coder.ref(spikes),coder.ref(states),coder.ref(statesGuess));
     end
 end
 

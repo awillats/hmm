@@ -32,12 +32,12 @@ mxArray *emlrtMexFcnProperties()
   emlrtSetField(xEntryPoints, 0, "Name", emlrtMxCreateString("call_hmmv"));
   emlrtSetField(xEntryPoints, 0, "NumberOfInputs", emlrtMxCreateDoubleScalar(4.0));
   emlrtSetField(xEntryPoints, 0, "NumberOfOutputs", emlrtMxCreateDoubleScalar
-                (2.0));
+                (3.0));
   emlrtSetField(xEntryPoints, 0, "ConstantInputs", xInputs);
   emlrtSetField(xEntryPoints, 0, "FullPath", emlrtMxCreateString(
     "/Users/adam/Documents/GitHub/hmmX/hmm/call_hmmv.m"));
   emlrtSetField(xEntryPoints, 0, "TimeStamp", emlrtMxCreateDoubleScalar
-                (737483.68017361115));
+                (737483.70181712962));
   xResult = emlrtCreateStructMatrix(1, 1, 4, *(const char * (*)[4])&b_fldNames[0]);
   emlrtSetField(xResult, 0, "Version", emlrtMxCreateString(
     "9.5.0.1033004 (R2018b) Update 2"));
@@ -51,14 +51,14 @@ const mxArray *emlrtMexFcnResolvedFunctionsInfo()
 {
   const mxArray *nameCaptureInfo;
   const char * data[5] = {
-    "789ced54db6ed340101da382406a5024d40fe0b952b60d958007a4b8a53791b60842898820d9d8db7ac5de646fa2f44ffad0073e818fe843bfa0df83ed78d36d"
-    "64d755a079401969b33e19ebcc99a3f180b37fe000c0f3f88002b85a86342af149feaf8e213c82db51c96e9377a6de73323e138f6129c595a9f72fb2db934293",
-    "911e034605391cf03e0963203027131a5f722ab0d0ad33452024916443e2a79913ca488b72d29416d8a331e03b566a029254f2bc1510efe7e7018730886ee432"
-    "1b40e64fa2f9dceebf77d3ff528e3fb67fa6df8d027faa1936f9cef677f425226184b08f397a2fbd012742476897eabd411f059cb7931fe461c6baf1c3b0c66d",
-    "9d3d5ba7a5e3498e4e3befe4dd96ce67f0d4c2f586a937b2f9d4ddbee4d55b29a8677c31794ffa24acd178584281598d1171aa0328efbb4cc77414e93061eafd"
-    "b6f966e8fba8a49ec977f69bed78245ca518f5b0a65244e8c06d35ddcdeea7fadafa9b7e0d2b85b494ac2f478870969ed5d42eb46afc4263bfe25199df9c347e",
-    "5cbeb87673eba9879acb8279f80febcdebbb6b358fbfbde57e3b74bf6ebc1eadbf3ae66b871f2c1d1f4bea94e9001be7f4798b5ffd7bfe5f05fcf7f5f15d01bf"
-    "f1d1e467d9eb2f39d6756f483c98f77edf5dec779b6fb1df27b1d8eff3a9b7d8ef7fc7ff07ea00e073",
+    "789ced54cd6ed340101e570115895491100fd073a46c92562a1c90ea5248ab2605b56989a8a06cec85acd83fd99b28bdf1181c38f411fa101c78029e07dbf1a6"
+    "dbc8ae512839541969b3fe32d637df7c1a0f38fb1d0700d6a2030ae0d76348a21c9df8ffca04c20adc8c727a9bbc33f39e93f2997800a5049767deff91de9e14",
+    "9a8cf504302ac8e190f7491001813999d2f892538185ee5e28020109251b113fc97ca68c7429276d69813d1a01feda4a4d419c8a9f5f0e88f7f578c8211884d7"
+    "72990d20f527d6fc3da7ff52863fb67fa6dfcd1c7f2a2936f9b3571fd049488210611f73b42bbd21274287a845f5deb08f069cf7e21fe461c6cea387518ddb3a",
+    "3fe5e87c98a1d3ce3b59b7a5f311ac5ab8b96dea8d6d3e75bb2f59f59ee6d433be98bc277d12d468342c81c0acc688f8a20750dc77918ed9c8d361c2d4bbb2f9"
+    "e6e8fb4d413d933fdb6ff7a291709562d4c39a4a11a28edb6dbb3be747cd7ae359bf8695425a4ad6976344384b4e35b10b558d5f68e257342a8b9b93ed8f3f9f",
+    "fc7633eba9ff359739f3700feb2deabbebb64fdf3fe77e2f70df6d6e8d1b1ba7bc7e7860e9785b50a74807d838a3cf1bfceaeef92f73f8ffd6c71739fcc64793"
+    "9f67afaf73ac9bde8878b0e0fdfeadb5dcef36df72bf4f63b9df17536fb9dfff8dff0fee42e093",
     "" };
 
   nameCaptureInfo = NULL;

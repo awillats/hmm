@@ -19,41 +19,47 @@
 #include "hmm_vec.cpp"
 
 /* Variable Definitions */
-static emlrtRTEInfo emlrtRTEI = { 34,  /* lineNo */
+static emlrtRTEInfo emlrtRTEI = { 35,  /* lineNo */
   9,                                   /* colNo */
   "call_hmmv",                         /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_hmmv.m"/* pName */
 };
 
-static emlrtRTEInfo b_emlrtRTEI = { 35,/* lineNo */
+static emlrtRTEInfo b_emlrtRTEI = { 36,/* lineNo */
   9,                                   /* colNo */
   "call_hmmv",                         /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_hmmv.m"/* pName */
 };
 
-static emlrtDCInfo emlrtDCI = { 34,    /* lineNo */
+static emlrtRTEInfo c_emlrtRTEI = { 37,/* lineNo */
+  9,                                   /* colNo */
+  "call_hmmv",                         /* fName */
+  "/Users/adam/Documents/GitHub/hmmX/hmm/call_hmmv.m"/* pName */
+};
+
+static emlrtDCInfo emlrtDCI = { 35,    /* lineNo */
   31,                                  /* colNo */
   "call_hmmv",                         /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_hmmv.m",/* pName */
   1                                    /* checkKind */
 };
 
-static emlrtDCInfo b_emlrtDCI = { 34,  /* lineNo */
+static emlrtDCInfo b_emlrtDCI = { 35,  /* lineNo */
   31,                                  /* colNo */
   "call_hmmv",                         /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_hmmv.m",/* pName */
   4                                    /* checkKind */
 };
 
-static emlrtDCInfo c_emlrtDCI = { 35,  /* lineNo */
+static emlrtDCInfo c_emlrtDCI = { 36,  /* lineNo */
   31,                                  /* colNo */
   "call_hmmv",                         /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_hmmv.m",/* pName */
   1                                    /* checkKind */
 };
 
-static emlrtDCInfo d_emlrtDCI = { 34,  /* lineNo */
-  9,                                   /* colNo */
+static emlrtDCInfo d_emlrtDCI = { 37,  /* lineNo */
+  36,                                  /* colNo */
   "call_hmmv",                         /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_hmmv.m",/* pName */
   1                                    /* checkKind */
@@ -66,10 +72,24 @@ static emlrtDCInfo e_emlrtDCI = { 35,  /* lineNo */
   1                                    /* checkKind */
 };
 
+static emlrtDCInfo f_emlrtDCI = { 36,  /* lineNo */
+  9,                                   /* colNo */
+  "call_hmmv",                         /* fName */
+  "/Users/adam/Documents/GitHub/hmmX/hmm/call_hmmv.m",/* pName */
+  1                                    /* checkKind */
+};
+
+static emlrtDCInfo g_emlrtDCI = { 37,  /* lineNo */
+  9,                                   /* colNo */
+  "call_hmmv",                         /* fName */
+  "/Users/adam/Documents/GitHub/hmmX/hmm/call_hmmv.m",/* pName */
+  1                                    /* checkKind */
+};
+
 /* Function Definitions */
 void call_hmmv(const emlrtStack *sp, real_T nt, const real_T trs_[2], const
                real_T frs_[2], const real_T pis_[2], emxArray_int32_T *spikes,
-               emxArray_int32_T *states)
+               emxArray_int32_T *states, emxArray_int32_T *statesGuess)
 {
   real_T v[2];
   std::vector<double> trs;
@@ -110,7 +130,6 @@ void call_hmmv(const emlrtStack *sp, real_T nt, const real_T trs_[2], const
   HMMv myHMM = HMMv(2.0, 2.0, trs, frs, pis);
   myHMM.printMyParams();
   myHMM.genSeq(nt);
-  viterbi(myHMM, myHMM.spikes, nt)();
   i0 = spikes->size[0] * spikes->size[1];
   spikes->size[0] = 1;
   if (!(nt >= 0.0)) {
@@ -124,7 +143,7 @@ void call_hmmv(const emlrtStack *sp, real_T nt, const real_T trs_[2], const
   spikes->size[1] = (int32_T)nt;
   emxEnsureCapacity_int32_T(sp, spikes, i0, &emlrtRTEI);
   if (nt != (int32_T)muDoubleScalarFloor(nt)) {
-    emlrtIntegerCheckR2012b(nt, &d_emlrtDCI, sp);
+    emlrtIntegerCheckR2012b(nt, &e_emlrtDCI, sp);
   }
 
   loop_ub = (int32_T)nt;
@@ -141,7 +160,7 @@ void call_hmmv(const emlrtStack *sp, real_T nt, const real_T trs_[2], const
   states->size[1] = (int32_T)nt;
   emxEnsureCapacity_int32_T(sp, states, i0, &b_emlrtRTEI);
   if (nt != (int32_T)muDoubleScalarFloor(nt)) {
-    emlrtIntegerCheckR2012b(nt, &e_emlrtDCI, sp);
+    emlrtIntegerCheckR2012b(nt, &f_emlrtDCI, sp);
   }
 
   loop_ub = (int32_T)nt;
@@ -149,9 +168,28 @@ void call_hmmv(const emlrtStack *sp, real_T nt, const real_T trs_[2], const
     states->data[i0] = 0;
   }
 
-  /* export vector to workspace */
-  myHMM.exportSeqs(&spikes->data[0], &states->data[0]);
+  i0 = statesGuess->size[0] * statesGuess->size[1];
+  statesGuess->size[0] = 1;
+  if (nt != (int32_T)muDoubleScalarFloor(nt)) {
+    emlrtIntegerCheckR2012b(nt, &d_emlrtDCI, sp);
+  }
+
+  statesGuess->size[1] = (int32_T)nt;
+  emxEnsureCapacity_int32_T(sp, statesGuess, i0, &c_emlrtRTEI);
+  if (nt != (int32_T)muDoubleScalarFloor(nt)) {
+    emlrtIntegerCheckR2012b(nt, &g_emlrtDCI, sp);
+  }
+
+  loop_ub = (int32_T)nt;
+  for (i0 = 0; i0 < loop_ub; i0++) {
+    statesGuess->data[i0] = 0;
+  }
+
   myHMM.printSeqs(0.0);
+
+  /* export vector to workspace */
+  myHMM.exportSeqsGuess(nt, &spikes->data[0], &states->data[0],
+                        &statesGuess->data[0]);
 }
 
 /* End of code generation (call_hmmv.cpp) */

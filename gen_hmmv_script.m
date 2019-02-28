@@ -20,7 +20,7 @@ disp('done!')
 
 
 %%
-[spk,st]= call_hmmv_mex(nt, trs,frs,pis);
+[spk,st,stg]= call_hmmv_mex(nt, trs,frs,pis);
 vecPrint(st);
 %call_hmmv_mex(0);
 disp('matlab states')

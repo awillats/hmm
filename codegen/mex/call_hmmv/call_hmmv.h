@@ -26,7 +26,8 @@
 /* Function Declarations */
 extern void call_hmmv(const emlrtStack *sp, real_T nt, const real_T trs_[2],
                       const real_T frs_[2], const real_T pis_[2],
-                      emxArray_int32_T *spikes, emxArray_int32_T *states);
+                      emxArray_int32_T *spikes, emxArray_int32_T *states,
+                      emxArray_int32_T *statesGuess);
 
 #endif
 

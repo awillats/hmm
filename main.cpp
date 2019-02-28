@@ -26,25 +26,12 @@ int main(int argc, const char * argv[]) {
     std::vector<double> frs = {.1,.8}; //firing rates
     std::vector<double> pis = {.1,.9}; //initial state probabilities
     int nt = 3e2;
-    
-    double trsAry[2];
 
-    vec2array(trs, &trsAry[0]);
-    std::cout<<trsAry[0]<<trsAry[1];
-    
-   
-
-
-    
-    //std::cout<<returnDub();
-    
-    
     HMMv myHMM = HMMv(2,2, trs, frs, pis);
     myHMM.printMyParams();
     myHMM.genSeq(nt);
     myHMM.printSeqs(printMode);
     
-
     int* vguess = viterbi(myHMM, myHMM.spikes, nt);
     
     int spkAry[nt];
@@ -60,8 +47,6 @@ int main(int argc, const char * argv[]) {
     printVecAsBlock(&vguess[0], nt,printMode);
     std::cout<<"<guessed states \n";
     
-    printVecAsBlock(&vguess2[0], nt,printMode);
-
     return 0;
 }
 
