@@ -19,47 +19,47 @@
 #include "hmm_vec.cpp"
 
 /* Variable Definitions */
-static emlrtRTEInfo emlrtRTEI = { 30,  /* lineNo */
+static emlrtRTEInfo emlrtRTEI = { 26,  /* lineNo */
+  10,                                  /* colNo */
+  "call_viterbicpp",                   /* fName */
+  "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m"/* pName */
+};
+
+static emlrtRTEInfo b_emlrtRTEI = { 27,/* lineNo */
   9,                                   /* colNo */
   "call_viterbicpp",                   /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m"/* pName */
 };
 
-static emlrtRTEInfo b_emlrtRTEI = { 31,/* lineNo */
-  9,                                   /* colNo */
-  "call_viterbicpp",                   /* fName */
-  "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m"/* pName */
-};
-
-static emlrtDCInfo emlrtDCI = { 30,    /* lineNo */
-  31,                                  /* colNo */
+static emlrtDCInfo emlrtDCI = { 26,    /* lineNo */
+  32,                                  /* colNo */
   "call_viterbicpp",                   /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m",/* pName */
   1                                    /* checkKind */
 };
 
-static emlrtDCInfo b_emlrtDCI = { 30,  /* lineNo */
-  31,                                  /* colNo */
+static emlrtDCInfo b_emlrtDCI = { 26,  /* lineNo */
+  32,                                  /* colNo */
   "call_viterbicpp",                   /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m",/* pName */
   4                                    /* checkKind */
 };
 
-static emlrtDCInfo c_emlrtDCI = { 31,  /* lineNo */
+static emlrtDCInfo c_emlrtDCI = { 27,  /* lineNo */
   36,                                  /* colNo */
   "call_viterbicpp",                   /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m",/* pName */
   1                                    /* checkKind */
 };
 
-static emlrtDCInfo d_emlrtDCI = { 30,  /* lineNo */
-  9,                                   /* colNo */
+static emlrtDCInfo d_emlrtDCI = { 26,  /* lineNo */
+  10,                                  /* colNo */
   "call_viterbicpp",                   /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m",/* pName */
   1                                    /* checkKind */
 };
 
-static emlrtDCInfo e_emlrtDCI = { 31,  /* lineNo */
+static emlrtDCInfo e_emlrtDCI = { 27,  /* lineNo */
   9,                                   /* colNo */
   "call_viterbicpp",                   /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m",/* pName */
@@ -105,16 +105,14 @@ void call_viterbicpp(const emlrtStack *sp, real_T nt, const boolean_T spikes_
   myHMM.printMyParams();
   myHMM.genSeq(nt);
 
-  /* coder.ceval('int* vguess = viterbi(myHMM, myHMM.spikes, nt)'); */
-  /* prep for export */
+  /* import to C++ */
   for (i0 = 0; i0 < 300; i0++) {
     spikes[i0] = spikes_[i0];
   }
 
   emxInit_int32_T(sp, &states, 2, &emlrtRTEI, true);
 
-  /* this casting in redundant with hard limits on input types */
-  /* spikes = cast(zeros(1,nt),'int32'); */
+  /* prep to export from C++ */
   i0 = states->size[0] * states->size[1];
   states->size[0] = 1;
   if (!(nt >= 0.0)) {
@@ -154,12 +152,20 @@ void call_viterbicpp(const emlrtStack *sp, real_T nt, const boolean_T spikes_
     statesGuess->data[i0] = 0;
   }
 
-  myHMM.printSeqs(0.0);
+  /* void HMMv::importSpksExportGuess(int nt, int * spikeIn, int * stateIn, int * stateGuessOut) */
+  myHMM.importSpksExportGuess(nt, spikes, &states->data[0], &statesGuess->data[0]);
 
-  /* note this DOES NOT import spikes/states */
-  myHMM.exportSeqsGuess(nt, spikes, &states->data[0], &statesGuess->data[0]);
-
-  /*                 %{ */
+  /* coder.ceval('int* vguess = viterbi(myHMM, myHMM.spikes, nt)'); */
+  /*         %{ */
+  /*         %prep for export */
+  /*         %this casting in redundant with hard limits on input types */
+  /*         %spikes = cast(zeros(1,nt),'int32'); */
+  /*         */
+  /*          */
+  /*         coder.ceval('myHMM.printSeqs',printMode);  */
+  /*  */
+  /*         %note this DOES NOT import spikes/states */
+  /*         coder.ceval('myHMM.exportSeqsGuess',nt,coder.ref(spikes),coder.ref(states),coder.ref(statesGuess)); */
   /*  */
   /*         %} */
   emxFree_int32_T(&statesGuess);
