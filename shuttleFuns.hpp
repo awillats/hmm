@@ -12,8 +12,10 @@
 #include <stdio.h>
 #include "printFuns.hpp"
 
+//template <typename T>
 
-std::vector<double> array2vec(double[],int);
+
+std::vector<int> array2vec(int*,int);
 void vec2array(std::vector<double>, double *);
 
 //double * returnDub(void);

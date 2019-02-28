@@ -19,7 +19,7 @@ disp('done!')
 
 
 %%
-[a,b,c]=call_viterbicpp_mex(nt, spikes, trs,frs,pis)
+call_viterbicpp_mex(nt, spikes, trs,frs,pis)
 
 %vecPrint(st);
 %call_hmmv_mex(0);

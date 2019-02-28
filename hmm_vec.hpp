@@ -22,6 +22,7 @@
 #include <random>
 
 #include "printFuns.hpp"
+#include "shuttleFuns.hpp"
 
 //2d vectors http://thispointer.com/creating-a-matrix-using-2d-vector-in-c-vector-of-vectors/
 
@@ -91,6 +92,8 @@ public:
     void printSeqs(int);
     void exportSeqs(int *, int *);
     void exportSeqsGuess(int, int *, int *, int *);
+    void importSpksExportGuess(int nt, int *, int *, int *);
+
 
 //private:
 };

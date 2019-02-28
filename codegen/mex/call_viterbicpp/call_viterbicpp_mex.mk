@@ -12,7 +12,6 @@ SRC_FILES =  \
 	_coder_call_viterbicpp_info.cpp \
 	_coder_call_viterbicpp_api.cpp \
 	_coder_call_viterbicpp_mex.cpp \
-	call_viterbicpp_emxutil.cpp \
 	cpp_mexapi_version.cpp
 
 MEX_FILE_NAME_WO_EXT = call_viterbicpp_mex

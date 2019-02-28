@@ -9,9 +9,10 @@
 #include "shuttleFuns.hpp"
 
 //extract to a different header
-std::vector<double> array2vec(double ary[], int len)
+//template <typename T>
+std::vector<int> array2vec(int ary[], int len)
 {
-    std::vector<double> v(len,0);
+    std::vector<int> v(len,0);
     for (int i=0; i<len;i++)
     {
         v[i] =ary[i];

@@ -136,13 +136,25 @@ void HMMv::exportSeqs(int * spikeLoc, int * stateLoc)
     std::copy(states.begin(), states.end(), stateLoc);
 };
 
-void HMMv::exportSeqsGuess(int nt, int * spikeLoc, int * stateLoc, int * stateGuess)
+
+void HMMv::importSpksExportGuess(int nt, int * spikeIn, int * stateIn, int * stateGuessOut)
 {
-    std::copy(spikes.begin(), spikes.end(), spikeLoc);
-    std::copy(states.begin(), states.end(), stateLoc);
+    
+    //spikes = array2vec(spikeIn,nt);
+    //states = array2vec(stateIn,nt);
     
     int* vguess = viterbi(*this , spikes, nt);
-    std::copy(vguess, vguess+nt, stateGuess);
+    std::copy(vguess, vguess+nt, stateGuessOut);
+    
+};
+
+void HMMv::exportSeqsGuess(int nt, int * spikeOut, int * stateOut, int * stateGuessOut)
+{
+    std::copy(spikes.begin(), spikes.end(), spikeOut);
+    std::copy(states.begin(), states.end(), stateOut);
+    
+    int* vguess = viterbi(*this , spikes, nt);
+    std::copy(vguess, vguess+nt, stateGuessOut);
 };
 
 

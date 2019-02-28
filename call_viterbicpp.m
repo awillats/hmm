@@ -1,4 +1,4 @@
-function [statesGuess,spikes,states]= call_viterbicpp(nt, spikes_, trs_,frs_,pis_)
+function call_viterbicpp(nt, spikes_, trs_,frs_,pis_)
 %#codegen
     if coder.target('MATLAB')
         disp('whoops! accidentally called it instead of codegening it')
@@ -19,19 +19,23 @@ function [statesGuess,spikes,states]= call_viterbicpp(nt, spikes_, trs_,frs_,pis
         coder.ceval('myHMM.printMyParams');
         coder.ceval('myHMM.genSeq',nt); 
          
-       
+        coder.ceval('int* vguess = viterbi(myHMM, myHMM.spikes, nt)');
+    
+        %{
         
-        %spikes = cast(double(spikes_),'int32');%this casting in redundant with hard limits on input types
-        spikes = cast(zeros(1,nt),'int32');%this casting in redundant with hard limits on input types
-
+        
+        
+        %prep for export
+        spikes = cast(double(spikes_),'int32');%this casting in redundant with hard limits on input types
+        %spikes = cast(zeros(1,nt),'int32');
         states = cast(zeros(1,nt),'int32');
-        
         statesGuess = cast(zeros(1,nt),'int32');
         
-          coder.ceval('myHMM.printSeqs',printMode);        %%segfault here?
+        coder.ceval('myHMM.printSeqs',printMode); 
 
-        %export vector to workspace
+        %note this DOES NOT import spikes/states
         coder.ceval('myHMM.exportSeqsGuess',nt,coder.ref(spikes),coder.ref(states),coder.ref(statesGuess));
+        %}
     end
 end
 
