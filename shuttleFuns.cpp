@@ -8,20 +8,33 @@
 
 #include "shuttleFuns.hpp"
 
-//extract to a different header
-//template <typename T>
-std::vector<int> array2vec(int ary[], int len)
+
+std::vector<double> array2vec(double ary[],int len)
+{
+    std::vector<double> v(ary,ary+len);
+    return v;
+};
+std::vector<int> array2vec(int ary[],int len)
 {
     std::vector<int> v(ary,ary+len);
-    /*
+    return v;
+};
+//extract to a different header
+/*
+template <typename T>
+std::vector<T> array2vec(T ary[], int len)
+{
+    std::vector<T> v(ary,ary+len);
+    
     std::vector<int> v(len,0);
     for (int i=0; i<len;i++)
     {
         v[i] =ary[i];
     }
-     */
+ 
     return v;
 };
+*/
 
 void vec2array(std::vector<double> vIn,double *ary)
 {

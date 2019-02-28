@@ -19,9 +19,8 @@ function call_viterbicpp(nt, spikes_, trs_,frs_,pis_)
         coder.ceval('myHMM.printMyParams');
         coder.ceval('myHMM.genSeq',nt); 
          
-        coder.ceval('int* vguess = viterbi(myHMM, myHMM.spikes, nt)');
+        %coder.ceval('int* vguess = viterbi(myHMM, myHMM.spikes, nt)');
     
-        %{
         
         
         
@@ -35,6 +34,8 @@ function call_viterbicpp(nt, spikes_, trs_,frs_,pis_)
 
         %note this DOES NOT import spikes/states
         coder.ceval('myHMM.exportSeqsGuess',nt,coder.ref(spikes),coder.ref(states),coder.ref(statesGuess));
+                %{
+
         %}
     end
 end
