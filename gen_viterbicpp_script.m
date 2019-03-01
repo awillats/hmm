@@ -4,9 +4,9 @@ close all
 addpath('~/Documents/GitHub/hmmX/hmm')
 %%
 trs = [0.2,0.21]; %transition rates
-frs = [.1,.8]; %firing rates
+frs = [.1,.5]; %firing rates
 pis = [.5,.5]; %initial state probabilitiesco
-nt = 3e2;
+nt = 9e2;
 
 
 TR = [1-trs(1),trs(1) ; trs(2),1-trs(2)];
@@ -29,11 +29,11 @@ cfg.TargetLang = 'C++';
 codegen call_viterbicpp -config cfg -args {nt, spikes, states, trs, frs, pis} -report 
 disp('done!')
 
-return
+%return
 
 %%
 [stg]=call_viterbicpp_mex(nt, spikes__,states__, trs,frs,pis) %random inputs
-
+stgmat = hmmviterbi(spikes__+1, TR, EM);
 %vecPrint(st);
 %call_hmmv_mex(0);
 %disp('matlab states')
@@ -44,12 +44,21 @@ hold on
 plot(spikes__+1,'k')
 plot(states__,'g','LineWidth',3)
 plot(stg,'k','LineWidth',2)
+plot(stgmat-.9,'b','LineWidth',2)
+
 hold off
 set(gcf,'Position',[          53         709        1388          89]);
 
-return
+
+figure(2)
+clf
+plot(double(stg)+randn(1,nt)/10,stgmat+randn(1,nt)/10,'ko','LineWidth',1)
+set(gcf,'Position',[    66   705   113   100])
+
+
+%return
 %%
-%[stg]=call_viterbicpp_mex(nt, spikes,max(states__,states, trs,frs,pis)
+[stg]=call_viterbicpp_mex(nt, spikes,states__, trs,frs,pis)
 
 %%
 [stg]=call_viterbicpp_mex(nt, spikes,states__, trs,frs,pis) %success
