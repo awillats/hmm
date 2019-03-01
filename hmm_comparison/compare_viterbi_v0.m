@@ -19,7 +19,7 @@ EM = [1-frs(1),frs(1) ; 1-frs(2), frs(2)];
 %% viterbi both in matlab and cpp, given ground truth params
 
 
-
+%want 1x300
 [stg]=call_viterbicpp_mex(nt, spikes,states, trs,frs,pis)
 
 figure(1)

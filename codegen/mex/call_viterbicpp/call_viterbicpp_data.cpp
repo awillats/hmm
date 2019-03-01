@@ -27,17 +27,17 @@ emlrtContext emlrtContextGlobal = { true,/* bFirstTime */
   NULL                                 /* fSigMem */
 };
 
-emlrtRSInfo emlrtRSI = { 14,           /* lineNo */
+emlrtRSInfo emlrtRSI = { 13,           /* lineNo */
   "call_viterbicpp",                   /* fcnName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m"/* pathName */
 };
 
-emlrtRSInfo b_emlrtRSI = { 15,         /* lineNo */
+emlrtRSInfo b_emlrtRSI = { 14,         /* lineNo */
   "call_viterbicpp",                   /* fcnName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m"/* pathName */
 };
 
-emlrtRSInfo c_emlrtRSI = { 16,         /* lineNo */
+emlrtRSInfo c_emlrtRSI = { 15,         /* lineNo */
   "call_viterbicpp",                   /* fcnName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m"/* pathName */
 };

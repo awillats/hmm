@@ -8,14 +8,16 @@ function [statesGuess, spikes, states] = call_viterbicpp(nt, spikes_, states_, t
         coder.cinclude('shuttleFuns.cpp'); 
         coder.cinclude('hmm_vec.cpp');
         
-        myHMMv = coder.opaque('HMMv');
                
         %convert input vecs to c++
         trs = mat2cvec(trs_);
         frs = mat2cvec(frs_);
         pis = mat2cvec(pis_);
         
-        myHMMv = coder.ceval('HMMv myHMM = HMMv',2,2, trs, frs, pis);
+        myHMMv = coder.opaque('HMMv');
+        myHMMv = coder.ceval('HMMv myHMM = HMMv',2,2, trs, frs, pis); 
+        
+        %ceval('str') :> cpp::str();
         coder.ceval('myHMM.printMyParams');
         %coder.ceval('myHMM.genSeq',nt); 
          
@@ -30,16 +32,11 @@ function [statesGuess, spikes, states] = call_viterbicpp(nt, spikes_, states_, t
         coder.ceval('myHMM.importSpksExportGuess',nt, coder.ref(spikes), coder.ref(states), coder.ref(statesGuess));
         %coder.ceval('int* vguess = viterbi(myHMM, myHMM.spikes, nt)');
     
-        
-        
         %{
         %prep for export
         %this casting in redundant with hard limits on input types
         %spikes = cast(zeros(1,nt),'int32');
-       
-        
         coder.ceval('myHMM.printSeqs',printMode); 
-
         %note this DOES NOT import spikes/states
         coder.ceval('myHMM.exportSeqsGuess',nt,coder.ref(spikes),coder.ref(states),coder.ref(statesGuess));
 

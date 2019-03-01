@@ -19,27 +19,27 @@
 #include "hmm_vec.cpp"
 
 /* Variable Definitions */
-static emlrtRTEInfo emlrtRTEI = { 27,  /* lineNo */
+static emlrtRTEInfo emlrtRTEI = { 29,  /* lineNo */
   9,                                   /* colNo */
   "call_viterbicpp",                   /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m"/* pName */
 };
 
-static emlrtDCInfo emlrtDCI = { 27,    /* lineNo */
+static emlrtDCInfo emlrtDCI = { 29,    /* lineNo */
   36,                                  /* colNo */
   "call_viterbicpp",                   /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m",/* pName */
   1                                    /* checkKind */
 };
 
-static emlrtDCInfo b_emlrtDCI = { 27,  /* lineNo */
+static emlrtDCInfo b_emlrtDCI = { 29,  /* lineNo */
   36,                                  /* colNo */
   "call_viterbicpp",                   /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m",/* pName */
   4                                    /* checkKind */
 };
 
-static emlrtDCInfo c_emlrtDCI = { 27,  /* lineNo */
+static emlrtDCInfo c_emlrtDCI = { 29,  /* lineNo */
   9,                                   /* colNo */
   "call_viterbicpp",                   /* fName */
   "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m",/* pName */
@@ -80,6 +80,8 @@ void call_viterbicpp(const emlrtStack *sp, real_T nt, const real_T spikes_[300],
 
   /* populates the std::vec from matlab vecs */
   HMMv myHMM = HMMv(2.0, 2.0, trs, frs, pis);
+
+  /* ceval('str') :> cpp::str(); */
   myHMM.printMyParams();
 
   /* coder.ceval('myHMM.genSeq',nt);  */
@@ -148,10 +150,7 @@ void call_viterbicpp(const emlrtStack *sp, real_T nt, const real_T spikes_[300],
   /*         %prep for export */
   /*         %this casting in redundant with hard limits on input types */
   /*         %spikes = cast(zeros(1,nt),'int32'); */
-  /*         */
-  /*          */
   /*         coder.ceval('myHMM.printSeqs',printMode);  */
-  /*  */
   /*         %note this DOES NOT import spikes/states */
   /*         coder.ceval('myHMM.exportSeqsGuess',nt,coder.ref(spikes),coder.ref(states),coder.ref(statesGuess)); */
   /*  */
