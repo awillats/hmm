@@ -18,7 +18,7 @@ function [statesGuess, spikes, states] = call_viterbicpp(nt, spikes_, states_, t
         myHMMv = coder.ceval('HMMv myHMM = HMMv',2,2, trs, frs, pis); 
         
         %ceval('str') :> cpp::str();
-        coder.ceval('myHMM.printMyParams');
+        % DEBUG ONLY coder.ceval('myHMM.printMyParams');
         %coder.ceval('myHMM.genSeq',nt); 
          
         %import to C++

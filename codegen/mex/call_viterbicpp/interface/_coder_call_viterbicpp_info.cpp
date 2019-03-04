@@ -37,7 +37,7 @@ mxArray *emlrtMexFcnProperties()
   emlrtSetField(xEntryPoints, 0, "FullPath", emlrtMxCreateString(
     "/Users/adam/Documents/GitHub/hmmX/hmm/call_viterbicpp.m"));
   emlrtSetField(xEntryPoints, 0, "TimeStamp", emlrtMxCreateDoubleScalar
-                (737484.72979166661));
+                (737488.67251157411));
   xResult = emlrtCreateStructMatrix(1, 1, 4, *(const char * (*)[4])&b_fldNames[0]);
   emlrtSetField(xResult, 0, "Version", emlrtMxCreateString(
     "9.5.0.1033004 (R2018b) Update 2"));

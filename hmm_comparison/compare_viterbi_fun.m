@@ -1,5 +1,5 @@
 
-function [q_mat,q_cpp] = compare_viterbi_fun(trs,frs,pis,nt)
+function [q_diff,cpp_runtime,mat_runtime] = compare_viterbi_fun(trs,frs,pis,nt)
 %{
 clc
 clear
@@ -15,13 +15,25 @@ nt = 3e2;
 TR = [1-trs(1),trs(1) ; trs(2),1-trs(2)];
 EM = [1-frs(1),frs(1) ; 1-frs(2), frs(2)];
 
-[spikes, states] = hmmgenerate(nt,TR,EM);
-
+[spikes, q_true_] = hmmgenerate(nt,TR,EM,'Symbols',[0,1]);
+q_true = q_true_-1;
 
 %% viterbi both in matlab and cpp, given ground truth params
 
 
 %want 1x300
-[stg]=call_viterbicpp_mex(nt, spikes,states, trs,frs,pis)
+tic
+[q_cpp] = call_viterbicpp_mex(nt, spikes,q_true, trs,frs,pis);
+cpp_runtime = toc;
 
+tic
+TRxx = [1-trs(1),trs(1) ; trs(2),1-trs(2)];%for fairness of timing (?)
+EMxx = [1-frs(1),frs(1) ; 1-frs(2), frs(2)];
+[q_mat] = hmmviterbi(spikes+1, TR, EM);
+mat_runtime = toc;
+
+
+q_diff = double(q_cpp)-(q_mat-1);
+
+end
 

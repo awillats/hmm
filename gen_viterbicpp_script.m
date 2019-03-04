@@ -17,11 +17,7 @@ EM = [1-frs(1),frs(1) ; 1-frs(2), frs(2)];
 states__ = states__-1;
 
 states = double(rand(1,nt)<.2);
-spikes = double(rand(1,nt)<.2);%states;%rand(1,nt)<.2;%cast(double(rand(1,nt)<.2),'int32'); %currently placeholder
-
-
-%segfaults
-% %}
+spikes = double(rand(1,nt)<.2);
 
 %https://www.mathworks.com/matlabcentral/answers/63047-calling-c-functions-from-matlab
 cfg = coder.config('mex');
