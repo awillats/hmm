@@ -3,10 +3,10 @@ clear
 close all
 addpath('~/Documents/GitHub/hmmX/hmm')
 %%
-trs = [0.2,0.21]; %transition rates
+trs = [0.1,0.1]; %transition rates
 frs = [.1,.5]; %firing rates
 pis = [.5,.5]; %initial state probabilitiesco
-nt = 9e2;
+nt = 3e2;
 
 
 TR = [1-trs(1),trs(1) ; trs(2),1-trs(2)];
@@ -45,6 +45,7 @@ plot(spikes__+1,'k')
 plot(states__,'g','LineWidth',3)
 plot(stg,'k','LineWidth',2)
 plot(stgmat-.9,'b','LineWidth',2)
+legend('spikes','true states','c++ estimate','matlab estimate')
 
 hold off
 set(gcf,'Position',[          53         709        1388          89]);
@@ -54,6 +55,8 @@ figure(2)
 clf
 plot(double(stg)+randn(1,nt)/10,stgmat+randn(1,nt)/10,'ko','LineWidth',1)
 set(gcf,'Position',[    66   705   113   100])
+xlabel('c++ state')
+ylabel('mtlb state')
 
 
 %return
