@@ -19,7 +19,7 @@
 double logE(double val)
 {
     double eps = 1e-10;
-    assert(val>=0);
+    //assert(val>=0);
     return log(val+eps);
 }
 
@@ -58,7 +58,6 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
         for (int j = 0; j < hmm.nstates; j++) {
             prob[i][j] = 0;
             prevs[i][j] = 0;
-            
         }
     }
     //printf("\nearly check%i\n",n);

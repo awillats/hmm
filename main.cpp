@@ -22,21 +22,21 @@
 
 int main(int argc, const char * argv[]) {
     int printMode = 0;
-    //std::vector<double> trs = {0.1,0.1}; //transition rates
-    //std::vector<double> frs = {.1,.1,.1}; //firing rates
-    //std::vector<double> pis = {.1,.9}; //initial state probabilities
+    std::vector<double> trs = {0.1,0.1}; //transition rates
+    std::vector<double> frs = {.1,.9}; //firing rates
+    std::vector<double> pis = {.1,.9}; //initial state probabilities
     int nt = 1e3;
     int nrep = 0;// 1e3;
 
-    //HMMv myHMM = HMMv(2,2, trs, frs, pis);
+    HMMv myHMM = HMMv(2,2, trs, frs, pis);
     
-    
+    /*
     std::vector<std::vector<double>> trs = {{0.9,0.1},{.1,.9}};
     std::vector<std::vector<double>> frs = {{0.9,0.05,0.05},{.1,0.45,.45}};
     std::vector<double> pis = {.1,.9};
     
     HMMv myHMM = HMMv(2,3, trs, frs, pis);
-
+*/
    // myHMM.printMyParams();
     myHMM.genSeq(nt);
     myHMM.printSeqs(printMode);

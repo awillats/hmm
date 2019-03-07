@@ -5,7 +5,6 @@ set(groot,'DefaultAxesFontSize',15);
 %% TURN ME INTO A FUNCTION PLEASE
 
 trs = [.1,.9];%low disagreement
-%trs = [.9,.9];%high disagreement
 %[0.2,0.21]; %transition rates
 
 frs = [.1,.6]; %firing rates
@@ -65,7 +64,6 @@ ylabel('cumulative probability')
 %set(gca,'XTick',[0:.5:max(perc_diff*100)])
 
 title(sprintf('TRs = %.2f, .%.2f',trs(1),trs(2)))
-
 
 subplot(2,1,2)
 [km,kmx] = ksdensity(log10(mrt),'NumPoints',150);

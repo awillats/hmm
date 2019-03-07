@@ -67,25 +67,22 @@ struct HMMv {
         //NB:verify the matrix representation against standard approaches
         
         //Build tranistion matrix;
-        if (nstates==2)
-        {
-            Av0.push_back(1-vTr[0]); //0,0
-            Av0.push_back(vTr[0]); //0,1
-            Av1.push_back(vTr[1]); //1,0
-            Av1.push_back(1-vTr[1]); //1,1
-        }
+
+        Av0.push_back(1-vTr[0]); //0,0
+        Av0.push_back(vTr[0]); //0,1
+        Av1.push_back(vTr[1]); //1,0
+        Av1.push_back(1-vTr[1]); //1,1
+        
         TR.push_back(Av0);
         TR.push_back(Av1);
         
         //Build emission matrix
         
-  
-            Bv0.push_back(1-vFr[0]);
-            Bv0.push_back(vFr[0]);
-            Bv1.push_back(1-vFr[1]);
-            Bv1.push_back(vFr[1]);
+        Bv0.push_back(1-vFr[0]);
+        Bv0.push_back(vFr[0]);
+        Bv1.push_back(1-vFr[1]);
+        Bv1.push_back(vFr[1]);
       
-        
 	    EM.push_back(Bv0);
 	    EM.push_back(Bv1);
         //printMyParams();
@@ -120,7 +117,6 @@ struct HMMv {
             {
                 TR[i][j] = TR[i][j]/rowTotTR;
             }
-            
         }
         //EM.push_back(EM[i])
         printMyParams();
