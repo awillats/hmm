@@ -33,10 +33,18 @@ int main(int argc, const char * argv[]) {
     myHMM.printSeqs(printMode);
     
     int* vguess = viterbi(myHMM, myHMM.spikes, nt);
+    std::vector<int> badSpikes = myHMM.spikes;
+    for (int i=0; i<nt; i++)
+    {
+        badSpikes[i]= myHMM.spikes[i]+2;
+    }
+    std::cout<< *max_element(badSpikes.begin(),badSpikes.end());
+    int* vguess2 = viterbi(myHMM, badSpikes, nt);
+
     
     int spkAry[nt];
     int stateAry[nt];
-    int vguess2[nt];
+    //int vguess2[nt];
     myHMM.exportSeqsGuess(nt,spkAry,stateAry,vguess2);
 
     //print percent of states which are 0. Just as a sanity check that transition probabilities are reasonably implemented
@@ -45,7 +53,9 @@ int main(int argc, const char * argv[]) {
     std::cout<<stateProb<<'\n';
     
     printVecAsBlock(&vguess[0], nt,printMode);
-    
+    std::cout<<'\n'<<'\n'<<'\n'<<'\n';
+    printVecAsBlock(&vguess2[0], nt,printMode);
+
     //std::vector<int> v = array2vec(&vguess[0], nt);
     
     std::cout<<"<guessed states \n";

@@ -47,10 +47,10 @@ static emlrtDCInfo c_emlrtDCI = { 29,  /* lineNo */
 };
 
 /* Function Definitions */
-void call_viterbicpp(const emlrtStack *sp, real_T nt, const real_T spikes_[200],
-                     const real_T states_[200], const real_T trs_[2], const
+void call_viterbicpp(const emlrtStack *sp, real_T nt, const real_T spikes_[300],
+                     const real_T states_[300], const real_T trs_[2], const
                      real_T frs_[2], const real_T pis_[2], emxArray_int32_T
-                     *statesGuess, int32_T spikes[200], int32_T states[200])
+                     *statesGuess, int32_T spikes[300], int32_T states[300])
 {
   real_T b_trs_[2];
   std::vector<double> trs;
@@ -85,7 +85,7 @@ void call_viterbicpp(const emlrtStack *sp, real_T nt, const real_T spikes_[200],
   /*  DEBUG ONLY coder.ceval('myHMM.printMyParams'); */
   /* coder.ceval('myHMM.genSeq',nt);  */
   /* import to C++ */
-  for (i0 = 0; i0 < 200; i0++) {
+  for (i0 = 0; i0 < 300; i0++) {
     d0 = muDoubleScalarRound(spikes_[i0]);
     if (d0 < 2.147483648E+9) {
       if (d0 >= -2.147483648E+9) {
@@ -102,7 +102,7 @@ void call_viterbicpp(const emlrtStack *sp, real_T nt, const real_T spikes_[200],
     spikes[i0] = loop_ub;
   }
 
-  for (i0 = 0; i0 < 200; i0++) {
+  for (i0 = 0; i0 < 300; i0++) {
     d0 = muDoubleScalarRound(states_[i0]);
     if (d0 < 2.147483648E+9) {
       if (d0 >= -2.147483648E+9) {

@@ -15,9 +15,37 @@
 //#include "../../../module_help/StAC_rtxi/hmm_tests/hmm_fs.hpp"
 
 int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
-    //printf("vit start vec");
     assert(n > 0); assert(!observed.empty());
-    //printf("vit start vec");
+
+    if (*max_element(observed.begin(),observed.end()) >= hmm.nevents)
+    {
+        //This fix is designed for deltas between matlab and c++ indexing. This will not catch every possible mismatch
+        // //std::cout<<">"<<*max_element(observed.begin(),observed.end())<<","<<hmm.nevents<<"<";
+        //temporary fix:
+        int delta = hmm.nevents - *max_element(observed.begin(),observed.end());
+        for (int i=0;i<n;i++)
+        {
+            observed[i] = observed[i]+delta-1;
+        }
+        // //std::cout<<"CORRECTING\n"<<"d:"<<delta<<","<<*max_element(observed.begin(),observed.end())<<endl;
+        assert(*max_element(observed.begin(),observed.end()) < hmm.nstates);
+    }
+    
+    /*
+    if (*max_element(seq.begin(),seq.end()) < hmm.state)
+    {
+        //temporary fix:
+        int delta = hmm.nstates - *max_element(seq.begin(),seq.end());
+        for (int i=0;i<n;i++)
+        {
+            seq[i] = seq[i]-delta-1;
+        }
+        std::cout<<"CORRECTING\n";
+    }
+    */
+    //since observed gets used to index the transition/emission matrix directly
+    //we need to check for an out of bounds exception
+    
     int *seq = new int[n];//holy cow, need to delete this memory, convert to vectorized to stop memory leak?
 
     for (int i = 0; i < n; i++) seq[i] = 0;
