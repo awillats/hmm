@@ -79,33 +79,52 @@ struct HMMv {
         
         //Build emission matrix
         
-        if (nevents==2)
-        {
+  
             Bv0.push_back(1-vFr[0]);
             Bv0.push_back(vFr[0]);
             Bv1.push_back(1-vFr[1]);
             Bv1.push_back(vFr[1]);
-        }
-        else
-        {
-            Bv1 = vFr;
-            
-            Bv0 = vFr;
-            for (int i=0; i<nevents;i++)
-            {
-                Bv0[i] = 1-vFr[i];
-            }
-        }
+      
         
 	    EM.push_back(Bv0);
 	    EM.push_back(Bv1);
         //printMyParams();
     }
     //alternate more direct constructor? or just a consequence of the block above?
-    HMMv(int nstates, int nevents, std::vector< std::vector<double> > TR, std::vector< std::vector<double> > EM, std::vector<double> PI):
-    nstates(nstates), nevents(nevents), TR(TR), EM(EM), PI(PI) {
+    HMMv(int nstates, int nevents, std::vector< std::vector<double> > TR_, std::vector< std::vector<double> > EM, std::vector<double> PI):
+    nstates(nstates), nevents(nevents), TR(TR_), EM(EM),  PI(PI) {
         assert(nstates > 0); assert(nevents > 0);
+        assert(TR[0].size()==nstates);
+        assert(EM[0].size()==nevents);
         assert(!TR.empty()); assert(!EM.empty()); assert(!PI.empty());
+
+        //normalize row
+        for (int i=0;i<nstates;i++)
+        {
+            double rowTotEM = 0;
+            for (int j=0;j<nevents;j++)
+            {
+                rowTotEM += EM[i][j];
+            }
+            for (int j=0;j<nevents;j++)
+            {
+                EM[i][j] = EM[i][j]/rowTotEM;
+            }
+            
+            double rowTotTR = 0;
+            for (int j=0;j<nstates;j++)
+            {
+                rowTotTR += TR[i][j];
+            }
+            for (int j=0;j<nstates;j++)
+            {
+                TR[i][j] = TR[i][j]/rowTotTR;
+            }
+            
+        }
+        //EM.push_back(EM[i])
+        printMyParams();
+        
     }
 
    //friend std::vector<int> genStates(HMMv const& hmm);

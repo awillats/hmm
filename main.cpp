@@ -32,11 +32,12 @@ int main(int argc, const char * argv[]) {
     
     
     std::vector<std::vector<double>> trs = {{0.9,0.1},{.1,.9}};
-    std::vector<std::vector<double>> frs = {{0.9,0.01,0.9},{.01,0.9,.1}};
+    std::vector<std::vector<double>> frs = {{0.9,0.05,0.05},{.1,0.45,.45}};
     std::vector<double> pis = {.1,.9};
-    HMMv myHMM = HMMv(2,2, trs, frs, pis);
+    
+    HMMv myHMM = HMMv(2,3, trs, frs, pis);
 
-    myHMM.printMyParams();
+   // myHMM.printMyParams();
     myHMM.genSeq(nt);
     myHMM.printSeqs(printMode);
     
