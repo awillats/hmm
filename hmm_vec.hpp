@@ -20,6 +20,7 @@
 #include <iterator>
 
 #include <random>
+#include <string>
 
 #include "printFuns.hpp"
 #include "shuttleFuns.hpp"
@@ -39,6 +40,8 @@ struct HMMv {
     std::vector<int> states;
     std::vector<int> spikes;
     int nt;
+    std::string warnings ();
+    //warnings = "all good";
     
     //https://stackoverflow.com/questions/18795776/error-no-matching-function-for-call-to-when-constructing-an-unintialized-stru
     HMMv(): nstates(2), nevents(2) { ;};
@@ -88,6 +91,7 @@ struct HMMv {
 
 public:
     std::vector<int> genSeq(int);
+    //void setWarning(char *);
     void printMyParams();
     void printSeqs(int);
     void exportSeqs(int *, int *);

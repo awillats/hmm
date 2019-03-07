@@ -7,8 +7,10 @@ set(groot,'DefaultAxesFontSize',15);
 trs = [0.2,0.21]; %transition rates
 frs = [.1,.6]; %firing rates
 pis = [.5,.5]; %initial state probabilitiesco
-nt = 3e2; %3e2 seems limit for c++
+nt = 1e5; %3e2 seems limit for c++
 
+    
+regenCode=1;
 %% codegen
 
 
@@ -22,14 +24,17 @@ states__ = states__-1;
 states = double(rand(1,nt)<.2);
 spikes = double(rand(1,nt)<.2);
 
-%https://www.mathworks.com/matlabcentral/answers/63047-calling-c-functions-from-matlab
-cfg = coder.config('mex');
-cfg.TargetLang = 'C++';
-codegen call_viterbicpp -config cfg -args {nt, spikes, states, trs, frs, pis} -report 
-disp('done!')
 
+
+if regenCode==1
+    %https://www.mathworks.com/matlabcentral/answers/63047-calling-c-functions-from-matlab
+    cfg = coder.config('mex');
+    cfg.TargetLang = 'C++';
+    codegen call_viterbicpp -config cfg -args {nt, spikes, states, trs, frs, pis} -report 
+    disp('done!')
+end
 %% actually compare
-nrep = 1e2;
+nrep = 10;
 
 perc_diff = zeros(nrep,1);
 crt = zeros(nrep,1);
@@ -49,8 +54,9 @@ subplot(2,1,1)
 [h] = histogram(perc_diff*100,'Normalization','cdf');
 
 
-area(h.BinEdges(2:end), h.Values,'FaceColor','m')
+area([h.BinEdges(2:end),100], [h.Values,1],'FaceColor','m')
 ylim([0,1])
+xlim([0,100])
 xlabel('% disagreement between methods')
 ylabel('cumulative probability')
 %set(gca,'XTick',[0:.5:max(perc_diff*100)])

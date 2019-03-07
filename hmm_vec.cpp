@@ -17,6 +17,8 @@
 int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
     assert(n > 0); assert(!observed.empty());
 
+    //since observed gets used to index the transition/emission matrix directly
+    //we need to check for an out of bounds exception
     if (*max_element(observed.begin(),observed.end()) >= hmm.nevents)
     {
         //This fix is designed for deltas between matlab and c++ indexing. This will not catch every possible mismatch
@@ -30,22 +32,7 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
         // //std::cout<<"CORRECTING\n"<<"d:"<<delta<<","<<*max_element(observed.begin(),observed.end())<<endl;
         assert(*max_element(observed.begin(),observed.end()) < hmm.nstates);
     }
-    
-    /*
-    if (*max_element(seq.begin(),seq.end()) < hmm.state)
-    {
-        //temporary fix:
-        int delta = hmm.nstates - *max_element(seq.begin(),seq.end());
-        for (int i=0;i<n;i++)
-        {
-            seq[i] = seq[i]-delta-1;
-        }
-        std::cout<<"CORRECTING\n";
-    }
-    */
-    //since observed gets used to index the transition/emission matrix directly
-    //we need to check for an out of bounds exception
-    
+    int prob0warnflag = 0;
     int *seq = new int[n];//holy cow, need to delete this memory, convert to vectorized to stop memory leak?
 
     for (int i = 0; i < n; i++) seq[i] = 0;
@@ -81,6 +68,11 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
                     dmax = k;
                 }
             }
+            if (dmax<0)
+            {
+                prob0warnflag=1;
+                dmax=0;
+            }
             prob[i][j] = hmm.EM[j][ observed[i] ] * pmax;
             prevs[i-1][j] = dmax;
         }
@@ -94,10 +86,18 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
             dmax = i;
         }
     }
+    if (dmax<0)
+    {
+        prob0warnflag=1;
+        dmax=0;
+    }
     seq[n-1] = dmax;
-    
+
     for (int i = n-2; i >= 0; i--) {
-        seq[i] = prevs[i][ seq[i+1] ];
+        
+       // std::cout<<">"<<i<<"_"<<seq[i+1]<<"_"<<"<\n";
+        assert(seq[i+1]>=0);
+        seq[i] = prevs[i][ seq[i+1] ]; //fails, generally for 2<< i< n-10
     }
     
     //////////////////////////////////////////////////////////check
@@ -134,6 +134,13 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
         delete[] prevs[i];
     }
 
+    if (prob0warnflag!=0)
+    {
+        std::cout<<"weird, all probs 0?";
+    }
+
+    
+    
    // printf("lastlast\n");
     delete[] prob;
     delete[] prevs;
@@ -174,6 +181,8 @@ void HMMv::importSpksExportGuess(int nt, int * spikeIn, int * stateIn, int * sta
     
     int* vguess = viterbi(*this , spikes, nt);
     std::copy(vguess, vguess+nt, stateGuessOut);
+    delete[] vguess; //fixes matlab crash?
+
 };
 
 void HMMv::exportSeqsGuess(int nt, int * spikeOut, int * stateOut, int * stateGuessOut)
@@ -183,6 +192,7 @@ void HMMv::exportSeqsGuess(int nt, int * spikeOut, int * stateOut, int * stateGu
     
     int* vguess = viterbi(*this , spikes, nt);
     std::copy(vguess, vguess+nt, stateGuessOut);
+    delete[] vguess;
 };
 
 
@@ -232,6 +242,10 @@ std::vector<int>  HMMv::genSeq(int nt_)
 };
 
 
+void setWarning(char * strin)
+{
+    std::cout<<strin;
+}
 
 
 
