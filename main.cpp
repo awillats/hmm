@@ -26,7 +26,7 @@ int main(int argc, const char * argv[]) {
     std::vector<double> frs = {.1,.8}; //firing rates
     std::vector<double> pis = {.1,.9}; //initial state probabilities
     int nt = 1e3;
-    int nrep = 1e3;
+    int nrep = 0;// 1e3;
 
     HMMv myHMM = HMMv(2,2, trs, frs, pis);
     myHMM.printMyParams();
@@ -37,7 +37,7 @@ int main(int argc, const char * argv[]) {
     for (int i=0;i<nrep;i++)
     {
         myHMM.genSeq(nt);
-        int* vguess = viterbi(myHMM, myHMM.spikes, nt);
+        int* vguessX = viterbi(myHMM, myHMM.spikes, nt);
     }
     
     

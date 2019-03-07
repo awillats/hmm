@@ -14,9 +14,20 @@
 #include "hmm_vec.hpp"
 //#include "../../../module_help/StAC_rtxi/hmm_tests/hmm_fs.hpp"
 
+
+
+double logE(double val)
+{
+    double eps = 1e-10;
+    assert(val>=0);
+    return log(val+eps);
+}
+
 int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
     assert(n > 0); assert(!observed.empty());
 
+    double pmaxDefault = -1e10; //set to 0 if you're using the non-log-transformed versions
+    
     //since observed gets used to index the transition/emission matrix directly
     //we need to check for an out of bounds exception
     if (*max_element(observed.begin(),observed.end()) >= hmm.nevents)
@@ -56,16 +67,24 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
         prob[0][0]=0.0;
 
     for (int i = 0; i < hmm.nstates; i++) {
-        prob[0][i] = hmm.PI[i] * hmm.EM[i][ observed[0] ];
+        //prob[0][i] = hmm.PI[i] * hmm.EM[i][ observed[0] ]; //convert to log
+        prob[0][i] = logE(hmm.PI[i]) + logE(hmm.EM[i][ observed[0] ]); //convert to log
+
     }
     for (int i = 1; i < n; i++) {
         for (int j = 0; j < hmm.nstates; j++) {
-            double pmax = 0, p; int dmax=-1;
+            double pmax = pmaxDefault, p; int dmax=-1;
             for (int k = 0; k < hmm.nstates; k++) {
-                p = prob[i-1][k] * hmm.TR[k][j];
+                //p = prob[i-1][k] * hmm.TR[k][j]; //convert to log
+                p = prob[i-1][k]+logE(hmm.TR[k][j]); //convert to log
+
                 if (p > pmax) {
                     pmax = p;
                     dmax = k;
+                }
+                if (dmax==-1)
+                {
+                    std::cout<<">"<<p<<","<<pmax<<"<<\n";
                 }
             }
             if (dmax<0)
@@ -73,13 +92,14 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
                 prob0warnflag=1;
                 dmax=0;
             }
-            prob[i][j] = hmm.EM[j][ observed[i] ] * pmax;
+            //prob[i][j] = hmm.EM[j][ observed[i] ] * pmax; //normalize probs soon
+            prob[i][j] = logE(hmm.EM[j][ observed[i] ]) + pmax;
             prevs[i-1][j] = dmax;
         }
     }
     
 
-    double pmax = 0; int dmax=-1;
+    double pmax = pmaxDefault; int dmax=-1;
     for (int i = 0; i < hmm.nstates; i++) {
         if (prob[n-1][i] > pmax) {
             pmax = prob[n-1][i];
