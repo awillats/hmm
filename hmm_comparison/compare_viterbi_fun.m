@@ -11,9 +11,10 @@ pis = [.5,.5]; %initial state probabilitiesco
 nt = 3e2;
 %}
 %% generate spikes
-
-TR = [1-trs(1),trs(1) ; trs(2),1-trs(2)];
-EM = [1-frs(1),frs(1) ; 1-frs(2), frs(2)];
+if (numel(trs)==2)
+    TR = [1-trs(1),trs(1) ; trs(2),1-trs(2)];
+    EM = [1-frs(1),frs(1) ; 1-frs(2), frs(2)];
+end
 
 [spikes, q_true_] = hmmgenerate(nt,TR,EM,'Symbols',[0,1]);
 q_true = q_true_-1;

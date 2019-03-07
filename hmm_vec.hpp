@@ -50,7 +50,12 @@ struct HMMv {
     HMMv(int nstates, int nevents, std::vector< double> vTr, std::vector< double> vFr, std::vector<double> PI):
     nstates(nstates), nevents(nevents), PI(PI) {
         //assert(nstates > 0); assert(nevents > 0);
-        assert(nstates==2); assert(nevents==2); //for now building the matrices only works for n=2
+        //int q=5;
+        //std::cout<<'\n'<<'\n'<<'\n'<<'\n';
+        
+        // //for now building the matrices only works for n=2
+        assert(nstates==2);assert(nevents==2);
+        
         assert(!vFr.empty()); assert(!vTr.empty()); assert(!PI.empty());
 
 	    std::vector<double> Av0;
@@ -62,18 +67,36 @@ struct HMMv {
         //NB:verify the matrix representation against standard approaches
         
         //Build tranistion matrix;
-        Av0.push_back(1-vTr[0]); //0,0
-	    Av0.push_back(vTr[0]); //0,1
-	    Av1.push_back(vTr[1]); //1,0
-	    Av1.push_back(1-vTr[1]); //1,1
+        if (nstates==2)
+        {
+            Av0.push_back(1-vTr[0]); //0,0
+            Av0.push_back(vTr[0]); //0,1
+            Av1.push_back(vTr[1]); //1,0
+            Av1.push_back(1-vTr[1]); //1,1
+        }
         TR.push_back(Av0);
         TR.push_back(Av1);
         
         //Build emission matrix
-  	    Bv0.push_back(1-vFr[0]);
-	    Bv0.push_back(vFr[0]);
-	    Bv1.push_back(1-vFr[1]);
-	    Bv1.push_back(vFr[1]);
+        
+        if (nevents==2)
+        {
+            Bv0.push_back(1-vFr[0]);
+            Bv0.push_back(vFr[0]);
+            Bv1.push_back(1-vFr[1]);
+            Bv1.push_back(vFr[1]);
+        }
+        else
+        {
+            Bv1 = vFr;
+            
+            Bv0 = vFr;
+            for (int i=0; i<nevents;i++)
+            {
+                Bv0[i] = 1-vFr[i];
+            }
+        }
+        
 	    EM.push_back(Bv0);
 	    EM.push_back(Bv1);
         //printMyParams();

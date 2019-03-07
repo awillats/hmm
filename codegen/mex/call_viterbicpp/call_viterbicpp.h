@@ -25,9 +25,9 @@
 
 /* Function Declarations */
 extern void call_viterbicpp(const emlrtStack *sp, real_T nt, const real_T
-  spikes_[100000], const real_T states_[100000], const real_T trs_[2], const
-  real_T frs_[2], const real_T pis_[2], emxArray_int32_T *statesGuess, int32_T
-  spikes[100000], int32_T states[100000]);
+  spikes_[1000], const real_T states_[1000], const real_T trs_[2], const real_T
+  frs_[2], const real_T pis_[2], emxArray_int32_T *statesGuess, int32_T spikes
+  [1000], int32_T states[1000]);
 
 #endif
 

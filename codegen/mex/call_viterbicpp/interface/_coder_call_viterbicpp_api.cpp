@@ -26,11 +26,11 @@ static emlrtRTEInfo b_emlrtRTEI = { 1, /* lineNo */
 /* Function Declarations */
 static real_T b_emlrt_marshallIn(const emlrtStack *sp, const mxArray *u, const
   emlrtMsgIdentifier *parentId);
-static const mxArray *b_emlrt_marshallOut(const int32_T u[100000]);
+static const mxArray *b_emlrt_marshallOut(const int32_T u[1000]);
 static real_T (*c_emlrt_marshallIn(const emlrtStack *sp, const mxArray *spikes_,
-  const char_T *identifier))[100000];
+  const char_T *identifier))[1000];
 static real_T (*d_emlrt_marshallIn(const emlrtStack *sp, const mxArray *u, const
-  emlrtMsgIdentifier *parentId))[100000];
+  emlrtMsgIdentifier *parentId))[1000];
 static real_T (*e_emlrt_marshallIn(const emlrtStack *sp, const mxArray *trs_,
   const char_T *identifier))[2];
 static real_T emlrt_marshallIn(const emlrtStack *sp, const mxArray *nt, const
@@ -41,7 +41,7 @@ static real_T (*f_emlrt_marshallIn(const emlrtStack *sp, const mxArray *u, const
 static real_T g_emlrt_marshallIn(const emlrtStack *sp, const mxArray *src, const
   emlrtMsgIdentifier *msgId);
 static real_T (*h_emlrt_marshallIn(const emlrtStack *sp, const mxArray *src,
-  const emlrtMsgIdentifier *msgId))[100000];
+  const emlrtMsgIdentifier *msgId))[1000];
 static real_T (*i_emlrt_marshallIn(const emlrtStack *sp, const mxArray *src,
   const emlrtMsgIdentifier *msgId))[2];
 
@@ -55,13 +55,13 @@ static real_T b_emlrt_marshallIn(const emlrtStack *sp, const mxArray *u, const
   return y;
 }
 
-static const mxArray *b_emlrt_marshallOut(const int32_T u[100000])
+static const mxArray *b_emlrt_marshallOut(const int32_T u[1000])
 {
   const mxArray *y;
   const mxArray *m1;
   static const int32_T iv1[2] = { 0, 0 };
 
-  static const int32_T iv2[2] = { 1, 100000 };
+  static const int32_T iv2[2] = { 1, 1000 };
 
   y = NULL;
   m1 = emlrtCreateNumericArray(2, iv1, mxINT32_CLASS, mxREAL);
@@ -72,9 +72,9 @@ static const mxArray *b_emlrt_marshallOut(const int32_T u[100000])
 }
 
 static real_T (*c_emlrt_marshallIn(const emlrtStack *sp, const mxArray *spikes_,
-  const char_T *identifier))[100000]
+  const char_T *identifier))[1000]
 {
-  real_T (*y)[100000];
+  real_T (*y)[1000];
   emlrtMsgIdentifier thisId;
   thisId.fIdentifier = const_cast<const char *>(identifier);
   thisId.fParent = NULL;
@@ -84,9 +84,9 @@ static real_T (*c_emlrt_marshallIn(const emlrtStack *sp, const mxArray *spikes_,
   return y;
 }
   static real_T (*d_emlrt_marshallIn(const emlrtStack *sp, const mxArray *u,
-  const emlrtMsgIdentifier *parentId))[100000]
+  const emlrtMsgIdentifier *parentId))[1000]
 {
-  real_T (*y)[100000];
+  real_T (*y)[1000];
   y = h_emlrt_marshallIn(sp, emlrtAlias(u), parentId);
   emlrtDestroyArray(&u);
   return y;
@@ -152,14 +152,14 @@ static real_T (*f_emlrt_marshallIn(const emlrtStack *sp, const mxArray *u, const
 }
 
 static real_T (*h_emlrt_marshallIn(const emlrtStack *sp, const mxArray *src,
-  const emlrtMsgIdentifier *msgId))[100000]
+  const emlrtMsgIdentifier *msgId))[1000]
 {
-  real_T (*ret)[100000];
-  static const int32_T dims[2] = { 1, 100000 };
+  real_T (*ret)[1000];
+  static const int32_T dims[2] = { 1, 1000 };
 
   emlrtCheckBuiltInR2012b(sp, (const emlrtMsgIdentifier *)msgId, src, "double",
     false, 2U, *(int32_T (*)[2])&dims[0]);
-  ret = (real_T (*)[100000])emlrtMxGetData(src);
+  ret = (real_T (*)[1000])emlrtMxGetData(src);
   emlrtDestroyArray(&src);
   return ret;
 }
@@ -179,12 +179,12 @@ static real_T (*h_emlrt_marshallIn(const emlrtStack *sp, const mxArray *src,
 void call_viterbicpp_api(const mxArray * const prhs[6], int32_T nlhs, const
   mxArray *plhs[3])
 {
-  int32_T (*spikes)[100000];
-  int32_T (*states)[100000];
+  int32_T (*spikes)[1000];
+  int32_T (*states)[1000];
   emxArray_int32_T *statesGuess;
   real_T nt;
-  real_T (*spikes_)[100000];
-  real_T (*states_)[100000];
+  real_T (*spikes_)[1000];
+  real_T (*states_)[1000];
   real_T (*trs_)[2];
   real_T (*frs_)[2];
   real_T (*pis_)[2];
@@ -194,8 +194,8 @@ void call_viterbicpp_api(const mxArray * const prhs[6], int32_T nlhs, const
   };
 
   st.tls = emlrtRootTLSGlobal;
-  spikes = (int32_T (*)[100000])mxMalloc(sizeof(int32_T [100000]));
-  states = (int32_T (*)[100000])mxMalloc(sizeof(int32_T [100000]));
+  spikes = (int32_T (*)[1000])mxMalloc(sizeof(int32_T [1000]));
+  states = (int32_T (*)[1000])mxMalloc(sizeof(int32_T [1000]));
   emlrtHeapReferenceStackEnterFcnR2012b(&st);
   emxInit_int32_T(&st, &statesGuess, 2, &b_emlrtRTEI, true);
 

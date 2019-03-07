@@ -43,6 +43,7 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
         // //std::cout<<"CORRECTING\n"<<"d:"<<delta<<","<<*max_element(observed.begin(),observed.end())<<endl;
         assert(*max_element(observed.begin(),observed.end()) < hmm.nstates);
     }
+    
     int prob0warnflag = 0;
     int *seq = new int[n];//holy cow, need to delete this memory, convert to vectorized to stop memory leak?
 
@@ -54,8 +55,6 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
         prob[i] = new double[hmm.nstates];
         prevs[i] = new int[hmm.nstates];
         //printf("%i.",n); //fixes
-        //printf("x"); //insufficient
-        //i;
         for (int j = 0; j < hmm.nstates; j++) {
             prob[i][j] = 0;
             prevs[i][j] = 0;
@@ -64,10 +63,10 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
     }
     //printf("\nearly check%i\n",n);
     //prob[0][0]=0.0; //why does this fix things!??!
-        prob[0][0]=0.0;
+    prob[0][0]=0.0;
 
     for (int i = 0; i < hmm.nstates; i++) {
-        //prob[0][i] = hmm.PI[i] * hmm.EM[i][ observed[0] ]; //convert to log
+        //prob[0][i] = hmm.PI[i] * hmm.EM[i][ observed[0] ]; //non-log version
         prob[0][i] = logE(hmm.PI[i]) + logE(hmm.EM[i][ observed[0] ]); //convert to log
 
     }
@@ -75,7 +74,7 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
         for (int j = 0; j < hmm.nstates; j++) {
             double pmax = pmaxDefault, p; int dmax=-1;
             for (int k = 0; k < hmm.nstates; k++) {
-                //p = prob[i-1][k] * hmm.TR[k][j]; //convert to log
+                //p = prob[i-1][k] * hmm.TR[k][j]; //non-log version
                 p = prob[i-1][k]+logE(hmm.TR[k][j]); //convert to log
 
                 if (p > pmax) {
@@ -92,7 +91,7 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
                 prob0warnflag=1;
                 dmax=0;
             }
-            //prob[i][j] = hmm.EM[j][ observed[i] ] * pmax; //normalize probs soon
+            //prob[i][j] = hmm.EM[j][ observed[i] ] * pmax; //non-log version
             prob[i][j] = logE(hmm.EM[j][ observed[i] ]) + pmax;
             prevs[i-1][j] = dmax;
         }
@@ -114,7 +113,6 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
     seq[n-1] = dmax;
 
     for (int i = n-2; i >= 0; i--) {
-        
        // std::cout<<">"<<i<<"_"<<seq[i+1]<<"_"<<"<\n";
         assert(seq[i+1]>=0);
         seq[i] = prevs[i][ seq[i+1] ]; //fails, generally for 2<< i< n-10

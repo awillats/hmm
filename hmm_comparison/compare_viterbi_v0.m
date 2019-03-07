@@ -10,9 +10,9 @@ trs = [.1,.9];%low disagreement
 
 frs = [.1,.6]; %firing rates
 pis = [.5,.5]; %initial state probabilitiesco
-nt = 1e5; %3e2 seems limit for c++
+nt = 1e3; %3e2 seems limit for c++
 
-    
+nrep = 1e3;
 regenCode=1;
 %% codegen
 
@@ -37,7 +37,6 @@ if regenCode==1
     disp('done!')
 end
 %% actually compare
-nrep = 10;
 
 perc_diff = zeros(nrep,1);
 crt = zeros(nrep,1);
@@ -54,12 +53,13 @@ end
 figure(1)
 clf
 subplot(2,1,1)
-[h] = histogram(perc_diff*100,'Normalization','cdf');
+[h] = histogram(perc_diff*100,[0:101])
+%,'Normalization','pdf');
 
 
-area([h.BinEdges(2:end),100], [h.Values,1],'FaceColor','m')
-ylim([0,1])
-xlim([0,100])
+plot([h.BinEdges(2:end),100], [h.Values,1],'Color','m','LineWidth',3)
+%ylim([0,1])
+%xlim([0,100])
 xlabel('% disagreement between methods')
 ylabel('cumulative probability')
 %set(gca,'XTick',[0:.5:max(perc_diff*100)])
