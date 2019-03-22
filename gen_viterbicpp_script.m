@@ -34,17 +34,27 @@ stgmat = hmmviterbi(spikes__+1, TR, EM);
 %call_hmmv_mex(0);
 %disp('matlab states')
 
+
+XL = [0,300];
 figure(1)
 clf
 hold on
-plot(spikes__+1,'k')
-plot(states__,'g','LineWidth',3)
+subplot(2,1,1)
+plot(spikes__,'k')
+legend('spikes')
+xlim(XL)
+
+
+subplot(2,1,2)
+hold on
+plot(states__,'g','LineWidth',4)
 plot(stg,'k','LineWidth',2)
 plot(stgmat-.9,'b','LineWidth',2)
-legend('spikes','true states','c++ estimate','matlab estimate')
-
+legend('true states','c++ estimate','matlab estimate')
+xlabel('time steps')
+xlim(XL)
 hold off
-set(gcf,'Position',[          53         709        1388          89]);
+set(gcf,'Position',[    837   627   604   178]);
 
 
 figure(2)
@@ -52,7 +62,7 @@ clf
 plot(double(stg)+randn(1,nt)/10,stgmat+randn(1,nt)/10,'ko','LineWidth',1)
 set(gcf,'Position',[    66   705   113   100])
 xlabel('c++ state')
-ylabel('mtlb state')
+ylabel('matlab state')
 
 
 %return
