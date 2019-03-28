@@ -153,8 +153,7 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
 
     if (prob0warnflag!=0)
     {
-        std::cout<<"weird, all probs 0?"; 
-        //weird holdover from before we were working in log probability space
+        std::cout<<"weird, all probs 0?";
     }
 
     
