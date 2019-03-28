@@ -10,12 +10,24 @@
 
 //using namespace std;
 
-
-std::string blockPrint(int bin)
+std::string blockPrint(int bin, int printMode)
 {
-    std::string block= ((bin==0) ? "\u2581":"\u2588");
+    std::string block;
+    switch (printMode)
+    {
+        case 0:
+            block = std::to_string(bin);
+            break;
+        case 1:
+             block=((bin==0) ? "\u2581":"\u2588");
+            break;
+        case 2:
+            block= ((bin==0) ? "_":"^");
+            break;
+    }
     return block;
 };
+ 
 
 void printMat(std::vector< std::vector<double> > mat)
 {
@@ -36,11 +48,26 @@ void printMat(std::vector< std::vector<double> > mat)
 };
 
 
-void printVecAsBlock(int* v,int veclen)
+
+void printVecAsBlock(int* v,int veclen, int printMode)
 {
     for (int i=0; i<veclen; i++)
     {
-        std::cout<<blockPrint(v[i]);
+        std::cout<<blockPrint(v[i],printMode);
     }
 };
 
+void printVec(std::vector<double> v)
+{
+    std::cout<<"[";
+    for (int i=0;i<v.size();i++)
+    {
+        if (i>0)
+        {
+            std::cout<<',';
+        }
+        std::cout<<v[i];
+    }
+    std::cout<<"]\n";
+
+}
