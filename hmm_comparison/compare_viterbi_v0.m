@@ -2,6 +2,7 @@ clc
 clear
 close all
 set(groot,'DefaultAxesFontSize',15);
+addpath('..')
 %% TURN ME INTO A FUNCTION PLEASE
 
 trs = [.1,.9];%low disagreement

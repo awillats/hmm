@@ -3,10 +3,10 @@ clear
 close all
 addpath('~/Documents/GitHub/hmmX/hmm')
 %%
-trs = [0.1,0.1]; %transition rates
-frs = [.1,.5]; %firing rates
+trs = [0.1,0.1]/2; %transition rates
+frs = [.1,.5]/2; %firing rates
 pis = [.5,.5]; %initial state probabilitiesco
-nt = 3e2;
+nt = 3e3;%3e2;
 
 
 TR = [1-trs(1),trs(1) ; trs(2),1-trs(2)];

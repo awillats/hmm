@@ -44,8 +44,8 @@ SYS_INCLUDE = $(ML_INCLUDES)
 
 # Additional includes
 
-SYS_INCLUDE += -I "/Users/adam/Documents/GitHub/hmmX/hmm/hmm_comparison/codegen/mex/call_viterbicpp"
-SYS_INCLUDE += -I "/Users/adam/Documents/GitHub/hmmX/hmm/hmm_comparison"
+SYS_INCLUDE += -I "/Users/adam/Documents/GitHub/rtxi_vm_copy/hmm_modules/hmmX/hmm/hmm_comparison/codegen/mex/call_viterbicpp"
+SYS_INCLUDE += -I "/Users/adam/Documents/GitHub/rtxi_vm_copy/hmm_modules/hmmX/hmm/hmm_comparison"
 SYS_INCLUDE += -I "./interface"
 SYS_INCLUDE += -I "$(MATLAB_ROOT)/extern/include"
 SYS_INCLUDE += -I "."
@@ -103,10 +103,10 @@ CPPFLAGS = $(CXX_FLAGS) -std=c++11   $(USER_INCLUDE) $(SYS_INCLUDE)
 
 # Additional sources
 
-%.$(OBJEXT) : /Users/adam/Documents/GitHub/hmmX/hmm/hmm_comparison/%.c
+%.$(OBJEXT) : /Users/adam/Documents/GitHub/rtxi_vm_copy/hmm_modules/hmmX/hmm/hmm_comparison/%.c
 	$(CC) $(CCFLAGS) "$<"
 
-%.$(OBJEXT) : /Users/adam/Documents/GitHub/hmmX/hmm/hmm_comparison/codegen/mex/call_viterbicpp/%.c
+%.$(OBJEXT) : /Users/adam/Documents/GitHub/rtxi_vm_copy/hmm_modules/hmmX/hmm/hmm_comparison/codegen/mex/call_viterbicpp/%.c
 	$(CC) $(CCFLAGS) "$<"
 
 %.$(OBJEXT) : interface/%.c
@@ -114,10 +114,10 @@ CPPFLAGS = $(CXX_FLAGS) -std=c++11   $(USER_INCLUDE) $(SYS_INCLUDE)
 
 
 
-%.$(OBJEXT) : /Users/adam/Documents/GitHub/hmmX/hmm/hmm_comparison/%.cpp
+%.$(OBJEXT) : /Users/adam/Documents/GitHub/rtxi_vm_copy/hmm_modules/hmmX/hmm/hmm_comparison/%.cpp
 	$(CXX) $(CPPFLAGS) "$<"
 
-%.$(OBJEXT) : /Users/adam/Documents/GitHub/hmmX/hmm/hmm_comparison/codegen/mex/call_viterbicpp/%.cpp
+%.$(OBJEXT) : /Users/adam/Documents/GitHub/rtxi_vm_copy/hmm_modules/hmmX/hmm/hmm_comparison/codegen/mex/call_viterbicpp/%.cpp
 	$(CXX) $(CPPFLAGS) "$<"
 
 %.$(OBJEXT) : interface/%.cpp
@@ -125,10 +125,10 @@ CPPFLAGS = $(CXX_FLAGS) -std=c++11   $(USER_INCLUDE) $(SYS_INCLUDE)
 
 
 
-%.$(OBJEXT) : /Users/adam/Documents/GitHub/hmmX/hmm/hmm_comparison/%.cu
+%.$(OBJEXT) : /Users/adam/Documents/GitHub/rtxi_vm_copy/hmm_modules/hmmX/hmm/hmm_comparison/%.cu
 	$(CC) $(CCFLAGS) "$<"
 
-%.$(OBJEXT) : /Users/adam/Documents/GitHub/hmmX/hmm/hmm_comparison/codegen/mex/call_viterbicpp/%.cu
+%.$(OBJEXT) : /Users/adam/Documents/GitHub/rtxi_vm_copy/hmm_modules/hmmX/hmm/hmm_comparison/codegen/mex/call_viterbicpp/%.cu
 	$(CC) $(CCFLAGS) "$<"
 
 %.$(OBJEXT) : interface/%.cu
