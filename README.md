@@ -28,4 +28,15 @@ see also: [`rtxi-hmmDecoder`](google.com) and [`rtxi-hmmGenerator`](google.com) 
 	sudo make install #[optional] installs to default location (OS-specific)
 	```
 
+
+# Common issues
+
+```error: non-aggregate type 'std::vector<std::vector<double> >' cannot be initialized with an initializer list```
+
+compile `main.cpp` with
+```shell
+clang++ -std=c++0x -o out main.cpp
+```
+instead
+
 # Acknowledgements
