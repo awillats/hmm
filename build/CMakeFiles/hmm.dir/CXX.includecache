@@ -6,6 +6,8 @@
 
 #IncludeRegexTransform: 
 
+/Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/fake_lib/fake.h
+
 /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/include/hmm_h/hmm_vec.hpp
 stdio.h
 -
@@ -51,6 +53,8 @@ iostream
 -
 vector
 -
+../fake_lib/fake.h
+/Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/fake_lib/fake.h
 ../include/hmm_h/hmm_vec.hpp
 /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/include/hmm_h/hmm_vec.hpp
 ../include/hmm_h/printFuns.hpp

@@ -6,7 +6,9 @@
 //  Copyright © 2017 Adam Willats. All rights reserved.
 //
 
-#include "printFuns.hpp"
+//#include "printFuns.hpp"
+#include <hmm>
+
 
 //using namespace std;
 
@@ -27,7 +29,7 @@ std::string blockPrint(int bin, int printMode)
     }
     return block;
 };
- 
+
 
 void printMat(std::vector< std::vector<double> > mat)
 {
@@ -39,7 +41,7 @@ void printMat(std::vector< std::vector<double> > mat)
             std::cout<<mat[i][j];
             if (j<mat[i].size()-1) {std::cout<<", ";};
         }
-        
+
         if (i<mat.size()-1){
             std::cout<<"\n ";
         }

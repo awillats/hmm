@@ -73,32 +73,52 @@ CMAKE_BINARY_DIR = /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/bui
 
 # The main recursive "all" target.
 all: CMakeFiles/hmm.dir/all
+all: fake_lib/all
 
 .PHONY : all
 
 # The main recursive "preinstall" target.
-preinstall:
+preinstall: fake_lib/preinstall
 
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: CMakeFiles/hmm.dir/clean
+clean: fake_lib/clean
 
 .PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory fake_lib
+
+# Recursive "all" directory target.
+fake_lib/all: fake_lib/CMakeFiles/fake_lib.dir/all
+
+.PHONY : fake_lib/all
+
+# Recursive "preinstall" directory target.
+fake_lib/preinstall:
+
+.PHONY : fake_lib/preinstall
+
+# Recursive "clean" directory target.
+fake_lib/clean: fake_lib/CMakeFiles/fake_lib.dir/clean
+
+.PHONY : fake_lib/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/hmm.dir
 
 # All Build rule for target.
-CMakeFiles/hmm.dir/all:
+CMakeFiles/hmm.dir/all: fake_lib/CMakeFiles/fake_lib.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hmm.dir/build.make CMakeFiles/hmm.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hmm.dir/build.make CMakeFiles/hmm.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build/CMakeFiles --progress-num=1,2 "Built target hmm"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build/CMakeFiles --progress-num=3,4 "Built target hmm"
 .PHONY : CMakeFiles/hmm.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/hmm.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/hmm.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build/CMakeFiles 0
 .PHONY : CMakeFiles/hmm.dir/rule
@@ -112,6 +132,33 @@ hmm: CMakeFiles/hmm.dir/rule
 CMakeFiles/hmm.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hmm.dir/build.make CMakeFiles/hmm.dir/clean
 .PHONY : CMakeFiles/hmm.dir/clean
+
+#=============================================================================
+# Target rules for target fake_lib/CMakeFiles/fake_lib.dir
+
+# All Build rule for target.
+fake_lib/CMakeFiles/fake_lib.dir/all:
+	$(MAKE) $(MAKESILENT) -f fake_lib/CMakeFiles/fake_lib.dir/build.make fake_lib/CMakeFiles/fake_lib.dir/depend
+	$(MAKE) $(MAKESILENT) -f fake_lib/CMakeFiles/fake_lib.dir/build.make fake_lib/CMakeFiles/fake_lib.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build/CMakeFiles --progress-num=1,2 "Built target fake_lib"
+.PHONY : fake_lib/CMakeFiles/fake_lib.dir/all
+
+# Build rule for subdir invocation for target.
+fake_lib/CMakeFiles/fake_lib.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 fake_lib/CMakeFiles/fake_lib.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build/CMakeFiles 0
+.PHONY : fake_lib/CMakeFiles/fake_lib.dir/rule
+
+# Convenience name for target.
+fake_lib: fake_lib/CMakeFiles/fake_lib.dir/rule
+
+.PHONY : fake_lib
+
+# clean rule for target.
+fake_lib/CMakeFiles/fake_lib.dir/clean:
+	$(MAKE) $(MAKESILENT) -f fake_lib/CMakeFiles/fake_lib.dir/build.make fake_lib/CMakeFiles/fake_lib.dir/clean
+.PHONY : fake_lib/CMakeFiles/fake_lib.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

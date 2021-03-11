@@ -11,7 +11,8 @@
  */
 
 
-#include "hmm_vec.hpp"
+//#include "hmm_vec.hpp"
+#include <hmm>
 //#include "../../../module_help/StAC_rtxi/hmm_tests/hmm_fs.hpp"
 
 

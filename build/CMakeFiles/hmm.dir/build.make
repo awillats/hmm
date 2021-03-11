@@ -98,6 +98,7 @@ hmm_EXTERNAL_OBJECTS =
 
 hmm: CMakeFiles/hmm.dir/src/main.cpp.o
 hmm: CMakeFiles/hmm.dir/build.make
+hmm: fake_lib/libfake_lib.a
 hmm: CMakeFiles/hmm.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable hmm"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/hmm.dir/link.txt --verbose=$(VERBOSE)

@@ -11,6 +11,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.19.6/CMakeCCompiler.cmake"
   "CMakeFiles/3.19.6/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.19.6/CMakeSystem.cmake"
+  "../fake_lib/CMakeLists.txt"
   "../include/hmm.h.in"
   "/usr/local/Cellar/cmake/3.19.6/share/cmake/Modules/CMakeCInformation.cmake"
   "/usr/local/Cellar/cmake/3.19.6/share/cmake/Modules/CMakeCXXInformation.cmake"
@@ -45,9 +46,11 @@ set(CMAKE_MAKEFILE_OUTPUTS
 set(CMAKE_MAKEFILE_PRODUCTS
   "../include/hmm.h"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
+  "fake_lib/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/hmm.dir/DependInfo.cmake"
+  "fake_lib/CMakeFiles/fake_lib.dir/DependInfo.cmake"
   )

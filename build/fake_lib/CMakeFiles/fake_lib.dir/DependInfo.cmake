@@ -4,19 +4,16 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/src/main.cpp" "/Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build/CMakeFiles/hmm.dir/src/main.cpp.o"
+  "/Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/fake_lib/fake.cpp" "/Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build/fake_lib/CMakeFiles/fake_lib.dir/fake.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "../include"
-  "../fake_lib"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build/fake_lib/CMakeFiles/fake_lib.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

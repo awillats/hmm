@@ -99,14 +99,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build/CMakeFiles /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build//CMakeFiles/progress.marks
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
+	cd /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build/CMakeFiles /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build/src//CMakeFiles/progress.marks
+	cd /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 clean
+	cd /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/clean
 .PHONY : clean
 
 # The main clean target
@@ -116,71 +116,60 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named hmm
+# Convenience name for target.
+src/CMakeFiles/src.dir/rule:
+	cd /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/src.dir/rule
+.PHONY : src/CMakeFiles/src.dir/rule
 
-# Build rule for target.
-hmm: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hmm
-.PHONY : hmm
+# Convenience name for target.
+src: src/CMakeFiles/src.dir/rule
 
-# fast build rule for target.
-hmm/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/hmm.dir/build.make CMakeFiles/hmm.dir/build
-.PHONY : hmm/fast
-
-#=============================================================================
-# Target rules for targets named fake_lib
-
-# Build rule for target.
-fake_lib: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 fake_lib
-.PHONY : fake_lib
+.PHONY : src
 
 # fast build rule for target.
-fake_lib/fast:
-	$(MAKE) $(MAKESILENT) -f fake_lib/CMakeFiles/fake_lib.dir/build.make fake_lib/CMakeFiles/fake_lib.dir/build
-.PHONY : fake_lib/fast
+src/fast:
+	cd /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/build
+.PHONY : src/fast
 
-src/main.o: src/main.cpp.o
+hmm_vec.o: hmm_vec.cpp.o
 
-.PHONY : src/main.o
+.PHONY : hmm_vec.o
 
 # target to build an object file
-src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/hmm.dir/build.make CMakeFiles/hmm.dir/src/main.cpp.o
-.PHONY : src/main.cpp.o
+hmm_vec.cpp.o:
+	cd /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/hmm_vec.cpp.o
+.PHONY : hmm_vec.cpp.o
 
-src/main.i: src/main.cpp.i
+hmm_vec.i: hmm_vec.cpp.i
 
-.PHONY : src/main.i
+.PHONY : hmm_vec.i
 
 # target to preprocess a source file
-src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/hmm.dir/build.make CMakeFiles/hmm.dir/src/main.cpp.i
-.PHONY : src/main.cpp.i
+hmm_vec.cpp.i:
+	cd /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/hmm_vec.cpp.i
+.PHONY : hmm_vec.cpp.i
 
-src/main.s: src/main.cpp.s
+hmm_vec.s: hmm_vec.cpp.s
 
-.PHONY : src/main.s
+.PHONY : hmm_vec.s
 
 # target to generate assembly for a file
-src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/hmm.dir/build.make CMakeFiles/hmm.dir/src/main.cpp.s
-.PHONY : src/main.cpp.s
+hmm_vec.cpp.s:
+	cd /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/hmm_vec.cpp.s
+.PHONY : hmm_vec.cpp.s
 
 # Help Target
 help:
@@ -190,11 +179,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... fake_lib"
-	@echo "... hmm"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
+	@echo "... src"
+	@echo "... hmm_vec.o"
+	@echo "... hmm_vec.i"
+	@echo "... hmm_vec.s"
 .PHONY : help
 
 
@@ -206,6 +194,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

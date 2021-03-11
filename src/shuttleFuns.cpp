@@ -6,7 +6,9 @@
 //  Copyright © 2019 Adam Willats. All rights reserved.
 //
 
-#include "shuttleFuns.hpp"
+//#include "shuttleFuns.hpp"
+#include <hmm>
+
 
 
 std::vector<double> array2vec(double ary[],int len)
@@ -25,13 +27,13 @@ template <typename T>
 std::vector<T> array2vec(T ary[], int len)
 {
     std::vector<T> v(ary,ary+len);
-    
+
     std::vector<int> v(len,0);
     for (int i=0; i<len;i++)
     {
         v[i] =ary[i];
     }
- 
+
     return v;
 };
 */
