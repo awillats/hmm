@@ -27,11 +27,13 @@ message(STATUS "CMAKE_CXX_STANDARD = ${CMAKE_CXX_STANDARD}")
 
 option(USE_MYMATH "flag for using fake library" ON)
 
-if(USE_MYMATH)
+#add_subdirectory(src)
+
+#if(USE_MYMATH)
     add_subdirectory(fake_lib)
     list(APPEND EXTRA_LIBS fake_lib)
     list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/fake_lib")
-endif()
+#endif()
 
 # add the executable
 add_executable(${CMAKE_PROJECT_NAME} src/main.cpp)

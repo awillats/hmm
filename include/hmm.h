@@ -1,7 +1,7 @@
 // the configured options and settings for Tutorial
-
 #define HMMTEST_VERSION_MAJOR 0
 #define HMMTEST_VERSION_MINOR 1
+#define USE_MYMATH
 
 #include <vector>
 #include <iterator>
