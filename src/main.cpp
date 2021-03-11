@@ -34,9 +34,9 @@ int main(int argc, const char *argv[]) {
       {0.9, 0.05, 0.05}, {.1, 0.45, .45}, {.1, 0.8, .1}};
 
   std::vector<double> pis = {.1, .9};
-
-  HMMv myHMM = HMMv(3, 3, trs, frs, pis);
   /*
+  HMMv myHMM = HMMv(3, 3, trs, frs, pis);
+
  // myHMM.printMyParams();
   myHMM.genSeq(nt);
 
