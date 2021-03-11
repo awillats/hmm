@@ -39,4 +39,6 @@ clang++ -std=c++0x -o out main.cpp
 ```
 instead
 
+```  Cannot specify include directories for target "hmmtest" which is not built```
+{CMAKE_PROJECT_NAME} needs to be the same as the over-arching folder name
 # Acknowledgements
