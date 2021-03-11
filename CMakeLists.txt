@@ -11,6 +11,7 @@
 #
 #
 
+
 cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 
 # set the project name
@@ -25,25 +26,30 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 message(STATUS "CMAKE_CXX_STANDARD = ${CMAKE_CXX_STANDARD}")
 
 
-option(USE_MYMATH "flag for using fake library" ON)
+
 
 #add_subdirectory(src)
 
-#if(USE_MYMATH)
-    add_subdirectory(fake_lib)
-    list(APPEND EXTRA_LIBS fake_lib)
-    list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/fake_lib")
-#endif()
+
 
 # add the executable
 add_executable(${CMAKE_PROJECT_NAME} src/main.cpp)
 
+option(USE_MYMATH "flag for using fake library" ON)
+if(USE_MYMATH)
+    add_subdirectory(fake_lib)
+    list(APPEND EXTRA_LIBS fake_lib)
+    list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/fake_lib")
+endif()
 
 #configure_file(${PROJECT_SOURCE_DIR}/include/${CMAKE_PROJECT_NAME}.in
 #  ${PROJECT_BINARY_DIR}/include/${CMAKE_PROJECT_NAME})
 configure_file(${PROJECT_SOURCE_DIR}/include/${CMAKE_PROJECT_NAME}.h.in ${PROJECT_SOURCE_DIR}/include/${CMAKE_PROJECT_NAME}.h)
 
+#set(USE_MYMATH ON)
 
+
+message(STATUS "FLAG = ${USE_MYMATH}")
 #
 # ADD TARGETS
 #
@@ -53,6 +59,8 @@ target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC ${EXTRA_LIBS})
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC
  ${PROJECT_SOURCE_DIR}/include
  ${EXTRA_INCLUDES})
+
+ message(STATUS "FLAG = ${USE_MYMATH}")
 
 #target_include_directories(${CMAKE_PROJECT_NAME} INTERFACE
 #  $<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/include>

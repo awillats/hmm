@@ -8,9 +8,9 @@
 #include <iostream>
 #include <vector>
 
-//#ifdef USE_MYMATH
+#ifdef USE_MYMATH
 #   include "../fake_lib/fake.h"
-//#endif
+#endif
 
 #include "../include/hmm_h/hmm_vec.hpp"
 #include "../include/hmm_h/printFuns.hpp"
@@ -43,14 +43,15 @@ int main(int argc, const char *argv[]) {
 
   #ifdef USE_MYMATH
     const double outputValue = cmake::my::mysqrt(inputValue);
-    std::cout << "use flag is defined !!" << endl;
+    std::cout << endl<< "use flag is defined !!" << endl;
   #else
-    const double outputValue = inputValue;
-    std::cout << "use flag is undefined :( " <<endl;
+    const double outputValue = sqrt(inputValue);
+    std::cout << endl<< "use flag is undefined :( " <<endl<<endl;
   #endif
 
   //const double outputValue2 = cmake::my::mysqrt(inputValue);
-  std::cout << cmake::my::mysqrt(inputValue);
+  std::cout << outputValue <<endl;
+  //<< "," << cmake::my::mysqrt(inputValue)<<endl;
   //outputValue;
   //std::cout << outputValue2;
 
