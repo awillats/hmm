@@ -39,6 +39,13 @@ ctest -VV #execute tests
 ```
 
 # Common issues
+sometimes, the first time I build after a clean install I get:
+`the C compiler
+    "/opt/anaconda3/bin/x86_64-apple-darwin13.4.0-clang"
+  is not able to compile a simple test program.`  
+This happens when i'm in a conda environment with an older version of clang
+`conda deactive` usually fixes the issue
+
 <!--
 ```error: non-aggregate type 'std::vector<std::vector<double> >' cannot be initialized with an initializer list```
 
