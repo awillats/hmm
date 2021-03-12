@@ -28,17 +28,13 @@ message(STATUS "CMAKE_CXX_STANDARD = ${CMAKE_CXX_STANDARD}")
 
 message(STATUS "prj source dir" = ${PROJECT_SOURCE_DIR})
 message(STATUS "prj binary dir" = ${PROJECT_BINARY_DIR})
-message(STATUS "install at" = $<INSTALL_PREFIX>)
 
-#add_subdirectory(src)
-
-
-#add_subdirectory()
 
 # add the executable
 add_executable(${CMAKE_PROJECT_NAME} src/main.cpp)
-
-
+# 
+# add_subdirectory(src)
+# list(APPEND EXTRA_LIBS src)
 
 option(USE_MYMATH "flag for using fake library" ON)
 if(USE_MYMATH)
