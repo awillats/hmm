@@ -12,9 +12,14 @@ see also: [`rtxi-hmmDecoder`](google.com) and [`rtxi-hmmGenerator`](google.com) 
 
 
 # Repository Organization
+- `src` source files (*.cpp)
+- `include` header files (*.h)
+- `examples` demonstrating functionality
+- `matlab` for comparing matlab and C++ implementations
+- `scripts` utilities for setting up `hmm` library
 
 # Dependencies
-- eigen
+- none?
 
 # Compilation & Installation
 
@@ -27,10 +32,14 @@ see also: [`rtxi-hmmDecoder`](google.com) and [`rtxi-hmmGenerator`](google.com) 
 	make #build the project
 	sudo make install #[optional] installs to default location (OS-specific)
 	```
-
+- for basic benchmarking and verification of a successful install
+```shell
+ctest -N #list tests to be performed
+ctest -VV #execute tests
+```
 
 # Common issues
-
+<!--
 ```error: non-aggregate type 'std::vector<std::vector<double> >' cannot be initialized with an initializer list```
 
 compile `main.cpp` with
@@ -41,4 +50,4 @@ instead
 
 ```  Cannot specify include directories for target "hmmtest" which is not built```
 {CMAKE_PROJECT_NAME} needs to be the same as the over-arching folder name
-# Acknowledgements
+# Acknowledgements -->
