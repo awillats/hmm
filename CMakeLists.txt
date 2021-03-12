@@ -32,7 +32,7 @@ message(STATUS "prj binary dir" = ${PROJECT_BINARY_DIR})
 
 # add the executable
 add_executable(${CMAKE_PROJECT_NAME} src/main.cpp)
-# 
+#
 # add_subdirectory(src)
 # list(APPEND EXTRA_LIBS src)
 
@@ -75,9 +75,49 @@ target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC
 
 
 install(TARGETS ${CMAKE_PROJECT_NAME} DESTINATION bin)
-install(FILES "${PROJECT_BINARY_DIR}/include/hmm.h"
-  DESTINATION include
+install(FILES "${PROJECT_BINARY_DIR}/include/hmm.h" DESTINATION include)
+
+
+
+enable_testing()
+
+# does the application run
+add_test(NAME RunTest COMMAND hmm 1)
+
+# does the usage message work?
+#add_test(NAME UsageTest COMMAND hmm)
+
+add_test(NAME UsageTest COMMAND hmm)
+set_tests_properties(UsageTest
+  PROPERTIES PASS_REGULAR_EXPRESSION "UsageTest:.*number"
   )
-#install(FILES "${PROJECT_BINARY_DIR}/hmm.h"
-#  DESTINATION include
-#  )
+
+function(do_test target arg result)
+    add_test(NAME Comp${arg} COMMAND ${target} ${arg})
+    set_tests_properties(Comp${arg}
+      PROPERTIES PASS_REGULAR_EXPRESSION ${result}
+      )
+endfunction(do_test)
+
+
+#looks for this string in the answer!
+set(TEST_ANS "states")
+
+do_test(hmm 1 ${TEST_ANS})
+do_test(hmm 2 ${TEST_ANS})
+do_test(hmm 3 ${TEST_ANS})
+do_test(hmm 4 ${TEST_ANS})
+do_test(hmm 5 ${TEST_ANS})
+
+
+
+
+
+
+
+
+
+
+
+
+#
