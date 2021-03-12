@@ -4,11 +4,9 @@
 # https://github.com/maks-it/CMake-Tutorial
 #
 # [x] Step 1 - something builds as long as it doesn't depend on something else
-# [ ] Step 2 - adding library, conditional includes
-#
-#
-#
-#
+# [x] Step 2 - adding library, conditional includes
+# [?] Step 3 - "usage requirements"
+# [x] Step 4 - install & testing
 #
 #
 
@@ -47,10 +45,6 @@ file(GLOB all_SRCS
 # add the executable
 #add_executable(${CMAKE_PROJECT_NAME} src/main.cpp)
 add_executable(${CMAKE_PROJECT_NAME} ${all_SRCS})
-#
-# add_subdirectory(src)
-# list(APPEND EXTRA_LIBS src)
-#
 
 add_subdirectory(src)
 
@@ -77,14 +71,8 @@ message(STATUS "FLAG = ${USE_MYMATH}")
 
 target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC ${EXTRA_LIBS})
 
-
-
-
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC
     ${PROJECT_BINARY_DIR}
-
-#    ${PROJECT_BINARY_DIR}/include
-#    ${PROJECT_SOURCE_DIR}/include
     )
 
 #MB includes:  ${PROJECT_BINARY_DIR}/include here
@@ -130,14 +118,6 @@ do_test(hmm 2 ${TEST_ANS})
 do_test(hmm 3 ${TEST_ANS})
 do_test(hmm 4 ${TEST_ANS})
 do_test(hmm 5 ${TEST_ANS})
-
-
-
-
-
-
-
-
 
 
 

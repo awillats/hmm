@@ -5,6 +5,13 @@
 //  Created by Adam Willats on 2/21/19.
 //  Copyright © 2019 Adam Willats. All rights reserved.
 //
+
+
+// /TODO(awillats): allow the main method to accept state size for better testing
+
+// /TODO(awillats):output metrics of success, namely % accuracy, maybe also compute time
+
+
 #include <iostream>
 #include <vector>
 
@@ -56,7 +63,7 @@ int main(int argc, const char *argv[]) {
   //std::cout << outputValue2;
 
     HMMv myHMM = HMMv(3, 3, trs, frs, pis);
- /*
+
  // myHMM.printMyParams();
   myHMM.genSeq(nt);
 
@@ -75,13 +82,14 @@ int main(int argc, const char *argv[]) {
   myHMM.exportSeqsGuess(nt,spkAry,stateAry,vguess2);
 
   //print percent of states which are 0. Just as a sanity check that transition
- probabilities are reasonably implemented int stateSum =
- std::accumulate(myHMM.states.begin(),myHMM.states.end(),0); double stateProb =
- double(stateSum)/double(nt); std::cout<<stateProb<<'\n';
+ //probabilities are reasonably implemented
+ int stateSum = std::accumulate(myHMM.states.begin(), myHMM.states.end(), 0);
+ double stateProb = double(stateSum)/double(nt);
+ std::cout<< "\n avg output: "<<stateProb<<"\n";
 
-  printVecAsBlock(&vguess[0], nt,printMode);
+ // printVecAsBlock(&vguess[0], nt,printMode);
   //std::vector<int> v = array2vec(&vguess[0], nt);
-*/
+/**/
   std::cout << "<guessed states \n";
 
   return 0;
