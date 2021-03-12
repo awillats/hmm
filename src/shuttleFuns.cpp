@@ -7,7 +7,7 @@
 //
 
 //#include "shuttleFuns.hpp"
-#include <hmm>
+#include <hmm.h>
 
 
 

@@ -1,6 +1,7 @@
 # Adam is currently doing a hybrid of the CMAKE tutorial, and MBolus's template
 # https://cmake.org/cmake/help/latest/guide/tutorial/index.html
 # example code here: https://github.com/mbbill/CMake-Tutorial
+# https://github.com/maks-it/CMake-Tutorial
 #
 # [x] Step 1 - something builds as long as it doesn't depend on something else
 # [ ] Step 2 - adding library, conditional includes
@@ -25,28 +26,34 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 message(STATUS "CMAKE_CXX_STANDARD = ${CMAKE_CXX_STANDARD}")
 
-
-
+message(STATUS "prj source dir" = ${PROJECT_SOURCE_DIR})
+message(STATUS "prj binary dir" = ${PROJECT_BINARY_DIR})
+message(STATUS "install at" = $<INSTALL_PREFIX>)
 
 #add_subdirectory(src)
 
 
+#add_subdirectory()
 
 # add the executable
 add_executable(${CMAKE_PROJECT_NAME} src/main.cpp)
+
+
 
 option(USE_MYMATH "flag for using fake library" ON)
 if(USE_MYMATH)
     add_subdirectory(fake_lib)
     list(APPEND EXTRA_LIBS fake_lib)
-    list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/fake_lib")
+    #list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/fake_lib")
 endif()
 
 #configure_file(${PROJECT_SOURCE_DIR}/include/${CMAKE_PROJECT_NAME}.in
 #  ${PROJECT_BINARY_DIR}/include/${CMAKE_PROJECT_NAME})
-configure_file(${PROJECT_SOURCE_DIR}/include/${CMAKE_PROJECT_NAME}.h.in ${PROJECT_SOURCE_DIR}/include/${CMAKE_PROJECT_NAME}.h)
+#
 
-#set(USE_MYMATH ON)
+configure_file(${PROJECT_SOURCE_DIR}/include/${CMAKE_PROJECT_NAME}.h.in
+    ${PROJECT_BINARY_DIR}/include/${CMAKE_PROJECT_NAME}.h)
+#mbolus does this without the .h
 
 
 message(STATUS "FLAG = ${USE_MYMATH}")
@@ -57,11 +64,24 @@ message(STATUS "FLAG = ${USE_MYMATH}")
 target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC ${EXTRA_LIBS})
 
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC
- ${PROJECT_SOURCE_DIR}/include
- ${EXTRA_INCLUDES})
+    ${PROJECT_BINARY_DIR}
+#    ${PROJECT_BINARY_DIR}/include
+#    ${PROJECT_SOURCE_DIR}/include
+    )
 
- message(STATUS "FLAG = ${USE_MYMATH}")
+#MB includes:  ${PROJECT_BINARY_DIR}/include here
+
+#${EXTRA_INCLUDES})
 
 #target_include_directories(${CMAKE_PROJECT_NAME} INTERFACE
 #  $<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/include>
 #  $<INSTALL_INTERFACE:include>)
+
+
+install(TARGETS ${CMAKE_PROJECT_NAME} DESTINATION bin)
+install(FILES "${PROJECT_BINARY_DIR}/include/hmm.h"
+  DESTINATION include
+  )
+#install(FILES "${PROJECT_BINARY_DIR}/hmm.h"
+#  DESTINATION include
+#  )

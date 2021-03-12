@@ -7,7 +7,7 @@
 //
 
 //#include "printFuns.hpp"
-#include <hmm>
+#include <hmm.h>
 
 
 //using namespace std;
