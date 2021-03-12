@@ -30,11 +30,29 @@ message(STATUS "prj source dir" = ${PROJECT_SOURCE_DIR})
 message(STATUS "prj binary dir" = ${PROJECT_BINARY_DIR})
 
 
+#glob approach from: https://github.com/NEGU93/ForbiddenDesert/blob/master/CMakeLists.txt
+include_directories(
+    ${PROJECT_BINARY_DIR}/include
+    ${PROJECT_SOURCE_DIR}/include
+    ${PROJECT_SOURCE_DIR}/src
+)
+file(GLOB all_SRCS
+        "${PROJECT_SOURCE_DIR}/include/*.h"
+        "${PROJECT_SOURCE_DIR}/include/*.hpp"
+        "${PROJECT_SOURCE_DIR}/src/*.cpp"
+        "${PROJECT_SOURCE_DIR}/src/*.c"
+        )
+
+
 # add the executable
-add_executable(${CMAKE_PROJECT_NAME} src/main.cpp)
+#add_executable(${CMAKE_PROJECT_NAME} src/main.cpp)
+add_executable(${CMAKE_PROJECT_NAME} ${all_SRCS})
 #
 # add_subdirectory(src)
 # list(APPEND EXTRA_LIBS src)
+#
+
+add_subdirectory(src)
 
 option(USE_MYMATH "flag for using fake library" ON)
 if(USE_MYMATH)
@@ -59,8 +77,12 @@ message(STATUS "FLAG = ${USE_MYMATH}")
 
 target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC ${EXTRA_LIBS})
 
+
+
+
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC
     ${PROJECT_BINARY_DIR}
+
 #    ${PROJECT_BINARY_DIR}/include
 #    ${PROJECT_SOURCE_DIR}/include
     )

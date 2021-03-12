@@ -55,11 +55,8 @@ int main(int argc, const char *argv[]) {
   //outputValue;
   //std::cout << outputValue2;
 
-
-  /*
-
     HMMv myHMM = HMMv(3, 3, trs, frs, pis);
-
+ /*
  // myHMM.printMyParams();
   myHMM.genSeq(nt);
 
