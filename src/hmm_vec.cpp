@@ -6,25 +6,23 @@
 //  Copyright © 2017 Adam Willats. All rights reserved.
 //
 
-////*!
-///   \file "Filename"
-///   \brief "Description"
-///   \author "Your name"
+///   \file
+///   Constructs HMM object as well as performs viterbi decoding
+///   \brief core functions for hmm, construction and decoding
+///   \author Adam Willats.
 ///   based on viterbi.cpp by Feder1co 5oave: https://gist.github.com/Feder1co5oave/2347228
 ///   \date "DD"/"Month"/"Year"
-///*/
-
 
 //#include "hmm_vec.hpp"
 #include <hmm.h>
 //#include "../../../module_help/StAC_rtxi/hmm_tests/hmm_fs.hpp"
 
 
-/**
- * adds small constant before taking the logarithm, to avoid log(0) error
- * @param  val input value
- * @return     log(val + small epsilon)
- */
+ /**
+  * adds small constant before taking the logarithm, to avoid log(0) error
+  * @param  val input value
+  * @return     log(val + small epsilon)
+  */
 double logE(double val)
 {
     double eps = 1e-10;
@@ -49,14 +47,14 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
     if (*max_element(observed.begin(),observed.end()) >= hmm.nevents)
     {
         //This fix is designed for deltas between matlab and c++ indexing. This will not catch every possible mismatch
-        // //std::cout<<">"<<*max_element(observed.begin(),observed.end())<<","<<hmm.nevents<<"<";
+        //std::cout<<">"<<*max_element(observed.begin(),observed.end())<<","<<hmm.nevents<<"<";
         //temporary fix:
         int delta = hmm.nevents - *max_element(observed.begin(),observed.end());
         for (int i=0;i<n;i++)
         {
             observed[i] = observed[i]+delta-1;
         }
-        // //std::cout<<"CORRECTING\n"<<"d:"<<delta<<","<<*max_element(observed.begin(),observed.end())<<endl;
+        //std::cout<<"CORRECTING\n"<<"d:"<<delta<<","<<*max_element(observed.begin(),observed.end())<<endl;
         assert(*max_element(observed.begin(),observed.end()) < hmm.nstates);
     }
 
@@ -133,35 +131,28 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
         seq[i] = prevs[i][ seq[i+1] ]; //fails, generally for 2<< i< n-10
     }
 
-    //////////////////////////////////////////////////////////check
+    //check
     for (int i = 0; i < n; i++) {
-        ////cout << "t = " << i << endl;
+        //cout << "t = " << i << endl;
         for (int j = 0; j < hmm.nstates; j++) {
-            ////cout << '[' << j << ']' << prob[i][j] << ' ';
+            //cout << '[' << j << ']' << prob[i][j] << ' ';
         }
         //cout << "\n\n";
     }
 
     for (int i = 0; i < n; i++) {
-        ////cout << "t = " << i << endl;
+        //cout << "t = " << i << endl;
         for (int j = 0; j < hmm.nstates; j++) {
-            ////cout << '[' << j << ']' << prevs[i][j] << ' ';
+            //cout << '[' << j << ']' << prevs[i][j] << ' ';
         }
-        ////cout << "\n\n";
+        //cout << "\n\n";
     }
-
-    ////cout << endl;
-
-    ////cout << endl;
-    //////////////////////////////////////////////////////////
-
-//following comments are old, not sure if still apply
-    // this is causing the crash
-    //need to delete array of arrays
-    // https://stackoverflow.com/questions/4193982/delete-a-pointer-to-pointer-as-array-of-arrays
-  //  printf("\n%i\n",n);
-
-        prob[0][0]=0.0; //delete?
+    //following comments are old, not sure if still apply
+        // this is causing the crash
+        //need to delete array of arrays
+        // https://stackoverflow.com/questions/4193982/delete-a-pointer-to-pointer-as-array-of-arrays
+      //  printf("\n%i\n",n);
+      prob[0][0]=0.0; //delete?
     for (int i = 0; i < n; i++) {
         delete[] prob[i];
         delete[] prevs[i];
@@ -172,17 +163,13 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
         std::cout<<"weird, all probs 0?";
         //weird holdover from before we were working in log probability space
     }
-
-
-
-   // printf("lastlast\n");
     delete[] prob;
     delete[] prevs;
     return seq;
 }
 
 /**
- * [HMMv::printMyParams prints model's paramters in matrix form]
+ * prints model's paramters in matrix form
  */
 void HMMv::printMyParams()
 {
@@ -193,8 +180,8 @@ void HMMv::printMyParams()
 };
 
 /**
- * [HMMv::printSeqs Prints emissions and states to cout]
- * @param printMode [description]
+ * prints model's spikes and states
+ * @param printMode 0 for ints, 1 for block characters, 2 for _&^
  */
 void HMMv::printSeqs(int printMode)
 {
@@ -206,16 +193,23 @@ void HMMv::printSeqs(int printMode)
 };
 
 /**
- * [HMMv::exportSeqs description]
- * @param spikeLoc [description]
- * @param stateLoc [description]
+ * exports HMM's recorded spikes and states vectors to input ptrs
+ * @param spikeLoc ptr to spikes for output
+ * @param stateLoc ptr to states for output
  */
 void HMMv::exportSeqs(int * spikeLoc, int * stateLoc)
 {
     std::copy(spikes.begin(), spikes.end(), spikeLoc);
     std::copy(states.begin(), states.end(), stateLoc);
 };
-
+/**
+ * Imports spikes (and true states), decodes a state estimate, then exports the estimates states through stateGuessOut
+ * @param nt            number of time samples
+ * @param spikeIn       pointer to spikes being loaded in for decoding
+ * @param stateIn       (unused) ptr to true states
+ * @param stateGuessOut ptr to output decoded states
+ */
+//
 void HMMv::importSpksExportGuess(int nt, int * spikeIn, int * stateIn, int * stateGuessOut)
 {
     spikes = array2vec(spikeIn,nt);//import spikes to HMM object
@@ -229,6 +223,13 @@ void HMMv::importSpksExportGuess(int nt, int * spikeIn, int * stateIn, int * sta
 
 };
 
+/**
+ * Copies spikes and states into input pointers
+ * @param nt            number of time samples
+ * @param spikeOut      pointer to where spikes should be output
+ * @param stateOut      pointer to where true state values should be output
+ * @param stateGuessOut pointer to where guessed states should be output
+ */
 void HMMv::exportSeqsGuess(int nt, int * spikeOut, int * stateOut, int * stateGuessOut)
 {
     std::copy(spikes.begin(), spikes.end(), spikeOut);//export HMM.spikes to pointer location
@@ -240,7 +241,11 @@ void HMMv::exportSeqsGuess(int nt, int * spikeOut, int * stateOut, int * stateGu
 };
 
 
-
+/**
+ * Generates a sequence of states, and their accompanying outputs
+ * @param  nt_ number of time samples
+ * @return     spikes - vector of output values (int)
+ */
 std::vector<int>  HMMv::genSeq(int nt_)
 {
     nt =nt_;
@@ -285,7 +290,10 @@ std::vector<int>  HMMv::genSeq(int nt_)
     return spikes;
 };
 
-
+/**
+ * Simple macro to print to cout
+ * @param strin string to be printed
+ */
 void setWarning(char * strin)
 {
     std::cout<<strin;

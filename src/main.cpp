@@ -1,20 +1,10 @@
-//
-//  main.cpp
-//  hmm
-//
-//  Created by Adam Willats on 2/21/19.
-//  Copyright © 2019 Adam Willats. All rights reserved.
-//
-
-////*!
-///   \file
-///   `hmm` is a simple set of hidden Markov model (HMM) code.
-///    It decodes latent state-switches
-///   from a categorical signal (usually a binary spike-train)
+/// \file
+/// "hmm" is a simple set of hidden Markov model (HMM) code.
+/// It decodes latent state-switches
+/// from a categorical signal (usually a binary spike-train)
 ///   \brief Hidden Markov Model core functions
 ///   \author Adam Willats
 ///   \date 2/21/19
-///*/
 
 // /TODO(awillats): allow the main method to accept state size for better testing
 

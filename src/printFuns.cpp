@@ -21,7 +21,7 @@
 /**
  * [blockPrint description]
  * @param  bin       [description]
- * @param  printMode [description]
+ * @param printMode 0 for ints, 1 for block characters, 2 for _&^
  * @return           [description]
  */
 std::string blockPrint(int bin, int printMode)

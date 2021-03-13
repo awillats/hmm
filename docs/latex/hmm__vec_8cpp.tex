@@ -1,23 +1,58 @@
 \hypertarget{hmm__vec_8cpp}{}\doxysection{src/hmm\+\_\+vec.cpp File Reference}
 \label{hmm__vec_8cpp}\index{src/hmm\_vec.cpp@{src/hmm\_vec.cpp}}
+
+
+core functions for hmm, construction and decoding  
+
+
 {\ttfamily \#include $<$hmm.\+h$>$}\newline
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-$\ast$double \mbox{\hyperlink{hmm__vec_8cpp_a937b42e3851dc3518990a051db2e09a7}{logE}} (double val)
+double \mbox{\hyperlink{hmm__vec_8cpp_a16e2f7a9a17d80462ee5bf0632b83dfe}{logE}} (double val)
 \item 
 int $\ast$ \mbox{\hyperlink{hmm__vec_8cpp_a71557e16bbe79e984f60b05fde784837}{viterbi}} (HMMv const \&hmm, std\+::vector$<$ int $>$ observed, const int n)
+\item 
+void \mbox{\hyperlink{hmm__vec_8cpp_a8c17d807969bd6bdc910e2f0d227647a}{import\+Spks\+Export\+Guess}} (int nt, int $\ast$spike\+In, int $\ast$state\+In, int $\ast$state\+Guess\+Out)
 \item 
 void \mbox{\hyperlink{hmm__vec_8cpp_a60f72dbd4105f5ad089367e861481d5f}{set\+Warning}} (char $\ast$strin)
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+core functions for hmm, construction and decoding 
+
+Constructs HMM object as well as performs viterbi decoding \begin{DoxyAuthor}{Author}
+Adam Willats. based on viterbi.\+cpp by Feder1co 5oave\+: \href{https://gist.github.com/Feder1co5oave/2347228}{\texttt{ https\+://gist.\+github.\+com/\+Feder1co5oave/2347228}} 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+\char`\"{}\+DD\char`\"{}/\char`\"{}\+Month\char`\"{}/\char`\"{}\+Year\char`\"{} 
+\end{DoxyDate}
+
+
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{hmm__vec_8cpp_a937b42e3851dc3518990a051db2e09a7}\label{hmm__vec_8cpp_a937b42e3851dc3518990a051db2e09a7}} 
+\mbox{\Hypertarget{hmm__vec_8cpp_a8c17d807969bd6bdc910e2f0d227647a}\label{hmm__vec_8cpp_a8c17d807969bd6bdc910e2f0d227647a}} 
+\index{hmm\_vec.cpp@{hmm\_vec.cpp}!importSpksExportGuess@{importSpksExportGuess}}
+\index{importSpksExportGuess@{importSpksExportGuess}!hmm\_vec.cpp@{hmm\_vec.cpp}}
+\doxysubsubsection{\texorpdfstring{importSpksExportGuess()}{importSpksExportGuess()}}
+{\footnotesize\ttfamily void import\+Spks\+Export\+Guess (\begin{DoxyParamCaption}\item[{int}]{nt,  }\item[{int $\ast$}]{spike\+In,  }\item[{int $\ast$}]{state\+In,  }\item[{int $\ast$}]{state\+Guess\+Out }\end{DoxyParamCaption})}
+
+\mbox{[}HMMv\+::import\+Spks\+Export\+Guess description\mbox{]} 
+\begin{DoxyParams}{Parameters}
+{\em nt} & \mbox{[}description\mbox{]} \\
+\hline
+{\em spike\+In} & \mbox{[}description\mbox{]} \\
+\hline
+{\em state\+In} & \mbox{[}description\mbox{]} \\
+\hline
+{\em state\+Guess\+Out} & \mbox{[}description\mbox{]} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{hmm__vec_8cpp_a16e2f7a9a17d80462ee5bf0632b83dfe}\label{hmm__vec_8cpp_a16e2f7a9a17d80462ee5bf0632b83dfe}} 
 \index{hmm\_vec.cpp@{hmm\_vec.cpp}!logE@{logE}}
 \index{logE@{logE}!hmm\_vec.cpp@{hmm\_vec.cpp}}
 \doxysubsubsection{\texorpdfstring{logE()}{logE()}}
-{\footnotesize\ttfamily $\ast$ double logE (\begin{DoxyParamCaption}\item[{double}]{val }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily double logE (\begin{DoxyParamCaption}\item[{double}]{val }\end{DoxyParamCaption})}
 
 adds small constant before taking the logarithm, to avoid log(0) error 
 \begin{DoxyParams}{Parameters}
@@ -33,6 +68,11 @@ log(val + small epsilon)
 \doxysubsubsection{\texorpdfstring{setWarning()}{setWarning()}}
 {\footnotesize\ttfamily void set\+Warning (\begin{DoxyParamCaption}\item[{char $\ast$}]{strin }\end{DoxyParamCaption})}
 
+Simple macro to print to cout 
+\begin{DoxyParams}{Parameters}
+{\em strin} & string to be printed \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{hmm__vec_8cpp_a71557e16bbe79e984f60b05fde784837}\label{hmm__vec_8cpp_a71557e16bbe79e984f60b05fde784837}} 
 \index{hmm\_vec.cpp@{hmm\_vec.cpp}!viterbi@{viterbi}}
 \index{viterbi@{viterbi}!hmm\_vec.cpp@{hmm\_vec.cpp}}
