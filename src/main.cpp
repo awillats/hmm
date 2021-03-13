@@ -6,6 +6,15 @@
 //  Copyright © 2019 Adam Willats. All rights reserved.
 //
 
+////*!
+///   \file
+///   `hmm` is a simple set of hidden Markov model (HMM) code.
+///    It decodes latent state-switches
+///   from a categorical signal (usually a binary spike-train)
+///   \brief Hidden Markov Model core functions
+///   \author Adam Willats
+///   \date 2/21/19
+///*/
 
 // /TODO(awillats): allow the main method to accept state size for better testing
 
@@ -24,7 +33,13 @@
 #include "../include/hmm_h/shuttleFuns.hpp"
 
 //#include "legacy/dataFuns.h"
-
+/**
+ * This is the main() for testing basic HMM functionality.
+ * Builds an HMM, generates a sequence, estimates states, then prints them to cout
+ * @param  argc filler
+ * @param  argv filler
+ * @return      0 if successful
+ */
 int main(int argc, const char *argv[]) {
   int printMode = 0;
   /*

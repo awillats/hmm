@@ -1,3 +1,10 @@
+/**
+*    \file "Filename"
+*    \brief brief descr of print funs
+*    \author "Your name"
+*    \date "DD"/"Month"/"Year"
+ */
+
 //
 //  convenienceFuns.cpp
 //  xRue
@@ -11,7 +18,12 @@
 
 
 //using namespace std;
-
+/**
+ * [blockPrint description]
+ * @param  bin       [description]
+ * @param  printMode [description]
+ * @return           [description]
+ */
 std::string blockPrint(int bin, int printMode)
 {
     std::string block;

@@ -1,0 +1,55 @@
+\hypertarget{hmm__vec_8cpp}{}\doxysection{src/hmm\+\_\+vec.cpp File Reference}
+\label{hmm__vec_8cpp}\index{src/hmm\_vec.cpp@{src/hmm\_vec.cpp}}
+{\ttfamily \#include $<$hmm.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+$\ast$double \mbox{\hyperlink{hmm__vec_8cpp_a937b42e3851dc3518990a051db2e09a7}{logE}} (double val)
+\item 
+int $\ast$ \mbox{\hyperlink{hmm__vec_8cpp_a71557e16bbe79e984f60b05fde784837}{viterbi}} (HMMv const \&hmm, std\+::vector$<$ int $>$ observed, const int n)
+\item 
+void \mbox{\hyperlink{hmm__vec_8cpp_a60f72dbd4105f5ad089367e861481d5f}{set\+Warning}} (char $\ast$strin)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{hmm__vec_8cpp_a937b42e3851dc3518990a051db2e09a7}\label{hmm__vec_8cpp_a937b42e3851dc3518990a051db2e09a7}} 
+\index{hmm\_vec.cpp@{hmm\_vec.cpp}!logE@{logE}}
+\index{logE@{logE}!hmm\_vec.cpp@{hmm\_vec.cpp}}
+\doxysubsubsection{\texorpdfstring{logE()}{logE()}}
+{\footnotesize\ttfamily $\ast$ double logE (\begin{DoxyParamCaption}\item[{double}]{val }\end{DoxyParamCaption})}
+
+adds small constant before taking the logarithm, to avoid log(0) error 
+\begin{DoxyParams}{Parameters}
+{\em val} & input value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+log(val + small epsilon) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{hmm__vec_8cpp_a60f72dbd4105f5ad089367e861481d5f}\label{hmm__vec_8cpp_a60f72dbd4105f5ad089367e861481d5f}} 
+\index{hmm\_vec.cpp@{hmm\_vec.cpp}!setWarning@{setWarning}}
+\index{setWarning@{setWarning}!hmm\_vec.cpp@{hmm\_vec.cpp}}
+\doxysubsubsection{\texorpdfstring{setWarning()}{setWarning()}}
+{\footnotesize\ttfamily void set\+Warning (\begin{DoxyParamCaption}\item[{char $\ast$}]{strin }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hmm__vec_8cpp_a71557e16bbe79e984f60b05fde784837}\label{hmm__vec_8cpp_a71557e16bbe79e984f60b05fde784837}} 
+\index{hmm\_vec.cpp@{hmm\_vec.cpp}!viterbi@{viterbi}}
+\index{viterbi@{viterbi}!hmm\_vec.cpp@{hmm\_vec.cpp}}
+\doxysubsubsection{\texorpdfstring{viterbi()}{viterbi()}}
+{\footnotesize\ttfamily int$\ast$ viterbi (\begin{DoxyParamCaption}\item[{HMMv const \&}]{hmm,  }\item[{std\+::vector$<$ int $>$}]{observed,  }\item[{const int}]{n }\end{DoxyParamCaption})}
+
+Uses the viterbi algorithm to estimate the most-\/likely state sequence.
+
+
+\begin{DoxyParams}{Parameters}
+{\em hmm} & object containing parameters of the HMM \\
+\hline
+{\em observed} & vector of ints representing the obeserved signal \\
+\hline
+{\em n} & time-\/length of the input signal \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector of most-\/likely states 
+\end{DoxyReturn}

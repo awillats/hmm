@@ -6,9 +6,13 @@
 //  Copyright © 2017 Adam Willats. All rights reserved.
 //
 
-/**
- * Feder1co 5oave
- */
+////*!
+///   \file "Filename"
+///   \brief "Description"
+///   \author "Your name"
+///   based on viterbi.cpp by Feder1co 5oave: https://gist.github.com/Feder1co5oave/2347228
+///   \date "DD"/"Month"/"Year"
+///*/
 
 
 //#include "hmm_vec.hpp"
@@ -16,14 +20,25 @@
 //#include "../../../module_help/StAC_rtxi/hmm_tests/hmm_fs.hpp"
 
 
-
+/**
+ * adds small constant before taking the logarithm, to avoid log(0) error
+ * @param  val input value
+ * @return     log(val + small epsilon)
+ */
 double logE(double val)
 {
     double eps = 1e-10;
     //assert(val>=0);
     return log(val+eps);
 }
-
+/**
+ * Uses the viterbi algorithm to estimate the most-likely state sequence.
+ *
+ * @param  hmm      object containing parameters of the HMM
+ * @param  observed vector of ints representing the obeserved signal
+ * @param  n        time-length of the input signal
+ * @return          vector of most-likely states
+ */
 int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
     assert(n > 0); assert(!observed.empty());
 
@@ -166,7 +181,9 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
     return seq;
 }
 
-
+/**
+ * [HMMv::printMyParams prints model's paramters in matrix form]
+ */
 void HMMv::printMyParams()
 {
     std::cout<<"transition matrix:";
@@ -175,21 +192,29 @@ void HMMv::printMyParams()
     printMat(EM);
 };
 
+/**
+ * [HMMv::printSeqs Prints emissions and states to cout]
+ * @param printMode [description]
+ */
 void HMMv::printSeqs(int printMode)
 {
     printVecAsBlock(&spikes[0], nt, printMode);
-    std::cout<<"<spikes \n";
+    std::cout<<" < spikes \n";
 
     printVecAsBlock(&states[0], nt, printMode);
-    std::cout<<"<states";
+    std::cout<<" < states";
 };
 
+/**
+ * [HMMv::exportSeqs description]
+ * @param spikeLoc [description]
+ * @param stateLoc [description]
+ */
 void HMMv::exportSeqs(int * spikeLoc, int * stateLoc)
 {
     std::copy(spikes.begin(), spikes.end(), spikeLoc);
     std::copy(states.begin(), states.end(), stateLoc);
 };
-
 
 void HMMv::importSpksExportGuess(int nt, int * spikeIn, int * stateIn, int * stateGuessOut)
 {
