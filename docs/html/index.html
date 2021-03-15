@@ -91,17 +91,62 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </iframe>
 </div>
 
-<div class="header">
+<div class="PageDoc"><div class="header">
   <div class="headertitle">
 <div class="title">HMM Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<ul><li><a href="index.html"><span>Main&#160;Page</span></a>
-</li><li><a href="files.html"><span>Files</span></a>
-<ul><li><a href="files.html"><span>File&#160;List</span></a>
-</li><li><a href="globals.html"><span>File&#160;Members</span></a>
-</li></ul>
-</li></ul>
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#autotoc_md5">Overview: HMM - Hidden Markov Models</a><ul><li class="level2"><a href="#autotoc_md6">Applications</a></li>
+<li class="level2"><a href="#autotoc_md7">Repository Organization</a></li>
+<li class="level2"><a href="#autotoc_md8">Dependencies</a></li>
+<li class="level2"><a href="#autotoc_md9">Compilation &amp; Installation</a></li>
+<li class="level2"><a href="#autotoc_md10">Tutorial: Understanding the HMM toolbox with</a></li>
+<li class="level2"><a href="#autotoc_md11">Common issues</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md5"></a>
+Overview: HMM - Hidden Markov Models</h1>
+<p><code>hmm</code> is a simple set of hidden Markov model (HMM) code intended to support control of switching linear dynamical systems.</p>
+<p>It contains methods for generating and decoding systems of the form:</p>
+<p><em>generative equations here - transition, emission</em></p>
+<h2><a class="anchor" id="autotoc_md6"></a>
+Applications</h2>
+<p>see also: <a href="https://github.com/stanley-rozell/rtxi-hmmDecoder"><code>rtxi-hmmDecoder</code></a> and <a href="https://github.com/stanley-rozell/rtxi-hmmGenerator"><code>rtxi-hmmGenerator</code></a> for application of this library in modules intended for the RTXI platform</p>
+<h2><a class="anchor" id="autotoc_md7"></a>
+Repository Organization</h2>
+<ul>
+<li><code>src</code> source files (*.cpp)</li>
+<li><code>include</code> header files (*.h)</li>
+<li><code>examples</code> demonstrating functionality</li>
+<li><code>matlab</code> for comparing matlab and C++ implementations</li>
+<li><code>scripts</code> utilities for setting up <code>hmm</code> library</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md8"></a>
+Dependencies</h2>
+<ul>
+<li>none?</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md9"></a>
+Compilation &amp; Installation</h2>
+<p>[ In Progress ]</p><ul>
+<li>For basic project build &amp; install ```shell cd /path/to/repository mkdir build &amp;&amp; cd build cmake .. #configure build make #build the project sudo make install #[optional] installs to default location (OS-specific) ```</li>
+<li>for basic benchmarking and verification of a successful install <div class="fragment"><div class="line">ctest -N #list tests to be performed</div>
+<div class="line">ctest -VV #execute tests</div>
+</div><!-- fragment --></li>
+</ul>
+<h2><a class="anchor" id="autotoc_md10"></a>
+Tutorial: Understanding the HMM toolbox with</h2>
+<ul>
+<li><a class="el" href="_tutorial.html">See tutorial page here</a></li>
+</ul>
+<h2><a class="anchor" id="autotoc_md11"></a>
+Common issues</h2>
+<p>sometimes, the first time I build after a clean install I get: `the C compiler "/opt/anaconda3/bin/x86_64-apple-darwin13.4.0-clang" is not able to compile a simple test program.` <br  />
+ This happens when i'm in a conda environment with an older version of clang <code>conda deactive</code> usually fixes the issue </p>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

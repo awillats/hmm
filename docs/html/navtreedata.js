@@ -25,6 +25,15 @@
 var NAVTREE =
 [
   [ "HMM", "index.html", [
+    [ "Overview: HMM - Hidden Markov Models", "index.html#autotoc_md5", [
+      [ "Applications", "index.html#autotoc_md6", null ],
+      [ "Repository Organization", "index.html#autotoc_md7", null ],
+      [ "Dependencies", "index.html#autotoc_md8", null ],
+      [ "Compilation & Installation", "index.html#autotoc_md9", null ],
+      [ "Tutorial: Understanding the HMM toolbox with", "index.html#autotoc_md10", null ],
+      [ "Common issues", "index.html#autotoc_md11", null ]
+    ] ],
+    [ "Tutorial", "_tutorial.html", null ],
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ],
       [ "File Members", "globals.html", [
@@ -37,7 +46,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"dir_68267d1309a1af8e8297ef4c3efbcdba.html"
+"_tutorial.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

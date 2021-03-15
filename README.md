@@ -1,4 +1,6 @@
-# HMM - Hidden Markov Models
+@mainpage
+@tableofcontents
+# Overview: HMM - Hidden Markov Models
 `hmm` is a simple set of hidden Markov model (HMM) code intended to support control of switching linear dynamical systems.
 
 It contains methods for generating and decoding systems of the form:
@@ -6,22 +8,22 @@ It contains methods for generating and decoding systems of the form:
 _generative equations here - transition, emission_
 
 
-# Applications
+## Applications
 
-see also: [`rtxi-hmmDecoder`](google.com) and [`rtxi-hmmGenerator`](google.com) for application of this library in modules intended for the RTXI platform
+see also: [`rtxi-hmmDecoder`](https://github.com/stanley-rozell/rtxi-hmmDecoder) and [`rtxi-hmmGenerator`](https://github.com/stanley-rozell/rtxi-hmmGenerator) for application of this library in modules intended for the RTXI platform
 
 
-# Repository Organization
+## Repository Organization
 - `src` source files (*.cpp)
 - `include` header files (*.h)
 - `examples` demonstrating functionality
 - `matlab` for comparing matlab and C++ implementations
 - `scripts` utilities for setting up `hmm` library
 
-# Dependencies
+## Dependencies
 - none?
 
-# Compilation & Installation
+## Compilation & Installation
 
 [ In Progress ]
 - For basic project build & install
@@ -38,7 +40,12 @@ ctest -N #list tests to be performed
 ctest -VV #execute tests
 ```
 
-# Common issues
+## Tutorial: Understanding the HMM toolbox with
+- [See tutorial page here](@ref Tutorial)
+
+
+
+## Common issues
 sometimes, the first time I build after a clean install I get:
 `the C compiler
     "/opt/anaconda3/bin/x86_64-apple-darwin13.4.0-clang"

@@ -1,16 +1,19 @@
-## How to use the HMM library
+@page Tutorial
+@tableofcontents
 
-- basic description of functions
+## Tutorial & Technical Overview: How to use the HMM library
+
 - scope of this tutorial
+- relevant publications
 
 ### building a model
-- parameters of an HMM
-- (codeblock)
+- parameters of an HMM (LaTeX + diagram)
+- (codeblock, snippet from main.cpp?)
 
 ### generating sequences
 
 ### decoding states
-- overview of viterbi algorithm
+- overview of Viterbi algorithm (LaTeX)
 
 ### examining outputs
 - metrics of performance
