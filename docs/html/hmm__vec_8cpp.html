@@ -23,7 +23,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HMM
    </div>
-   <div id="projectbrief">filler description</div>
+   <div id="projectbrief">Toolbox for hidden markov models</div>
   </td>
  </tr>
  </tbody>
@@ -83,65 +83,14 @@ Functions</h2></td></tr>
 <tr class="separator:a16e2f7a9a17d80462ee5bf0632b83dfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71557e16bbe79e984f60b05fde784837"><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hmm__vec_8cpp.html#a71557e16bbe79e984f60b05fde784837">viterbi</a> (HMMv const &amp;hmm, std::vector&lt; int &gt; observed, const int n)</td></tr>
 <tr class="separator:a71557e16bbe79e984f60b05fde784837"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c17d807969bd6bdc910e2f0d227647a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hmm__vec_8cpp.html#a8c17d807969bd6bdc910e2f0d227647a">importSpksExportGuess</a> (int nt, int *spikeIn, int *stateIn, int *stateGuessOut)</td></tr>
-<tr class="separator:a8c17d807969bd6bdc910e2f0d227647a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60f72dbd4105f5ad089367e861481d5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hmm__vec_8cpp.html#a60f72dbd4105f5ad089367e861481d5f">setWarning</a> (char *strin)</td></tr>
 <tr class="separator:a60f72dbd4105f5ad089367e861481d5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>core functions for hmm, construction and decoding </p>
 <p>Constructs HMM object as well as performs viterbi decoding </p><dl class="section author"><dt>Author</dt><dd>Adam Willats. based on viterbi.cpp by Feder1co 5oave: <a href="https://gist.github.com/Feder1co5oave/2347228">https://gist.github.com/Feder1co5oave/2347228</a> </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>"DD"/"Month"/"Year" </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2019-2021 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a8c17d807969bd6bdc910e2f0d227647a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8c17d807969bd6bdc910e2f0d227647a">&#9670;&nbsp;</a></span>importSpksExportGuess()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void importSpksExportGuess </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>nt</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>spikeIn</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>stateIn</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>stateGuessOut</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>[HMMv::importSpksExportGuess description] </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">nt</td><td>[description] </td></tr>
-    <tr><td class="paramname">spikeIn</td><td>[description] </td></tr>
-    <tr><td class="paramname">stateIn</td><td>[description] </td></tr>
-    <tr><td class="paramname">stateGuessOut</td><td>[description] </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a16e2f7a9a17d80462ee5bf0632b83dfe"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a16e2f7a9a17d80462ee5bf0632b83dfe">&#9670;&nbsp;</a></span>logE()</h2>
 

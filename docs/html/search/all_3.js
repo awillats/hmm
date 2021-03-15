@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['importspksexportguess_3',['importSpksExportGuess',['../hmm__vec_8cpp.html#a8c17d807969bd6bdc910e2f0d227647a',1,'hmm_vec.cpp']]]
+  ['loge_3',['logE',['../hmm__vec_8cpp.html#a16e2f7a9a17d80462ee5bf0632b83dfe',1,'hmm_vec.cpp']]]
 ];

@@ -11,7 +11,7 @@
 ///   \brief core functions for hmm, construction and decoding
 ///   \author Adam Willats.
 ///   based on viterbi.cpp by Feder1co 5oave: https://gist.github.com/Feder1co5oave/2347228
-///   \date "DD"/"Month"/"Year"
+///   \date 2019-2021
 
 //#include "hmm_vec.hpp"
 #include <hmm.h>
@@ -293,6 +293,7 @@ std::vector<int>  HMMv::genSeq(int nt_)
 /**
  * Simple macro to print to cout
  * @param strin string to be printed
+ * @note mostly for debugging, could be removed
  */
 void setWarning(char * strin)
 {

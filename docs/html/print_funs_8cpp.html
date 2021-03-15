@@ -23,7 +23,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HMM
    </div>
-   <div id="projectbrief">filler description</div>
+   <div id="projectbrief">Toolbox for hidden markov models</div>
   </td>
  </tr>
  </tbody>
@@ -72,6 +72,9 @@ $(function() {
 <div class="title">printFuns.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>helper functions for printing hmm parameters and sequences  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;hmm.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -85,7 +88,11 @@ Functions</h2></td></tr>
 <tr class="memitem:a3fd35d0e5ba4813e333f7ea7995cbb21"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="print_funs_8cpp.html#a3fd35d0e5ba4813e333f7ea7995cbb21">printVec</a> (std::vector&lt; double &gt; v)</td></tr>
 <tr class="separator:a3fd35d0e5ba4813e333f7ea7995cbb21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>helper functions for printing hmm parameters and sequences </p>
+<p>helper functions for printing hmm parameters and sequences </p><dl class="section author"><dt>Author</dt><dd>Adam Willats </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>7/19/17. </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="a4a096fa17f0aa53956c30774420928d0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4a096fa17f0aa53956c30774420928d0">&#9670;&nbsp;</a></span>blockPrint()</h2>
 
@@ -113,12 +120,12 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>[blockPrint description] </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">bin</td><td>[description] </td></tr>
-    <tr><td class="paramname">printMode</td><td>[description] </td></tr>
+    <tr><td class="paramname">bin</td><td>integer indicating block category. Most likely 0 or 1. </td></tr>
+    <tr><td class="paramname">printMode</td><td>0 for ints, 1 for block characters, 2 for _&amp;^ </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>[description] </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>string printed to represent block </dd></dl>
 
 </div>
 </div>
@@ -137,6 +144,12 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>formats and prints a "vec of vecs" matrix to cout </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mat</td><td>vector of vectors matrix to be printed to cout </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -155,6 +168,13 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>simply prints vector to cout as is </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>vector to be printed </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="print_funs_8cpp.html#abe447dc230ab6dc5a55c55bd188e314d">printVecAsBlock()</a> </dd></dl>
 
 </div>
 </div>
@@ -189,6 +209,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>applies blockPrint to each item in a vector for within-console visualization </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>vector of integers to be printed </td></tr>
+    <tr><td class="paramname">veclen</td><td>length of v </td></tr>
+    <tr><td class="paramname">printMode</td><td>0 for ints, 1 for block characters, 2 for _&amp;^ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="print_funs_8cpp.html#a4a096fa17f0aa53956c30774420928d0">blockPrint()</a>, <a class="el" href="print_funs_8cpp.html#a3fd35d0e5ba4813e333f7ea7995cbb21">printVec()</a> </dd></dl>
 
 </div>
 </div>
