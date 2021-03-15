@@ -1,6 +1,7 @@
+///   \brief helper functions for printing HMM parameters and sequences
+///
 /// \file
 /// helper functions for printing hmm parameters and sequences
-///   \brief helper functions for printing HMM parameters and sequences
 ///   \author Adam Willats
 ///   \date  7/19/17.
 

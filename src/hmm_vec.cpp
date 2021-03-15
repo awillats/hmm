@@ -6,9 +6,10 @@
 //  Copyright © 2017 Adam Willats. All rights reserved.
 //
 
+///   \brief core functions for hmm, construction and decoding
+///
 ///   \file
 ///   Constructs HMM object as well as performs viterbi decoding
-///   \brief core functions for hmm, construction and decoding
 ///   \author Adam Willats.
 ///   based on viterbi.cpp by Feder1co 5oave: https://gist.github.com/Feder1co5oave/2347228
 ///   \date 2019-2021

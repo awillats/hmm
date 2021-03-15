@@ -2,7 +2,7 @@
 \label{print_funs_8cpp}\index{src/printFuns.cpp@{src/printFuns.cpp}}
 
 
-helper functions for printing hmm parameters and sequences  
+helper functions for printing HMM parameters and sequences  
 
 
 {\ttfamily \#include $<$hmm.\+h$>$}\newline
@@ -10,17 +10,17 @@ helper functions for printing hmm parameters and sequences
 \begin{DoxyCompactItemize}
 \item 
 std\+::string \mbox{\hyperlink{print_funs_8cpp_a4a096fa17f0aa53956c30774420928d0}{block\+Print}} (int bin, int print\+Mode)
-\item 
+\begin{DoxyCompactList}\small\item\em \mbox{[}block\+Print description\mbox{]} \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{print_funs_8cpp_a141d01c07c9474d12d6fd94c85970199}{print\+Mat}} (std\+::vector$<$ std\+::vector$<$ double $>$ $>$ mat)
-\item 
+\begin{DoxyCompactList}\small\item\em formats and prints a \char`\"{}vec of vecs\char`\"{} matrix to cout \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{print_funs_8cpp_abe447dc230ab6dc5a55c55bd188e314d}{print\+Vec\+As\+Block}} (int $\ast$v, int veclen, int print\+Mode)
-\item 
+\begin{DoxyCompactList}\small\item\em applies block\+Print to each item in a vector for within-\/console visualization \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{print_funs_8cpp_a3fd35d0e5ba4813e333f7ea7995cbb21}{print\+Vec}} (std\+::vector$<$ double $>$ v)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em simply prints vector to cout as is \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-helper functions for printing hmm parameters and sequences 
+helper functions for printing HMM parameters and sequences 
 
 helper functions for printing hmm parameters and sequences \begin{DoxyAuthor}{Author}
 Adam Willats 
@@ -37,7 +37,11 @@ Adam Willats
 \doxysubsubsection{\texorpdfstring{blockPrint()}{blockPrint()}}
 {\footnotesize\ttfamily std\+::string block\+Print (\begin{DoxyParamCaption}\item[{int}]{bin,  }\item[{int}]{print\+Mode }\end{DoxyParamCaption})}
 
+
+
 \mbox{[}block\+Print description\mbox{]} 
+
+
 \begin{DoxyParams}{Parameters}
 {\em bin} & integer indicating block category. Most likely 0 or 1. \\
 \hline
@@ -53,7 +57,11 @@ string printed to represent block
 \doxysubsubsection{\texorpdfstring{printMat()}{printMat()}}
 {\footnotesize\ttfamily void print\+Mat (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::vector$<$ double $>$ $>$}]{mat }\end{DoxyParamCaption})}
 
+
+
 formats and prints a \char`\"{}vec of vecs\char`\"{} matrix to cout 
+
+
 \begin{DoxyParams}{Parameters}
 {\em mat} & vector of vectors matrix to be printed to cout \\
 \hline
@@ -64,7 +72,11 @@ formats and prints a \char`\"{}vec of vecs\char`\"{} matrix to cout
 \doxysubsubsection{\texorpdfstring{printVec()}{printVec()}}
 {\footnotesize\ttfamily void print\+Vec (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$}]{v }\end{DoxyParamCaption})}
 
+
+
 simply prints vector to cout as is 
+
+
 \begin{DoxyParams}{Parameters}
 {\em v} & vector to be printed \\
 \hline
@@ -78,7 +90,11 @@ simply prints vector to cout as is
 \doxysubsubsection{\texorpdfstring{printVecAsBlock()}{printVecAsBlock()}}
 {\footnotesize\ttfamily void print\+Vec\+As\+Block (\begin{DoxyParamCaption}\item[{int $\ast$}]{v,  }\item[{int}]{veclen,  }\item[{int}]{print\+Mode }\end{DoxyParamCaption})}
 
+
+
 applies block\+Print to each item in a vector for within-\/console visualization 
+
+
 \begin{DoxyParams}{Parameters}
 {\em v} & vector of integers to be printed \\
 \hline

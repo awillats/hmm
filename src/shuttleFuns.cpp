@@ -1,6 +1,7 @@
+///   \brief helper functions for converting data types for HMM models
+///
 /// \file
 /// helper functions for converting data types for HMM models
-///   \brief helper functions for converting data types for HMM models
 ///   \author Adam Willats
 ///   \date   2/27/19.
 

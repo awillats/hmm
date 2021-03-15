@@ -1,8 +1,9 @@
+/// \brief basic usage of Hidden Markov Model code
+///
 /// \file
 /// "hmm" is a simple set of hidden Markov model (HMM) code.
 /// It decodes latent state-switches
 /// from a categorical signal (usually a binary spike-train)
-///   \brief Hidden Markov Model core functions
 ///   \author Adam Willats
 ///   \date 2/21/19
 
