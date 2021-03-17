@@ -15,10 +15,6 @@
 #include <iostream>
 #include <vector>
 
-#ifdef USE_MYMATH
-#   include "../fake_lib/fake.h"
-#endif
-
 #include "../include/hmm_h/hmm_vec.hpp"
 #include "../include/hmm_h/printFuns.hpp"
 #include "../include/hmm_h/shuttleFuns.hpp"
