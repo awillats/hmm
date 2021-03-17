@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['loge_26',['logE',['../hmm__vec_8cpp.html#a16e2f7a9a17d80462ee5bf0632b83dfe',1,'hmm_vec.cpp']]]
+  ['exportseqs_50',['exportSeqs',['../struct_h_m_mv.html#abff213f9b4d53b1046932a3c26e1ff50',1,'HMMv']]],
+  ['exportseqsguess_51',['exportSeqsGuess',['../struct_h_m_mv.html#a2fecc35ae611d979f9c63ed28d893b71',1,'HMMv']]]
 ];

@@ -23,51 +23,92 @@
 /**
  * This is the main() for testing basic HMM functionality.
  * Builds an HMM, generates a sequence, estimates states, then prints them to cout
- * @param  argc filler
- * @param  argv filler
+ * @param  argv optional args:{nStates, nSamples}
  * @return      0 if successful
  */
 int main(int argc, const char *argv[]) {
-  int printMode = 1;
   /*
   std::vector<double> trs = {0.1,0.1}; //transition rates
   std::vector<double> frs = {.1,.9}; //firing rates
   std::vector<double> pis = {.1,.9}; //initial state probabilities
    */
-  int nt = 200;//1e3;
+  int nt = 175;//1e3;
+  int ntMaxPrint = 1e3;
   int nrep = 0; // 1e3;
 
   // HMMv myHMM = HMMv(2,2, trs, frs, pis);
 
+  std::cout << "argc" << argc << '\n';
+
+  //default HMM params
+  std::vector<std::vector<double>> trs = {{0.9,0.1},{.1,.9}};
+  std::vector<std::vector<double>> frs = {{0.9,0.1},{.2,.8}};
+  //std::vector<std::vector<double>> frs = {{0.9,0.05,0.05},{.1,0.45,.45}};
+
+  std::vector<double> pis = {.1, .9};
+  int nStates = 2;
+  int nEmission = 2;
+  int printMode = 1;
+
+
+ //Override HMM params if we have input from the console
+ //For a simplified debugging nStates == nEmissions here, but that doesn't have to be the case generally
+
+ //Also, for easy in-console visualization, I've chosen parameters such that the most common output
+ //For each state matches the identity of that state
+
+  if (argc>1)
+  {
+      std::cout << "argv0: " << argv[1] << '\n';
+
+      int nInput = std::stoi(argv[1]);
+      switch (nInput)
+      {
+        case 2:
+            break;
+        case 3:
+            trs = {
+                {0.8, 0.1, 0.1},
+                 {.1, .8, .1},
+                  {.1, .1, .8}};
+            frs = {
+                {0.9, 0.05, 0.05},
+                 {.15, 0.7, .15},
+                  {.1, 0.1, .8}};
+            pis = {.1, .9, .1};
+            nStates = 3;
+            nEmission = 3;
+            printMode = 3;
+            break;
+        //default:
+        }
+  }
+  if (argc>2)
+  {
+      nt = std::stoi(argv[2]);
+  }
+  std::cout << "nStates: "<<nStates << '\n';
+ /*
+*/
+  HMMv myHMM = HMMv(nStates, nEmission, trs, frs, pis);
+
+
+/*
   // std::vector<std::vector<double>> trs = {{0.9,0.1},{.1,.9}};
   // std::vector<std::vector<double>> frs = {{0.9,0.05,0.05},{.1,0.45,.45}};
   std::vector<std::vector<double>> trs = {
-      {0.8, 0.1, 0.1}, {.1, .8, .1}, {.1, .1, .8}};
+      {0.8, 0.1, 0.1},
+       {.1, .8, .1},
+        {.1, .1, .8}};
   std::vector<std::vector<double>> frs = {
-      {0.9, 0.05, 0.05}, {.1, 0.45, .45}, {.1, 0.8, .1}};
+      {0.9, 0.05, 0.05},
+       {.15, 0.7, .15},
+        {.1, 0.1, .8}};
 
-  std::vector<double> pis = {.1, .9};
+  std::vector<double> pis = {.1, .9, .1};
 
-  float inputValue = 125.0;
-
-/* from debugging optional CMAKE arguments
-  #ifdef USE_MYMATH
-    const double outputValue = cmake::my::mysqrt(inputValue);
-    std::cout << endl<< "use flag is defined !!" << endl;
-  #else
-    const double outputValue = sqrt(inputValue);
-    std::cout << endl<< "use flag is undefined :( " <<endl<<endl;
-  #endif
-
-
-  //const double outputValue2 = cmake::my::mysqrt(inputValue);
-  std::cout << outputValue <<endl;
-  //<< "," << cmake::my::mysqrt(inputValue)<<endl;
-  //outputValue;
-  //std::cout << outputValue2;
-  */
-    HMMv myHMM = HMMv(3, 3, trs, frs, pis);
-
+  HMMv myHMM = HMMv(3, 3, trs, frs, pis);
+*/
  // myHMM.printMyParams();
   myHMM.genSeq(nt);
 
@@ -91,7 +132,7 @@ int main(int argc, const char *argv[]) {
  double stateProb = double(stateSum)/double(nt);
  //std::cout<< "\n avg output: "<<stateProb<<"\n";
 
-  printVecAsBlock(&vguess[0], nt,printMode);
+ printVecAsBlock(&vguess[0], myHMM.ntPrint,printMode);
   //std::vector<int> v = array2vec(&vguess[0], nt);
 /**/
   std::cout << " < guessed states \n";

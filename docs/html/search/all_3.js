@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['loge_3',['logE',['../hmm__vec_8cpp.html#a16e2f7a9a17d80462ee5bf0632b83dfe',1,'hmm_vec.cpp']]]
+  ['genseq_5',['genSeq',['../struct_h_m_mv.html#ad076dcd2df512c1782bbc3e813fc5c3d',1,'HMMv']]]
 ];

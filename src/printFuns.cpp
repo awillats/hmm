@@ -33,6 +33,21 @@ std::string blockPrint(int bin, int printMode)
         case 2:
             block= ((bin==0) ? "_":"^");
             break;
+        case 3:
+            switch (bin){
+                //https://en.wikipedia.org/wiki/Block_Elements
+                case 0:
+                    block = "\u2581"; //underline
+                    break;
+                case 1:
+                    block = "\u2591"; //light block
+                    break;
+                case 2:
+                    block = "\u2588"; //heavy block
+                    break;
+                default:
+                    block = std::to_string(bin);
+            }
     }
     return block;
 };

@@ -92,32 +92,33 @@ install(FILES "${PROJECT_BINARY_DIR}/include/hmm.h" DESTINATION include)
 enable_testing()
 
 # does the application run
-add_test(NAME RunTest COMMAND hmm 1)
+add_test(NAME RunTest COMMAND hmm)
 
 # does the usage message work?
 #add_test(NAME UsageTest COMMAND hmm)
 
-add_test(NAME UsageTest COMMAND hmm)
-set_tests_properties(UsageTest
-  PROPERTIES PASS_REGULAR_EXPRESSION "UsageTest:.*number"
-  )
+# add_test(NAME UsageTest COMMAND hmm)
+# set_tests_properties(UsageTest
+#   PROPERTIES PASS_REGULAR_EXPRESSION "UsageTest:.*number"
+#   )
 
-function(do_test target arg result)
-    add_test(NAME Comp${arg} COMMAND ${target} ${arg})
-    set_tests_properties(Comp${arg}
+function(do_test tname target arg result)
+    add_test(NAME ${tname} COMMAND ${target} ${arg})
+    set_tests_properties(${tname}
       PROPERTIES PASS_REGULAR_EXPRESSION ${result}
       )
 endfunction(do_test)
 
 
 #looks for this string in the answer!
-set(TEST_ANS "states")
+set(TEST_ANS "guessed states")
 
-do_test(hmm 1 ${TEST_ANS})
-do_test(hmm 2 ${TEST_ANS})
-do_test(hmm 3 ${TEST_ANS})
-do_test(hmm 4 ${TEST_ANS})
-do_test(hmm 5 ${TEST_ANS})
+do_test(2state hmm 2 ${TEST_ANS})
+do_test(3state hmm 3 ${TEST_ANS})
+
+add_test(NAME Stress_2_1k COMMAND hmm 2 1000 PROPERTIES PASS_REGULAR_EXPRESSION ${TEST_ANS})
+add_test(NAME Stress_3_50k COMMAND hmm 3 50000 PROPERTIES PASS_REGULAR_EXPRESSION ${TEST_ANS})
+
 
 
 

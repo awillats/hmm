@@ -186,10 +186,10 @@ void HMMv::printMyParams()
  */
 void HMMv::printSeqs(int printMode)
 {
-    printVecAsBlock(&states[0], nt, printMode);
+    printVecAsBlock(&states[0], ntPrint, printMode);
     std::cout<<" < states \n";
 
-    printVecAsBlock(&spikes[0], nt, printMode);
+    printVecAsBlock(&spikes[0], ntPrint, printMode);
     std::cout<<" < spikes \n";
 };
 
@@ -250,6 +250,8 @@ void HMMv::exportSeqsGuess(int nt, int * spikeOut, int * stateOut, int * stateGu
 std::vector<int>  HMMv::genSeq(int nt_)
 {
     nt =nt_;
+    int ntMaxPrint = 600;
+    ntPrint = std::min(nt,ntMaxPrint); // hardcoded maximimum length of sequence to print
     //zero out the class's vectors
     states = std::vector<int> (nt,0);
     spikes = std::vector<int> (nt,0);

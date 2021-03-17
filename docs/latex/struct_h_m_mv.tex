@@ -1,0 +1,294 @@
+\hypertarget{struct_h_m_mv}{}\doxysection{HMMv Class Reference}
+\label{struct_h_m_mv}\index{HMMv@{HMMv}}
+
+
+This is the HMM model class, using std\+::vector;.  
+
+
+
+
+{\ttfamily \#include $<$hmm\+\_\+vec.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{struct_h_m_mv_a360b2b4f7ef619fddc47b9da26aacd1b}{warnings}} ()
+\item 
+\mbox{\hyperlink{struct_h_m_mv_a0b49ef0edb98ea48056809a70d06e717}{HMMv}} ()
+\item 
+\mbox{\hyperlink{struct_h_m_mv_aabb01a05f01a6916bcceaeb402a964e7}{HMMv}} (int \mbox{\hyperlink{struct_h_m_mv_ac4019d14fcd3e283f47a786343971919}{nstates}}, int \mbox{\hyperlink{struct_h_m_mv_a467439d4a3ffaf7f4504af6306c54d62}{nevents}}, std\+::vector$<$ double $>$ v\+Tr, std\+::vector$<$ double $>$ v\+Fr, std\+::vector$<$ double $>$ \mbox{\hyperlink{struct_h_m_mv_a1af3466cb8c47ddb42e0563868195f75}{PI}})
+\item 
+\mbox{\hyperlink{struct_h_m_mv_afe4d2b3786e8fddd0bb570288d1de56a}{HMMv}} (int \mbox{\hyperlink{struct_h_m_mv_ac4019d14fcd3e283f47a786343971919}{nstates}}, int \mbox{\hyperlink{struct_h_m_mv_a467439d4a3ffaf7f4504af6306c54d62}{nevents}}, std\+::vector$<$ std\+::vector$<$ double $>$ $>$ TR\+\_\+, std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \mbox{\hyperlink{struct_h_m_mv_a375c124e11278b022ee56ff7335b1556}{EM}}, std\+::vector$<$ double $>$ \mbox{\hyperlink{struct_h_m_mv_a1af3466cb8c47ddb42e0563868195f75}{PI}})
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{struct_h_m_mv_ad076dcd2df512c1782bbc3e813fc5c3d}{gen\+Seq}} (int)
+\begin{DoxyCompactList}\small\item\em Generates a sequence of states, and their accompanying outputs. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_h_m_mv_a0e4def2a71b0cc03b27ca349ce9ee860}{print\+My\+Params}} ()
+\begin{DoxyCompactList}\small\item\em prints model\textquotesingle{}s paramters in matrix form \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_h_m_mv_a3033a5e7a521f917b46144ebf59e69c5}{print\+Seqs}} (int)
+\begin{DoxyCompactList}\small\item\em prints model\textquotesingle{}s spikes and states \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_h_m_mv_abff213f9b4d53b1046932a3c26e1ff50}{export\+Seqs}} (int $\ast$, int $\ast$)
+\begin{DoxyCompactList}\small\item\em exports HMM\textquotesingle{}s recorded spikes and states vectors to input ptrs \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_h_m_mv_a2fecc35ae611d979f9c63ed28d893b71}{export\+Seqs\+Guess}} (int, int $\ast$, int $\ast$, int $\ast$)
+\begin{DoxyCompactList}\small\item\em Copies spikes and states into input pointers. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_h_m_mv_a52ace3cdc68df65d7cf4ce399ecfa7fa}{import\+Spks\+Export\+Guess}} (int \mbox{\hyperlink{struct_h_m_mv_a24f3143f106fc591c128338d625ab9ef}{nt}}, int $\ast$, int $\ast$, int $\ast$)
+\begin{DoxyCompactList}\small\item\em Imports spikes (and true states), decodes a state estimate, then exports the estimates states through state\+Guess\+Out. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{struct_h_m_mv_ac4019d14fcd3e283f47a786343971919}{nstates}}
+\item 
+int \mbox{\hyperlink{struct_h_m_mv_a467439d4a3ffaf7f4504af6306c54d62}{nevents}}
+\item 
+std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \mbox{\hyperlink{struct_h_m_mv_aefd5b215aacdbcb1fa0034622c6e245a}{TR}}
+\item 
+std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \mbox{\hyperlink{struct_h_m_mv_a375c124e11278b022ee56ff7335b1556}{EM}}
+\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{struct_h_m_mv_a1af3466cb8c47ddb42e0563868195f75}{PI}}
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{struct_h_m_mv_af2cc1de1178932f91527228228098001}{states}}
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{struct_h_m_mv_a6d84c6813d6aaf470b59b428fc773852}{spikes}}
+\item 
+int \mbox{\hyperlink{struct_h_m_mv_a24f3143f106fc591c128338d625ab9ef}{nt}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+int $\ast$ \mbox{\hyperlink{struct_h_m_mv_a71557e16bbe79e984f60b05fde784837}{viterbi}} (\mbox{\hyperlink{struct_h_m_mv}{HMMv}} const \&hmm, std\+::vector$<$ int $>$ observed, const int n)
+\begin{DoxyCompactList}\small\item\em Uses the viterbi algorithm to estimate the most-\/likely state sequence. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_h_m_mv_aa2deae551f32cc6b830ae4875e5a2d08}{print\+Mat}} (std\+::vector$<$ std\+::vector$<$ double $>$ $>$)
+\begin{DoxyCompactList}\small\item\em formats and prints a \char`\"{}vec of vecs\char`\"{} matrix to cout \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This is the HMM model class, using std\+::vector;. 
+
+description of this hmm class 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{struct_h_m_mv_a0b49ef0edb98ea48056809a70d06e717}\label{struct_h_m_mv_a0b49ef0edb98ea48056809a70d06e717}} 
+\index{HMMv@{HMMv}!HMMv@{HMMv}}
+\index{HMMv@{HMMv}!HMMv@{HMMv}}
+\doxysubsubsection{\texorpdfstring{HMMv()}{HMMv()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily HMMv\+::\+HMMv (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{struct_h_m_mv_aabb01a05f01a6916bcceaeb402a964e7}\label{struct_h_m_mv_aabb01a05f01a6916bcceaeb402a964e7}} 
+\index{HMMv@{HMMv}!HMMv@{HMMv}}
+\index{HMMv@{HMMv}!HMMv@{HMMv}}
+\doxysubsubsection{\texorpdfstring{HMMv()}{HMMv()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily HMMv\+::\+HMMv (\begin{DoxyParamCaption}\item[{int}]{nstates,  }\item[{int}]{nevents,  }\item[{std\+::vector$<$ double $>$}]{v\+Tr,  }\item[{std\+::vector$<$ double $>$}]{v\+Fr,  }\item[{std\+::vector$<$ double $>$}]{PI }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{struct_h_m_mv_afe4d2b3786e8fddd0bb570288d1de56a}\label{struct_h_m_mv_afe4d2b3786e8fddd0bb570288d1de56a}} 
+\index{HMMv@{HMMv}!HMMv@{HMMv}}
+\index{HMMv@{HMMv}!HMMv@{HMMv}}
+\doxysubsubsection{\texorpdfstring{HMMv()}{HMMv()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily HMMv\+::\+HMMv (\begin{DoxyParamCaption}\item[{int}]{nstates,  }\item[{int}]{nevents,  }\item[{std\+::vector$<$ std\+::vector$<$ double $>$ $>$}]{TR\+\_\+,  }\item[{std\+::vector$<$ std\+::vector$<$ double $>$ $>$}]{EM,  }\item[{std\+::vector$<$ double $>$}]{PI }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_h_m_mv_abff213f9b4d53b1046932a3c26e1ff50}\label{struct_h_m_mv_abff213f9b4d53b1046932a3c26e1ff50}} 
+\index{HMMv@{HMMv}!exportSeqs@{exportSeqs}}
+\index{exportSeqs@{exportSeqs}!HMMv@{HMMv}}
+\doxysubsubsection{\texorpdfstring{exportSeqs()}{exportSeqs()}}
+{\footnotesize\ttfamily void HMMv\+::export\+Seqs (\begin{DoxyParamCaption}\item[{int $\ast$}]{spike\+Loc,  }\item[{int $\ast$}]{state\+Loc }\end{DoxyParamCaption})}
+
+
+
+exports HMM\textquotesingle{}s recorded spikes and states vectors to input ptrs 
+
+
+\begin{DoxyParams}{Parameters}
+{\em spike\+Loc} & ptr to spikes for output \\
+\hline
+{\em state\+Loc} & ptr to states for output \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{struct_h_m_mv_a2fecc35ae611d979f9c63ed28d893b71}\label{struct_h_m_mv_a2fecc35ae611d979f9c63ed28d893b71}} 
+\index{HMMv@{HMMv}!exportSeqsGuess@{exportSeqsGuess}}
+\index{exportSeqsGuess@{exportSeqsGuess}!HMMv@{HMMv}}
+\doxysubsubsection{\texorpdfstring{exportSeqsGuess()}{exportSeqsGuess()}}
+{\footnotesize\ttfamily void HMMv\+::export\+Seqs\+Guess (\begin{DoxyParamCaption}\item[{int}]{nt,  }\item[{int $\ast$}]{spike\+Out,  }\item[{int $\ast$}]{state\+Out,  }\item[{int $\ast$}]{state\+Guess\+Out }\end{DoxyParamCaption})}
+
+
+
+Copies spikes and states into input pointers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nt} & number of time samples \\
+\hline
+{\em spike\+Out} & pointer to where spikes should be output \\
+\hline
+{\em state\+Out} & pointer to where true state values should be output \\
+\hline
+{\em state\+Guess\+Out} & pointer to where guessed states should be output \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{struct_h_m_mv_ad076dcd2df512c1782bbc3e813fc5c3d}\label{struct_h_m_mv_ad076dcd2df512c1782bbc3e813fc5c3d}} 
+\index{HMMv@{HMMv}!genSeq@{genSeq}}
+\index{genSeq@{genSeq}!HMMv@{HMMv}}
+\doxysubsubsection{\texorpdfstring{genSeq()}{genSeq()}}
+{\footnotesize\ttfamily std\+::vector$<$ int $>$ HMMv\+::gen\+Seq (\begin{DoxyParamCaption}\item[{int}]{nt\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Generates a sequence of states, and their accompanying outputs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nt\+\_\+} & number of time samples \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+spikes -\/ vector of output values (int) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{struct_h_m_mv_a52ace3cdc68df65d7cf4ce399ecfa7fa}\label{struct_h_m_mv_a52ace3cdc68df65d7cf4ce399ecfa7fa}} 
+\index{HMMv@{HMMv}!importSpksExportGuess@{importSpksExportGuess}}
+\index{importSpksExportGuess@{importSpksExportGuess}!HMMv@{HMMv}}
+\doxysubsubsection{\texorpdfstring{importSpksExportGuess()}{importSpksExportGuess()}}
+{\footnotesize\ttfamily void HMMv\+::import\+Spks\+Export\+Guess (\begin{DoxyParamCaption}\item[{int}]{nt,  }\item[{int $\ast$}]{spike\+In,  }\item[{int $\ast$}]{state\+In,  }\item[{int $\ast$}]{state\+Guess\+Out }\end{DoxyParamCaption})}
+
+
+
+Imports spikes (and true states), decodes a state estimate, then exports the estimates states through state\+Guess\+Out. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nt} & number of time samples \\
+\hline
+{\em spike\+In} & pointer to spikes being loaded in for decoding \\
+\hline
+{\em state\+In} & (unused) ptr to true states \\
+\hline
+{\em state\+Guess\+Out} & ptr to output decoded states \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{struct_h_m_mv_a0e4def2a71b0cc03b27ca349ce9ee860}\label{struct_h_m_mv_a0e4def2a71b0cc03b27ca349ce9ee860}} 
+\index{HMMv@{HMMv}!printMyParams@{printMyParams}}
+\index{printMyParams@{printMyParams}!HMMv@{HMMv}}
+\doxysubsubsection{\texorpdfstring{printMyParams()}{printMyParams()}}
+{\footnotesize\ttfamily void HMMv\+::print\+My\+Params (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+prints model\textquotesingle{}s paramters in matrix form 
+
+\mbox{\Hypertarget{struct_h_m_mv_a3033a5e7a521f917b46144ebf59e69c5}\label{struct_h_m_mv_a3033a5e7a521f917b46144ebf59e69c5}} 
+\index{HMMv@{HMMv}!printSeqs@{printSeqs}}
+\index{printSeqs@{printSeqs}!HMMv@{HMMv}}
+\doxysubsubsection{\texorpdfstring{printSeqs()}{printSeqs()}}
+{\footnotesize\ttfamily void HMMv\+::print\+Seqs (\begin{DoxyParamCaption}\item[{int}]{print\+Mode }\end{DoxyParamCaption})}
+
+
+
+prints model\textquotesingle{}s spikes and states 
+
+
+\begin{DoxyParams}{Parameters}
+{\em print\+Mode} & 0 for ints, 1 for block characters, 2 for \+\_\+\&$^\wedge$ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{struct_h_m_mv_a360b2b4f7ef619fddc47b9da26aacd1b}\label{struct_h_m_mv_a360b2b4f7ef619fddc47b9da26aacd1b}} 
+\index{HMMv@{HMMv}!warnings@{warnings}}
+\index{warnings@{warnings}!HMMv@{HMMv}}
+\doxysubsubsection{\texorpdfstring{warnings()}{warnings()}}
+{\footnotesize\ttfamily std\+::string HMMv\+::warnings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{struct_h_m_mv_aa2deae551f32cc6b830ae4875e5a2d08}\label{struct_h_m_mv_aa2deae551f32cc6b830ae4875e5a2d08}} 
+\index{HMMv@{HMMv}!printMat@{printMat}}
+\index{printMat@{printMat}!HMMv@{HMMv}}
+\doxysubsubsection{\texorpdfstring{printMat}{printMat}}
+{\footnotesize\ttfamily void print\+Mat (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::vector$<$ double $>$ $>$}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+formats and prints a \char`\"{}vec of vecs\char`\"{} matrix to cout 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mat} & vector of vectors matrix to be printed to cout \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{struct_h_m_mv_a71557e16bbe79e984f60b05fde784837}\label{struct_h_m_mv_a71557e16bbe79e984f60b05fde784837}} 
+\index{HMMv@{HMMv}!viterbi@{viterbi}}
+\index{viterbi@{viterbi}!HMMv@{HMMv}}
+\doxysubsubsection{\texorpdfstring{viterbi}{viterbi}}
+{\footnotesize\ttfamily int$\ast$ viterbi (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_h_m_mv}{HMMv}} const \&}]{hmm,  }\item[{std\+::vector$<$ int $>$}]{observed,  }\item[{const int}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Uses the viterbi algorithm to estimate the most-\/likely state sequence. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hmm} & object containing parameters of the HMM \\
+\hline
+{\em observed} & vector of ints representing the obeserved signal \\
+\hline
+{\em n} & time-\/length of the input signal \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector of most-\/likely states 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_h_m_mv_a375c124e11278b022ee56ff7335b1556}\label{struct_h_m_mv_a375c124e11278b022ee56ff7335b1556}} 
+\index{HMMv@{HMMv}!EM@{EM}}
+\index{EM@{EM}!HMMv@{HMMv}}
+\doxysubsubsection{\texorpdfstring{EM}{EM}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$double$>$ $>$ HMMv\+::\+EM}
+
+\mbox{\Hypertarget{struct_h_m_mv_a467439d4a3ffaf7f4504af6306c54d62}\label{struct_h_m_mv_a467439d4a3ffaf7f4504af6306c54d62}} 
+\index{HMMv@{HMMv}!nevents@{nevents}}
+\index{nevents@{nevents}!HMMv@{HMMv}}
+\doxysubsubsection{\texorpdfstring{nevents}{nevents}}
+{\footnotesize\ttfamily int HMMv\+::nevents}
+
+\mbox{\Hypertarget{struct_h_m_mv_ac4019d14fcd3e283f47a786343971919}\label{struct_h_m_mv_ac4019d14fcd3e283f47a786343971919}} 
+\index{HMMv@{HMMv}!nstates@{nstates}}
+\index{nstates@{nstates}!HMMv@{HMMv}}
+\doxysubsubsection{\texorpdfstring{nstates}{nstates}}
+{\footnotesize\ttfamily int HMMv\+::nstates}
+
+\mbox{\Hypertarget{struct_h_m_mv_a24f3143f106fc591c128338d625ab9ef}\label{struct_h_m_mv_a24f3143f106fc591c128338d625ab9ef}} 
+\index{HMMv@{HMMv}!nt@{nt}}
+\index{nt@{nt}!HMMv@{HMMv}}
+\doxysubsubsection{\texorpdfstring{nt}{nt}}
+{\footnotesize\ttfamily int HMMv\+::nt}
+
+\mbox{\Hypertarget{struct_h_m_mv_a1af3466cb8c47ddb42e0563868195f75}\label{struct_h_m_mv_a1af3466cb8c47ddb42e0563868195f75}} 
+\index{HMMv@{HMMv}!PI@{PI}}
+\index{PI@{PI}!HMMv@{HMMv}}
+\doxysubsubsection{\texorpdfstring{PI}{PI}}
+{\footnotesize\ttfamily std\+::vector$<$double$>$ HMMv\+::\+PI}
+
+\mbox{\Hypertarget{struct_h_m_mv_a6d84c6813d6aaf470b59b428fc773852}\label{struct_h_m_mv_a6d84c6813d6aaf470b59b428fc773852}} 
+\index{HMMv@{HMMv}!spikes@{spikes}}
+\index{spikes@{spikes}!HMMv@{HMMv}}
+\doxysubsubsection{\texorpdfstring{spikes}{spikes}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ HMMv\+::spikes}
+
+\mbox{\Hypertarget{struct_h_m_mv_af2cc1de1178932f91527228228098001}\label{struct_h_m_mv_af2cc1de1178932f91527228228098001}} 
+\index{HMMv@{HMMv}!states@{states}}
+\index{states@{states}!HMMv@{HMMv}}
+\doxysubsubsection{\texorpdfstring{states}{states}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ HMMv\+::states}
+
+\mbox{\Hypertarget{struct_h_m_mv_aefd5b215aacdbcb1fa0034622c6e245a}\label{struct_h_m_mv_aefd5b215aacdbcb1fa0034622c6e245a}} 
+\index{HMMv@{HMMv}!TR@{TR}}
+\index{TR@{TR}!HMMv@{HMMv}}
+\doxysubsubsection{\texorpdfstring{TR}{TR}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$double$>$ $>$ HMMv\+::\+TR}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/hmm\+\_\+h/\mbox{\hyperlink{hmm__vec_8hpp}{hmm\+\_\+vec.\+hpp}}\item 
+src/\mbox{\hyperlink{hmm__vec_8cpp}{hmm\+\_\+vec.\+cpp}}\end{DoxyCompactItemize}

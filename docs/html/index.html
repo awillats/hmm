@@ -132,7 +132,7 @@ Dependencies</h2>
 <h2><a class="anchor" id="autotoc_md9"></a>
 Compilation &amp; Installation</h2>
 <p>[ In Progress ]</p><ul>
-<li>For basic project build &amp; install ```shell cd /path/to/repository mkdir build &amp;&amp; cd build cmake .. #configure build make #build the project sudo make install #[optional] installs to default location (OS-specific) ```</li>
+<li>For basic project build &amp; install ```shell cd /path/to/repository mkdir build &amp;&amp; cd build cmake .. #configure build cmake &ndash;build . #build the project cmake &ndash;install . #[optional] installs to default location (OS-specific), #use <code>--prefix</code> to install to a different directory ```</li>
 <li>for basic benchmarking and verification of a successful install <div class="fragment"><div class="line">ctest -N #list tests to be performed</div>
 <div class="line">ctest -VV #execute tests</div>
 </div><!-- fragment --></li>

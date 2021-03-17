@@ -30,19 +30,24 @@
 //options for passing vectors to function https://stackoverflow.com/questions/26647152/passing-vectors-to-a-function-value-vs-reference-c
 //http://thispointer.com/5-different-ways-to-initialize-a-vector-in-c/
 
-
+/** This is the HMM model class, using std::vector;
+ * \class HMMv
+ * \brief description of this hmm class
+ *
+ */
 struct HMMv {
 
     int nstates, nevents;
     std::vector< std::vector<double> > TR, EM;
     std::vector<double> PI;
-    
+
     std::vector<int> states;
     std::vector<int> spikes;
     int nt;
+    int ntPrint;
     std::string warnings ();
     //warnings = "all good";
-    
+
     //https://stackoverflow.com/questions/18795776/error-no-matching-function-for-call-to-when-constructing-an-unintialized-stru
     HMMv(): nstates(2), nevents(2) { ;};
 
@@ -52,10 +57,10 @@ struct HMMv {
         //assert(nstates > 0); assert(nevents > 0);
         //int q=5;
         //std::cout<<'\n'<<'\n'<<'\n'<<'\n';
-        
+
         // //for now building the matrices only works for n=2
         assert(nstates==2);assert(nevents==2);
-        
+
         assert(!vFr.empty()); assert(!vTr.empty()); assert(!PI.empty());
 
 	    std::vector<double> Av0;
@@ -65,24 +70,24 @@ struct HMMv {
 
         //NB:transpose the matrix representation rather than the execution rules
         //NB:verify the matrix representation against standard approaches
-        
+
         //Build tranistion matrix;
 
         Av0.push_back(1-vTr[0]); //0,0
         Av0.push_back(vTr[0]); //0,1
         Av1.push_back(vTr[1]); //1,0
         Av1.push_back(1-vTr[1]); //1,1
-        
+
         TR.push_back(Av0);
         TR.push_back(Av1);
-        
+
         //Build emission matrix
-        
+
         Bv0.push_back(1-vFr[0]);
         Bv0.push_back(vFr[0]);
         Bv1.push_back(1-vFr[1]);
         Bv1.push_back(vFr[1]);
-      
+
 	    EM.push_back(Bv0);
 	    EM.push_back(Bv1);
         //printMyParams();
@@ -107,7 +112,7 @@ struct HMMv {
             {
                 EM[i][j] = EM[i][j]/rowTotEM;
             }
-            
+
             double rowTotTR = 0;
             for (int j=0;j<nstates;j++)
             {
@@ -120,7 +125,7 @@ struct HMMv {
         }
         //EM.push_back(EM[i])
         printMyParams();
-        
+
     }
 
    //friend std::vector<int> genStates(HMMv const& hmm);
