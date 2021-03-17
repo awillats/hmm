@@ -186,11 +186,11 @@ void HMMv::printMyParams()
  */
 void HMMv::printSeqs(int printMode)
 {
+    printVecAsBlock(&states[0], nt, printMode);
+    std::cout<<" < states \n";
+
     printVecAsBlock(&spikes[0], nt, printMode);
     std::cout<<" < spikes \n";
-
-    printVecAsBlock(&states[0], nt, printMode);
-    std::cout<<" < states";
 };
 
 /**

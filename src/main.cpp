@@ -28,13 +28,13 @@
  * @return      0 if successful
  */
 int main(int argc, const char *argv[]) {
-  int printMode = 0;
+  int printMode = 1;
   /*
   std::vector<double> trs = {0.1,0.1}; //transition rates
   std::vector<double> frs = {.1,.9}; //firing rates
   std::vector<double> pis = {.1,.9}; //initial state probabilities
    */
-  int nt = 1e3;
+  int nt = 200;//1e3;
   int nrep = 0; // 1e3;
 
   // HMMv myHMM = HMMv(2,2, trs, frs, pis);
@@ -50,6 +50,7 @@ int main(int argc, const char *argv[]) {
 
   float inputValue = 125.0;
 
+/* from debugging optional CMAKE arguments
   #ifdef USE_MYMATH
     const double outputValue = cmake::my::mysqrt(inputValue);
     std::cout << endl<< "use flag is defined !!" << endl;
@@ -58,12 +59,13 @@ int main(int argc, const char *argv[]) {
     std::cout << endl<< "use flag is undefined :( " <<endl<<endl;
   #endif
 
+
   //const double outputValue2 = cmake::my::mysqrt(inputValue);
   std::cout << outputValue <<endl;
   //<< "," << cmake::my::mysqrt(inputValue)<<endl;
   //outputValue;
   //std::cout << outputValue2;
-
+  */
     HMMv myHMM = HMMv(3, 3, trs, frs, pis);
 
  // myHMM.printMyParams();
@@ -87,12 +89,12 @@ int main(int argc, const char *argv[]) {
  //probabilities are reasonably implemented
  int stateSum = std::accumulate(myHMM.states.begin(), myHMM.states.end(), 0);
  double stateProb = double(stateSum)/double(nt);
- std::cout<< "\n avg output: "<<stateProb<<"\n";
+ //std::cout<< "\n avg output: "<<stateProb<<"\n";
 
- // printVecAsBlock(&vguess[0], nt,printMode);
+  printVecAsBlock(&vguess[0], nt,printMode);
   //std::vector<int> v = array2vec(&vguess[0], nt);
 /**/
-  std::cout << "<guessed states \n";
+  std::cout << " < guessed states \n";
 
   return 0;
 }

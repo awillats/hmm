@@ -31,9 +31,12 @@ see also: [`rtxi-hmmDecoder`](https://github.com/stanley-rozell/rtxi-hmmDecoder)
 	cd /path/to/repository
 	mkdir build && cd build
 	cmake .. #configure build
-	make #build the project
-	sudo make install #[optional] installs to default location (OS-specific)
+	cmake --build . #build the project
+	cmake --install . #[optional] installs to default location (OS-specific),
+	#use `--prefix` to install to a different directory
 	```
+	<!-- make #build the project
+	sudo make install #[optional] installs to default location (OS-specific) -->
 - for basic benchmarking and verification of a successful install
 ```shell
 ctest -N #list tests to be performed

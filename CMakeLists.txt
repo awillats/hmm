@@ -48,12 +48,12 @@ add_executable(${CMAKE_PROJECT_NAME} ${all_SRCS})
 
 add_subdirectory(src)
 
-option(USE_MYMATH "flag for using fake library" ON)
-if(USE_MYMATH)
-    add_subdirectory(fake_lib)
-    list(APPEND EXTRA_LIBS fake_lib)
-    #list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/fake_lib")
-endif()
+# option(USE_MYMATH "flag for using fake library" ON)
+# if(USE_MYMATH)
+#     add_subdirectory(fake_lib)
+#     list(APPEND EXTRA_LIBS fake_lib)
+#     #list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/fake_lib")
+# endif()
 
 #configure_file(${PROJECT_SOURCE_DIR}/include/${CMAKE_PROJECT_NAME}.in
 #  ${PROJECT_BINARY_DIR}/include/${CMAKE_PROJECT_NAME})
