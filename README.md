@@ -16,9 +16,11 @@ see also: [`rtxi-hmmDecoder`](https://github.com/stanley-rozell/rtxi-hmmDecoder)
 ## Repository Organization
 - `src` source files (*.cpp)
 - `include` header files (*.h)
-- `examples` demonstrating functionality
+- `examples` demonstrating functionality, includes tutorial
 - `matlab` for comparing matlab and C++ implementations
 - `scripts` utilities for setting up `hmm` library
+- `docs` files for creating Doxygen documentation
+- `legacy` old implementations (could likely be safely deleted)
 
 ## Dependencies
 - none?

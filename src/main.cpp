@@ -92,23 +92,6 @@ int main(int argc, const char *argv[]) {
 */
   HMMv myHMM = HMMv(nStates, nEmission, trs, frs, pis);
 
-
-/*
-  // std::vector<std::vector<double>> trs = {{0.9,0.1},{.1,.9}};
-  // std::vector<std::vector<double>> frs = {{0.9,0.05,0.05},{.1,0.45,.45}};
-  std::vector<std::vector<double>> trs = {
-      {0.8, 0.1, 0.1},
-       {.1, .8, .1},
-        {.1, .1, .8}};
-  std::vector<std::vector<double>> frs = {
-      {0.9, 0.05, 0.05},
-       {.15, 0.7, .15},
-        {.1, 0.1, .8}};
-
-  std::vector<double> pis = {.1, .9, .1};
-
-  HMMv myHMM = HMMv(3, 3, trs, frs, pis);
-*/
  // myHMM.printMyParams();
   myHMM.genSeq(nt);
 
