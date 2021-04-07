@@ -1,0 +1,108 @@
+\hypertarget{print_funs_8cpp}{}\doxysection{src/print\+Funs.cpp File Reference}
+\label{print_funs_8cpp}\index{src/printFuns.cpp@{src/printFuns.cpp}}
+
+
+helper functions for printing HMM parameters and sequences  
+
+
+{\ttfamily \#include $<$hmm.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{print_funs_8cpp_a4a096fa17f0aa53956c30774420928d0}{block\+Print}} (int bin, int print\+Mode)
+\begin{DoxyCompactList}\small\item\em \mbox{[}block\+Print description\mbox{]} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{print_funs_8cpp_a141d01c07c9474d12d6fd94c85970199}{print\+Mat}} (std\+::vector$<$ std\+::vector$<$ double $>$ $>$ mat)
+\begin{DoxyCompactList}\small\item\em formats and prints a \char`\"{}vec of vecs\char`\"{} matrix to cout \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{print_funs_8cpp_abe447dc230ab6dc5a55c55bd188e314d}{print\+Vec\+As\+Block}} (int $\ast$v, int veclen, int print\+Mode)
+\begin{DoxyCompactList}\small\item\em applies block\+Print to each item in a vector for within-\/console visualization \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{print_funs_8cpp_a3fd35d0e5ba4813e333f7ea7995cbb21}{print\+Vec}} (std\+::vector$<$ double $>$ v)
+\begin{DoxyCompactList}\small\item\em simply prints vector to cout as is \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+helper functions for printing HMM parameters and sequences 
+
+helper functions for printing hmm parameters and sequences \begin{DoxyAuthor}{Author}
+Adam Willats 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+7/19/17. 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{print_funs_8cpp_a4a096fa17f0aa53956c30774420928d0}\label{print_funs_8cpp_a4a096fa17f0aa53956c30774420928d0}} 
+\index{printFuns.cpp@{printFuns.cpp}!blockPrint@{blockPrint}}
+\index{blockPrint@{blockPrint}!printFuns.cpp@{printFuns.cpp}}
+\doxysubsubsection{\texorpdfstring{blockPrint()}{blockPrint()}}
+{\footnotesize\ttfamily std\+::string block\+Print (\begin{DoxyParamCaption}\item[{int}]{bin,  }\item[{int}]{print\+Mode }\end{DoxyParamCaption})}
+
+
+
+\mbox{[}block\+Print description\mbox{]} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bin} & integer indicating block category. Most likely 0 or 1. \\
+\hline
+{\em print\+Mode} & 0 for ints, 1 for block characters, 2 for \+\_\+\&$^\wedge$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string printed to represent block 
+\end{DoxyReturn}
+\mbox{\Hypertarget{print_funs_8cpp_a141d01c07c9474d12d6fd94c85970199}\label{print_funs_8cpp_a141d01c07c9474d12d6fd94c85970199}} 
+\index{printFuns.cpp@{printFuns.cpp}!printMat@{printMat}}
+\index{printMat@{printMat}!printFuns.cpp@{printFuns.cpp}}
+\doxysubsubsection{\texorpdfstring{printMat()}{printMat()}}
+{\footnotesize\ttfamily void print\+Mat (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::vector$<$ double $>$ $>$}]{mat }\end{DoxyParamCaption})}
+
+
+
+formats and prints a \char`\"{}vec of vecs\char`\"{} matrix to cout 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mat} & vector of vectors matrix to be printed to cout \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{print_funs_8cpp_a3fd35d0e5ba4813e333f7ea7995cbb21}\label{print_funs_8cpp_a3fd35d0e5ba4813e333f7ea7995cbb21}} 
+\index{printFuns.cpp@{printFuns.cpp}!printVec@{printVec}}
+\index{printVec@{printVec}!printFuns.cpp@{printFuns.cpp}}
+\doxysubsubsection{\texorpdfstring{printVec()}{printVec()}}
+{\footnotesize\ttfamily void print\+Vec (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$}]{v }\end{DoxyParamCaption})}
+
+
+
+simply prints vector to cout as is 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & vector to be printed \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{print_funs_8cpp_abe447dc230ab6dc5a55c55bd188e314d}{print\+Vec\+As\+Block()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{print_funs_8cpp_abe447dc230ab6dc5a55c55bd188e314d}\label{print_funs_8cpp_abe447dc230ab6dc5a55c55bd188e314d}} 
+\index{printFuns.cpp@{printFuns.cpp}!printVecAsBlock@{printVecAsBlock}}
+\index{printVecAsBlock@{printVecAsBlock}!printFuns.cpp@{printFuns.cpp}}
+\doxysubsubsection{\texorpdfstring{printVecAsBlock()}{printVecAsBlock()}}
+{\footnotesize\ttfamily void print\+Vec\+As\+Block (\begin{DoxyParamCaption}\item[{int $\ast$}]{v,  }\item[{int}]{veclen,  }\item[{int}]{print\+Mode }\end{DoxyParamCaption})}
+
+
+
+applies block\+Print to each item in a vector for within-\/console visualization 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & vector of integers to be printed \\
+\hline
+{\em veclen} & length of v \\
+\hline
+{\em print\+Mode} & 0 for ints, 1 for block characters, 2 for \+\_\+\&$^\wedge$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{print_funs_8cpp_a4a096fa17f0aa53956c30774420928d0}{block\+Print()}}, \mbox{\hyperlink{print_funs_8cpp_a3fd35d0e5ba4813e333f7ea7995cbb21}{print\+Vec()}} 
+\end{DoxySeeAlso}

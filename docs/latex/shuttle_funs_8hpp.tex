@@ -1,0 +1,87 @@
+\hypertarget{shuttle_funs_8hpp}{}\doxysection{include/hmm\+\_\+h/shuttle\+Funs.hpp File Reference}
+\label{shuttle_funs_8hpp}\index{include/hmm\_h/shuttleFuns.hpp@{include/hmm\_h/shuttleFuns.hpp}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}print\+Funs.\+hpp\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{shuttle_funs_8hpp_a2fe583465893d503d7b6f3eda44b109e}{array2vec}} (int $\ast$, int)
+\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{shuttle_funs_8hpp_adfd54a184fa3b63f94a8ba2e12d440f8}{array2vec}} (double $\ast$, int)
+\item 
+void \mbox{\hyperlink{shuttle_funs_8hpp_af626c0b015e857d934152c63c52bd0ff}{vec2array}} (std\+::vector$<$ double $>$, double $\ast$)
+\begin{DoxyCompactList}\small\item\em converts std\+::vector of doubles to array using std\+::copy \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{shuttle_funs_8hpp_a32b380265ac829ecfd23b3b310875d65}{mod\+Dub}} (double $\ast$)
+\begin{DoxyCompactList}\small\item\em modifies the value at a pointer location, for debuggin \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{shuttle_funs_8hpp_ad48ceb46d2e2977e26ae159c61dfdfa5}{mod\+Dub\+Vec}} (double $\ast$, int)
+\begin{DoxyCompactList}\small\item\em modifies the values across vector at a pointer location, for debuggin \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{shuttle_funs_8hpp_adfd54a184fa3b63f94a8ba2e12d440f8}\label{shuttle_funs_8hpp_adfd54a184fa3b63f94a8ba2e12d440f8}} 
+\index{shuttleFuns.hpp@{shuttleFuns.hpp}!array2vec@{array2vec}}
+\index{array2vec@{array2vec}!shuttleFuns.hpp@{shuttleFuns.hpp}}
+\doxysubsubsection{\texorpdfstring{array2vec()}{array2vec()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::vector$<$double$>$ array2vec (\begin{DoxyParamCaption}\item[{double $\ast$}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{shuttle_funs_8hpp_a2fe583465893d503d7b6f3eda44b109e}\label{shuttle_funs_8hpp_a2fe583465893d503d7b6f3eda44b109e}} 
+\index{shuttleFuns.hpp@{shuttleFuns.hpp}!array2vec@{array2vec}}
+\index{array2vec@{array2vec}!shuttleFuns.hpp@{shuttleFuns.hpp}}
+\doxysubsubsection{\texorpdfstring{array2vec()}{array2vec()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ array2vec (\begin{DoxyParamCaption}\item[{int $\ast$}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{shuttle_funs_8hpp_a32b380265ac829ecfd23b3b310875d65}\label{shuttle_funs_8hpp_a32b380265ac829ecfd23b3b310875d65}} 
+\index{shuttleFuns.hpp@{shuttleFuns.hpp}!modDub@{modDub}}
+\index{modDub@{modDub}!shuttleFuns.hpp@{shuttleFuns.hpp}}
+\doxysubsubsection{\texorpdfstring{modDub()}{modDub()}}
+{\footnotesize\ttfamily void mod\+Dub (\begin{DoxyParamCaption}\item[{double $\ast$}]{p\+Dub }\end{DoxyParamCaption})}
+
+
+
+modifies the value at a pointer location, for debuggin 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Dub} & pointer to double \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+for debug only 
+\end{DoxyWarning}
+\mbox{\Hypertarget{shuttle_funs_8hpp_ad48ceb46d2e2977e26ae159c61dfdfa5}\label{shuttle_funs_8hpp_ad48ceb46d2e2977e26ae159c61dfdfa5}} 
+\index{shuttleFuns.hpp@{shuttleFuns.hpp}!modDubVec@{modDubVec}}
+\index{modDubVec@{modDubVec}!shuttleFuns.hpp@{shuttleFuns.hpp}}
+\doxysubsubsection{\texorpdfstring{modDubVec()}{modDubVec()}}
+{\footnotesize\ttfamily void mod\+Dub\+Vec (\begin{DoxyParamCaption}\item[{double $\ast$}]{p\+Dub,  }\item[{int}]{len\+Dub }\end{DoxyParamCaption})}
+
+
+
+modifies the values across vector at a pointer location, for debuggin 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Dub} & pointer to start of vector of doubles \\
+\hline
+{\em len\+Dub} & length of vector of doubles \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+for debug only 
+\end{DoxyWarning}
+\mbox{\Hypertarget{shuttle_funs_8hpp_af626c0b015e857d934152c63c52bd0ff}\label{shuttle_funs_8hpp_af626c0b015e857d934152c63c52bd0ff}} 
+\index{shuttleFuns.hpp@{shuttleFuns.hpp}!vec2array@{vec2array}}
+\index{vec2array@{vec2array}!shuttleFuns.hpp@{shuttleFuns.hpp}}
+\doxysubsubsection{\texorpdfstring{vec2array()}{vec2array()}}
+{\footnotesize\ttfamily void vec2array (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$}]{v\+In,  }\item[{double $\ast$}]{ary }\end{DoxyParamCaption})}
+
+
+
+converts std\+::vector of doubles to array using std\+::copy 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v\+In} & std\+::vector in \\
+\hline
+{\em ary} & pointer to location where array should be copied \\
+\hline
+\end{DoxyParams}
