@@ -91,6 +91,7 @@ Thumbs.db
 
 # Specific to this project #
 ############################
-build/
+build/*
 .cache/
 *.prj
+
