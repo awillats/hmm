@@ -91,7 +91,8 @@ Thumbs.db
 
 # Specific to this project #
 ############################
-build/*
+/build/
+/misc/test-cmake-installation/build/
 .cache/
 *.prj
 
