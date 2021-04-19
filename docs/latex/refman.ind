@@ -1,77 +1,76 @@
 \begin{theindex}
 
+  \item {/Users/adam/Documents/GitHub/clocdev\_2021/hmm\_modules/hmm/src/hmm\_vec.cpp}, 
+		\hyperpage{3}
+  \item {/Users/adam/Documents/GitHub/clocdev\_2021/hmm\_modules/hmm/src/main.cpp}, 
+		\hyperpage{5}
+  \item {/Users/adam/Documents/GitHub/clocdev\_2021/hmm\_modules/hmm/src/printFuns.cpp}, 
+		\hyperpage{6}
+  \item {/Users/adam/Documents/GitHub/clocdev\_2021/hmm\_modules/hmm/src/shuttleFuns.cpp}, 
+		\hyperpage{8}
+
+  \indexspace
+
   \item {array2vec}
-    \subitem {shuttleFuns.cpp}, \hyperpage{12, 13}
+    \subitem {shuttleFuns.cpp}, \hyperpage{8, 9}
 
   \indexspace
 
   \item {blockPrint}
-    \subitem {printFuns.cpp}, \hyperpage{10}
-
-  \indexspace
-
-  \item {examples/README\_tutorial.md}, \hyperpage{7}
+    \subitem {printFuns.cpp}, \hyperpage{6}
 
   \indexspace
 
   \item {hmm\_vec.cpp}
-    \subitem {logE}, \hyperpage{8}
-    \subitem {setWarning}, \hyperpage{8}
-    \subitem {viterbi}, \hyperpage{8}
+    \subitem {logE}, \hyperpage{3}
+    \subitem {setWarning}, \hyperpage{4}
+    \subitem {viterbi}, \hyperpage{4}
 
   \indexspace
 
   \item {logE}
-    \subitem {hmm\_vec.cpp}, \hyperpage{8}
+    \subitem {hmm\_vec.cpp}, \hyperpage{3}
 
   \indexspace
 
   \item {main}
-    \subitem {main.cpp}, \hyperpage{9}
+    \subitem {main.cpp}, \hyperpage{5}
   \item {main.cpp}
-    \subitem {main}, \hyperpage{9}
+    \subitem {main}, \hyperpage{5}
   \item {modDub}
-    \subitem {shuttleFuns.cpp}, \hyperpage{13}
+    \subitem {shuttleFuns.cpp}, \hyperpage{9}
   \item {modDubVec}
-    \subitem {shuttleFuns.cpp}, \hyperpage{13}
+    \subitem {shuttleFuns.cpp}, \hyperpage{9}
 
   \indexspace
 
   \item {printFuns.cpp}
-    \subitem {blockPrint}, \hyperpage{10}
-    \subitem {printMat}, \hyperpage{11}
-    \subitem {printVec}, \hyperpage{11}
-    \subitem {printVecAsBlock}, \hyperpage{11}
+    \subitem {blockPrint}, \hyperpage{6}
+    \subitem {printMat}, \hyperpage{7}
+    \subitem {printVec}, \hyperpage{7}
+    \subitem {printVecAsBlock}, \hyperpage{7}
   \item {printMat}
-    \subitem {printFuns.cpp}, \hyperpage{11}
+    \subitem {printFuns.cpp}, \hyperpage{7}
   \item {printVec}
-    \subitem {printFuns.cpp}, \hyperpage{11}
+    \subitem {printFuns.cpp}, \hyperpage{7}
   \item {printVecAsBlock}
-    \subitem {printFuns.cpp}, \hyperpage{11}
-
-  \indexspace
-
-  \item {README.md}, \hyperpage{7}
+    \subitem {printFuns.cpp}, \hyperpage{7}
 
   \indexspace
 
   \item {setWarning}
-    \subitem {hmm\_vec.cpp}, \hyperpage{8}
+    \subitem {hmm\_vec.cpp}, \hyperpage{4}
   \item {shuttleFuns.cpp}
-    \subitem {array2vec}, \hyperpage{12, 13}
-    \subitem {modDub}, \hyperpage{13}
-    \subitem {modDubVec}, \hyperpage{13}
-    \subitem {vec2array}, \hyperpage{14}
-  \item {src/hmm\_vec.cpp}, \hyperpage{7}
-  \item {src/main.cpp}, \hyperpage{9}
-  \item {src/printFuns.cpp}, \hyperpage{10}
-  \item {src/shuttleFuns.cpp}, \hyperpage{12}
+    \subitem {array2vec}, \hyperpage{8, 9}
+    \subitem {modDub}, \hyperpage{9}
+    \subitem {modDubVec}, \hyperpage{9}
+    \subitem {vec2array}, \hyperpage{10}
 
   \indexspace
 
   \item {vec2array}
-    \subitem {shuttleFuns.cpp}, \hyperpage{14}
+    \subitem {shuttleFuns.cpp}, \hyperpage{10}
   \item {viterbi}
-    \subitem {hmm\_vec.cpp}, \hyperpage{8}
+    \subitem {hmm\_vec.cpp}, \hyperpage{4}
 
 \end{theindex}

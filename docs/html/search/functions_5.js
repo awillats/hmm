@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['importspksexportguess_54',['importSpksExportGuess',['../struct_h_m_mv.html#a52ace3cdc68df65d7cf4ce399ecfa7fa',1,'HMMv']]]
+  ['setwarning_33',['setWarning',['../hmm__vec_8cpp.html#a60f72dbd4105f5ad089367e861481d5f',1,'hmm_vec.cpp']]]
 ];

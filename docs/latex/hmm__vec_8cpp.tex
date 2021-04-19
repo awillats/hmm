@@ -1,5 +1,5 @@
-\hypertarget{hmm__vec_8cpp}{}\doxysection{src/hmm\+\_\+vec.cpp File Reference}
-\label{hmm__vec_8cpp}\index{src/hmm\_vec.cpp@{src/hmm\_vec.cpp}}
+\hypertarget{hmm__vec_8cpp}{}\doxysection{/\+Users/adam/\+Documents/\+Git\+Hub/clocdev\+\_\+2021/hmm\+\_\+modules/hmm/src/hmm\+\_\+vec.cpp File Reference}
+\label{hmm__vec_8cpp}\index{/Users/adam/Documents/GitHub/clocdev\_2021/hmm\_modules/hmm/src/hmm\_vec.cpp@{/Users/adam/Documents/GitHub/clocdev\_2021/hmm\_modules/hmm/src/hmm\_vec.cpp}}
 
 
 core functions for hmm, construction and decoding  
@@ -11,7 +11,7 @@ core functions for hmm, construction and decoding
 \item 
 double \mbox{\hyperlink{hmm__vec_8cpp_a16e2f7a9a17d80462ee5bf0632b83dfe}{logE}} (double val)
 \begin{DoxyCompactList}\small\item\em adds small constant before taking the logarithm, to avoid log(0) error \end{DoxyCompactList}\item 
-int $\ast$ \mbox{\hyperlink{hmm__vec_8cpp_a71557e16bbe79e984f60b05fde784837}{viterbi}} (\mbox{\hyperlink{struct_h_m_mv}{HMMv}} const \&hmm, std\+::vector$<$ int $>$ observed, const int n)
+int $\ast$ \mbox{\hyperlink{hmm__vec_8cpp_a71557e16bbe79e984f60b05fde784837}{viterbi}} (HMMv const \&hmm, std\+::vector$<$ int $>$ observed, const int n)
 \begin{DoxyCompactList}\small\item\em Uses the viterbi algorithm to estimate the most-\/likely state sequence. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{hmm__vec_8cpp_a60f72dbd4105f5ad089367e861481d5f}{set\+Warning}} (char $\ast$strin)
 \begin{DoxyCompactList}\small\item\em Simple macro to print to cout. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -69,7 +69,7 @@ mostly for debugging, could be removed
 \index{hmm\_vec.cpp@{hmm\_vec.cpp}!viterbi@{viterbi}}
 \index{viterbi@{viterbi}!hmm\_vec.cpp@{hmm\_vec.cpp}}
 \doxysubsubsection{\texorpdfstring{viterbi()}{viterbi()}}
-{\footnotesize\ttfamily int$\ast$ viterbi (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_h_m_mv}{HMMv}} const \&}]{hmm,  }\item[{std\+::vector$<$ int $>$}]{observed,  }\item[{const int}]{n }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int$\ast$ viterbi (\begin{DoxyParamCaption}\item[{HMMv const \&}]{hmm,  }\item[{std\+::vector$<$ int $>$}]{observed,  }\item[{const int}]{n }\end{DoxyParamCaption})}
 
 
 
