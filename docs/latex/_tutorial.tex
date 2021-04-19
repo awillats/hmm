@@ -1,20 +1,78 @@
 \hypertarget{_tutorial_autotoc_md0}{}\doxysubsection{Tutorial \& Technical Overview\+: How to use the HMM library}\label{_tutorial_autotoc_md0}
+\hypertarget{_tutorial_autotoc_md1}{}\doxysubsubsection{scope of this tutorial}\label{_tutorial_autotoc_md1}
+This tutorials is intended to demonstrate the
 
-\begin{DoxyItemize}
-\item scope of this tutorial
-\item relevant publications
-\end{DoxyItemize}\hypertarget{_tutorial_autotoc_md1}{}\doxysubsubsection{building a model}\label{_tutorial_autotoc_md1}
+As a reminder, this hmm toolbox is intended for applications with discrete or categorical observations
 
-\begin{DoxyItemize}
-\item parameters of an HMM (La\+TeX + diagram)
-\item (codeblock, snippet from \mbox{\hyperlink{main_8cpp}{main.\+cpp}}?)
-\end{DoxyItemize}\hypertarget{_tutorial_autotoc_md2}{}\doxysubsubsection{generating sequences}\label{_tutorial_autotoc_md2}
-\hypertarget{_tutorial_autotoc_md3}{}\doxysubsubsection{decoding states}\label{_tutorial_autotoc_md3}
 
-\begin{DoxyItemize}
-\item overview of Viterbi algorithm (La\+TeX)
-\end{DoxyItemize}\hypertarget{_tutorial_autotoc_md4}{}\doxysubsubsection{examining outputs}\label{_tutorial_autotoc_md4}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::vector<std::vector<double>> trs = \{\{0.9,0.1\},\{.1,.9\}\}; \textcolor{comment}{//transition probabilities, alpha}}
+\DoxyCodeLine{std::vector<std::vector<double>> frs = \{\{0.9,0.1\},\{.2,.8\}\}; \textcolor{comment}{//emission probabilities, eta}}
+\DoxyCodeLine{std::vector<double> pis = \{.1, .9\}; \textcolor{comment}{//initial state probabilites, pi}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} nStates = 2;}
+\DoxyCodeLine{\textcolor{keywordtype}{int} nEmission = 2;}
+\DoxyCodeLine{}
+\DoxyCodeLine{HMMv myHMM = HMMv(nStates, nEmission, trs, frs, pis);}
+\DoxyCodeLine{}
+\DoxyCodeLine{myHMM.printMyParams();}
 
-\begin{DoxyItemize}
-\item metrics of performance 
-\end{DoxyItemize}
+\end{DoxyCode}
+\hypertarget{_tutorial_autotoc_md2}{}\doxysubsubsection{relevant publications}\label{_tutorial_autotoc_md2}
+Foundational paper on viterbi decoding \href{google.com}{\texttt{ ref}}
+
+Tutorial-\/style paper for HMMs in neuroscience \href{google.com}{\texttt{ ref}}
+
+Efficient modifications of HMM decoding \href{google.com}{\texttt{ ref}}\hypertarget{_tutorial_autotoc_md3}{}\doxysubsubsection{building a model}\label{_tutorial_autotoc_md3}
+state transitions\+: $q(t)$
+
+\[ \left[ q_{t+1} \right] = \left[ \alpha \right] \left[ q_t \right] \] spike emissions\+: \[ s_{t} = Bernoulli( \eta(q_t) ) \]
+
+{\bfseries{The parameters of the spiking Hidden Markov Model (HMM)}} which get estimated in the training phase are the transition probabilities between states \[p(q_{k+1} = i | q_{k} = j) = a_{ij}\]
+
+the spiking probabilities for each of the states \[p(s_k = 1 | q_k = i) = \eta_i\]
+
+and the initial distribution over hidden states \[ p(q_{0} = i) = \pi_i \]
+
+We\textquotesingle{}ll call this collection of paramters \[ \Theta_{HMM} = \{\pi, a, \eta\} \]
+
+{\bfseries{Fitting parameters}}
+
+Estimating the parameters requires a guess for the state sequence and estimating the state sequence requires a guess for the parameters. This problem is solved by an establish alternating estimation scheme known generally as expectation-\/maximization, or Baum-\/\+Welch specifically for Hidden Markov Models.
+
+Currently parameter fitting is accomplished through MATLAB\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[TR\_estimated, EM\_estimated] = hmmtrain(emission\_sequence, TR\_guess, EM\_guess)}
+
+\end{DoxyCode}
+ These parameters can then be loaded into the \href{https://github.com/stanley-rozell/rtxi-hmmDecoder}{\texttt{ {\ttfamily rtxi-\/hmm\+Decoder}}} or \href{https://github.com/stanley-rozell/rtxi-hmmGenerator}{\texttt{ {\ttfamily rtxi-\/hmm\+Generator}}} modules as vectors of vectors in C++
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::vector<std::vector<double>> trs = \{\{0.9,0.1\},\{.1,.9\}\}; \textcolor{comment}{//transition probabilities, alpha}}
+\DoxyCodeLine{std::vector<std::vector<double>> frs = \{\{0.9,0.1\},\{.2,.8\}\}; \textcolor{comment}{//emission probabilities, eta}}
+\DoxyCodeLine{std::vector<double> pis = \{.1, .9\}; \textcolor{comment}{//initial state probabilites, pi}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} nStates = 2;}
+\DoxyCodeLine{\textcolor{keywordtype}{int} nEmission = 2;}
+\DoxyCodeLine{}
+\DoxyCodeLine{HMMv myHMM = HMMv(nStates, nEmission, trs, frs, pis);}
+\DoxyCodeLine{}
+\DoxyCodeLine{myHMM.printMyParams();}
+
+\end{DoxyCode}
+\hypertarget{_tutorial_autotoc_md4}{}\doxysubsubsection{generating sequences}\label{_tutorial_autotoc_md4}
+In order to simulate the Hidden Markov Model it is useful to generate a sequence of states ( $q$) and observations ( $s$) from a set of parameters ( $ \Theta_{HMM} = \{\pi, a, \eta\} $).
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{nt = 1000; \textcolor{comment}{//number of samples to generate}}
+\DoxyCodeLine{}
+\DoxyCodeLine{myHMM.genSeq(nt);}
+
+\end{DoxyCode}
+\hypertarget{_tutorial_autotoc_md5}{}\doxysubsubsection{decoding states -\/ overview of Viterbi algorithm}\label{_tutorial_autotoc_md5}
+The other subtask for training the HMM is to estimate the sequence of state transitions given a guess for the parameters. $ p(q | s, \Theta_{HMM} = \{\pi, a, \eta\}) $
+
+After the training phase, the parameters of the model are held fixed and states are estimated using the Viterbi algorithm, with a modification to discard old spiking dating which is no longer informative about the current state \href{Bloit2008.com}{\texttt{ \mbox{[}REF BLOIT\mbox{]}}}\hypertarget{_tutorial_autotoc_md6}{}\doxysubsubsection{examining outputs}\label{_tutorial_autotoc_md6}
+A key metric for evaluting the performance of HMM decoding is the accuracy which can be calculated simply as \[\textrm{accuracy} = \frac{\# \textrm{correctly classified samples}}{ \textrm{total num. of samples}} \] 

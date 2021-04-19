@@ -21,6 +21,13 @@
   $(document).ready(function() { init_search(); });
 /* @license-end */
 </script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -97,25 +104,25 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md5">Overview: HMM - Hidden Markov Models</a><ul><li class="level2"><a href="#autotoc_md6">Applications</a></li>
-<li class="level2"><a href="#autotoc_md7">Repository Organization</a></li>
-<li class="level2"><a href="#autotoc_md8">Dependencies</a></li>
-<li class="level2"><a href="#autotoc_md9">Compilation &amp; Installation</a></li>
-<li class="level2"><a href="#autotoc_md10">Tutorial: Understanding the HMM toolbox with</a></li>
-<li class="level2"><a href="#autotoc_md11">Common issues</a></li>
+<ul><li class="level1"><a href="#autotoc_md7">Overview: HMM - Hidden Markov Models</a><ul><li class="level2"><a href="#autotoc_md8">Applications</a></li>
+<li class="level2"><a href="#autotoc_md9">Repository Organization</a></li>
+<li class="level2"><a href="#autotoc_md10">Dependencies</a></li>
+<li class="level2"><a href="#autotoc_md11">Compilation &amp; Installation</a></li>
+<li class="level2"><a href="#autotoc_md12">Tutorial: Understanding the HMM toolbox with</a></li>
+<li class="level2"><a href="#autotoc_md13">Common issues</a></li>
 </ul>
 </li>
 </ul>
 </div>
-<div class="textblock"><h1><a class="anchor" id="autotoc_md5"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md7"></a>
 Overview: HMM - Hidden Markov Models</h1>
 <p><code>hmm</code> is a simple set of hidden Markov model (HMM) code intended to support control of switching linear dynamical systems.</p>
 <p>It contains methods for generating and decoding systems of the form:</p>
 <p><em>generative equations here - transition, emission</em></p>
-<h2><a class="anchor" id="autotoc_md6"></a>
+<h2><a class="anchor" id="autotoc_md8"></a>
 Applications</h2>
 <p>see also: <a href="https://github.com/stanley-rozell/rtxi-hmmDecoder"><code>rtxi-hmmDecoder</code></a> and <a href="https://github.com/stanley-rozell/rtxi-hmmGenerator"><code>rtxi-hmmGenerator</code></a> for application of this library in modules intended for the RTXI platform</p>
-<h2><a class="anchor" id="autotoc_md7"></a>
+<h2><a class="anchor" id="autotoc_md9"></a>
 Repository Organization</h2>
 <ul>
 <li><code>src</code> source files (*.cpp)</li>
@@ -126,12 +133,12 @@ Repository Organization</h2>
 <li><code>docs</code> files for creating Doxygen documentation</li>
 <li><code>legacy</code> old implementations (could likely be safely deleted)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md8"></a>
+<h2><a class="anchor" id="autotoc_md10"></a>
 Dependencies</h2>
 <ul>
-<li>none?</li>
+<li>none</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md9"></a>
+<h2><a class="anchor" id="autotoc_md11"></a>
 Compilation &amp; Installation</h2>
 <p>[ In Progress ]</p><ul>
 <li>For basic project build &amp; install ```shell cd /path/to/repository mkdir build &amp;&amp; cd build cmake .. #configure build cmake &ndash;build . #build the project cmake &ndash;install . #[optional] installs to default location (OS-specific), #use <code>--prefix</code> to install to a different directory ```</li>
@@ -139,12 +146,12 @@ Compilation &amp; Installation</h2>
 <div class="line">ctest -VV #execute tests</div>
 </div><!-- fragment --></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md10"></a>
+<h2><a class="anchor" id="autotoc_md12"></a>
 Tutorial: Understanding the HMM toolbox with</h2>
 <ul>
 <li><a class="el" href="_tutorial.html">See tutorial page here</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md11"></a>
+<h2><a class="anchor" id="autotoc_md13"></a>
 Common issues</h2>
 <p>sometimes, the first time I build after a clean install I get: `the C compiler "/opt/anaconda3/bin/x86_64-apple-darwin13.4.0-clang" is not able to compile a simple test program.` <br  />
  This happens when i'm in a conda environment with an older version of clang <code>conda deactive</code> usually fixes the issue </p>

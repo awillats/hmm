@@ -23,7 +23,7 @@ see also: [`rtxi-hmmDecoder`](https://github.com/stanley-rozell/rtxi-hmmDecoder)
 - `legacy` old implementations (could likely be safely deleted)
 
 ## Dependencies
-- none?
+- none
 
 ## Compilation & Installation
 

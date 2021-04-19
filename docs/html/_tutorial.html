@@ -21,6 +21,13 @@
   $(document).ready(function() { init_search(); });
 /* @license-end */
 </script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -93,10 +100,12 @@ $(document).ready(function(){initNavTree('_tutorial.html',''); initResizable(); 
 
 <div class="PageDoc"><div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><ul><li class="level2"><a href="#autotoc_md0">Tutorial &amp; Technical Overview: How to use the HMM library</a><ul><li class="level3"><a href="#autotoc_md1">building a model</a></li>
-<li class="level3"><a href="#autotoc_md2">generating sequences</a></li>
-<li class="level3"><a href="#autotoc_md3">decoding states</a></li>
-<li class="level3"><a href="#autotoc_md4">examining outputs</a></li>
+<ul><ul><li class="level2"><a href="#autotoc_md0">Tutorial &amp; Technical Overview: How to use the HMM library</a><ul><li class="level3"><a href="#autotoc_md1">scope of this tutorial</a></li>
+<li class="level3"><a href="#autotoc_md2">relevant publications</a></li>
+<li class="level3"><a href="#autotoc_md3">building a model</a></li>
+<li class="level3"><a href="#autotoc_md4">generating sequences</a></li>
+<li class="level3"><a href="#autotoc_md5">decoding states - overview of Viterbi algorithm</a></li>
+<li class="level3"><a href="#autotoc_md6">examining outputs</a></li>
 </ul>
 </li>
 </ul>
@@ -104,29 +113,76 @@ $(document).ready(function(){initNavTree('_tutorial.html',''); initResizable(); 
 </div>
 <div class="textblock"><h2><a class="anchor" id="autotoc_md0"></a>
 Tutorial &amp; Technical Overview: How to use the HMM library</h2>
-<ul>
-<li>scope of this tutorial</li>
-<li>relevant publications</li>
-</ul>
 <h3><a class="anchor" id="autotoc_md1"></a>
-building a model</h3>
-<ul>
-<li>parameters of an HMM (LaTeX + diagram)</li>
-<li>(codeblock, snippet from <a class="el" href="main_8cpp.html" title="basic usage of Hidden Markov Model code">main.cpp</a>?)</li>
-</ul>
-<h3><a class="anchor" id="autotoc_md2"></a>
-generating sequences</h3>
+scope of this tutorial</h3>
+<p>This tutorials is intended to demonstrate the</p>
+<p>As a reminder, this hmm toolbox is intended for applications with discrete or categorical observations</p>
+<div class="fragment"><div class="line">std::vector&lt;std::vector&lt;double&gt;&gt; trs = {{0.9,0.1},{.1,.9}}; <span class="comment">//transition probabilities, alpha</span></div>
+<div class="line">std::vector&lt;std::vector&lt;double&gt;&gt; frs = {{0.9,0.1},{.2,.8}}; <span class="comment">//emission probabilities, eta</span></div>
+<div class="line">std::vector&lt;double&gt; pis = {.1, .9}; <span class="comment">//initial state probabilites, pi</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> nStates = 2;</div>
+<div class="line"><span class="keywordtype">int</span> nEmission = 2;</div>
+<div class="line"> </div>
+<div class="line">HMMv myHMM = HMMv(nStates, nEmission, trs, frs, pis);</div>
+<div class="line"> </div>
+<div class="line">myHMM.printMyParams();</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md2"></a>
+relevant publications</h3>
+<p>Foundational paper on viterbi decoding <a href="google.com">ref</a></p>
+<p>Tutorial-style paper for HMMs in neuroscience <a href="google.com">ref</a></p>
+<p>Efficient modifications of HMM decoding <a href="google.com">ref</a></p>
 <h3><a class="anchor" id="autotoc_md3"></a>
-decoding states</h3>
-<ul>
-<li>overview of Viterbi algorithm (LaTeX)</li>
-</ul>
-<h3><a class="anchor" id="autotoc_md4"></a>
+building a model</h3>
+<p>state transitions: \(q(t)\)</p>
+<p class="formulaDsp">
+\[ \left[ q_{t+1} \right] = \left[ \alpha \right] \left[ q_t \right] \]
+</p>
+<p> spike emissions: </p><p class="formulaDsp">
+\[ s_{t} = Bernoulli( \eta(q_t) ) \]
+</p>
+<p><b>The parameters of the spiking Hidden Markov Model (HMM)</b> which get estimated in the training phase are the transition probabilities between states </p><p class="formulaDsp">
+\[p(q_{k+1} = i | q_{k} = j) = a_{ij}\]
+</p>
+<p>the spiking probabilities for each of the states </p><p class="formulaDsp">
+\[p(s_k = 1 | q_k = i) = \eta_i\]
+</p>
+<p>and the initial distribution over hidden states </p><p class="formulaDsp">
+\[ p(q_{0} = i) = \pi_i \]
+</p>
+<p>We'll call this collection of paramters </p><p class="formulaDsp">
+\[ \Theta_{HMM} = \{\pi, a, \eta\} \]
+</p>
+<p><b>Fitting parameters</b></p>
+<p>Estimating the parameters requires a guess for the state sequence and estimating the state sequence requires a guess for the parameters. This problem is solved by an establish alternating estimation scheme known generally as expectation-maximization, or Baum-Welch specifically for Hidden Markov Models.</p>
+<p>Currently parameter fitting is accomplished through MATLAB: </p><div class="fragment"><div class="line">[TR_estimated, EM_estimated] = hmmtrain(emission_sequence, TR_guess, EM_guess)</div>
+</div><!-- fragment --><p> These parameters can then be loaded into the <a href="https://github.com/stanley-rozell/rtxi-hmmDecoder"><code>rtxi-hmmDecoder</code></a> or <a href="https://github.com/stanley-rozell/rtxi-hmmGenerator"><code>rtxi-hmmGenerator</code></a> modules as vectors of vectors in C++</p>
+<div class="fragment"><div class="line">std::vector&lt;std::vector&lt;double&gt;&gt; trs = {{0.9,0.1},{.1,.9}}; <span class="comment">//transition probabilities, alpha</span></div>
+<div class="line">std::vector&lt;std::vector&lt;double&gt;&gt; frs = {{0.9,0.1},{.2,.8}}; <span class="comment">//emission probabilities, eta</span></div>
+<div class="line">std::vector&lt;double&gt; pis = {.1, .9}; <span class="comment">//initial state probabilites, pi</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> nStates = 2;</div>
+<div class="line"><span class="keywordtype">int</span> nEmission = 2;</div>
+<div class="line"> </div>
+<div class="line">HMMv myHMM = HMMv(nStates, nEmission, trs, frs, pis);</div>
+<div class="line"> </div>
+<div class="line">myHMM.printMyParams();</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md4"></a>
+generating sequences</h3>
+<p>In order to simulate the Hidden Markov Model it is useful to generate a sequence of states ( \(q\)) and observations ( \(s\)) from a set of parameters ( \( \Theta_{HMM} = \{\pi, a, \eta\} \)).</p>
+<div class="fragment"><div class="line">nt = 1000; <span class="comment">//number of samples to generate</span></div>
+<div class="line"> </div>
+<div class="line">myHMM.genSeq(nt);</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md5"></a>
+decoding states - overview of Viterbi algorithm</h3>
+<p>The other subtask for training the HMM is to estimate the sequence of state transitions given a guess for the parameters. \( p(q | s, \Theta_{HMM} = \{\pi, a, \eta\}) \)</p>
+<p>After the training phase, the parameters of the model are held fixed and states are estimated using the Viterbi algorithm, with a modification to discard old spiking dating which is no longer informative about the current state <a href="Bloit2008.com">[REF BLOIT]</a></p>
+<h3><a class="anchor" id="autotoc_md6"></a>
 examining outputs</h3>
-<ul>
-<li>metrics of performance </li>
-</ul>
-</div></div><!-- contents -->
+<p>A key metric for evaluting the performance of HMM decoding is the accuracy which can be calculated simply as </p><p class="formulaDsp">
+\[\textrm{accuracy} = \frac{\# \textrm{correctly classified samples}}{ \textrm{total num. of samples}} \]
+</p>
+ </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->
