@@ -9,38 +9,40 @@
 \contentsline {subsection}{\numberline {1.1.6}Common issues}{2}{subsection.1.1.6}%
 \contentsline {chapter}{\numberline {2}Tutorial}{3}{chapter.2}%
 \contentsline {subsection}{\numberline {2.0.1}Tutorial \& Technical Overview\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}: How to use the HMM library}{3}{subsection.2.0.1}%
-\contentsline {subsubsection}{\numberline {2.0.1.1}building a model}{3}{subsubsection.2.0.1.1}%
-\contentsline {subsubsection}{\numberline {2.0.1.2}generating sequences}{3}{subsubsection.2.0.1.2}%
-\contentsline {subsubsection}{\numberline {2.0.1.3}decoding states}{3}{subsubsection.2.0.1.3}%
-\contentsline {subsubsection}{\numberline {2.0.1.4}examining outputs}{3}{subsubsection.2.0.1.4}%
-\contentsline {chapter}{\numberline {3}File Index}{5}{chapter.3}%
-\contentsline {section}{\numberline {3.1}File List}{5}{section.3.1}%
-\contentsline {chapter}{\numberline {4}File Documentation}{7}{chapter.4}%
-\contentsline {section}{\numberline {4.1}/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Users/adam/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Documents/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Git\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Hub/clocdev\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}2021/hmm\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}modules/hmm/examples/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}README\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tutorial.md File Reference}{7}{section.4.1}%
-\contentsline {section}{\numberline {4.2}/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Users/adam/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Documents/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Git\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Hub/clocdev\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}2021/hmm\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}modules/hmm/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}README.md File Reference}{7}{section.4.2}%
-\contentsline {section}{\numberline {4.3}/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Users/adam/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Documents/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Git\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Hub/clocdev\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}2021/hmm\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}modules/hmm/src/hmm\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}vec.cpp File Reference}{7}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Detailed Description}{8}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Function Documentation}{8}{subsection.4.3.2}%
-\contentsline {subsubsection}{\numberline {4.3.2.1}logE()}{8}{subsubsection.4.3.2.1}%
-\contentsline {subsubsection}{\numberline {4.3.2.2}setWarning()}{8}{subsubsection.4.3.2.2}%
-\contentsline {subsubsection}{\numberline {4.3.2.3}viterbi()}{9}{subsubsection.4.3.2.3}%
-\contentsline {section}{\numberline {4.4}/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Users/adam/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Documents/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Git\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Hub/clocdev\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}2021/hmm\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}modules/hmm/src/main.cpp File Reference}{9}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Detailed Description}{10}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Function Documentation}{10}{subsection.4.4.2}%
-\contentsline {subsubsection}{\numberline {4.4.2.1}main()}{10}{subsubsection.4.4.2.1}%
-\contentsline {section}{\numberline {4.5}/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Users/adam/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Documents/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Git\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Hub/clocdev\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}2021/hmm\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}modules/hmm/src/print\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Funs.cpp File Reference}{10}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Detailed Description}{11}{subsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.5.2}Function Documentation}{11}{subsection.4.5.2}%
-\contentsline {subsubsection}{\numberline {4.5.2.1}blockPrint()}{11}{subsubsection.4.5.2.1}%
-\contentsline {subsubsection}{\numberline {4.5.2.2}printMat()}{12}{subsubsection.4.5.2.2}%
-\contentsline {subsubsection}{\numberline {4.5.2.3}printVec()}{12}{subsubsection.4.5.2.3}%
-\contentsline {subsubsection}{\numberline {4.5.2.4}printVecAsBlock()}{12}{subsubsection.4.5.2.4}%
-\contentsline {section}{\numberline {4.6}/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Users/adam/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Documents/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Git\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Hub/clocdev\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}2021/hmm\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}modules/hmm/src/shuttle\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Funs.cpp File Reference}{13}{section.4.6}%
-\contentsline {subsection}{\numberline {4.6.1}Detailed Description}{13}{subsection.4.6.1}%
-\contentsline {subsection}{\numberline {4.6.2}Function Documentation}{13}{subsection.4.6.2}%
-\contentsline {subsubsection}{\numberline {4.6.2.1}array2vec()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{13}{subsubsection.4.6.2.1}%
-\contentsline {subsubsection}{\numberline {4.6.2.2}array2vec()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{14}{subsubsection.4.6.2.2}%
-\contentsline {subsubsection}{\numberline {4.6.2.3}modDub()}{14}{subsubsection.4.6.2.3}%
-\contentsline {subsubsection}{\numberline {4.6.2.4}modDubVec()}{15}{subsubsection.4.6.2.4}%
-\contentsline {subsubsection}{\numberline {4.6.2.5}vec2array()}{15}{subsubsection.4.6.2.5}%
-\contentsline {chapter}{Index}{17}{section*.5}%
+\contentsline {subsubsection}{\numberline {2.0.1.1}scope of this tutorial}{3}{subsubsection.2.0.1.1}%
+\contentsline {subsubsection}{\numberline {2.0.1.2}relevant publications}{3}{subsubsection.2.0.1.2}%
+\contentsline {subsubsection}{\numberline {2.0.1.3}building a model}{3}{subsubsection.2.0.1.3}%
+\contentsline {subsubsection}{\numberline {2.0.1.4}generating sequences}{4}{subsubsection.2.0.1.4}%
+\contentsline {subsubsection}{\numberline {2.0.1.5}decoding states -\/ overview of Viterbi algorithm}{4}{subsubsection.2.0.1.5}%
+\contentsline {subsubsection}{\numberline {2.0.1.6}examining outputs}{5}{subsubsection.2.0.1.6}%
+\contentsline {chapter}{\numberline {3}File Index}{7}{chapter.3}%
+\contentsline {section}{\numberline {3.1}File List}{7}{section.3.1}%
+\contentsline {chapter}{\numberline {4}File Documentation}{9}{chapter.4}%
+\contentsline {section}{\numberline {4.1}/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Users/adam/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Documents/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Git\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Hub/clocdev\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}2021/hmm\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}modules/hmm/examples/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}README\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tutorial.md File Reference}{9}{section.4.1}%
+\contentsline {section}{\numberline {4.2}/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Users/adam/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Documents/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Git\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Hub/clocdev\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}2021/hmm\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}modules/hmm/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}README.md File Reference}{9}{section.4.2}%
+\contentsline {section}{\numberline {4.3}/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Users/adam/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Documents/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Git\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Hub/clocdev\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}2021/hmm\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}modules/hmm/src/hmm\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}vec.cpp File Reference}{9}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Detailed Description}{10}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Function Documentation}{10}{subsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.1}logE()}{10}{subsubsection.4.3.2.1}%
+\contentsline {subsubsection}{\numberline {4.3.2.2}setWarning()}{10}{subsubsection.4.3.2.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.3}viterbi()}{11}{subsubsection.4.3.2.3}%
+\contentsline {section}{\numberline {4.4}/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Users/adam/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Documents/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Git\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Hub/clocdev\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}2021/hmm\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}modules/hmm/src/main.cpp File Reference}{11}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Detailed Description}{12}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Function Documentation}{12}{subsection.4.4.2}%
+\contentsline {subsubsection}{\numberline {4.4.2.1}main()}{12}{subsubsection.4.4.2.1}%
+\contentsline {section}{\numberline {4.5}/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Users/adam/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Documents/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Git\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Hub/clocdev\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}2021/hmm\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}modules/hmm/src/print\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Funs.cpp File Reference}{12}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Detailed Description}{13}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Function Documentation}{13}{subsection.4.5.2}%
+\contentsline {subsubsection}{\numberline {4.5.2.1}blockPrint()}{13}{subsubsection.4.5.2.1}%
+\contentsline {subsubsection}{\numberline {4.5.2.2}printMat()}{14}{subsubsection.4.5.2.2}%
+\contentsline {subsubsection}{\numberline {4.5.2.3}printVec()}{14}{subsubsection.4.5.2.3}%
+\contentsline {subsubsection}{\numberline {4.5.2.4}printVecAsBlock()}{14}{subsubsection.4.5.2.4}%
+\contentsline {section}{\numberline {4.6}/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Users/adam/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Documents/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Git\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Hub/clocdev\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}2021/hmm\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}modules/hmm/src/shuttle\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Funs.cpp File Reference}{15}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}Detailed Description}{15}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Function Documentation}{15}{subsection.4.6.2}%
+\contentsline {subsubsection}{\numberline {4.6.2.1}array2vec()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{15}{subsubsection.4.6.2.1}%
+\contentsline {subsubsection}{\numberline {4.6.2.2}array2vec()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{16}{subsubsection.4.6.2.2}%
+\contentsline {subsubsection}{\numberline {4.6.2.3}modDub()}{16}{subsubsection.4.6.2.3}%
+\contentsline {subsubsection}{\numberline {4.6.2.4}modDubVec()}{17}{subsubsection.4.6.2.4}%
+\contentsline {subsubsection}{\numberline {4.6.2.5}vec2array()}{17}{subsubsection.4.6.2.5}%
+\contentsline {chapter}{Index}{19}{section*.5}%
