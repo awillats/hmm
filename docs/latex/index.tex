@@ -19,17 +19,31 @@ see also\+: \href{https://github.com/stanley-rozell/rtxi-hmmDecoder}{\texttt{ {\
 \begin{DoxyItemize}
 \item none
 \end{DoxyItemize}\hypertarget{index_autotoc_md11}{}\doxysubsection{Compilation \& Installation}\label{index_autotoc_md11}
-\mbox{[} In Progress \mbox{]}
-\begin{DoxyItemize}
-\item For basic project build \& install \`{}\`{}\`{}shell cd /path/to/repository mkdir build \&\& cd build cmake .. \#configure build cmake --build . \#build the project cmake --install . \#\mbox{[}optional\mbox{]} installs to default location (OS-\/specific), \#use {\ttfamily -\/-\/prefix} to install to a different directory \`{}\`{}\`{}
-\item for basic benchmarking and verification of a successful install 
+For basic project build \& install 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd /path/to/repository}
+\DoxyCodeLine{mkdir build \&\& cd build}
+\DoxyCodeLine{cmake .. \#configure build}
+\DoxyCodeLine{cmake -\/-\/build . \#build the project}
+\DoxyCodeLine{cmake -\/-\/install . \#[optional] installs to default location (OS-\/specific),}
+\DoxyCodeLine{\#use `-\/-\/prefix` to install to a different directory}
+
+\end{DoxyCode}
+
+
+For basic benchmarking and verification of a successful install 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{ctest -\/N \#list tests to be performed}
 \DoxyCodeLine{ctest -\/VV \#execute tests}
 
 \end{DoxyCode}
 
-\end{DoxyItemize}\hypertarget{index_autotoc_md12}{}\doxysubsection{Tutorial\+: Understanding the HMM toolbox with}\label{index_autotoc_md12}
+
+see the build and test process in action\+:
+
+
+
+\hypertarget{index_autotoc_md12}{}\doxysubsection{Tutorial\+: Understanding the HMM toolbox with}\label{index_autotoc_md12}
 
 \begin{DoxyItemize}
 \item \mbox{\hyperlink{_tutorial}{See tutorial page here}}

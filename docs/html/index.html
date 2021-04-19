@@ -140,12 +140,17 @@ Dependencies</h2>
 </ul>
 <h2><a class="anchor" id="autotoc_md11"></a>
 Compilation &amp; Installation</h2>
-<p>[ In Progress ]</p><ul>
-<li>For basic project build &amp; install ```shell cd /path/to/repository mkdir build &amp;&amp; cd build cmake .. #configure build cmake &ndash;build . #build the project cmake &ndash;install . #[optional] installs to default location (OS-specific), #use <code>--prefix</code> to install to a different directory ```</li>
-<li>for basic benchmarking and verification of a successful install <div class="fragment"><div class="line">ctest -N #list tests to be performed</div>
+<p>For basic project build &amp; install </p><div class="fragment"><div class="line">cd /path/to/repository</div>
+<div class="line">mkdir build &amp;&amp; cd build</div>
+<div class="line">cmake .. #configure build</div>
+<div class="line">cmake --build . #build the project</div>
+<div class="line">cmake --install . #[optional] installs to default location (OS-specific),</div>
+<div class="line">#use `--prefix` to install to a different directory</div>
+</div><!-- fragment --><p>For basic benchmarking and verification of a successful install </p><div class="fragment"><div class="line">ctest -N #list tests to be performed</div>
 <div class="line">ctest -VV #execute tests</div>
-</div><!-- fragment --></li>
-</ul>
+</div><!-- fragment --><p>see the build and test process in action:</p>
+<p><img src="/Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/docs/imgs/2state_console.png" alt="2 state results" width="700" class="inline"/></p>
+<p><img src="/Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/docs/imgs/HMM_install_example_video.gif" alt="build and test" width="700" class="inline"/></p>
 <h2><a class="anchor" id="autotoc_md12"></a>
 Tutorial: Understanding the HMM toolbox with</h2>
 <ul>

@@ -27,27 +27,32 @@ see also: [`rtxi-hmmDecoder`](https://github.com/stanley-rozell/rtxi-hmmDecoder)
 
 ## Compilation & Installation
 
-[ In Progress ]
-- For basic project build & install
-	```shell
-	cd /path/to/repository
-	mkdir build && cd build
-	cmake .. #configure build
-	cmake --build . #build the project
-	cmake --install . #[optional] installs to default location (OS-specific),
-	#use `--prefix` to install to a different directory
-	```
-	<!-- make #build the project
-	sudo make install #[optional] installs to default location (OS-specific) -->
-- for basic benchmarking and verification of a successful install
+For basic project build & install
+```shell
+cd /path/to/repository
+mkdir build && cd build
+cmake .. #configure build
+cmake --build . #build the project
+cmake --install . #[optional] installs to default location (OS-specific),
+#use `--prefix` to install to a different directory
+```
+<!-- make #build the project sudo make install #[optional] installs to default location (OS-specific) -->
+
+For basic benchmarking and verification of a successful install
 ```shell
 ctest -N #list tests to be performed
 ctest -VV #execute tests
 ```
 
+see the build and test process in action:
+
+<img src="/Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/docs/imgs/2state_console.png" alt="2 state results" width="700"/>
+
+<img src="/Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/docs/imgs/HMM_install_example_video.gif" alt="build and test" width="700"/>
+
+
 ## Tutorial: Understanding the HMM toolbox with
 - [See tutorial page here](@ref Tutorial)
-
 
 
 ## Common issues

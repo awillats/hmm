@@ -9,11 +9,12 @@ This tutorials is intended to demonstrate the basic components of a Hidden Marko
 As a reminder, this HMM toolbox is intended for applications with discrete or categorical observations.
 
 ### relevant publications
-Foundational paper on viterbi decoding [ ref ](google.com)
+[ A tutorial on hidden Markov models and selected applications in speech recognition
+(1989) Rabiner ](https://ieeexplore.ieee.org/document/18626)
 
-Tutorial-style paper for HMMs in neuroscience  [ ref](google.com)
+Tutorial-style paper for HMMs in neuroscience: [Hidden Markov models for the stimulus-response relationships of multistate neural systems (2011) Escola et al.](https://pubmed.ncbi.nlm.nih.gov/21299424/)
 
-Efficient modifications of HMM decoding [ ref ](google.com)
+Efficient modifications of HMM decoding: [Short-time Viterbi for online HMM decoding (2008) Bloit & Rodet](https://ieeexplore.ieee.org/document/4518061)
 
 ### building a model
 <!-- add diagram here -->
@@ -75,14 +76,14 @@ In order to simulate the Hidden Markov Model it is useful to generate a sequence
 
 ```cpp
 nt = 1000; //number of samples to generate
+printMode = 1; //print outputs as blocks
 
 myHMM.genSeq(nt);
 // sequence is stored internally
 // as this.spikes and this.states
 
-myHMM.printSeqs(1);
+myHMM.printSeqs(printMode);
 //print spikes and states to console
-// see printMode for various printing options
 ```
 (note genSeq is mostly useful in debugging, but is unlikely to be required in a final application of the decoder)
 
@@ -95,13 +96,18 @@ The other subtask for training the HMM is to estimate the sequence of state tran
 After the training phase, the parameters of the model are held fixed and states are estimated using the Viterbi algorithm, with a modification to discard old spiking dating which is no longer informative about the current state [ [REF BLOIT] ](Bloit2008.com)
 
 ```cpp
+//printMode = 1; //print outputs as blocks
+
 int* vguess = viterbi(myHMM, myHMM.spikes, nt);
 //decodes states
 
+myHMM.printSeqs(printMode);
+// print true state and spikes to console
 printVecAsBlock(&vguess[0], myHMM.ntPrint, printMode);
 //prints guessed state vector to the console
 
 ```
+<img src="/Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/docs/imgs/2state_console.png" alt="2 state results" width="700"/>
 
 ### examining outputs
 

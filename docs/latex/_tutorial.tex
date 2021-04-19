@@ -1,32 +1,18 @@
 \hypertarget{_tutorial_autotoc_md0}{}\doxysubsection{Tutorial \& Technical Overview\+: How to use the HMM library}\label{_tutorial_autotoc_md0}
 \hypertarget{_tutorial_autotoc_md1}{}\doxysubsubsection{scope of this tutorial}\label{_tutorial_autotoc_md1}
-This tutorials is intended to demonstrate the
+This tutorials is intended to demonstrate the basic components of a Hidden Markov Model and how to apply them using this toolbox.
 
-As a reminder, this hmm toolbox is intended for applications with discrete or categorical observations
+As a reminder, this HMM toolbox is intended for applications with discrete or categorical observations.\hypertarget{_tutorial_autotoc_md2}{}\doxysubsubsection{relevant publications}\label{_tutorial_autotoc_md2}
+\href{https://ieeexplore.ieee.org/document/18626}{\texttt{ A tutorial on hidden Markov models and selected applications in speech recognition (1989) Rabiner}}
 
+Tutorial-\/style paper for HMMs in neuroscience\+: \href{https://pubmed.ncbi.nlm.nih.gov/21299424/}{\texttt{ Hidden Markov models for the stimulus-\/response relationships of multistate neural systems (2011) Escola et al.}}
 
-\begin{DoxyCode}{0}
-\DoxyCodeLine{std::vector<std::vector<double>> trs = \{\{0.9,0.1\},\{.1,.9\}\}; \textcolor{comment}{//transition probabilities, alpha}}
-\DoxyCodeLine{std::vector<std::vector<double>> frs = \{\{0.9,0.1\},\{.2,.8\}\}; \textcolor{comment}{//emission probabilities, eta}}
-\DoxyCodeLine{std::vector<double> pis = \{.1, .9\}; \textcolor{comment}{//initial state probabilites, pi}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int} nStates = 2;}
-\DoxyCodeLine{\textcolor{keywordtype}{int} nEmission = 2;}
-\DoxyCodeLine{}
-\DoxyCodeLine{HMMv myHMM = HMMv(nStates, nEmission, trs, frs, pis);}
-\DoxyCodeLine{}
-\DoxyCodeLine{myHMM.printMyParams();}
+Efficient modifications of HMM decoding\+: \href{https://ieeexplore.ieee.org/document/4518061}{\texttt{ Short-\/time Viterbi for online HMM decoding (2008) Bloit \& Rodet}}\hypertarget{_tutorial_autotoc_md3}{}\doxysubsubsection{building a model}\label{_tutorial_autotoc_md3}
+for this tutorial we will call the latent, discrete-\/valued state $q_t$ and the observed discrete-\/valued emission signal $s_t$. In our applications $s_t$ is often a vector of binary spike counts.
 
-\end{DoxyCode}
-\hypertarget{_tutorial_autotoc_md2}{}\doxysubsubsection{relevant publications}\label{_tutorial_autotoc_md2}
-Foundational paper on viterbi decoding \href{google.com}{\texttt{ ref}}
+state transition probability\+:
 
-Tutorial-\/style paper for HMMs in neuroscience \href{google.com}{\texttt{ ref}}
-
-Efficient modifications of HMM decoding \href{google.com}{\texttt{ ref}}\hypertarget{_tutorial_autotoc_md3}{}\doxysubsubsection{building a model}\label{_tutorial_autotoc_md3}
-state transitions\+: $q(t)$
-
-\[ \left[ q_{t+1} \right] = \left[ \alpha \right] \left[ q_t \right] \] spike emissions\+: \[ s_{t} = Bernoulli( \eta(q_t) ) \]
+\[ \left[ q_{t+1} \right] = \left[ \alpha \right] \left[ q_t \right] \] spike emission probability\+: \[ s_{t} = Bernoulli( \eta(q_t) ) \] (note, while a Bernoulli emission process is shown here, this toolbox works with any probability density function)
 
 {\bfseries{The parameters of the spiking Hidden Markov Model (HMM)}} which get estimated in the training phase are the transition probabilities between states \[p(q_{k+1} = i | q_{k} = j) = a_{ij}\]
 
@@ -56,23 +42,46 @@ Currently parameter fitting is accomplished through MATLAB\+:
 \DoxyCodeLine{\textcolor{keywordtype}{int} nStates = 2;}
 \DoxyCodeLine{\textcolor{keywordtype}{int} nEmission = 2;}
 \DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//build the model as an instance of the HMMv class}}
 \DoxyCodeLine{HMMv myHMM = HMMv(nStates, nEmission, trs, frs, pis);}
 \DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//log the parameters to the console}}
 \DoxyCodeLine{myHMM.printMyParams();}
 
 \end{DoxyCode}
 \hypertarget{_tutorial_autotoc_md4}{}\doxysubsubsection{generating sequences}\label{_tutorial_autotoc_md4}
-In order to simulate the Hidden Markov Model it is useful to generate a sequence of states ( $q$) and observations ( $s$) from a set of parameters ( $ \Theta_{HMM} = \{\pi, a, \eta\} $).
+In order to simulate the Hidden Markov Model it is useful to generate a sequence of states ( $q$) and observations ( $s$) from a set of parameters ( $\Theta_{HMM} = \{\pi, a, \eta\}$).
 
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{nt = 1000; \textcolor{comment}{//number of samples to generate}}
+\DoxyCodeLine{printMode = 1; \textcolor{comment}{//print outputs as blocks}}
 \DoxyCodeLine{}
 \DoxyCodeLine{myHMM.genSeq(nt);}
+\DoxyCodeLine{\textcolor{comment}{// sequence is stored internally}}
+\DoxyCodeLine{\textcolor{comment}{// as this.spikes and this.states}}
+\DoxyCodeLine{}
+\DoxyCodeLine{myHMM.printSeqs(printMode);}
+\DoxyCodeLine{\textcolor{comment}{//print spikes and states to console}}
 
 \end{DoxyCode}
-\hypertarget{_tutorial_autotoc_md5}{}\doxysubsubsection{decoding states -\/ overview of Viterbi algorithm}\label{_tutorial_autotoc_md5}
-The other subtask for training the HMM is to estimate the sequence of state transitions given a guess for the parameters. $ p(q | s, \Theta_{HMM} = \{\pi, a, \eta\}) $
+ (note gen\+Seq is mostly useful in debugging, but is unlikely to be required in a final application of the decoder)\hypertarget{_tutorial_autotoc_md5}{}\doxysubsubsection{decoding states -\/ overview of Viterbi algorithm}\label{_tutorial_autotoc_md5}
+The other subtask for training the HMM is to estimate the sequence of state transitions given a guess for the parameters. $p(q | s, \Theta_{HMM} = \{\pi, a, \eta\})$
 
-After the training phase, the parameters of the model are held fixed and states are estimated using the Viterbi algorithm, with a modification to discard old spiking dating which is no longer informative about the current state \href{Bloit2008.com}{\texttt{ \mbox{[}REF BLOIT\mbox{]}}}\hypertarget{_tutorial_autotoc_md6}{}\doxysubsubsection{examining outputs}\label{_tutorial_autotoc_md6}
+After the training phase, the parameters of the model are held fixed and states are estimated using the Viterbi algorithm, with a modification to discard old spiking dating which is no longer informative about the current state \href{Bloit2008.com}{\texttt{ \mbox{[}REF BLOIT\mbox{]}}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//printMode = 1; //print outputs as blocks}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}* vguess = \mbox{\hyperlink{hmm__vec_8cpp_a71557e16bbe79e984f60b05fde784837}{viterbi}}(myHMM, myHMM.spikes, nt);}
+\DoxyCodeLine{\textcolor{comment}{//decodes states}}
+\DoxyCodeLine{}
+\DoxyCodeLine{myHMM.printSeqs(printMode);}
+\DoxyCodeLine{\textcolor{comment}{// print true state and spikes to console}}
+\DoxyCodeLine{\mbox{\hyperlink{print_funs_8cpp_abe447dc230ab6dc5a55c55bd188e314d}{printVecAsBlock}}(\&vguess[0], myHMM.ntPrint, printMode);}
+\DoxyCodeLine{\textcolor{comment}{//prints guessed state vector to the console}}
+
+\end{DoxyCode}
+ \hypertarget{_tutorial_autotoc_md6}{}\doxysubsubsection{examining outputs}\label{_tutorial_autotoc_md6}
 A key metric for evaluting the performance of HMM decoding is the accuracy which can be calculated simply as \[\textrm{accuracy} = \frac{\# \textrm{correctly classified samples}}{ \textrm{total num. of samples}} \] 
