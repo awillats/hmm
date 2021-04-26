@@ -105,3 +105,4 @@ Thumbs.db
 build/
 .cache/
 *.prj
+public
