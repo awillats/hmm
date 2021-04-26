@@ -32,7 +32,7 @@ var NAVTREE =
       [ "Compilation & Installation", "index.html#autotoc_md11", null ],
       [ "@ref Tutorial \"Tutorial: Understanding the HMM toolbox\"", "index.html#autotoc_md12", null ],
       [ "Common issues", "index.html#autotoc_md13", null ],
-      [ "<a href=\"@https://github.com/stanley-rozell/hmm\">Github</a>", "index.html#autotoc_md14", null ]
+      [ "<a href=\"https://github.com/stanley-rozell/hmm\">Github</a>", "index.html#autotoc_md14", null ]
     ] ],
     [ "Tutorial", "_tutorial.html", null ],
     [ "Files", "files.html", [
