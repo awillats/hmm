@@ -46,9 +46,9 @@ ctest -VV #execute tests
 
 see the build and test process in action:
 
-<img src="/Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/docs/imgs/2state_console.png" alt="2 state results" width="700"/>
+<img src="/docs/imgs/2state_console.png" alt="2 state results" width="700"/>
 
-<img src="/Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/docs/imgs/HMM_install_example_video.gif" alt="build and test" width="700"/>
+<img src="/docs/imgs/HMM_install_example_video.gif" alt="build and test" width="700"/>
 
 
 ## Tutorial: Understanding the HMM toolbox with
