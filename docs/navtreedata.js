@@ -30,8 +30,9 @@ var NAVTREE =
       [ "Repository Organization", "index.html#autotoc_md9", null ],
       [ "Dependencies", "index.html#autotoc_md10", null ],
       [ "Compilation & Installation", "index.html#autotoc_md11", null ],
-      [ "Tutorial: Understanding the HMM toolbox with", "index.html#autotoc_md12", null ],
-      [ "Common issues", "index.html#autotoc_md13", null ]
+      [ "@ref Tutorial \"Tutorial: Understanding the HMM toolbox\"", "index.html#autotoc_md12", null ],
+      [ "Common issues", "index.html#autotoc_md13", null ],
+      [ "<a href=\"@https://github.com/stanley-rozell/hmm\">Github</a>", "index.html#autotoc_md14", null ]
     ] ],
     [ "Tutorial", "_tutorial.html", null ],
     [ "Files", "files.html", [

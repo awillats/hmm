@@ -22,7 +22,7 @@ and the initial distribution over hidden states \[ p(q_{0} = i) = \pi_i \]
 
 We\textquotesingle{}ll call this collection of paramters \[ \Theta_{HMM} = \{\pi, a, \eta\} \]
 
-{\bfseries{Fitting parameters}}
+{\bfseries{fitting parameters}}
 
 Estimating the parameters requires a guess for the state sequence and estimating the state sequence requires a guess for the parameters. This problem is solved by an establish alternating estimation scheme known generally as expectation-\/maximization, or Baum-\/\+Welch specifically for Hidden Markov Models.
 
@@ -35,8 +35,8 @@ Currently parameter fitting is accomplished through MATLAB\+:
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\textcolor{comment}{// std::vector<std::vector<double>> trs = \{\{0.9,0.1\},\{.1,.9\}\}; //transition probabilities, alpha}}
-\DoxyCodeLine{\textcolor{comment}{// std::vector<std::vector<double>> frs = \{\{0.9,0.1\},\{.2,.8\}\}; //emission probabilities, eta}}
+\DoxyCodeLine{std::vector<std::vector<double>> trs = \{\{0.9,0.1\},\{.1,.9\}\}; \textcolor{comment}{//transition probabilities, alpha}}
+\DoxyCodeLine{std::vector<std::vector<double>> frs = \{\{0.9,0.1\},\{.2,.8\}\}; \textcolor{comment}{//emission probabilities, eta}}
 \DoxyCodeLine{std::vector<double> pis = \{.1, .9\}; \textcolor{comment}{//initial state probabilites, pi}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keywordtype}{int} nStates = 2;}
