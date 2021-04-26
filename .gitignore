@@ -80,14 +80,6 @@ Thumbs.db
 *.ns5
 *.h5
 
-# Ignore figures. #
-###################
-*.pdf
-*.svg
-*.eps
-*.png
-*.tif
-*.jpg
 
 # Ignore Videos. #
 ##################

@@ -1,7 +1,7 @@
 @mainpage
 @tableofcontents
 # Overview: HMM - Hidden Markov Models
-`hmm` is a simple set of hidden Markov model (HMM) code intended to support control of switching linear dynamical systems.
+`hmm` is a simple set of hidden Markov model (HMM) [code](https://github.com/stanley-rozell/hmm) intended to support control of switching linear dynamical systems.
 
 It contains methods for generating and decoding systems of the form:
 
@@ -50,8 +50,8 @@ ctest -VV #execute tests
 <img src="./imgs/2state_console.png" alt="2 state results" width="700"/>
 
 
-## [Tutorial: Understanding the HMM toolbox](@ref Tutorial)
-- [See tutorial page here](@ref Tutorial)
+## Tutorial: Understanding the HMM toolbox
+- [see tutorial page here](@ref Tutorial)
 
 
 ## Common issues
@@ -62,8 +62,8 @@ sometimes, the first time I build after a clean install I get:
 This happens when i'm in a conda environment with an older version of clang
 `conda deactive` usually fixes the issue
 
-## [Github](@https://github.com/stanley-rozell/hmm)
-
+##  GitHub Page
+  - [see code here](https://github.com/stanley-rozell/hmm)
 <!--
 ```error: non-aggregate type 'std::vector<std::vector<double> >' cannot be initialized with an initializer list```
 
