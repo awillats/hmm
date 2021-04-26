@@ -149,8 +149,8 @@ building a model</h3>
 <p>Estimating the parameters requires a guess for the state sequence and estimating the state sequence requires a guess for the parameters. This problem is solved by an establish alternating estimation scheme known generally as expectation-maximization, or Baum-Welch specifically for Hidden Markov Models.</p>
 <p>Currently parameter fitting is accomplished through MATLAB: </p><div class="fragment"><div class="line">[TR_estimated, EM_estimated] = hmmtrain(emission_sequence, TR_guess, EM_guess)</div>
 </div><!-- fragment --><p> These parameters can then be loaded into the <a href="https://github.com/stanley-rozell/rtxi-hmmDecoder"><code>rtxi-hmmDecoder</code></a> or <a href="https://github.com/stanley-rozell/rtxi-hmmGenerator"><code>rtxi-hmmGenerator</code></a> modules as vectors of vectors in C++</p>
-<div class="fragment"><div class="line">std::vector&lt;std::vector&lt;double&gt;&gt; trs = {{0.9,0.1},{.1,.9}}; <span class="comment">//transition probabilities, alpha</span></div>
-<div class="line">std::vector&lt;std::vector&lt;double&gt;&gt; frs = {{0.9,0.1},{.2,.8}}; <span class="comment">//emission probabilities, eta</span></div>
+<div class="fragment"><div class="line"><span class="comment">// std::vector&lt;std::vector&lt;double&gt;&gt; trs = {{0.9,0.1},{.1,.9}}; //transition probabilities, alpha</span></div>
+<div class="line"><span class="comment">// std::vector&lt;std::vector&lt;double&gt;&gt; frs = {{0.9,0.1},{.2,.8}}; //emission probabilities, eta</span></div>
 <div class="line">std::vector&lt;double&gt; pis = {.1, .9}; <span class="comment">//initial state probabilites, pi</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> nStates = 2;</div>
