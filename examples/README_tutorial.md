@@ -31,7 +31,7 @@ spike emission probability:
 \f[
 s_{t} = Bernoulli( \eta(q_t) )
 \f]
-(note, while a Bernoulli emission process is shown here, this toolbox works with any probability density function)
+(note, while a Bernoulli emission process is shown here, this toolbox works with any probability mass function)
 
 **The parameters of the spiking Hidden Markov Model (HMM)** which get estimated in the training phase are the transition probabilities between states
 \f[p(q_{k+1} = i | q_{k} = j)  = a_{ij}\f]

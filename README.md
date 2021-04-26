@@ -3,10 +3,7 @@
 # Overview: HMM - Hidden Markov Models
 `hmm` is a simple set of hidden Markov model (HMM) [code](https://github.com/stanley-rozell/hmm) intended to support control of switching linear dynamical systems.
 
-It contains methods for generating and decoding systems of the form:
-
-_generative equations here - transition, emission_
-
+It contains methods for generating and decoding systems with discrete latent states and discrete observed signals.
 
 ## Applications
 

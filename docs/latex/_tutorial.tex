@@ -12,7 +12,7 @@ for this tutorial we will call the latent, discrete-\/valued state $q_t$ and the
 
 state transition probability\+:
 
-\[ \left[ q_{t+1} \right] = \left[ \alpha \right] \left[ q_t \right] \] spike emission probability\+: \[ s_{t} = Bernoulli( \eta(q_t) ) \] (note, while a Bernoulli emission process is shown here, this toolbox works with any probability density function)
+\[ \left[ q_{t+1} \right] = \left[ \alpha \right] \left[ q_t \right] \] spike emission probability\+: \[ s_{t} = Bernoulli( \eta(q_t) ) \] (note, while a Bernoulli emission process is shown here, this toolbox works with any probability mass function)
 
 {\bfseries{The parameters of the spiking Hidden Markov Model (HMM)}} which get estimated in the training phase are the transition probabilities between states \[p(q_{k+1} = i | q_{k} = j) = a_{ij}\]
 
