@@ -107,7 +107,7 @@ printVecAsBlock(&vguess[0], myHMM.ntPrint, printMode);
 //prints guessed state vector to the console
 
 ```
-<img src="./docs/imgs/2state_console.png" alt="2 state results" width="700"/>
+<img src="../docs/imgs/2state_console.png" alt="2 state results" width="700"/>
 
 ### examining outputs
 
