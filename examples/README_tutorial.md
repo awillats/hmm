@@ -56,8 +56,8 @@ Currently parameter fitting is accomplished through MATLAB:
 These parameters can then be loaded into the [`rtxi-hmmDecoder`](https://github.com/stanley-rozell/rtxi-hmmDecoder) or [`rtxi-hmmGenerator`](https://github.com/stanley-rozell/rtxi-hmmGenerator) modules as vectors of vectors in C++
 
 ```cpp
-std::vector<std::vector<double>> trs = {{0.9,0.1},{.1,.9}}; //transition probabilities, alpha
-std::vector<std::vector<double>> frs = {{0.9,0.1},{.2,.8}}; //emission probabilities, eta
+// std::vector<std::vector<double>> trs = {{0.9,0.1},{.1,.9}}; //transition probabilities, alpha
+// std::vector<std::vector<double>> frs = {{0.9,0.1},{.2,.8}}; //emission probabilities, eta
 std::vector<double> pis = {.1, .9}; //initial state probabilites, pi
 
 int nStates = 2;
