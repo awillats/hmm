@@ -25,13 +25,14 @@
 var NAVTREE =
 [
   [ "HMM", "index.html", [
-    [ "Overview: HMM - Hidden Markov Models", "index.html#autotoc_md5", [
-      [ "Applications", "index.html#autotoc_md6", null ],
-      [ "Repository Organization", "index.html#autotoc_md7", null ],
-      [ "Dependencies", "index.html#autotoc_md8", null ],
-      [ "Compilation & Installation", "index.html#autotoc_md9", null ],
-      [ "Tutorial: Understanding the HMM toolbox with", "index.html#autotoc_md10", null ],
-      [ "Common issues", "index.html#autotoc_md11", null ]
+    [ "Overview: HMM - Hidden Markov Models", "index.html#autotoc_md7", [
+      [ "Applications", "index.html#autotoc_md8", null ],
+      [ "Repository Organization", "index.html#autotoc_md9", null ],
+      [ "Dependencies", "index.html#autotoc_md10", null ],
+      [ "Compilation & Installation", "index.html#autotoc_md11", null ],
+      [ "Tutorial: Understanding the HMM toolbox", "index.html#autotoc_md12", null ],
+      [ "Common issues", "index.html#autotoc_md13", null ],
+      [ "GitHub Page", "index.html#autotoc_md14", null ]
     ] ],
     [ "Tutorial", "_tutorial.html", null ],
     [ "Files", "files.html", [
