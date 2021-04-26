@@ -1,4 +1,4 @@
-baseURL = "https://stanley-rozell.github.io/hmm"
+baseURL = "https://stanley-rozell.github.io/hmm/"
 languageCode = "en-us"
 title = "Hidden Markov Models"
 theme="fuji"
