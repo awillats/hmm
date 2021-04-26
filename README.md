@@ -1,12 +1,9 @@
 @mainpage
 @tableofcontents
 # Overview: HMM - Hidden Markov Models
-`hmm` is a simple set of hidden Markov model (HMM) code intended to support control of switching linear dynamical systems.
+`hmm` is a simple set of hidden Markov model (HMM) [code](https://github.com/stanley-rozell/hmm) intended to support control of switching linear dynamical systems.
 
-It contains methods for generating and decoding systems of the form:
-
-_generative equations here - transition, emission_
-
+It contains methods for generating and decoding systems with discrete latent states and discrete observed signals.
 
 ## Applications
 
@@ -23,31 +20,35 @@ see also: [`rtxi-hmmDecoder`](https://github.com/stanley-rozell/rtxi-hmmDecoder)
 - `legacy` old implementations (could likely be safely deleted)
 
 ## Dependencies
-- none?
+- none
 
 ## Compilation & Installation
 
-[ In Progress ]
-- For basic project build & install
-	```shell
-	cd /path/to/repository
-	mkdir build && cd build
-	cmake .. #configure build
-	cmake --build . #build the project
-	cmake --install . #[optional] installs to default location (OS-specific),
-	#use `--prefix` to install to a different directory
-	```
-	<!-- make #build the project
-	sudo make install #[optional] installs to default location (OS-specific) -->
-- for basic benchmarking and verification of a successful install
+For basic project build & install
+```shell
+cd /path/to/repository
+mkdir build && cd build
+cmake .. #configure build
+cmake --build . #build the project
+cmake --install . #[optional] installs to default location (OS-specific),
+#use `--prefix` to install to a different directory
+```
+<!-- make #build the project sudo make install #[optional] installs to default location (OS-specific) -->
+
+see the build and test process in action:
+<img src="./imgs/HMM_install_example_video.gif" alt="build and test" width="700"/>
+
+For basic benchmarking and verification of a successful install
 ```shell
 ctest -N #list tests to be performed
 ctest -VV #execute tests
 ```
 
-## Tutorial: Understanding the HMM toolbox with
-- [See tutorial page here](@ref Tutorial)
+<img src="./imgs/2state_console.png" alt="2 state results" width="700"/>
 
+
+## Tutorial: Understanding the HMM toolbox
+- [see tutorial page here](@ref Tutorial)
 
 
 ## Common issues
@@ -58,6 +59,8 @@ sometimes, the first time I build after a clean install I get:
 This happens when i'm in a conda environment with an older version of clang
 `conda deactive` usually fixes the issue
 
+##  GitHub Page
+  - [see code here](https://github.com/stanley-rozell/hmm)
 <!--
 ```error: non-aggregate type 'std::vector<std::vector<double> >' cannot be initialized with an initializer list```
 

@@ -115,7 +115,7 @@ int main(int argc, const char *argv[]) {
  double stateProb = double(stateSum)/double(nt);
  //std::cout<< "\n avg output: "<<stateProb<<"\n";
 
- printVecAsBlock(&vguess[0], myHMM.ntPrint,printMode);
+ printVecAsBlock(&vguess[0], myHMM.ntPrint, printMode);
   //std::vector<int> v = array2vec(&vguess[0], nt);
 /**/
   std::cout << " < guessed states \n";
