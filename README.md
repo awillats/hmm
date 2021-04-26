@@ -38,20 +38,19 @@ cmake --install . #[optional] installs to default location (OS-specific),
 ```
 <!-- make #build the project sudo make install #[optional] installs to default location (OS-specific) -->
 
+see the build and test process in action:
+<img src="./imgs/HMM_install_example_video.gif" alt="build and test" width="700"/>
+
 For basic benchmarking and verification of a successful install
 ```shell
 ctest -N #list tests to be performed
 ctest -VV #execute tests
 ```
 
-see the build and test process in action:
-
-<img src="./docs/imgs/2state_console.png" alt="2 state results" width="700"/>
-
-<img src="./docs/imgs/HMM_install_example_video.gif" alt="build and test" width="700"/>
+<img src="./imgs/2state_console.png" alt="2 state results" width="700"/>
 
 
-## Tutorial: Understanding the HMM toolbox with
+## [Tutorial: Understanding the HMM toolbox](@ref Tutorial)
 - [See tutorial page here](@ref Tutorial)
 
 
@@ -62,6 +61,8 @@ sometimes, the first time I build after a clean install I get:
   is not able to compile a simple test program.`  
 This happens when i'm in a conda environment with an older version of clang
 `conda deactive` usually fixes the issue
+
+## [Github](@https://github.com/stanley-rozell/hmm)
 
 <!--
 ```error: non-aggregate type 'std::vector<std::vector<double> >' cannot be initialized with an initializer list```

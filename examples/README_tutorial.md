@@ -1,6 +1,7 @@
 @page Tutorial
 @tableofcontents
-
+<!-- Nicer notation here: -->
+<!-- https://web.stanford.edu/~jurafsky/slp3/A.pdf -->
 ## Tutorial & Technical Overview: How to use the HMM library
 
 ### scope of this tutorial
@@ -45,7 +46,7 @@ We'll call this collection of paramters
 \f[ \Theta_{HMM} = \{\pi, a, \eta\} \f]
 
 
-**Fitting parameters**
+**fitting parameters**
 
 Estimating the parameters requires a guess for the state sequence and estimating the state sequence requires a guess for the parameters. This problem is solved by an establish alternating estimation scheme known generally as expectation-maximization, or Baum-Welch specifically for Hidden Markov Models.
 
@@ -56,8 +57,8 @@ Currently parameter fitting is accomplished through MATLAB:
 These parameters can then be loaded into the [`rtxi-hmmDecoder`](https://github.com/stanley-rozell/rtxi-hmmDecoder) or [`rtxi-hmmGenerator`](https://github.com/stanley-rozell/rtxi-hmmGenerator) modules as vectors of vectors in C++
 
 ```cpp
-// std::vector<std::vector<double>> trs = {{0.9,0.1},{.1,.9}}; //transition probabilities, alpha
-// std::vector<std::vector<double>> frs = {{0.9,0.1},{.2,.8}}; //emission probabilities, eta
+std::vector<std::vector<double>> trs = {{0.9,0.1},{.1,.9}}; //transition probabilities, alpha
+std::vector<std::vector<double>> frs = {{0.9,0.1},{.2,.8}}; //emission probabilities, eta
 std::vector<double> pis = {.1, .9}; //initial state probabilites, pi
 
 int nStates = 2;
@@ -107,7 +108,7 @@ printVecAsBlock(&vguess[0], myHMM.ntPrint, printMode);
 //prints guessed state vector to the console
 
 ```
-<img src="../docs/imgs/2state_console.png" alt="2 state results" width="700"/>
+<img src="./imgs/2state_console.png" alt="2 state results" width="700"/>
 
 ### examining outputs
 
