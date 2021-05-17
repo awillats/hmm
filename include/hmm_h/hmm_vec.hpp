@@ -51,6 +51,8 @@ struct HMMv {
     //https://stackoverflow.com/questions/18795776/error-no-matching-function-for-call-to-when-constructing-an-unintialized-stru
     HMMv(): nstates(2), nevents(2) { ;};
 
+
+
    //constructor where you just specify the firing and transition rate vectors, note should only work for 2 states...
     HMMv(int nstates, int nevents, std::vector< double> vTr, std::vector< double> vFr, std::vector<double> PI):
     nstates(nstates), nevents(nevents), PI(PI) {
@@ -93,6 +95,7 @@ struct HMMv {
         //printMyParams();
     }
     //alternate more direct constructor? or just a consequence of the block above?
+    //not sure what this TR_ is doing here...
     HMMv(int nstates, int nevents, std::vector< std::vector<double> > TR_, std::vector< std::vector<double> > EM, std::vector<double> PI):
     nstates(nstates), nevents(nevents), TR(TR_), EM(EM),  PI(PI) {
         assert(nstates > 0); assert(nevents > 0);
@@ -125,8 +128,21 @@ struct HMMv {
         }
         //EM.push_back(EM[i])
         printMyParams();
-
     }
+
+    // https://stackoverflow.com/questions/308276/can-i-call-a-constructor-from-another-constructor-do-constructor-chaining-in-c
+    HMMv(int nstates, int nevents):HMMv(nstates, nevents, simpleTransMat(nstates), simpleEmissMat(nstates,nevents), simplePriorVec(nstates))
+    {
+        // std::vector< std::vector<double> > gTR, gEM;
+        // std::vector<double> gPI;
+        // gPI = HMMv::simplePriorVec(nstates);
+        // gTR = HMMv::simpleEmissMat(nstates,nevents);
+        // gEM = HMMv::simpleTransMat(nstates);
+        // std::cout<<endl<<"did params generate?";
+        // printMat(gEM);
+        // HMMv(nstates, nevents, gTR, gEM, gPI);
+    };
+
 
 //TO-DO: should these functions be explictly declared as public?
    //friend std::vector<int> genStates(HMMv const& hmm);
@@ -142,7 +158,7 @@ public:
     //would be used like:
     //    HMMv myHMM = HMMv(nStates, nEmission, simpleTransMat(nStates), simpleTransMat(nStates,nEmission), simplePriorVec(nStates));
     // or could be broken into multiple lines to record generated parameters
-    
+
     std::vector<int> genSeq(int);
     void setWarning(char *);
     void printMyParams();
