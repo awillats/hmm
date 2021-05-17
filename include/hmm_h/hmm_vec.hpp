@@ -128,13 +128,25 @@ struct HMMv {
 
     }
 
+//TO-DO: should these functions be explictly declared as public?
    //friend std::vector<int> genStates(HMMv const& hmm);
    friend int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n);
    friend void printMat(std::vector< std::vector<double> >);
+   // friend std::vector< std::vector<double> > simpleTransMat(int); //nstates
+   // friend std::vector< std::vector<double> > simpleEmissMat(int,int); //nstates, nemisions
+   // friend std::vector< double > simplePriorVec(int); //nstates
 
 public:
+
+
+//would be used like:
+//    HMMv myHMM = HMMv(nStates, nEmission, simpleTransMat(nStates), simpleTransMat(nStates,nEmission), simplePriorVec(nStates));
+// or could be broken into multiple lines to record generated parameters
+    std::vector< double > simplePriorVec(int); //nstates
+    std::vector< std::vector<double> > simpleTransMat(int); //nstates
+    std::vector< std::vector<double> > simpleEmissMat(int,int); //nstates, nemisions
     std::vector<int> genSeq(int);
-    //void setWarning(char *);
+    void setWarning(char *);
     void printMyParams();
     void printSeqs(int);
     void exportSeqs(int *, int *);

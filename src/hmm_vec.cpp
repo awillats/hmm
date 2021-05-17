@@ -14,7 +14,7 @@
 ///   based on viterbi.cpp by Feder1co 5oave: https://gist.github.com/Feder1co5oave/2347228
 ///   \date 2019-2021
 
-//#include "hmm_vec.hpp"
+// #include "../include/hmm_h/hmm_vec.hpp"
 #include <hmm.h>
 //#include "../../../module_help/StAC_rtxi/hmm_tests/hmm_fs.hpp"
 
@@ -302,3 +302,91 @@ void setWarning(char * strin)
 {
     std::cout<<strin;
 }
+
+// some functions for generating default matrices for
+// debugging and benchmarking models
+
+std::vector< std::vector<double> > HMMv::simpleTransMat(int nStates)
+{
+    //initialize transition matrix to be very likely to stay in the same state
+    double pStay = 0.9;
+    double pMove = (1.0 - pStay) / (nStates-1);
+
+    std::vector<double> baseRow(nStates, pMove);
+    std::vector<std::vector<double>> TransMat(nStates, baseRow);
+
+    //https://www.techiedelight.com/vector-of-vector-cpp/
+    for (int i=0; i < nStates; i++)
+    {
+        TransMat[i][i] = pStay;
+    }
+    std::cout << endl<<TransMat<<endl;
+    return TransMat;
+}
+std::vector< std::vector<double> > HMMv::simpleEmissMat(int nStates,int nEmission)
+{
+    // what to do for non-square emission matrices?
+        // either
+    double pSame = 0.9;
+    double pOther = (1.0-pSame) / nEmission;
+
+    std::vector<double> baseRow(nEmission, pOther);
+    std::vector<std::vector<double>> EmissMat(nStates, baseRow);
+
+
+    if (nStates == nEmission)
+    {
+        // make the likely emission symbol the same as the state index
+        // i.e. while in state 2, emit symbol 2
+        for (int i=0; i < nStates; i++)
+        {
+            EmissMat[i][i] = pSame;
+        }
+    }
+    else
+    {
+        // NOTE! with this method, rows will NOT be correctly normalized as is.
+        // the constructor should successfully normalize them as it loads them however
+        double w = double(nEmission) / nStates;
+        double dx = double(nEmission-1) / (nStates-1);
+        double spread = 1;// controls how "peaky" and separable the different
+        //states's emissions are
+
+        for (int i=0; i<nStates; i++)
+        {
+            for (int j=0; j<nEmission; j++)
+            {
+                EmissMat[i][j] = exp( -1*spread* pow(j - dx*(i),2) );
+            }
+            //normalize rows
+            double rowTotal = 0;
+            for (int j=0; j<nEmission; j++)
+            {
+                rowTotal += EmissMat[i][j];
+            }
+            for (int j=0; j<nEmission; j++)
+            {
+                // EmissMat[i][j] = EmissMat[i][j]/rowTotal;
+            }
+        }
+    }
+    std::cout << endl<<EmissMat<<endl;
+    return EmissMat;
+}
+std::vector< double > HMMv::simplePriorVec(int nStates)
+{
+    //strategy here is to make one state (the 0th?) likely at 90% chance
+    // then divide up remaining probability amongst the other states
+    int idxLikely = 0;
+    double pLikely = 0.9;
+    double pOther = (1.0 - pLikely) / (nStates-1);
+
+    std::vector<double> PriorVec(nStates, pOther);
+    PriorVec[idxLikely] = pLikely;
+    std::cout << endl<<PriorVec<<endl;
+    return PriorVec;
+}
+
+
+
+//

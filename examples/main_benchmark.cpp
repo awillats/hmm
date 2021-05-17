@@ -62,24 +62,25 @@ int main(int argc, const char *argv[]) {
       std::cout << "argv0: " << argv[1] << '\n';
 
       int nInput = std::stoi(argv[1]);
+      
       switch (nInput)
       {
         case 2:
             //use trs, frs set on line 44
             break;
         case 3:
-            trs = {
-                {0.8, 0.1, 0.1},
-                 {.1, .8, .1},
-                  {.1, .1, .8}};
-            frs = {
-                {0.9, 0.05, 0.05},
-                 {.15, 0.7, .15},
-                  {.1, 0.1, .8}};
-            pis = {.1, .9, .1};
-            nStates = 3;
-            nEmission = 3;
-            printMode = 3;
+            // trs = {
+            //     {0.8, 0.1, 0.1},
+            //      {.1, .8, .1},
+            //       {.1, .1, .8}};
+            // frs = {
+            //     {0.9, 0.05, 0.05},
+            //      {.15, 0.7, .15},
+            //       {.1, 0.1, .8}};
+            // pis = {.1, .9, .1};
+            // nStates = 3;
+            // nEmission = 3;
+            // printMode = 3;
             break;
         //default:
         }
@@ -93,7 +94,7 @@ int main(int argc, const char *argv[]) {
 
   HMMv myHMM = HMMv(nStates, nEmission, trs, frs, pis);
 
- myHMM.printMyParams();
+ // myHMM.printMyParams();
   myHMM.genSeq(nt);
 
   myHMM.printSeqs(printMode);
@@ -120,26 +121,6 @@ int main(int argc, const char *argv[]) {
   //std::vector<int> v = array2vec(&vguess[0], nt);
 /**/
   std::cout << " < guessed states \n";
-
-  //std::vector< double > gp =
-  // logE(1.2)
-  std::vector<double> gp;
-  std::vector<std::vector<double>> ge;
-  std::vector<std::vector<double>> gt;
-
-
-  for (int i=2; i<=10; i++)
-   {
-       std::cout<<endl<<i<<" states -- \n";
-       gp = myHMM.simplePriorVec(i);
-       ge = myHMM.simpleEmissMat(3,i);
-       gt = myHMM.simpleTransMat(i);
-       std::cout<<endl;
-   }
-  std::cout<<"thats all folks\n\n";
-  // std::vector< std::vector<double> > ge = simpleEmissMat(nStates, nEmission);
-  // std::vector< std::vector<double> > gt = simpleTransMat(nStates);
-
 
   return 0;
 }
