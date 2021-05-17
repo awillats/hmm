@@ -309,7 +309,7 @@ void setWarning(char * strin)
 std::vector< std::vector<double> > HMMv::simpleTransMat(int nStates)
 {
     //initialize transition matrix to be very likely to stay in the same state
-    double pStay = 0.9;
+    double pStay = 0.95;
     double pMove = (1.0 - pStay) / (nStates-1);
 
     std::vector<double> baseRow(nStates, pMove);
@@ -320,7 +320,6 @@ std::vector< std::vector<double> > HMMv::simpleTransMat(int nStates)
     {
         TransMat[i][i] = pStay;
     }
-    std::cout << endl<<TransMat<<endl;
     return TransMat;
 }
 std::vector< std::vector<double> > HMMv::simpleEmissMat(int nStates,int nEmission)
@@ -366,11 +365,10 @@ std::vector< std::vector<double> > HMMv::simpleEmissMat(int nStates,int nEmissio
             }
             for (int j=0; j<nEmission; j++)
             {
-                // EmissMat[i][j] = EmissMat[i][j]/rowTotal;
+                EmissMat[i][j] = EmissMat[i][j]/rowTotal;
             }
         }
     }
-    std::cout << endl<<EmissMat<<endl;
     return EmissMat;
 }
 std::vector< double > HMMv::simplePriorVec(int nStates)
@@ -383,7 +381,6 @@ std::vector< double > HMMv::simplePriorVec(int nStates)
 
     std::vector<double> PriorVec(nStates, pOther);
     PriorVec[idxLikely] = pLikely;
-    std::cout << endl<<PriorVec<<endl;
     return PriorVec;
 }
 

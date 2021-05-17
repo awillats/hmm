@@ -132,19 +132,17 @@ struct HMMv {
    //friend std::vector<int> genStates(HMMv const& hmm);
    friend int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n);
    friend void printMat(std::vector< std::vector<double> >);
-   // friend std::vector< std::vector<double> > simpleTransMat(int); //nstates
-   // friend std::vector< std::vector<double> > simpleEmissMat(int,int); //nstates, nemisions
-   // friend std::vector< double > simplePriorVec(int); //nstates
+
 
 public:
 
-
-//would be used like:
-//    HMMv myHMM = HMMv(nStates, nEmission, simpleTransMat(nStates), simpleTransMat(nStates,nEmission), simplePriorVec(nStates));
-// or could be broken into multiple lines to record generated parameters
-    std::vector< double > simplePriorVec(int); //nstates
-    std::vector< std::vector<double> > simpleTransMat(int); //nstates
-    std::vector< std::vector<double> > simpleEmissMat(int,int); //nstates, nemisions
+    static std::vector< double > simplePriorVec(int); //nstates
+    static std::vector< std::vector<double> > simpleTransMat(int); //nstates
+    static std::vector< std::vector<double> > simpleEmissMat(int,int); //nstates, nemisions
+    //would be used like:
+    //    HMMv myHMM = HMMv(nStates, nEmission, simpleTransMat(nStates), simpleTransMat(nStates,nEmission), simplePriorVec(nStates));
+    // or could be broken into multiple lines to record generated parameters
+    
     std::vector<int> genSeq(int);
     void setWarning(char *);
     void printMyParams();

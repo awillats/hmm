@@ -11,6 +11,7 @@
 
 // /TODO(awillats):output metrics of success, namely % accuracy, maybe also compute time
 
+#include <chrono>
 
 #include <iostream>
 #include <vector>
@@ -34,7 +35,7 @@ int main(int argc, const char *argv[]) {
    */
   int nt = 175;//1e3;
   int ntMaxPrint = 1e3;
-  int nrep = 0; // 1e3;
+  int nrep = 100; // 1e3;
 
   // HMMv myHMM = HMMv(2,2, trs, frs, pis);
 
@@ -43,12 +44,10 @@ int main(int argc, const char *argv[]) {
   //default HMM params
   std::vector<std::vector<double>> trs = {{0.9,0.1},{.1,.9}};
   std::vector<std::vector<double>> frs = {{0.9,0.1},{.2,.8}};
-  //std::vector<std::vector<double>> frs = {{0.9,0.05,0.05},{.1,0.45,.45}};
-
   std::vector<double> pis = {.1, .9};
   int nStates = 2;
   int nEmission = 2;
-  int printMode = 1;
+  int printMode = 1; //1
 
 
  //Override HMM params if we have input from the console
@@ -62,27 +61,16 @@ int main(int argc, const char *argv[]) {
       std::cout << "argv0: " << argv[1] << '\n';
 
       int nInput = std::stoi(argv[1]);
-      switch (nInput)
-      {
-        case 2:
-            //use trs, frs set on line 44
-            break;
-        case 3:
-            trs = {
-                {0.8, 0.1, 0.1},
-                 {.1, .8, .1},
-                  {.1, .1, .8}};
-            frs = {
-                {0.9, 0.05, 0.05},
-                 {.15, 0.7, .15},
-                  {.1, 0.1, .8}};
-            pis = {.1, .9, .1};
-            nStates = 3;
-            nEmission = 3;
-            printMode = 3;
-            break;
-        //default:
-        }
+      assert(nInput>0);
+
+      if (nInput==3) { printMode=3;}
+      if (nInput>3) {printMode=0;}
+
+      nStates = nInput;
+      // nEmission = nInput;
+      pis = HMMv::simplePriorVec(nStates);
+      frs = HMMv::simpleEmissMat(nStates,nEmission);
+      trs = HMMv::simpleTransMat(nStates);
   }
   if (argc>2)
   {
@@ -94,15 +82,28 @@ int main(int argc, const char *argv[]) {
   HMMv myHMM = HMMv(nStates, nEmission, trs, frs, pis);
 
  myHMM.printMyParams();
-  myHMM.genSeq(nt);
+ myHMM.genSeq(nt);
 
-  myHMM.printSeqs(printMode);
+ myHMM.printSeqs(printMode);
 
-  int* vguess = viterbi(myHMM, myHMM.spikes, nt);
-  for (int i=0;i<nrep;i++)
-  {
-      myHMM.genSeq(nt);
-      viterbi(myHMM, myHMM.spikes, nt);
+//https://stackoverflow.com/questions/2808398/easily-measure-elapsed-time
+
+auto start_time = std::chrono::system_clock::now();
+ int *vguess = viterbi(myHMM, myHMM.spikes, nt);
+ auto end_time = std::chrono::system_clock::now();
+ std::chrono::duration<double> diff = end_time-start_time;
+ cout << "Run time = " << diff.count() << " ms\n";
+
+ for (int i = 0; i < nrep; i++) {
+   myHMM.genSeq(nt);
+
+   auto start_time = std::chrono::system_clock::now();
+   viterbi(myHMM, myHMM.spikes, nt);
+   auto end_time = std::chrono::system_clock::now();
+   std::chrono::duration<double> diff = end_time-start_time;
+
+   cout << "Run time = " << diff.count() << " ms\n";
+
   }
 
   int spkAry[nt];
@@ -118,28 +119,28 @@ int main(int argc, const char *argv[]) {
 
  printVecAsBlock(&vguess[0], myHMM.ntPrint, printMode);
   //std::vector<int> v = array2vec(&vguess[0], nt);
-/**/
+
   std::cout << " < guessed states \n";
 
-  //std::vector< double > gp =
-  // logE(1.2)
-  std::vector<double> gp;
-  std::vector<std::vector<double>> ge;
-  std::vector<std::vector<double>> gt;
-
-
-  for (int i=2; i<=10; i++)
-   {
-       std::cout<<endl<<i<<" states -- \n";
-       gp = myHMM.simplePriorVec(i);
-       ge = myHMM.simpleEmissMat(3,i);
-       gt = myHMM.simpleTransMat(i);
-       std::cout<<endl;
-   }
-  std::cout<<"thats all folks\n\n";
-  // std::vector< std::vector<double> > ge = simpleEmissMat(nStates, nEmission);
-  // std::vector< std::vector<double> > gt = simpleTransMat(nStates);
-
-
+  // std::vector<double> gp;
+  // std::vector<std::vector<double>> ge;
+  // std::vector<std::vector<double>> gt;
+  //
+  //
+  // for (int i=2; i<=10; i++)
+  //  {
+  //      std::cout<<endl<<i<<" states -- \n";
+  //      gp = HMMv::simplePriorVec(i);
+  //      ge = HMMv::simpleEmissMat(i,2); //can also try (3,i) etc.
+  //      gt = HMMv::simpleTransMat(i);
+  //
+  //      std::cout<<"transitions:\n";
+  //      printMat(gt);
+  //      std::cout<<"emissions:\n";
+  //      printMat(ge);
+  //      std::cout<<"prior:\n";
+  //      printVec(gp);
+  //      std::cout<<endl;
+  //  }
   return 0;
 }
