@@ -25,23 +25,18 @@
  * @return      0 if successful
  */
 int main(int argc, const char *argv[]) {
-  /*
+  /*  // default HMM params
   std::vector<double> trs = {0.1,0.1}; //transition rates
   std::vector<double> frs = {.1,.9}; //firing rates
   std::vector<double> pis = {.1,.9}; //initial state probabilities
+  // HMMv myHMM = HMMv(2,2, trs, frs, pis);
    */
   int nt = 175; // 1e3;
   int ntMaxPrint = 1e3;
   int nrep = 0; // 100; 1e3;
 
-  // HMMv myHMM = HMMv(2,2, trs, frs, pis);
 
   std::cout << "argc " << argc << '\n';
-
-  // default HMM params
-  std::vector<std::vector<double>> trs = {{0.9, 0.1}, {.1, .9}};
-  std::vector<std::vector<double>> frs = {{0.9, 0.1}, {.2, .8}};
-  std::vector<double> pis = {.1, .9};
   int nStates = 2;
   int nEmissions = 2;
   int printMode = 1; // 1

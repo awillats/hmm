@@ -267,15 +267,7 @@ install(
 enable_testing()
 
 # does the application run
-add_test(NAME RunTest COMMAND hmm)
-
-# does the usage message work?
-#add_test(NAME UsageTest COMMAND hmm)
-
-# add_test(NAME UsageTest COMMAND hmm)
-# set_tests_properties(UsageTest
-#   PROPERTIES PASS_REGULAR_EXPRESSION "UsageTest:.*number"
-#   )
+add_test(NAME RunTest COMMAND eg_hmm)
 
 # i think this only works for single argument
 function(do_test tname target arg result)
@@ -295,6 +287,8 @@ endfunction(do_test2)
 
 #looks for this string in the answer!
 set(TEST_ANS "guessed states")
+# really all this tests is that it didn't crash
+# we should also regex to make sure there are NO segfault messages
 
 # i think these all run 175 samples by default?
 do_test(2state eg_hmm 2 ${TEST_ANS})
@@ -307,17 +301,17 @@ do_test(8state eg_hmm 8 ${TEST_ANS})
 do_test(9state eg_hmm 9 ${TEST_ANS})
 do_test(10state eg_hmm 10 ${TEST_ANS})
 
-do_test2(2state_100samples eg_hmm 2 30 ${TEST_ANS})
+do_test2(2state_30samples eg_hmm 2 30 ${TEST_ANS})
 do_test2(2state_100samples eg_hmm 2 100 ${TEST_ANS})
-do_test2(2state_100samples eg_hmm 2 300 ${TEST_ANS})
-do_test2(2state_100samples eg_hmm 2 1000 ${TEST_ANS})
-do_test2(2state_100samples eg_hmm 2 3000 ${TEST_ANS})
+do_test2(2state_300samples eg_hmm 2 300 ${TEST_ANS})
+do_test2(2state_1000samples eg_hmm 2 1000 ${TEST_ANS})
+do_test2(2state_3000samples eg_hmm 2 3000 ${TEST_ANS})
 
-do_test2(2state_100samples eg_hmm 5 30 ${TEST_ANS})
-do_test2(2state_100samples eg_hmm 5 100 ${TEST_ANS})
-do_test2(2state_100samples eg_hmm 5 300 ${TEST_ANS})
-do_test2(2state_100samples eg_hmm 5 1000 ${TEST_ANS})
-do_test2(2state_100samples eg_hmm 5 3000 ${TEST_ANS})
+do_test2(5state_30samples eg_hmm 5 30 ${TEST_ANS})
+do_test2(5state_100samples eg_hmm 5 100 ${TEST_ANS})
+do_test2(5state_300samples eg_hmm 5 300 ${TEST_ANS})
+do_test2(5state_1000samples eg_hmm 5 1000 ${TEST_ANS})
+do_test2(5state_3000samples eg_hmm 5 3000 ${TEST_ANS})
 
 add_test(NAME Stress_2_1k COMMAND eg_hmm 2 1000 PROPERTIES PASS_REGULAR_EXPRESSION ${TEST_ANS})
 add_test(NAME Stress_3_50k COMMAND eg_hmm 3 50000 PROPERTIES PASS_REGULAR_EXPRESSION ${TEST_ANS})
