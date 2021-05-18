@@ -7,12 +7,6 @@
 ///   \author Adam Willats
 ///   \date 2/21/19
 
-// /TODO(awillats): allow the main method to accept state size for better
-// testing
-
-// /TODO(awillats):output metrics of success, namely % accuracy, maybe also
-// compute time
-
 #include <chrono>
 
 #include <iostream>
@@ -71,12 +65,7 @@ int main(int argc, const char *argv[]) {
     if (nInput > 3) {
       printMode = 0;
     }
-
     nStates = nInput;
-    // // nEmissions = nInput;
-    // pis = HMMv::simplePriorVec(nStates);
-    // frs = HMMv::simpleEmissMat(nStates,nEmissions);
-    // trs = HMMv::simpleTransMat(nStates);
   }
   if (argc > 2) {
     // if there's a second argument it specifies how many time samples to
@@ -92,7 +81,6 @@ int main(int argc, const char *argv[]) {
   myHMM.printSeqs(printMode);
 
   // https://stackoverflow.com/questions/2808398/easily-measure-elapsed-time
-
   auto start_time = std::chrono::system_clock::now();
   int *vguess = viterbi(myHMM, myHMM.spikes, nt);
   auto end_time = std::chrono::system_clock::now();
@@ -105,7 +93,6 @@ int main(int argc, const char *argv[]) {
     viterbi(myHMM, myHMM.spikes, nt);
     auto end_time = std::chrono::system_clock::now();
     std::chrono::duration<double> diff = end_time - start_time;
-
     cout << "Run time = " << diff.count() * 1000 << " ms\n";
   }
 

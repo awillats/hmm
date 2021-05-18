@@ -277,6 +277,7 @@ add_test(NAME RunTest COMMAND hmm)
 #   PROPERTIES PASS_REGULAR_EXPRESSION "UsageTest:.*number"
 #   )
 
+# i think this only works for single argument
 function(do_test tname target arg result)
     add_test(NAME ${tname} COMMAND ${target} ${arg})
     set_tests_properties(${tname}
@@ -284,12 +285,39 @@ function(do_test tname target arg result)
       )
 endfunction(do_test)
 
+function(do_test2 tname target arg1 arg2 result)
+    add_test(NAME ${tname} COMMAND ${target} ${arg1} ${arg2})
+    set_tests_properties(${tname}
+      PROPERTIES PASS_REGULAR_EXPRESSION ${result}
+      )
+endfunction(do_test2)
+
 
 #looks for this string in the answer!
 set(TEST_ANS "guessed states")
 
-do_test(2state hmm 2 ${TEST_ANS})
-do_test(3state hmm 3 ${TEST_ANS})
+# i think these all run 175 samples by default?
+do_test(2state eg_hmm 2 ${TEST_ANS})
+do_test(3state eg_hmm 3 ${TEST_ANS})
+do_test(4state eg_hmm 4 ${TEST_ANS})
+do_test(5state eg_hmm 5 ${TEST_ANS})
+do_test(6state eg_hmm 6 ${TEST_ANS})
+do_test(7state eg_hmm 7 ${TEST_ANS})
+do_test(8state eg_hmm 8 ${TEST_ANS})
+do_test(9state eg_hmm 9 ${TEST_ANS})
+do_test(10state eg_hmm 10 ${TEST_ANS})
 
-add_test(NAME Stress_2_1k COMMAND hmm 2 1000 PROPERTIES PASS_REGULAR_EXPRESSION ${TEST_ANS})
-add_test(NAME Stress_3_50k COMMAND hmm 3 50000 PROPERTIES PASS_REGULAR_EXPRESSION ${TEST_ANS})
+do_test2(2state_100samples eg_hmm 2 30 ${TEST_ANS})
+do_test2(2state_100samples eg_hmm 2 100 ${TEST_ANS})
+do_test2(2state_100samples eg_hmm 2 300 ${TEST_ANS})
+do_test2(2state_100samples eg_hmm 2 1000 ${TEST_ANS})
+do_test2(2state_100samples eg_hmm 2 3000 ${TEST_ANS})
+
+do_test2(2state_100samples eg_hmm 5 30 ${TEST_ANS})
+do_test2(2state_100samples eg_hmm 5 100 ${TEST_ANS})
+do_test2(2state_100samples eg_hmm 5 300 ${TEST_ANS})
+do_test2(2state_100samples eg_hmm 5 1000 ${TEST_ANS})
+do_test2(2state_100samples eg_hmm 5 3000 ${TEST_ANS})
+
+add_test(NAME Stress_2_1k COMMAND eg_hmm 2 1000 PROPERTIES PASS_REGULAR_EXPRESSION ${TEST_ANS})
+add_test(NAME Stress_3_50k COMMAND eg_hmm 3 50000 PROPERTIES PASS_REGULAR_EXPRESSION ${TEST_ANS})
