@@ -159,7 +159,8 @@ public:
     //    HMMv myHMM = HMMv(nStates, nEmission, simpleTransMat(nStates), simpleTransMat(nStates,nEmission), simplePriorVec(nStates));
     // or could be broken into multiple lines to record generated parameters
 
-    std::vector<int> genSeq(int);
+    std::vector<int> genSeq(int,int currentState=-1);    //second int is optional
+
     void setWarning(char *);
     void printMyParams();
     void printSeqs(int);

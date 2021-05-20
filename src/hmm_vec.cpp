@@ -247,8 +247,9 @@ void HMMv::exportSeqsGuess(int nt, int * spikeOut, int * stateOut, int * stateGu
  * @param  nt_ number of time samples
  * @return     spikes - vector of output values (int)
  */
-std::vector<int>  HMMv::genSeq(int nt_, int currentState==NULL)
+std::vector<int>  HMMv::genSeq(int nt_, int currentState)
 {
+    //currentState is optional, defaults to NULL
     nt =nt_;
     int ntMaxPrint = 600;
     ntPrint = std::min(nt,ntMaxPrint); // hardcoded maximimum length of sequence to print
@@ -279,7 +280,7 @@ std::vector<int>  HMMv::genSeq(int nt_, int currentState==NULL)
     }
 
 
-    if (curentState==NULL)
+    if (currentState==-1)
     {
         states[0] = piDist(gen); //gen the first state
     }

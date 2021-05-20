@@ -72,6 +72,12 @@ int main(int argc, const char *argv[]) {
   HMMv myHMM = HMMv(nStates, nEmissions);
   // HMMv myHMM = HMMv(nStates, nEmissions, trs, frs, pis);
   // myHMM.printMyParams();
+
+  myHMM.genSeq(2,0);
+  myHMM.printSeqs(printMode);
+  myHMM.genSeq(2,1);
+  myHMM.printSeqs(printMode);
+
   myHMM.genSeq(nt);
   myHMM.printSeqs(printMode);
 
