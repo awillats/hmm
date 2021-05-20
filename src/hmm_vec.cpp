@@ -247,7 +247,7 @@ void HMMv::exportSeqsGuess(int nt, int * spikeOut, int * stateOut, int * stateGu
  * @param  nt_ number of time samples
  * @return     spikes - vector of output values (int)
  */
-std::vector<int>  HMMv::genSeq(int nt_)
+std::vector<int>  HMMv::genSeq(int nt_, int currentState==NULL)
 {
     nt =nt_;
     int ntMaxPrint = 600;
@@ -259,6 +259,10 @@ std::vector<int>  HMMv::genSeq(int nt_)
     //set random seed
     std::random_device rd;
     std::mt19937 gen(rd()); //choose a specific integer to "freeze" the random seed
+
+    // NOTE:: this should all be done when the HMM is CONSTRUCTED!
+    // NOT every time we have to generate a new sequence
+    // save trDistrs and emDistrs as properties of the HMMv !!!
 
     std::discrete_distribution<int> piDist(PI.begin(),PI.end());
     std::vector< std::discrete_distribution <int> > trDistrs;
@@ -275,7 +279,14 @@ std::vector<int>  HMMv::genSeq(int nt_)
     }
 
 
-    states[0] = piDist(gen); //gen the first state
+    if (curentState==NULL)
+    {
+        states[0] = piDist(gen); //gen the first state
+    }
+    else
+    {
+        states[0] = currentState;
+    }
 
     for (int i=0;i<nt; i++)
     {
