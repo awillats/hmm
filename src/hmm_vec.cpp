@@ -48,15 +48,19 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
     if (*max_element(observed.begin(),observed.end()) >= hmm.nevents)
     {
         //This fix is designed for deltas between matlab and c++ indexing. This will not catch every possible mismatch
-        //std::cout<<">"<<*max_element(observed.begin(),observed.end())<<","<<hmm.nevents<<"<";
+        std::cout<<"> max obsv:"<<*max_element(observed.begin(),observed.end())<<", Nmax:"<<hmm.nevents<<"<";
         //temporary fix:
         int delta = hmm.nevents - *max_element(observed.begin(),observed.end());
         for (int i=0;i<n;i++)
         {
             observed[i] = observed[i]+delta-1;
+            if (observed[i] < 0) {observed[i]=0;}
+            if (observed[i] >= hmm.nevents) {observed[i]=hmm.nevents-1;}
         }
-        //std::cout<<"CORRECTING\n"<<"d:"<<delta<<","<<*max_element(observed.begin(),observed.end())<<endl;
-        assert(*max_element(observed.begin(),observed.end()) < hmm.nstates);
+        std::cout<<"CORRECTING\n"<<"d:"<<delta<<","<<*max_element(observed.begin(),observed.end())<<endl;
+        // assert(*max_element(observed.begin(),observed.end()) < hmm.nstates);
+        assert(*max_element(observed.begin(),observed.end()) < hmm.nevents);
+
     }
 
     int prob0warnflag = 0;
