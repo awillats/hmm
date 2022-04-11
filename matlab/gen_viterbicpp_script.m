@@ -1,7 +1,7 @@
 clc
 clear
 close all
-addpath('~/Documents/GitHub/hmmX/hmm')
+% addpath('~/Documents/GitHub/hmmX/hmm')
 %%
 trs = [0.1,0.1]/2; %transition rates
 frs = [.1,.5]/2; %firing rates

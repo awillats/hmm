@@ -1,31 +1,25 @@
-/*
- * Academic License - for use in teaching, academic research, and meeting
- * course requirements at degree granting institutions only.  Not for
- * government, commercial, or other organizational use.
- *
- * call_viterbicpp_initialize.h
- *
- * Code generation for function 'call_viterbicpp_initialize'
- *
- */
+//
+// Academic License - for use in teaching, academic research, and meeting
+// course requirements at degree granting institutions only.  Not for
+// government, commercial, or other organizational use.
+//
+// call_viterbicpp_initialize.h
+//
+// Code generation for function 'call_viterbicpp_initialize'
+//
 
-#ifndef CALL_VITERBICPP_INITIALIZE_H
-#define CALL_VITERBICPP_INITIALIZE_H
+#pragma once
 
-/* Include files */
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "tmwtypes.h"
-#include "mex.h"
-#include "emlrt.h"
+// Include files
 #include "rtwtypes.h"
-#include "call_viterbicpp_types.h"
+#include "emlrt.h"
+#include "mex.h"
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 
-/* Function Declarations */
-extern void call_viterbicpp_initialize();
+// Function Declarations
+void call_viterbicpp_initialize();
 
-#endif
-
-/* End of code generation (call_viterbicpp_initialize.h) */
+// End of code generation (call_viterbicpp_initialize.h)

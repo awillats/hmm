@@ -1,69 +1,78 @@
-/*
- * Academic License - for use in teaching, academic research, and meeting
- * course requirements at degree granting institutions only.  Not for
- * government, commercial, or other organizational use.
- *
- * _coder_call_hmmv_info.cpp
- *
- * Code generation for function '_coder_call_hmmv_info'
- *
- */
+//
+// Academic License - for use in teaching, academic research, and meeting
+// course requirements at degree granting institutions only.  Not for
+// government, commercial, or other organizational use.
+//
+// _coder_call_hmmv_info.cpp
+//
+// Code generation for function 'call_hmmv'
+//
 
-/* Include files */
-#include "rt_nonfinite.h"
-#include "call_hmmv.h"
+// Include files
 #include "_coder_call_hmmv_info.h"
+#include "emlrt.h"
+#include "tmwtypes.h"
 
-/* Function Definitions */
-mxArray *emlrtMexFcnProperties()
-{
-  mxArray *xResult;
-  mxArray *xEntryPoints;
-  const char * fldNames[6] = { "Name", "NumberOfInputs", "NumberOfOutputs",
-    "ConstantInputs", "FullPath", "TimeStamp" };
+// Function Declarations
+static const mxArray *emlrtMexFcnResolvedFunctionsInfo();
 
-  mxArray *xInputs;
-  const char * b_fldNames[4] = { "Version", "ResolvedFunctions", "EntryPoints",
-    "CoverageInfo" };
-
-  xEntryPoints = emlrtCreateStructMatrix(1, 1, 6, *(const char * (*)[6])&
-    fldNames[0]);
-  xInputs = emlrtCreateLogicalMatrix(1, 4);
-  emlrtSetField(xEntryPoints, 0, "Name", emlrtMxCreateString("call_hmmv"));
-  emlrtSetField(xEntryPoints, 0, "NumberOfInputs", emlrtMxCreateDoubleScalar(4.0));
-  emlrtSetField(xEntryPoints, 0, "NumberOfOutputs", emlrtMxCreateDoubleScalar
-                (3.0));
-  emlrtSetField(xEntryPoints, 0, "ConstantInputs", xInputs);
-  emlrtSetField(xEntryPoints, 0, "FullPath", emlrtMxCreateString(
-    "/Users/adam/Documents/GitHub/rtxi_vm_copy/hmm_modules/hmmX/hmm/call_hmmv.m"));
-  emlrtSetField(xEntryPoints, 0, "TimeStamp", emlrtMxCreateDoubleScalar
-                (737512.50149305561));
-  xResult = emlrtCreateStructMatrix(1, 1, 4, *(const char * (*)[4])&b_fldNames[0]);
-  emlrtSetField(xResult, 0, "Version", emlrtMxCreateString(
-    "9.5.0.1033004 (R2018b) Update 2"));
-  emlrtSetField(xResult, 0, "ResolvedFunctions", (mxArray *)
-                emlrtMexFcnResolvedFunctionsInfo());
-  emlrtSetField(xResult, 0, "EntryPoints", xEntryPoints);
-  return xResult;
-}
-
-const mxArray *emlrtMexFcnResolvedFunctionsInfo()
+// Function Definitions
+static const mxArray *emlrtMexFcnResolvedFunctionsInfo()
 {
   const mxArray *nameCaptureInfo;
-  const char * data[5] = {
-    "789ced54db6ed340105da31651895495503f8037a44ad95e9080b7ba14da8aa42048434405ee663d90157b93bd8edc373e848fe0910fe837f45b78c476bce936"
-    "b231829207949136eb9363cd9c391a0ff28eba1e4268353b4823f4e32e2aa2959dfcffb50944b7d0f56895b7e5bd99f7bc329f8d65b454e0d6ccfb5fcb9b2a69",
-    "203513c09984e3440c21ca802402a66942259824d2f4ce35a00862c5c71016cc47c6a1c7047494030e5906c473879a829cca9f9f8e807e7e9308148de22bb9dc"
-    "05a8f427d7fccdedffecaaffa50a7f5cff6cbfdd1a7fd64a6cf9d367eff1490c518c494804de573411204d8c0f98394c863832290bc622a04a9fe39110815061",
-    "c221ce9f07f90fa684f3207b18b785a3ffccd5efe8bb5da1dfe5bdaadbd1bf82ee38f8c1aead97baf9f4affdaaaab75e53cffa6579aa4288da2c1ba24812dee6"
-    "203f99116aeebb49c76cd4e9b05139277fd0f7cb867a963f3dea0cb251f1b5e68c12c3948c71d7ef75fcbde0f5f6e6d6e3619b688d8d527ca8520c821767a3b0",
-    "0b6f58bff0c4af6c52e63727bb1f2eee5dfa95f5f4bf9acb9a79f80febcdebbbeb75faef9e887010f96f1f3e4ab776fa62f3f885a3e355439d261dc8c5157d5e"
-    "cbaf6f3efff79afcbfeb63bf26bff5d1f237baefef0b62b6e918e89cf7fe97fdc5de77f32df6fe34167b7f3ef5167bffeff2ff04d701f5e0",
-    "" };
-
-  nameCaptureInfo = NULL;
-  emlrtNameCaptureMxArrayR2016a(data, 3344U, &nameCaptureInfo);
+  const char_T *data[5]{
+      "789ced56414f8330142e3acd12a372f2ec3f68a289472f2e4e0f2ec40d0f1a23153a61b6"
+      "3029d3ed5778f5e8cff4e8182bd026b5b8e9d4c577793cbef6fbde7b"
+      "c02bc0383d3300005b20b3ddcdcc4f1d30a77e058826e386b4ce109783355013f671fc79"
+      "eadd284cf030c98210519ceff4221a84284c3aa33e0631661179c4de",
+      "04e9060477028adbe5a09546f4b804e5410aa5d7473e76efdb030a629f1519927290f7c3"
+      "51d45bd3f44336b91ff2ba79f538ffaa522f43fa4fde97e8c9b6a8fa"
+      "d6957a1972655f4f4ad4e96d57d4937db1be2ec4ff7adfa33754f0557d5f76147aa684db"
+      "97ad8b8366bbd16b9d3cd8bdbb9185f62db759e461697474790045cc",
+      "f9dfe6e457f595f3bf28f657ede39e82df947068331c33883c446123720714870983e798"
+      "6114bb3eb4e2a887ddf11d9f52485142d0ad98a733639eb22d6a1ed5"
+      "a5b8d0cb90ee8090f468faa9fafa33ea71fe0d8d1ec7c77397972ae83b0afe65994fcbae"
+      "f75be6efd0f858479787eabff4afcdc7457dcf63fd9b2064092244d0",
+      "07733e07dd39f5aad85fb5be4305bf29e19f7f0e5068c93b0a659796", ""};
+  nameCaptureInfo = nullptr;
+  emlrtNameCaptureMxArrayR2016a(&data[0], 3384U, &nameCaptureInfo);
   return nameCaptureInfo;
 }
 
-/* End of code generation (_coder_call_hmmv_info.cpp) */
+mxArray *emlrtMexFcnProperties()
+{
+  mxArray *xEntryPoints;
+  mxArray *xInputs;
+  mxArray *xResult;
+  const char_T *epFieldName[6]{
+      "Name",           "NumberOfInputs", "NumberOfOutputs",
+      "ConstantInputs", "FullPath",       "TimeStamp"};
+  const char_T *propFieldName[5]{"Version", "ResolvedFunctions", "EntryPoints",
+                                 "CoverageInfo", "IsPolymorphic"};
+  xEntryPoints =
+      emlrtCreateStructMatrix(1, 1, 6, (const char_T **)&epFieldName[0]);
+  xInputs = emlrtCreateLogicalMatrix(1, 4);
+  emlrtSetField(xEntryPoints, 0, (const char_T *)"Name",
+                emlrtMxCreateString((const char_T *)"call_hmmv"));
+  emlrtSetField(xEntryPoints, 0, (const char_T *)"NumberOfInputs",
+                emlrtMxCreateDoubleScalar(4.0));
+  emlrtSetField(xEntryPoints, 0, (const char_T *)"NumberOfOutputs",
+                emlrtMxCreateDoubleScalar(3.0));
+  emlrtSetField(xEntryPoints, 0, (const char_T *)"ConstantInputs", xInputs);
+  emlrtSetField(
+      xEntryPoints, 0, (const char_T *)"FullPath",
+      emlrtMxCreateString((const char_T *)"/Users/adam/Documents/Research/"
+                                          "Projects/hmm/matlab/call_hmmv.m"));
+  emlrtSetField(xEntryPoints, 0, (const char_T *)"TimeStamp",
+                emlrtMxCreateDoubleScalar(738622.518425926));
+  xResult =
+      emlrtCreateStructMatrix(1, 1, 5, (const char_T **)&propFieldName[0]);
+  emlrtSetField(xResult, 0, (const char_T *)"Version",
+                emlrtMxCreateString((const char_T *)"9.11.0.1769968 (R2021b)"));
+  emlrtSetField(xResult, 0, (const char_T *)"ResolvedFunctions",
+                (mxArray *)emlrtMexFcnResolvedFunctionsInfo());
+  emlrtSetField(xResult, 0, (const char_T *)"EntryPoints", xEntryPoints);
+  return xResult;
+}
+
+// End of code generation (_coder_call_hmmv_info.cpp)

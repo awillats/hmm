@@ -1,9 +1,16 @@
 function [statesGuess, spikes, states] = call_viterbicpp(nt, spikes_, states_, trs_,frs_,pis_)
 %#codegen
+     coder.extrinsic('pwd', 'fullfile');
+
     if coder.target('MATLAB')
         disp('whoops! accidentally called it instead of codegening it')
     else
         printMode=0;
+        % NEW EXPERIMENTAL, from https://www.mathworks.com/help/coder/ref/coder.cinclude.html
+        customDir = coder.const(fullfile(pwd, 'hmm_install'));
+        coder.updateBuildInfo('addSourcePaths',  customDir);
+        coder.updateBuildInfo('addIncludePaths', customDir);
+
         coder.cinclude('printFuns.cpp'); 
         coder.cinclude('shuttleFuns.cpp'); 
         coder.cinclude('hmm_vec.cpp');

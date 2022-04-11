@@ -19,7 +19,7 @@
 
 // Variable Definitions
 static emlrtDCInfo emlrtDCI{
-    29,                // lineNo
+    36,                // lineNo
     36,                // colNo
     "call_viterbicpp", // fName
     "/Users/adam/Documents/Research/Projects/hmm/matlab/call_viterbicpp.m", // pName
@@ -27,7 +27,7 @@ static emlrtDCInfo emlrtDCI{
 };
 
 static emlrtDCInfo b_emlrtDCI{
-    29,                // lineNo
+    36,                // lineNo
     36,                // colNo
     "call_viterbicpp", // fName
     "/Users/adam/Documents/Research/Projects/hmm/matlab/call_viterbicpp.m", // pName
@@ -35,7 +35,7 @@ static emlrtDCInfo b_emlrtDCI{
 };
 
 static emlrtDCInfo c_emlrtDCI{
-    29,                // lineNo
+    36,                // lineNo
     9,                 // colNo
     "call_viterbicpp", // fName
     "/Users/adam/Documents/Research/Projects/hmm/matlab/call_viterbicpp.m", // pName
@@ -43,7 +43,7 @@ static emlrtDCInfo c_emlrtDCI{
 };
 
 static emlrtRTEInfo emlrtRTEI{
-    29,                // lineNo
+    36,                // lineNo
     9,                 // colNo
     "call_viterbicpp", // fName
     "/Users/adam/Documents/Research/Projects/hmm/matlab/call_viterbicpp.m" // pName
@@ -64,6 +64,8 @@ void call_viterbicpp(const emlrtStack *sp, real_T nt,
   real_T d;
   int32_T i;
   int32_T loop_ub;
+  //  NEW EXPERIMENTAL, from
+  //  https://www.mathworks.com/help/coder/ref/coder.cinclude.html
   // convert input vecs to c++
   // pre-allocates a std::vec
   matv[0] = trs_[0];

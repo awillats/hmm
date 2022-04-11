@@ -37,9 +37,10 @@ cmake --install . #[optional] installs to default location (OS-specific),
 <!-- make #build the project sudo make install #[optional] installs to default location (OS-specific) -->
 
 see the build and test process in action:
+<!-- might need to be changed to docs/imgs/HMM_install_example_video.gif -->
 <img src="./imgs/HMM_install_example_video.gif" alt="build and test" width="700"/>
 
-For basic benchmarking and verification of a successful install
+For basic benchmarking and verification of a successful install (from inside build directory)
 ```shell
 ctest -N #list tests to be performed
 ctest -VV #execute tests

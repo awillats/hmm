@@ -1,35 +1,26 @@
-/*
- * Academic License - for use in teaching, academic research, and meeting
- * course requirements at degree granting institutions only.  Not for
- * government, commercial, or other organizational use.
- *
- * call_viterbicpp_data.h
- *
- * Code generation for function 'call_viterbicpp_data'
- *
- */
+//
+// Academic License - for use in teaching, academic research, and meeting
+// course requirements at degree granting institutions only.  Not for
+// government, commercial, or other organizational use.
+//
+// call_viterbicpp_data.h
+//
+// Code generation for function 'call_viterbicpp_data'
+//
 
-#ifndef CALL_VITERBICPP_DATA_H
-#define CALL_VITERBICPP_DATA_H
+#pragma once
 
-/* Include files */
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "tmwtypes.h"
-#include "mex.h"
-#include "emlrt.h"
+// Include files
 #include "rtwtypes.h"
-#include "call_viterbicpp_types.h"
+#include "emlrt.h"
+#include "mex.h"
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 
-/* Variable Declarations */
+// Variable Declarations
 extern emlrtCTX emlrtRootTLSGlobal;
 extern emlrtContext emlrtContextGlobal;
-extern emlrtRSInfo emlrtRSI;
-extern emlrtRSInfo b_emlrtRSI;
-extern emlrtRSInfo c_emlrtRSI;
 
-#endif
-
-/* End of code generation (call_viterbicpp_data.h) */
+// End of code generation (call_viterbicpp_data.h)

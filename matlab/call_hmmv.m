@@ -1,8 +1,20 @@
 function [spikes,states,statesGuess]= call_hmmv(nt, trs_,frs_,pis_)
 %#codegen
+     coder.extrinsic('pwd', 'fullfile');
+
     if coder.target('MATLAB')
-        disp('whoops! accidentally called it instead of codegening it')
+        disp('WARNING! accidentally called function from MATLAB instead of codegening it')
     else
+        % NEW EXPERIMENTAL, from https://www.mathworks.com/help/coder/ref/coder.cinclude.html
+%         customSrc = coder.const(fullfile(pwd, '../src/'));
+%         customInc = coder.const(fullfile(pwd, '../build/include/'));
+%         coder.updateBuildInfo('addIncludePaths', customSrc);
+%         coder.updateBuildInfo('addIncludePaths', customInc);
+%         coder.updateBuildInfo('addSourcePaths', customSrc);
+        customDir = coder.const(fullfile(pwd, 'hmm_install'));
+        coder.updateBuildInfo('addSourcePaths',  customDir);
+        coder.updateBuildInfo('addIncludePaths', customDir);
+
         printMode=0;
         coder.cinclude('printFuns.cpp'); 
         coder.cinclude('shuttleFuns.cpp'); 

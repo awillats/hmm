@@ -19,12 +19,25 @@ static const mxArray *emlrtMexFcnResolvedFunctionsInfo();
 // Function Definitions
 static const mxArray *emlrtMexFcnResolvedFunctionsInfo()
 {
-  static const int32_T iv[2]{0, 1};
-  const mxArray *m;
   const mxArray *nameCaptureInfo;
+  const char_T *data[5]{
+      "789ced56c14e8340105db49a26c6cac9cf280713efc6c6eac186d8e24163ecba6c85ba0b"
+      "c8526dffc09bbfe1d14fb4946e8149369062ab36ce6578bcd9793303"
+      "1d8ab48b4b0d21d4408999fb899f3ba4cffd16ca1be43510a7e5c3d10eaae5ce49fe7dee"
+      "89ef45741c25c0c39c2e4eda3e773dec45bd4940514885cf5ea83d63",
+      "062ea33d97d36e167462c4cf32d402c4547c7dea50f2d41d71143a22ad9065c1621e7d45"
+      "bfb582794083f3807155f564fe6da55ec204aff6b7e8415b577fbb4a"
+      "bd84b9b5ee662d16e91d94d4833e8dafe7f0bfde6af4c68a7c65df9743859e0e78eba673"
+      "7ddceeb6869df3676bf83831f19149da99bd58a0535407526099bfae",
+      "55cbaf9aabccffa1385f768e278afc3ae00d4bd05018d8c6dc68f964c4a91709e38a0a8a"
+      "43e21866e80f2999de713837388e187e882fef89cf031cbac2f740dd"
+      "fd25eb86b6aefd540738d54b98c188b1f853f553fd054beac9fc7b057a929fee61d96a4e"
+      "bfafc8bf29fb6ad3f57ecb3e7eabb82f55ff53fffabeacfafb6e000c",
+      "eb967cb339abc3f54484194befeb2bfe8e7d2ace97edcf04188138c9577e2e467e425f9e"
+      "b8aac4",
+      ""};
   nameCaptureInfo = nullptr;
-  m = emlrtCreateNumericArray(2, (const void *)&iv[0], mxDOUBLE_CLASS, mxREAL);
-  emlrtAssign(&nameCaptureInfo, m);
+  emlrtNameCaptureMxArrayR2016a(&data[0], 3432U, &nameCaptureInfo);
   return nameCaptureInfo;
 }
 
@@ -53,7 +66,7 @@ mxArray *emlrtMexFcnProperties()
                     (const char_T *)"/Users/adam/Documents/Research/Projects/"
                                     "hmm/matlab/call_viterbicpp.m"));
   emlrtSetField(xEntryPoints, 0, (const char_T *)"TimeStamp",
-                emlrtMxCreateDoubleScalar(738621.9071875));
+                emlrtMxCreateDoubleScalar(738622.52223379631));
   xResult =
       emlrtCreateStructMatrix(1, 1, 5, (const char_T **)&propFieldName[0]);
   emlrtSetField(xResult, 0, (const char_T *)"Version",

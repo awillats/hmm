@@ -1,32 +1,27 @@
-/*
- * Academic License - for use in teaching, academic research, and meeting
- * course requirements at degree granting institutions only.  Not for
- * government, commercial, or other organizational use.
- *
- * call_hmmv_terminate.h
- *
- * Code generation for function 'call_hmmv_terminate'
- *
- */
+//
+// Academic License - for use in teaching, academic research, and meeting
+// course requirements at degree granting institutions only.  Not for
+// government, commercial, or other organizational use.
+//
+// call_hmmv_terminate.h
+//
+// Code generation for function 'call_hmmv_terminate'
+//
 
-#ifndef CALL_HMMV_TERMINATE_H
-#define CALL_HMMV_TERMINATE_H
+#pragma once
 
-/* Include files */
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "tmwtypes.h"
-#include "mex.h"
-#include "emlrt.h"
+// Include files
 #include "rtwtypes.h"
-#include "call_hmmv_types.h"
+#include "emlrt.h"
+#include "mex.h"
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 
-/* Function Declarations */
-extern void call_hmmv_atexit();
-extern void call_hmmv_terminate();
+// Function Declarations
+void call_hmmv_atexit();
 
-#endif
+void call_hmmv_terminate();
 
-/* End of code generation (call_hmmv_terminate.h) */
+// End of code generation (call_hmmv_terminate.h)

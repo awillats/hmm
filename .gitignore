@@ -98,3 +98,6 @@ Thumbs.db
 /misc/test-cmake-installation/build/
 .cache/
 *.prj
+*/mex/*
+*compile_commands.json
+*build.ninja
