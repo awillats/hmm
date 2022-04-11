@@ -1,32 +1,27 @@
-/*
- * Academic License - for use in teaching, academic research, and meeting
- * course requirements at degree granting institutions only.  Not for
- * government, commercial, or other organizational use.
- *
- * call_viterbicpp_terminate.h
- *
- * Code generation for function 'call_viterbicpp_terminate'
- *
- */
+//
+// Academic License - for use in teaching, academic research, and meeting
+// course requirements at degree granting institutions only.  Not for
+// government, commercial, or other organizational use.
+//
+// call_viterbicpp_terminate.h
+//
+// Code generation for function 'call_viterbicpp_terminate'
+//
 
-#ifndef CALL_VITERBICPP_TERMINATE_H
-#define CALL_VITERBICPP_TERMINATE_H
+#pragma once
 
-/* Include files */
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "tmwtypes.h"
-#include "mex.h"
-#include "emlrt.h"
+// Include files
 #include "rtwtypes.h"
-#include "call_viterbicpp_types.h"
+#include "emlrt.h"
+#include "mex.h"
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 
-/* Function Declarations */
-extern void call_viterbicpp_atexit();
-extern void call_viterbicpp_terminate();
+// Function Declarations
+void call_viterbicpp_atexit();
 
-#endif
+void call_viterbicpp_terminate();
 
-/* End of code generation (call_viterbicpp_terminate.h) */
+// End of code generation (call_viterbicpp_terminate.h)

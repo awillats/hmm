@@ -13,7 +13,8 @@ pis = [.5,.5]; %initial state probabilitiesco
 nt = 1e3; %3e2 seems limit for c++
 
 nrep = 1e3;
-regenCode=1;
+regenCode=1; %flag for choosing whether to generate code again, or use previously generated
+disp(frs)
 %% codegen
 
 
