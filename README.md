@@ -4,7 +4,8 @@
 `hmm` is a simple set of hidden Markov model (HMM) [code](https://github.com/stanley-rozell/hmm) intended to support control of switching linear dynamical systems.
 
 It contains methods for generating and decoding systems with discrete latent states and discrete observed signals.
-
+![](https://github.com/stanley-rozell/hmm/blob/master/docs/imgs/hmmlogo_center_white.png)
+<!-- https://github.com/stanley-rozell/hmm/blob/master/docs/imgs/hmmlogo.png -->
 ## Applications
 
 see also: [`rtxi-hmmDecoder`](https://github.com/stanley-rozell/rtxi-hmmDecoder) and [`rtxi-hmmGenerator`](https://github.com/stanley-rozell/rtxi-hmmGenerator) for application of this library in modules intended for the RTXI platform

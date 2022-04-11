@@ -14,7 +14,7 @@
 ///   based on viterbi.cpp by Feder1co 5oave: https://gist.github.com/Feder1co5oave/2347228
 ///   \date 2019-2021
 
-//#include "hmm_vec.hpp"
+// #include "../include/hmm_h/hmm_vec.hpp"
 #include <hmm.h>
 //#include "../../../module_help/StAC_rtxi/hmm_tests/hmm_fs.hpp"
 
@@ -48,15 +48,19 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
     if (*max_element(observed.begin(),observed.end()) >= hmm.nevents)
     {
         //This fix is designed for deltas between matlab and c++ indexing. This will not catch every possible mismatch
-        //std::cout<<">"<<*max_element(observed.begin(),observed.end())<<","<<hmm.nevents<<"<";
+        std::cout<<"> max obsv:"<<*max_element(observed.begin(),observed.end())<<", Nmax:"<<hmm.nevents<<"<";
         //temporary fix:
         int delta = hmm.nevents - *max_element(observed.begin(),observed.end());
         for (int i=0;i<n;i++)
         {
             observed[i] = observed[i]+delta-1;
+            if (observed[i] < 0) {observed[i]=0;}
+            if (observed[i] >= hmm.nevents) {observed[i]=hmm.nevents-1;}
         }
-        //std::cout<<"CORRECTING\n"<<"d:"<<delta<<","<<*max_element(observed.begin(),observed.end())<<endl;
-        assert(*max_element(observed.begin(),observed.end()) < hmm.nstates);
+        std::cout<<"CORRECTING\n"<<"d:"<<delta<<","<<*max_element(observed.begin(),observed.end())<<endl;
+        // assert(*max_element(observed.begin(),observed.end()) < hmm.nstates);
+        assert(*max_element(observed.begin(),observed.end()) < hmm.nevents);
+
     }
 
     int prob0warnflag = 0;
@@ -247,8 +251,9 @@ void HMMv::exportSeqsGuess(int nt, int * spikeOut, int * stateOut, int * stateGu
  * @param  nt_ number of time samples
  * @return     spikes - vector of output values (int)
  */
-std::vector<int>  HMMv::genSeq(int nt_)
+std::vector<int>  HMMv::genSeq(int nt_, int currentState)
 {
+    //currentState is optional, defaults to NULL
     nt =nt_;
     int ntMaxPrint = 600;
     ntPrint = std::min(nt,ntMaxPrint); // hardcoded maximimum length of sequence to print
@@ -259,6 +264,10 @@ std::vector<int>  HMMv::genSeq(int nt_)
     //set random seed
     std::random_device rd;
     std::mt19937 gen(rd()); //choose a specific integer to "freeze" the random seed
+
+    // NOTE:: this should all be done when the HMM is CONSTRUCTED!
+    // NOT every time we have to generate a new sequence
+    // save trDistrs and emDistrs as properties of the HMMv !!!
 
     std::discrete_distribution<int> piDist(PI.begin(),PI.end());
     std::vector< std::discrete_distribution <int> > trDistrs;
@@ -275,7 +284,14 @@ std::vector<int>  HMMv::genSeq(int nt_)
     }
 
 
-    states[0] = piDist(gen); //gen the first state
+    if (currentState==-1)
+    {
+        states[0] = piDist(gen); //gen the first state
+    }
+    else
+    {
+        states[0] = currentState;
+    }
 
     for (int i=0;i<nt; i++)
     {
@@ -302,3 +318,88 @@ void setWarning(char * strin)
 {
     std::cout<<strin;
 }
+
+// some functions for generating default matrices for
+// debugging and benchmarking models
+
+std::vector< std::vector<double> > HMMv::simpleTransMat(int nStates)
+{
+    //initialize transition matrix to be very likely to stay in the same state
+    double pStay = 0.95;
+    double pMove = (1.0 - pStay) / (nStates-1);
+
+    std::vector<double> baseRow(nStates, pMove);
+    std::vector<std::vector<double>> TransMat(nStates, baseRow);
+
+    //https://www.techiedelight.com/vector-of-vector-cpp/
+    for (int i=0; i < nStates; i++)
+    {
+        TransMat[i][i] = pStay;
+    }
+    return TransMat;
+}
+std::vector< std::vector<double> > HMMv::simpleEmissMat(int nStates,int nEmission)
+{
+    // what to do for non-square emission matrices?
+        // either
+    double pSame = 0.9;
+    double pOther = (1.0-pSame) / nEmission;
+
+    std::vector<double> baseRow(nEmission, pOther);
+    std::vector<std::vector<double>> EmissMat(nStates, baseRow);
+
+
+    if (nStates == nEmission)
+    {
+        // make the likely emission symbol the same as the state index
+        // i.e. while in state 2, emit symbol 2
+        for (int i=0; i < nStates; i++)
+        {
+            EmissMat[i][i] = pSame;
+        }
+    }
+    else
+    {
+        // NOTE! with this method, rows will NOT be correctly normalized as is.
+        // the constructor should successfully normalize them as it loads them however
+        double w = double(nEmission) / nStates;
+        double dx = double(nEmission-1) / (nStates-1);
+        double spread = 1;// controls how "peaky" and separable the different
+        //states's emissions are
+
+        for (int i=0; i<nStates; i++)
+        {
+            for (int j=0; j<nEmission; j++)
+            {
+                EmissMat[i][j] = exp( -1*spread* pow(j - dx*(i),2) );
+            }
+            //normalize rows
+            double rowTotal = 0;
+            for (int j=0; j<nEmission; j++)
+            {
+                rowTotal += EmissMat[i][j];
+            }
+            for (int j=0; j<nEmission; j++)
+            {
+                EmissMat[i][j] = EmissMat[i][j]/rowTotal;
+            }
+        }
+    }
+    return EmissMat;
+}
+std::vector< double > HMMv::simplePriorVec(int nStates)
+{
+    //strategy here is to make one state (the 0th?) likely at 90% chance
+    // then divide up remaining probability amongst the other states
+    int idxLikely = 0;
+    double pLikely = 0.9;
+    double pOther = (1.0 - pLikely) / (nStates-1);
+
+    std::vector<double> PriorVec(nStates, pOther);
+    PriorVec[idxLikely] = pLikely;
+    return PriorVec;
+}
+
+
+
+//
