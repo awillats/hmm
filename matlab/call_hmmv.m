@@ -36,8 +36,6 @@ function [spikes,states,statesGuess]= call_hmmv(nt, trs_,frs_,pis_)
         coder.ceval('myHMM.printMyParams');
         coder.ceval('myHMM.genSeq',nt);
         
-        
-        
         spikes = cast(zeros(1,nt),'int32');
         states = cast(zeros(1,nt),'int32');
         statesGuess = cast(zeros(1,nt),'int32');

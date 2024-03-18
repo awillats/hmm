@@ -1,3 +1,11 @@
+# misc #
+tags
+
+# MATLAB aux files #
+####################
+*.mldatx
+# NOTE: some mldatx simulink results already committed
+
 # Compiled source #
 ###################
 *.com

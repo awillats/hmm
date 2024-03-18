@@ -4,8 +4,6 @@ close all
 
 %addpath('~/Documents/GitHub/hmmX/hmm')
 
-% addpath('/usr/local/include')
-% addpath('/usr/local/include/hmm_h/')
 %%
 trs = [0.2,0.21]; %transition rates
 frs = [.1,.6]; %firing rates
