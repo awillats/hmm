@@ -1,32 +1,19 @@
-/*
- * Academic License - for use in teaching, academic research, and meeting
- * course requirements at degree granting institutions only.  Not for
- * government, commercial, or other organizational use.
- *
- * _coder_call_hmmv_info.h
- *
- * Code generation for function '_coder_call_hmmv_info'
- *
- */
+//
+// Academic License - for use in teaching, academic research, and meeting
+// course requirements at degree granting institutions only.  Not for
+// government, commercial, or other organizational use.
+//
+// _coder_call_hmmv_info.h
+//
+// Code generation for function 'call_hmmv'
+//
 
-#ifndef _CODER_CALL_HMMV_INFO_H
-#define _CODER_CALL_HMMV_INFO_H
+#pragma once
 
-/* Include files */
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "tmwtypes.h"
+// Include files
 #include "mex.h"
-#include "emlrt.h"
-#include "rtwtypes.h"
-#include "call_hmmv_types.h"
 
-/* Function Declarations */
+// Function Declarations
 MEXFUNCTION_LINKAGE mxArray *emlrtMexFcnProperties();
-extern const mxArray *emlrtMexFcnResolvedFunctionsInfo();
 
-#endif
-
-/* End of code generation (_coder_call_hmmv_info.h) */
+// End of code generation (_coder_call_hmmv_info.h)

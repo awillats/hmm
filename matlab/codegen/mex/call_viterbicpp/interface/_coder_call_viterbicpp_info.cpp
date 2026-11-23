@@ -1,68 +1,78 @@
-/*
- * Academic License - for use in teaching, academic research, and meeting
- * course requirements at degree granting institutions only.  Not for
- * government, commercial, or other organizational use.
- *
- * _coder_call_viterbicpp_info.cpp
- *
- * Code generation for function '_coder_call_viterbicpp_info'
- *
- */
+//
+// Academic License - for use in teaching, academic research, and meeting
+// course requirements at degree granting institutions only.  Not for
+// government, commercial, or other organizational use.
+//
+// _coder_call_viterbicpp_info.cpp
+//
+// Code generation for function 'call_viterbicpp'
+//
 
-/* Include files */
-#include "rt_nonfinite.h"
-#include "call_viterbicpp.h"
+// Include files
 #include "_coder_call_viterbicpp_info.h"
+#include "emlrt.h"
+#include "tmwtypes.h"
 
-/* Function Definitions */
-mxArray *emlrtMexFcnProperties()
-{
-  mxArray *xResult;
-  mxArray *xEntryPoints;
-  const char * fldNames[6] = { "Name", "NumberOfInputs", "NumberOfOutputs",
-    "ConstantInputs", "FullPath", "TimeStamp" };
+// Function Declarations
+static const mxArray *emlrtMexFcnResolvedFunctionsInfo();
 
-  mxArray *xInputs;
-  const char * b_fldNames[4] = { "Version", "ResolvedFunctions", "EntryPoints",
-    "CoverageInfo" };
-
-  xEntryPoints = emlrtCreateStructMatrix(1, 1, 6, *(const char * (*)[6])&
-    fldNames[0]);
-  xInputs = emlrtCreateLogicalMatrix(1, 6);
-  emlrtSetField(xEntryPoints, 0, "Name", emlrtMxCreateString("call_viterbicpp"));
-  emlrtSetField(xEntryPoints, 0, "NumberOfInputs", emlrtMxCreateDoubleScalar(6.0));
-  emlrtSetField(xEntryPoints, 0, "NumberOfOutputs", emlrtMxCreateDoubleScalar
-                (3.0));
-  emlrtSetField(xEntryPoints, 0, "ConstantInputs", xInputs);
-  emlrtSetField(xEntryPoints, 0, "FullPath", emlrtMxCreateString(
-    "/Users/adam/Documents/GitHub/rtxi_vm_copy/hmm_modules/hmmX/hmm/call_viterbicpp.m"));
-  emlrtSetField(xEntryPoints, 0, "TimeStamp", emlrtMxCreateDoubleScalar
-                (737512.50149305561));
-  xResult = emlrtCreateStructMatrix(1, 1, 4, *(const char * (*)[4])&b_fldNames[0]);
-  emlrtSetField(xResult, 0, "Version", emlrtMxCreateString(
-    "9.5.0.1033004 (R2018b) Update 2"));
-  emlrtSetField(xResult, 0, "ResolvedFunctions", (mxArray *)
-                emlrtMexFcnResolvedFunctionsInfo());
-  emlrtSetField(xResult, 0, "EntryPoints", xEntryPoints);
-  return xResult;
-}
-
-const mxArray *emlrtMexFcnResolvedFunctionsInfo()
+// Function Definitions
+static const mxArray *emlrtMexFcnResolvedFunctionsInfo()
 {
   const mxArray *nameCaptureInfo;
-  const char * data[5] = {
-    "789cdd53cd6ed430109e45e5efb06825c40370ae14b70509b8354061ab6e0b82a5ac28903a8e612d3cb6e538abf4d607e12178040e3c03cf43925d77dd2a4b24"
-    "043d3092637ff9ac99f9be4ca0b7bbdf03805bd5020330b80e4df4ab55bf1fcc215c81f3d15fec9eefb5ed6679ff2aac35b87fe1ded7c5ceb472bc74732085e2",
-    "0705a6dc564051e46769328d4251e5c6278683e5b996339e35cc2721f958201fe9000c4505f059409d819aaacf4fa69c7d795d20d869be6c57860016fed43d7f"
-    "0ff51f2ff5afb5f813fae7f5be5fe1cf60813d7fb4f381bcc9b9cd09cd2892a79a15c895cbc973e186454aac2b4532c384697342a68809eaac903cafcf93fa41",
-    "1895329909c76d2a983111de45eab6d88cb350cf71a827e8f75a8b9e90effade37e1c6129f0eb77dbd32cc677eef5f5bbd3b2bea79ff3ccf74c66d24aaa1b28a"
-    "ca4872f5d94da15b77571f1763551f3e7cbd6f61be3fd0fda2a39ee78f7647936a746263a460d409ad72b21f8f47f1e3e4d5d6c6e6c334a2c610a7b54c754938",
-    "ca66ad37769175ef1799fb15e125cec9f6c71fb77fc6adf5cc3f9a4b58310fff61bdcbfaefc6a3c3778f309bd8f8edfd07e5e6bd43dc38d80bfa78d951a7ab0f"
-    "08718bce73f9cddfcbff0b090594b6", "" };
-
-  nameCaptureInfo = NULL;
-  emlrtNameCaptureMxArrayR2016a(data, 1832U, &nameCaptureInfo);
+  const char_T *data[5]{
+      "789ced56414f8330142e3acd12a372f2ec3f68a289472f2e4e0f2ec40d0f1a23153a61b6"
+      "3029d3ed5778f5e8cff4e8182bd026b5b8e9d4c577793cbef6fbde7b"
+      "c02bc0383d3300005b20b3ddcdcc4f1d30a77e058826e386b4ce109783355013f671fc79"
+      "eadd284cf030c98210519ceff4221a84284c3aa33e0631661179c4de",
+      "04e9060477028adbe5a09546f4b804e5410aa5d7473e76efdb030a629f1519927290f7c3"
+      "51d45bd3f44336b91ff2ba79f538ffaa522f43fa4fde97e8c9b6a8fa"
+      "d6957a1972655f4f4ad4e96d57d4937db1be2ec4ff7adfa33754f0557d5f76147aa684db"
+      "97ad8b8366bbd16b9d3cd8bdbb9185f62db759e461697474790045cc",
+      "f9dfe6e457f595f3bf28f657ede39e82df947068331c33883c446123720714870983e798"
+      "6114bb3eb4e2a887ddf11d9f52485142d0ad98a733639eb22d6a1ed5"
+      "a5b8d0cb90ee8090f468faa9fafa33ea71fe0d8d1ec7c77397972ae83b0afe65994fcbae"
+      "f75be6efd0f858479787eabff4afcdc7457dcf63fd9b2064092244d0",
+      "07733e07dd39f5aad85fb5be4305bf29e19f7f0e5068c93b0a659796", ""};
+  nameCaptureInfo = nullptr;
+  emlrtNameCaptureMxArrayR2016a(&data[0], 3384U, &nameCaptureInfo);
   return nameCaptureInfo;
 }
 
-/* End of code generation (_coder_call_viterbicpp_info.cpp) */
+mxArray *emlrtMexFcnProperties()
+{
+  mxArray *xEntryPoints;
+  mxArray *xInputs;
+  mxArray *xResult;
+  const char_T *epFieldName[6]{
+      "Name",           "NumberOfInputs", "NumberOfOutputs",
+      "ConstantInputs", "FullPath",       "TimeStamp"};
+  const char_T *propFieldName[5]{"Version", "ResolvedFunctions", "EntryPoints",
+                                 "CoverageInfo", "IsPolymorphic"};
+  xEntryPoints =
+      emlrtCreateStructMatrix(1, 1, 6, (const char_T **)&epFieldName[0]);
+  xInputs = emlrtCreateLogicalMatrix(1, 6);
+  emlrtSetField(xEntryPoints, 0, (const char_T *)"Name",
+                emlrtMxCreateString((const char_T *)"call_viterbicpp"));
+  emlrtSetField(xEntryPoints, 0, (const char_T *)"NumberOfInputs",
+                emlrtMxCreateDoubleScalar(6.0));
+  emlrtSetField(xEntryPoints, 0, (const char_T *)"NumberOfOutputs",
+                emlrtMxCreateDoubleScalar(3.0));
+  emlrtSetField(xEntryPoints, 0, (const char_T *)"ConstantInputs", xInputs);
+  emlrtSetField(xEntryPoints, 0, (const char_T *)"FullPath",
+                emlrtMxCreateString(
+                    (const char_T *)"/Users/adam/Documents/Research/Projects/"
+                                    "hmm/matlab/call_viterbicpp.m"));
+  emlrtSetField(xEntryPoints, 0, (const char_T *)"TimeStamp",
+                emlrtMxCreateDoubleScalar(738622.52491898148));
+  xResult =
+      emlrtCreateStructMatrix(1, 1, 5, (const char_T **)&propFieldName[0]);
+  emlrtSetField(xResult, 0, (const char_T *)"Version",
+                emlrtMxCreateString((const char_T *)"9.11.0.1769968 (R2021b)"));
+  emlrtSetField(xResult, 0, (const char_T *)"ResolvedFunctions",
+                (mxArray *)emlrtMexFcnResolvedFunctionsInfo());
+  emlrtSetField(xResult, 0, (const char_T *)"EntryPoints", xEntryPoints);
+  return xResult;
+}
+
+// End of code generation (_coder_call_viterbicpp_info.cpp)

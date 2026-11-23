@@ -1,3 +1,11 @@
+# misc #
+tags
+
+# MATLAB aux files #
+####################
+*.mldatx
+# NOTE: some mldatx simulink results already committed
+
 # Compiled source #
 ###################
 *.com
@@ -94,7 +102,10 @@ Thumbs.db
 
 # Specific to this project #
 ############################
-build/
+/build/
+/misc/test-cmake-installation/build/
 .cache/
 *.prj
-public
+*/mex/*
+*compile_commands.json
+*build.ninja

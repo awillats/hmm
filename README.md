@@ -4,7 +4,8 @@
 `hmm` is a simple set of hidden Markov model (HMM) [code](https://github.com/stanley-rozell/hmm) intended to support control of switching linear dynamical systems.
 
 It contains methods for generating and decoding systems with discrete latent states and discrete observed signals.
-
+![](https://github.com/stanley-rozell/hmm/blob/master/docs/imgs/hmmlogo_center_white.png)
+<!-- https://github.com/stanley-rozell/hmm/blob/master/docs/imgs/hmmlogo.png -->
 ## Applications
 
 see also: [`rtxi-hmmDecoder`](https://github.com/stanley-rozell/rtxi-hmmDecoder) and [`rtxi-hmmGenerator`](https://github.com/stanley-rozell/rtxi-hmmGenerator) for application of this library in modules intended for the RTXI platform
@@ -36,9 +37,10 @@ cmake --install . #[optional] installs to default location (OS-specific),
 <!-- make #build the project sudo make install #[optional] installs to default location (OS-specific) -->
 
 see the build and test process in action:
+<!-- might need to be changed to docs/imgs/HMM_install_example_video.gif -->
 <img src="./imgs/HMM_install_example_video.gif" alt="build and test" width="700"/>
 
-For basic benchmarking and verification of a successful install
+For basic benchmarking and verification of a successful install (from inside build directory)
 ```shell
 ctest -N #list tests to be performed
 ctest -VV #execute tests
