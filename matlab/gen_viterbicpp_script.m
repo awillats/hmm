@@ -39,13 +39,14 @@ end
 %return
 
 %%
-[stg]=call_viterbicpp_mex(nt, spikes__,states__, trs,frs,pis); %random inputs
+[stg]=double(call_viterbicpp_mex(nt, spikes__,states__, trs,frs,pis)); %random inputs
 stgmat = hmmviterbi(spikes__+1, TR, EM);
+stgmat = stgmat-1;% put in same range as C++ estimates
 %vecPrint(st);
 %call_hmmv_mex(0);
 %disp('matlab states')
 
-
+orange = [253, 104, 13]/255; % #FD680D
 XL = [0,300];
 figure(1)
 clf
@@ -60,9 +61,9 @@ ylabel(["observations","(spikes)"])
 
 subplot(2,1,2)
 hold on
-plot(states__,'g','LineWidth',4)
-plot(stg,'k','LineWidth',2)
-plot(stgmat-.9,'b','LineWidth',2)
+plot(states__,'g',LineWidth=3)
+plot(stg+0.05,'b',LineWidth=2)
+plot(stgmat+0.10,Color=orange,LineWidth=2)
 legend('true states','C++ estimate','MATLAB estimate')
 xlabel('time steps')
 xlim(XL)
@@ -71,16 +72,16 @@ ylabel("states")
 hold off
 set(gcf,'Position',[    837   627   604   178]);
 
-%% Plot confusion between state guess from c++ and matlab as scatter
-figure(2)
-clf
-plot(double(stg)+randn(1,nt)/10,stgmat+randn(1,nt)/10,'ko','LineWidth',1)
-set(gcf,'Position',[    66   705   113   100])
-xlabel('c++ state')
-ylabel('matlab state')
+%% Plot confusion between state guess from c++ and matlab as scatter and confusion matrix
+% figure(2)
+% clf
+% plot(double(stg)+randn(1,nt)/10,stgmat+randn(1,nt)/10,'ko','LineWidth',1)
+% set(gcf,'Position',[    66   705   113   100])
+% xlabel('c++ state')
+% ylabel('matlab state')
 
 figure(3)
-conf = confusionchart(double(stg),stgmat-1,Normalization="row-normalized");
+conf = confusionchart(stg,stgmat,Normalization="row-normalized");
 sortClasses(conf,"ascending-diagonal")
 w = 0.7
 s = 0.9
