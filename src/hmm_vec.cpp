@@ -353,6 +353,12 @@ void setWarning(char * strin)
 
 std::vector< std::vector<double> > HMMv::simpleTransMat(int nStates)
 {
+    if (nStates <= 0) {
+        throw std::invalid_argument("simpleTransMat: nStates must be > 0");
+    }
+    if (nStates == 1) {
+        return std::vector<std::vector<double>>(1, std::vector<double>(1, 1.0));
+    }
     //initialize transition matrix to be very likely to stay in the same state
     double pStay = 0.95;
     double pMove = (1.0 - pStay) / (nStates-1);
@@ -369,6 +375,12 @@ std::vector< std::vector<double> > HMMv::simpleTransMat(int nStates)
 }
 std::vector< std::vector<double> > HMMv::simpleEmissMat(int nStates,int nEmission)
 {
+    if (nStates <= 0 || nEmission <= 0) {
+        throw std::invalid_argument("simpleEmissMat: nStates and nEmission must be > 0");
+    }
+    if (nStates == 1 && nEmission == 1) {
+        return std::vector<std::vector<double>>(1, std::vector<double>(1, 1.0));
+    }
     // what to do for non-square emission matrices?
         // either
     double pSame = 0.9;
@@ -391,8 +403,7 @@ std::vector< std::vector<double> > HMMv::simpleEmissMat(int nStates,int nEmissio
     {
         // NOTE! with this method, rows will NOT be correctly normalized as is.
         // the constructor should successfully normalize them as it loads them however
-        double w = double(nEmission) / nStates;
-        double dx = double(nEmission-1) / (nStates-1);
+        double dx = (nStates > 1) ? double(nEmission-1) / (nStates-1) : 0.0;
         double spread = 1;// controls how "peaky" and separable the different
         //states's emissions are
 
@@ -418,6 +429,12 @@ std::vector< std::vector<double> > HMMv::simpleEmissMat(int nStates,int nEmissio
 }
 std::vector< double > HMMv::simplePriorVec(int nStates)
 {
+    if (nStates <= 0) {
+        throw std::invalid_argument("simplePriorVec: nStates must be > 0");
+    }
+    if (nStates == 1) {
+        return std::vector<double>(1, 1.0);
+    }
     //strategy here is to make one state (the 0th?) likely at 90% chance
     // then divide up remaining probability amongst the other states
     int idxLikely = 0;

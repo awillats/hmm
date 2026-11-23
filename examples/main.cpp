@@ -52,7 +52,10 @@ int main(int argc, const char *argv[]) {
     std::cout << "argv0: " << argv[1] << '\n';
 
     int nInput = std::stoi(argv[1]);
-    assert(nInput > 0);
+    if (nInput <= 0) {
+      std::cerr << "Error: nStates must be > 0\n";
+      return 1;
+    }
 
     if (nInput == 3) {
       printMode = 3;
@@ -66,6 +69,10 @@ int main(int argc, const char *argv[]) {
     // if there's a second argument it specifies how many time samples to
     // generate & decode
     nt = std::stoi(argv[2]);
+    if (nt <= 0) {
+      std::cerr << "Error: nSamples must be > 0\n";
+      return 1;
+    }
   }
   std::cout << "nStates: " << nStates << " nEmissions: "<<nEmissions<<'\n';
 
