@@ -5,14 +5,17 @@ project(hmm VERSION 0.2.0 LANGUAGES CXX C)
 # some name variants I will be using:
 set(CMAKE_PROJECT_NAME_CAP HMM)#all caps
 
-# TODO(mfbolus): Update
-set(PROJECT_URL https://github.com/stanley-rozell/hmm)
+set(PROJECT_URL https://github.com/CLOCTools/hmm)
 
 # WINDOWS WARNING
 if (WIN32)
 message(WARNING "Build/Use of this library on Windows is untested and
   will likely not work properly. If this is the case,
   please file an issue and/or make a pull request @${PROJECT_URL} .")
+endif()
+
+if(WIN32)
+  set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 endif()
 
 # Specify C++ standard
@@ -313,5 +316,10 @@ do_test2(5state_300samples eg_hmm 5 300 ${TEST_ANS})
 do_test2(5state_1000samples eg_hmm 5 1000 ${TEST_ANS})
 do_test2(5state_3000samples eg_hmm 5 3000 ${TEST_ANS})
 
-add_test(NAME Stress_2_1k COMMAND eg_hmm 2 1000 PROPERTIES PASS_REGULAR_EXPRESSION ${TEST_ANS})
-add_test(NAME Stress_3_50k COMMAND eg_hmm 3 50000 PROPERTIES PASS_REGULAR_EXPRESSION ${TEST_ANS})
+do_test2(Stress_2_1k eg_hmm 2 1000 ${TEST_ANS})
+do_test2(Stress_3_50k eg_hmm 3 50000 ${TEST_ANS})
+
+option(HMM_BUILD_TESTS "Build C++ unit tests" ON)
+if(HMM_BUILD_TESTS)
+  add_subdirectory(tests)
+endif()
