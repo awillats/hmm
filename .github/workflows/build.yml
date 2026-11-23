@@ -16,6 +16,7 @@ jobs:
         build_type: [Debug, Release]
 
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
 
     steps:
       - name: Checkout repository
@@ -32,4 +33,4 @@ jobs:
         run: cmake --build build --config ${{ matrix.build_type }} -j
 
       - name: Run CTest (${{ matrix.build_type }})
-        run: ctest --test-dir build -C ${{ matrix.build_type }} --output-on-failure
+        run: ctest --test-dir build -C ${{ matrix.build_type }} --output-on-failure --timeout 60
