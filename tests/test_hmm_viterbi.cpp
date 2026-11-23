@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <cmath>
 #include <numeric>
+#include <stdexcept>
 #include <vector>
 
 TEST_SUITE("hmm_viterbi") {
@@ -220,6 +221,21 @@ TEST_CASE("Export, import, and shuttleFuns round-trip") {
   vec2array(vec_d, out_d);
   CHECK(out_d[0] == doctest::Approx(1.5));
   CHECK(out_d[2] == doctest::Approx(3.5));
+}
+
+TEST_CASE("Input validation in Release and Debug builds") {
+  HMMv hmm(2, 2, {0.05, 0.05}, {0.05, 0.95}, {0.9, 0.1});
+  std::vector<int> obs = {0, 1, 0, 1};
+
+  CHECK_THROWS_AS(viterbi(hmm, obs, 0), std::invalid_argument);
+  CHECK_THROWS_AS(viterbi(hmm, obs, -3), std::invalid_argument);
+  CHECK_THROWS_AS(viterbi(hmm, std::vector<int>{}, 1), std::invalid_argument);
+  CHECK_THROWS_AS(viterbi(hmm, obs, 10), std::invalid_argument);
+  CHECK_THROWS_AS(viterbi(hmm, std::vector<int>{0, -1, 1}, 3), std::invalid_argument);
+
+  HMMv bad_hmm = hmm;
+  bad_hmm.nstates = 0;
+  CHECK_THROWS_AS(viterbi(bad_hmm, obs, 4), std::invalid_argument);
 }
 
 }  // TEST_SUITE("hmm_viterbi")
