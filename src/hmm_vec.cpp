@@ -16,6 +16,7 @@
 
 // #include "../include/hmm_h/hmm_vec.hpp"
 #include <hmm.h>
+#include <stdexcept>
 //#include "../../../module_help/StAC_rtxi/hmm_tests/hmm_fs.hpp"
 
 
@@ -39,28 +40,48 @@ double logE(double val)
  * @return          vector of most-likely states
  */
 int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
-    assert(n > 0); assert(!observed.empty());
+    if (n <= 0 || observed.empty() || static_cast<size_t>(n) > observed.size()) {
+        throw std::invalid_argument("viterbi: invalid sequence length or empty observations");
+    }
+    if (hmm.nstates <= 0 || hmm.nevents <= 0 ||
+        hmm.PI.size() < static_cast<size_t>(hmm.nstates) ||
+        hmm.TR.size() < static_cast<size_t>(hmm.nstates) ||
+        hmm.EM.size() < static_cast<size_t>(hmm.nstates)) {
+        throw std::invalid_argument("viterbi: invalid HMM dimensions");
+    }
+    for (int s = 0; s < hmm.nstates; ++s) {
+        if (hmm.TR[s].size() < static_cast<size_t>(hmm.nstates) ||
+            hmm.EM[s].size() < static_cast<size_t>(hmm.nevents)) {
+            throw std::invalid_argument("viterbi: invalid HMM matrix row dimensions");
+        }
+    }
+    for (int i = 0; i < n; ++i) {
+        if (observed[i] < 0) {
+            throw std::invalid_argument("viterbi: observation index must be non-negative");
+        }
+    }
 
     double pmaxDefault = -1e10; //set to 0 if you're using the non-log-transformed versions
 
     //since observed gets used to index the transition/emission matrix directly
     //we need to check for an out of bounds exception
-    if (*max_element(observed.begin(),observed.end()) >= hmm.nevents)
+    int max_obs = *std::max_element(observed.begin(), observed.begin() + n);
+    if (max_obs >= hmm.nevents)
     {
         //This fix is designed for deltas between matlab and c++ indexing. This will not catch every possible mismatch
-        std::cout<<"> max obsv:"<<*max_element(observed.begin(),observed.end())<<", Nmax:"<<hmm.nevents<<"<";
+        std::cout<<"> max obsv:"<<max_obs<<", Nmax:"<<hmm.nevents<<"<";
         //temporary fix:
-        int delta = hmm.nevents - *max_element(observed.begin(),observed.end());
+        int delta = hmm.nevents - max_obs;
         for (int i=0;i<n;i++)
         {
             observed[i] = observed[i]+delta-1;
             if (observed[i] < 0) {observed[i]=0;}
             if (observed[i] >= hmm.nevents) {observed[i]=hmm.nevents-1;}
         }
-        std::cout<<"CORRECTING\n"<<"d:"<<delta<<","<<*max_element(observed.begin(),observed.end())<<endl;
-        // assert(*max_element(observed.begin(),observed.end()) < hmm.nstates);
-        assert(*max_element(observed.begin(),observed.end()) < hmm.nevents);
-
+        std::cout<<"CORRECTING\n"<<"d:"<<delta<<","<<*std::max_element(observed.begin(),observed.begin()+n)<<endl;
+        if (*std::max_element(observed.begin(), observed.begin() + n) >= hmm.nevents) {
+            throw std::invalid_argument("viterbi: observation index out of range");
+        }
     }
 
     int prob0warnflag = 0;
@@ -131,9 +152,17 @@ int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n) {
     seq[n-1] = dmax;
 
     for (int i = n-2; i >= 0; i--) {
-       // std::cout<<">"<<i<<"_"<<seq[i+1]<<"_"<<"<\n";
-        assert(seq[i+1]>=0);
-        seq[i] = prevs[i][ seq[i+1] ]; //fails, generally for 2<< i< n-10
+        if (seq[i+1] < 0 || seq[i+1] >= hmm.nstates) {
+            for (int k = 0; k < n; ++k) {
+                delete[] prob[k];
+                delete[] prevs[k];
+            }
+            delete[] prob;
+            delete[] prevs;
+            delete[] seq;
+            throw std::out_of_range("viterbi: invalid backtrack state index");
+        }
+        seq[i] = prevs[i][ seq[i+1] ];
     }
 
     //check
@@ -324,6 +353,12 @@ void setWarning(char * strin)
 
 std::vector< std::vector<double> > HMMv::simpleTransMat(int nStates)
 {
+    if (nStates <= 0) {
+        throw std::invalid_argument("simpleTransMat: nStates must be > 0");
+    }
+    if (nStates == 1) {
+        return std::vector<std::vector<double>>(1, std::vector<double>(1, 1.0));
+    }
     //initialize transition matrix to be very likely to stay in the same state
     double pStay = 0.95;
     double pMove = (1.0 - pStay) / (nStates-1);
@@ -340,6 +375,12 @@ std::vector< std::vector<double> > HMMv::simpleTransMat(int nStates)
 }
 std::vector< std::vector<double> > HMMv::simpleEmissMat(int nStates,int nEmission)
 {
+    if (nStates <= 0 || nEmission <= 0) {
+        throw std::invalid_argument("simpleEmissMat: nStates and nEmission must be > 0");
+    }
+    if (nStates == 1 && nEmission == 1) {
+        return std::vector<std::vector<double>>(1, std::vector<double>(1, 1.0));
+    }
     // what to do for non-square emission matrices?
         // either
     double pSame = 0.9;
@@ -362,8 +403,7 @@ std::vector< std::vector<double> > HMMv::simpleEmissMat(int nStates,int nEmissio
     {
         // NOTE! with this method, rows will NOT be correctly normalized as is.
         // the constructor should successfully normalize them as it loads them however
-        double w = double(nEmission) / nStates;
-        double dx = double(nEmission-1) / (nStates-1);
+        double dx = (nStates > 1) ? double(nEmission-1) / (nStates-1) : 0.0;
         double spread = 1;// controls how "peaky" and separable the different
         //states's emissions are
 
@@ -389,6 +429,12 @@ std::vector< std::vector<double> > HMMv::simpleEmissMat(int nStates,int nEmissio
 }
 std::vector< double > HMMv::simplePriorVec(int nStates)
 {
+    if (nStates <= 0) {
+        throw std::invalid_argument("simplePriorVec: nStates must be > 0");
+    }
+    if (nStates == 1) {
+        return std::vector<double>(1, 1.0);
+    }
     //strategy here is to make one state (the 0th?) likely at 90% chance
     // then divide up remaining probability amongst the other states
     int idxLikely = 0;

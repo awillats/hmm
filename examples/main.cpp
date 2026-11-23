@@ -52,7 +52,10 @@ int main(int argc, const char *argv[]) {
     std::cout << "argv0: " << argv[1] << '\n';
 
     int nInput = std::stoi(argv[1]);
-    assert(nInput > 0);
+    if (nInput <= 0) {
+      std::cerr << "Error: nStates must be > 0\n";
+      return 1;
+    }
 
     if (nInput == 3) {
       printMode = 3;
@@ -66,6 +69,10 @@ int main(int argc, const char *argv[]) {
     // if there's a second argument it specifies how many time samples to
     // generate & decode
     nt = std::stoi(argv[2]);
+    if (nt <= 0) {
+      std::cerr << "Error: nSamples must be > 0\n";
+      return 1;
+    }
   }
   std::cout << "nStates: " << nStates << " nEmissions: "<<nEmissions<<'\n';
 
@@ -91,16 +98,17 @@ int main(int argc, const char *argv[]) {
     myHMM.genSeq(nt);
 
     auto start_time = std::chrono::system_clock::now();
-    viterbi(myHMM, myHMM.spikes, nt);
+    int *rep_guess = viterbi(myHMM, myHMM.spikes, nt);
     auto end_time = std::chrono::system_clock::now();
+    delete[] rep_guess;
     std::chrono::duration<double> diff = end_time - start_time;
     cout << "Run time = " << diff.count() * 1000 << " ms\n";
   }
 
-  int spkAry[nt];
-  int stateAry[nt];
-  int vguess2[nt];
-  myHMM.exportSeqsGuess(nt, spkAry, stateAry, vguess2);
+  std::vector<int> spkAry(nt);
+  std::vector<int> stateAry(nt);
+  std::vector<int> vguess2(nt);
+  myHMM.exportSeqsGuess(nt, spkAry.data(), stateAry.data(), vguess2.data());
 
   printVecAsBlock(&vguess[0], myHMM.ntPrint, printMode);
   std::cout << " < guessed states \n";
@@ -119,5 +127,6 @@ int main(int argc, const char *argv[]) {
   std::cout << 100.0 * acc << "% accuracy\n"; // stateAry;
   std::cout << "Run time = " << diff.count() * 1000 << " ms\n";
 
+  delete[] vguess;
   return 0;
 }

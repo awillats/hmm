@@ -20,6 +20,7 @@
 #include <iterator>
 
 #include <random>
+#include <stdexcept>
 #include <string>
 
 #include "printFuns.hpp"
@@ -56,14 +57,9 @@ struct HMMv {
    //constructor where you just specify the firing and transition rate vectors, note should only work for 2 states...
     HMMv(int nstates, int nevents, std::vector< double> vTr, std::vector< double> vFr, std::vector<double> PI):
     nstates(nstates), nevents(nevents), PI(PI) {
-        //assert(nstates > 0); assert(nevents > 0);
-        //int q=5;
-        //std::cout<<'\n'<<'\n'<<'\n'<<'\n';
-
-        // //for now building the matrices only works for n=2
-        assert(nstates==2);assert(nevents==2);
-
-        assert(!vFr.empty()); assert(!vTr.empty()); assert(!PI.empty());
+        if (nstates != 2 || nevents != 2 || vTr.size() < 2 || vFr.size() < 2 || PI.size() < 2) {
+            throw std::invalid_argument("HMMv: 2-state constructor requires nstates==2, nevents==2, and vector sizes >= 2");
+        }
 
 	    std::vector<double> Av0;
 	    std::vector<double> Av1;
@@ -96,12 +92,20 @@ struct HMMv {
     }
     //alternate more direct constructor? or just a consequence of the block above?
     //not sure what this TR_ is doing here...
-    HMMv(int nstates, int nevents, std::vector< std::vector<double> > TR_, std::vector< std::vector<double> > EM, std::vector<double> PI):
-    nstates(nstates), nevents(nevents), TR(TR_), EM(EM),  PI(PI) {
-        assert(nstates > 0); assert(nevents > 0);
-        assert(TR[0].size()==nstates);
-        assert(EM[0].size()==nevents);
-        assert(!TR.empty()); assert(!EM.empty()); assert(!PI.empty());
+    HMMv(int nstates, int nevents, std::vector< std::vector<double> > TR_, std::vector< std::vector<double> > EM_, std::vector<double> PI):
+    nstates(nstates), nevents(nevents), TR(TR_), EM(EM_),  PI(PI) {
+        if (nstates <= 0 || nevents <= 0 ||
+            TR.size() != static_cast<size_t>(nstates) ||
+            EM.size() != static_cast<size_t>(nstates) ||
+            PI.size() != static_cast<size_t>(nstates)) {
+            throw std::invalid_argument("HMMv: invalid state/event counts or matrix/prior dimensions");
+        }
+        for (int i = 0; i < nstates; ++i) {
+            if (TR[i].size() != static_cast<size_t>(nstates) ||
+                EM[i].size() != static_cast<size_t>(nevents)) {
+                throw std::invalid_argument("HMMv: invalid TR or EM row size");
+            }
+        }
 
         //normalize row
         for (int i=0;i<nstates;i++)
