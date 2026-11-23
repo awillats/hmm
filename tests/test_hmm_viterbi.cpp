@@ -30,9 +30,9 @@ TEST_CASE("HMMv constructors and row normalization") {
     CHECK(hmm.PI[1] == doctest::Approx(0.3));
   }
 
-  SUBCASE("General matrix constructor normalizes TR rows (EM parameter shadows member)") {
+  SUBCASE("General matrix constructor normalizes TR and EM rows") {
     std::vector<std::vector<double>> tr = {{8.0, 2.0}, {1.0, 3.0}};
-    std::vector<std::vector<double>> em = {{0.75, 0.25, 0.0}, {0.0, 0.25, 0.75}};
+    std::vector<std::vector<double>> em = {{3.0, 1.0, 0.0}, {0.0, 2.0, 6.0}};
     std::vector<double> pi = {0.4, 0.6};
     HMMv hmm(2, 3, tr, em, pi);
 
@@ -236,6 +236,65 @@ TEST_CASE("Input validation in Release and Debug builds") {
   HMMv bad_hmm = hmm;
   bad_hmm.nstates = 0;
   CHECK_THROWS_AS(viterbi(bad_hmm, obs, 4), std::invalid_argument);
+}
+
+TEST_CASE("HMMv constructor validation in Release and Debug builds") {
+  SUBCASE("2-state rate constructor rejects invalid inputs") {
+    CHECK_THROWS_AS(HMMv(2, 2, std::vector<double>{}, {0.1, 0.9}, {0.5, 0.5}),
+                    std::invalid_argument);
+    CHECK_THROWS_AS(HMMv(2, 2, {0.1}, {0.1, 0.9}, {0.5, 0.5}),
+                    std::invalid_argument);
+    CHECK_THROWS_AS(HMMv(2, 2, {0.1, 0.1}, std::vector<double>{}, {0.5, 0.5}),
+                    std::invalid_argument);
+    CHECK_THROWS_AS(HMMv(2, 2, {0.1, 0.1}, {0.1, 0.9}, std::vector<double>{}),
+                    std::invalid_argument);
+    CHECK_THROWS_AS(HMMv(3, 2, {0.1, 0.1}, {0.1, 0.9}, {0.5, 0.5}),
+                    std::invalid_argument);
+  }
+
+  SUBCASE("General matrix constructor rejects empty or mismatched dimensions") {
+    std::vector<std::vector<double>> empty_mat;
+    std::vector<std::vector<double>> ok2x2 = {{0.5, 0.5}, {0.5, 0.5}};
+    std::vector<double> ok_pi = {0.5, 0.5};
+
+    CHECK_THROWS_AS(HMMv(0, 2, ok2x2, ok2x2, ok_pi), std::invalid_argument);
+    CHECK_THROWS_AS(HMMv(2, 0, ok2x2, ok2x2, ok_pi), std::invalid_argument);
+    CHECK_THROWS_AS(HMMv(2, 2, empty_mat, ok2x2, ok_pi), std::invalid_argument);
+    CHECK_THROWS_AS(HMMv(2, 2, ok2x2, empty_mat, ok_pi), std::invalid_argument);
+    CHECK_THROWS_AS(HMMv(2, 2, {{1.0}}, ok2x2, ok_pi), std::invalid_argument);
+    CHECK_THROWS_AS(HMMv(2, 2, ok2x2, {{1.0}, {1.0}}, ok_pi), std::invalid_argument);
+    CHECK_THROWS_AS(HMMv(2, 2, ok2x2, ok2x2, {1.0}), std::invalid_argument);
+  }
+}
+
+TEST_CASE("Single-state (nStates == 1) helper matrices and decoding") {
+  auto tr1 = HMMv::simpleTransMat(1);
+  REQUIRE(tr1.size() == 1);
+  REQUIRE(tr1[0].size() == 1);
+  CHECK(std::isfinite(tr1[0][0]));
+  CHECK(tr1[0][0] == doctest::Approx(1.0));
+
+  auto em1_3 = HMMv::simpleEmissMat(1, 3);
+  REQUIRE(em1_3.size() == 1);
+  REQUIRE(em1_3[0].size() == 3);
+  double em_sum = 0.0;
+  for (double v : em1_3[0]) {
+    CHECK(std::isfinite(v));
+    em_sum += v;
+  }
+  CHECK(em_sum == doctest::Approx(1.0));
+
+  auto pi1 = HMMv::simplePriorVec(1);
+  REQUIRE(pi1.size() == 1);
+  CHECK(std::isfinite(pi1[0]));
+  CHECK(pi1[0] == doctest::Approx(1.0));
+
+  HMMv hmm1(1, 2);
+  int* path = viterbi(hmm1, {0, 1, 0}, 3);
+  CHECK(path[0] == 0);
+  CHECK(path[1] == 0);
+  CHECK(path[2] == 0);
+  delete[] path;
 }
 
 }  // TEST_SUITE("hmm_viterbi")
