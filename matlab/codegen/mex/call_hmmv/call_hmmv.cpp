@@ -22,7 +22,7 @@ static emlrtDCInfo emlrtDCI{
     41,                                                               // lineNo
     31,                                                               // colNo
     "call_hmmv",                                                      // fName
-    "/Users/adam/Documents/Research/Projects/hmm/matlab/call_hmmv.m", // pName
+    "matlab/call_hmmv.m", // pName
     1 // checkKind
 };
 
@@ -30,7 +30,7 @@ static emlrtDCInfo b_emlrtDCI{
     41,                                                               // lineNo
     31,                                                               // colNo
     "call_hmmv",                                                      // fName
-    "/Users/adam/Documents/Research/Projects/hmm/matlab/call_hmmv.m", // pName
+    "matlab/call_hmmv.m", // pName
     4 // checkKind
 };
 
@@ -38,7 +38,7 @@ static emlrtDCInfo c_emlrtDCI{
     42,                                                               // lineNo
     31,                                                               // colNo
     "call_hmmv",                                                      // fName
-    "/Users/adam/Documents/Research/Projects/hmm/matlab/call_hmmv.m", // pName
+    "matlab/call_hmmv.m", // pName
     1 // checkKind
 };
 
@@ -46,7 +46,7 @@ static emlrtDCInfo d_emlrtDCI{
     43,                                                               // lineNo
     36,                                                               // colNo
     "call_hmmv",                                                      // fName
-    "/Users/adam/Documents/Research/Projects/hmm/matlab/call_hmmv.m", // pName
+    "matlab/call_hmmv.m", // pName
     1 // checkKind
 };
 
@@ -54,7 +54,7 @@ static emlrtDCInfo e_emlrtDCI{
     41,                                                               // lineNo
     9,                                                                // colNo
     "call_hmmv",                                                      // fName
-    "/Users/adam/Documents/Research/Projects/hmm/matlab/call_hmmv.m", // pName
+    "matlab/call_hmmv.m", // pName
     1 // checkKind
 };
 
@@ -62,7 +62,7 @@ static emlrtDCInfo f_emlrtDCI{
     42,                                                               // lineNo
     9,                                                                // colNo
     "call_hmmv",                                                      // fName
-    "/Users/adam/Documents/Research/Projects/hmm/matlab/call_hmmv.m", // pName
+    "matlab/call_hmmv.m", // pName
     1 // checkKind
 };
 
@@ -70,7 +70,7 @@ static emlrtDCInfo g_emlrtDCI{
     43,                                                               // lineNo
     9,                                                                // colNo
     "call_hmmv",                                                      // fName
-    "/Users/adam/Documents/Research/Projects/hmm/matlab/call_hmmv.m", // pName
+    "matlab/call_hmmv.m", // pName
     1 // checkKind
 };
 
@@ -78,21 +78,21 @@ static emlrtRTEInfo emlrtRTEI{
     41,                                                              // lineNo
     9,                                                               // colNo
     "call_hmmv",                                                     // fName
-    "/Users/adam/Documents/Research/Projects/hmm/matlab/call_hmmv.m" // pName
+    "matlab/call_hmmv.m" // pName
 };
 
 static emlrtRTEInfo b_emlrtRTEI{
     42,                                                              // lineNo
     9,                                                               // colNo
     "call_hmmv",                                                     // fName
-    "/Users/adam/Documents/Research/Projects/hmm/matlab/call_hmmv.m" // pName
+    "matlab/call_hmmv.m" // pName
 };
 
 static emlrtRTEInfo c_emlrtRTEI{
     43,                                                              // lineNo
     9,                                                               // colNo
     "call_hmmv",                                                     // fName
-    "/Users/adam/Documents/Research/Projects/hmm/matlab/call_hmmv.m" // pName
+    "matlab/call_hmmv.m" // pName
 };
 
 // Function Definitions

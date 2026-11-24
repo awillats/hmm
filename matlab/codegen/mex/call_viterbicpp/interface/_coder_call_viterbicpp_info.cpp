@@ -61,7 +61,7 @@ mxArray *emlrtMexFcnProperties()
   emlrtSetField(xEntryPoints, 0, (const char_T *)"ConstantInputs", xInputs);
   emlrtSetField(xEntryPoints, 0, (const char_T *)"FullPath",
                 emlrtMxCreateString(
-                    (const char_T *)"/Users/adam/Documents/Research/Projects/"
+                    (const char_T *)"<LOCAL_PATH>"
                                     "hmm/matlab/call_viterbicpp.m"));
   emlrtSetField(xEntryPoints, 0, (const char_T *)"TimeStamp",
                 emlrtMxCreateDoubleScalar(738622.52491898148));

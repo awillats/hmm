@@ -22,7 +22,7 @@ static emlrtDCInfo emlrtDCI{
     36,                // lineNo
     36,                // colNo
     "call_viterbicpp", // fName
-    "/Users/adam/Documents/Research/Projects/hmm/matlab/call_viterbicpp.m", // pName
+    "matlab/call_viterbicpp.m", // pName
     1 // checkKind
 };
 
@@ -30,7 +30,7 @@ static emlrtDCInfo b_emlrtDCI{
     36,                // lineNo
     36,                // colNo
     "call_viterbicpp", // fName
-    "/Users/adam/Documents/Research/Projects/hmm/matlab/call_viterbicpp.m", // pName
+    "matlab/call_viterbicpp.m", // pName
     4 // checkKind
 };
 
@@ -38,7 +38,7 @@ static emlrtDCInfo c_emlrtDCI{
     36,                // lineNo
     9,                 // colNo
     "call_viterbicpp", // fName
-    "/Users/adam/Documents/Research/Projects/hmm/matlab/call_viterbicpp.m", // pName
+    "matlab/call_viterbicpp.m", // pName
     1 // checkKind
 };
 
@@ -46,7 +46,7 @@ static emlrtRTEInfo emlrtRTEI{
     36,                // lineNo
     9,                 // colNo
     "call_viterbicpp", // fName
-    "/Users/adam/Documents/Research/Projects/hmm/matlab/call_viterbicpp.m" // pName
+    "matlab/call_viterbicpp.m" // pName
 };
 
 // Function Definitions

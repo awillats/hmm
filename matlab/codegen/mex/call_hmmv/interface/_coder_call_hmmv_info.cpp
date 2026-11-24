@@ -61,7 +61,7 @@ mxArray *emlrtMexFcnProperties()
   emlrtSetField(xEntryPoints, 0, (const char_T *)"ConstantInputs", xInputs);
   emlrtSetField(
       xEntryPoints, 0, (const char_T *)"FullPath",
-      emlrtMxCreateString((const char_T *)"/Users/adam/Documents/Research/"
+      emlrtMxCreateString((const char_T *)"<LOCAL_PATH>"
                                           "Projects/hmm/matlab/call_hmmv.m"));
   emlrtSetField(xEntryPoints, 0, (const char_T *)"TimeStamp",
                 emlrtMxCreateDoubleScalar(738622.518425926));

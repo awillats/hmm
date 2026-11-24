@@ -44,8 +44,8 @@ SYS_INCLUDE = $(ML_INCLUDES)
 
 # Additional includes
 
-SYS_INCLUDE += -I "/Users/adam/Documents/GitHub/rtxi_vm_copy/hmm_modules/hmmX/hmm/hmm_comparison/codegen/mex/call_viterbicpp"
-SYS_INCLUDE += -I "/Users/adam/Documents/GitHub/rtxi_vm_copy/hmm_modules/hmmX/hmm/hmm_comparison"
+SYS_INCLUDE += -I "<LOCAL_PATH>"
+SYS_INCLUDE += -I "<LOCAL_PATH>"
 SYS_INCLUDE += -I "./interface"
 SYS_INCLUDE += -I "$(MATLAB_ROOT)/extern/include"
 SYS_INCLUDE += -I "."
@@ -103,10 +103,10 @@ CPPFLAGS = $(CXX_FLAGS) -std=c++11   $(USER_INCLUDE) $(SYS_INCLUDE)
 
 # Additional sources
 
-%.$(OBJEXT) : /Users/adam/Documents/GitHub/rtxi_vm_copy/hmm_modules/hmmX/hmm/hmm_comparison/%.c
+%.$(OBJEXT) : <LOCAL_PATH>
 	$(CC) $(CCFLAGS) "$<"
 
-%.$(OBJEXT) : /Users/adam/Documents/GitHub/rtxi_vm_copy/hmm_modules/hmmX/hmm/hmm_comparison/codegen/mex/call_viterbicpp/%.c
+%.$(OBJEXT) : <LOCAL_PATH>
 	$(CC) $(CCFLAGS) "$<"
 
 %.$(OBJEXT) : interface/%.c
@@ -114,10 +114,10 @@ CPPFLAGS = $(CXX_FLAGS) -std=c++11   $(USER_INCLUDE) $(SYS_INCLUDE)
 
 
 
-%.$(OBJEXT) : /Users/adam/Documents/GitHub/rtxi_vm_copy/hmm_modules/hmmX/hmm/hmm_comparison/%.cpp
+%.$(OBJEXT) : <LOCAL_PATH>
 	$(CXX) $(CPPFLAGS) "$<"
 
-%.$(OBJEXT) : /Users/adam/Documents/GitHub/rtxi_vm_copy/hmm_modules/hmmX/hmm/hmm_comparison/codegen/mex/call_viterbicpp/%.cpp
+%.$(OBJEXT) : <LOCAL_PATH>
 	$(CXX) $(CPPFLAGS) "$<"
 
 %.$(OBJEXT) : interface/%.cpp
@@ -125,10 +125,10 @@ CPPFLAGS = $(CXX_FLAGS) -std=c++11   $(USER_INCLUDE) $(SYS_INCLUDE)
 
 
 
-%.$(OBJEXT) : /Users/adam/Documents/GitHub/rtxi_vm_copy/hmm_modules/hmmX/hmm/hmm_comparison/%.cu
+%.$(OBJEXT) : <LOCAL_PATH>
 	$(CC) $(CCFLAGS) "$<"
 
-%.$(OBJEXT) : /Users/adam/Documents/GitHub/rtxi_vm_copy/hmm_modules/hmmX/hmm/hmm_comparison/codegen/mex/call_viterbicpp/%.cu
+%.$(OBJEXT) : <LOCAL_PATH>
 	$(CC) $(CCFLAGS) "$<"
 
 %.$(OBJEXT) : interface/%.cu
