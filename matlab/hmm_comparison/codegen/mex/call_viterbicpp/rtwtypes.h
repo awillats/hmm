@@ -1,25 +1,26 @@
-/*
- * Academic License - for use in teaching, academic research, and meeting
- * course requirements at degree granting institutions only.  Not for
- * government, commercial, or other organizational use.
- *
- * rtwtypes.h
- *
- * Code generation for function 'call_viterbicpp'
- *
- */
+//
+// Academic License - for use in teaching, academic research, and meeting
+// course requirements at degree granting institutions only.  Not for
+// government, commercial, or other organizational use.
+//
+// rtwtypes.h
+//
+// Code generation for function 'call_viterbicpp'
+//
 
-#ifndef RTWTYPES_H
-#define RTWTYPES_H
+#pragma once
+
+// Include files
 #include "tmwtypes.h"
-/* 
+
+/*
  * TRUE/FALSE definitions
  */
 #ifndef TRUE
 #define TRUE (1U)
-#endif 
+#endif
 #ifndef FALSE
 #define FALSE (0U)
-#endif 
 #endif
-/* End of code generation (rtwtypes.h) */
+
+// End of code generation (rtwtypes.h)

@@ -58,7 +58,7 @@ PROJECT_LOGO           =
 # entered, it will be relative to the location where doxygen was started. If
 # left blank the current directory will be used.
 
-OUTPUT_DIRECTORY       = /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/docs
+OUTPUT_DIRECTORY       = docs
 
 # If the CREATE_SUBDIRS tag is set to YES then doxygen will create 4096 sub-
 # directories (in 2 levels) under the output directory of each output format and
@@ -864,9 +864,9 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/src \
-                         /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/examples \
-                         /Users/adam/Documents/GitHub/clocdev_2021/hmm_modules/hmm/README.md \
+INPUT                  = src \
+                         examples \
+                         README.md \
                          include
 
 # This tag can be used to specify the character encoding of the source files

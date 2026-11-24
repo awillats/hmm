@@ -1,0 +1,21 @@
+// state-size sweep
+eg_hmm 2 1000
+eg_hmm 3 1000
+eg_hmm 4 1000
+eg_hmm 5 1000
+eg_hmm 6 1000
+eg_hmm 7 1000 // bonus
+eg_hmm 8 1000 // bonus
+eg_hmm 9 1000 // bonus
+eg_hmm 10 1000 // bonus
+
+// buffer length sweep
+eg_hmm 2 10 // bonus
+eg_hmm 2 32
+eg_hmm 2 100
+eg_hmm 2 316
+eg_hmm 2 1000
+eg_hmm 2 3160
+
+// sqrt(10) = 3.16227766
+// chosen to have a half-decade step between

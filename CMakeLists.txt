@@ -5,14 +5,20 @@ project(hmm VERSION 0.2.0 LANGUAGES CXX C)
 # some name variants I will be using:
 set(CMAKE_PROJECT_NAME_CAP HMM)#all caps
 
-# TODO(mfbolus): Update
-set(PROJECT_URL https://github.com/stanley-rozell/hmm)
+set(PROJECT_URL https://github.com/CLOCTools/hmm)
 
 # WINDOWS WARNING
 if (WIN32)
 message(WARNING "Build/Use of this library on Windows is untested and
   will likely not work properly. If this is the case,
   please file an issue and/or make a pull request @${PROJECT_URL} .")
+endif()
+
+if(WIN32)
+  set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+  set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+  set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 endif()
 
 # Specify C++ standard
@@ -267,16 +273,9 @@ install(
 enable_testing()
 
 # does the application run
-add_test(NAME RunTest COMMAND hmm)
+add_test(NAME RunTest COMMAND eg_hmm)
 
-# does the usage message work?
-#add_test(NAME UsageTest COMMAND hmm)
-
-# add_test(NAME UsageTest COMMAND hmm)
-# set_tests_properties(UsageTest
-#   PROPERTIES PASS_REGULAR_EXPRESSION "UsageTest:.*number"
-#   )
-
+# i think this only works for single argument
 function(do_test tname target arg result)
     add_test(NAME ${tname} COMMAND ${target} ${arg})
     set_tests_properties(${tname}
@@ -284,12 +283,46 @@ function(do_test tname target arg result)
       )
 endfunction(do_test)
 
+function(do_test2 tname target arg1 arg2 result)
+    add_test(NAME ${tname} COMMAND ${target} ${arg1} ${arg2})
+    set_tests_properties(${tname}
+      PROPERTIES PASS_REGULAR_EXPRESSION ${result}
+      )
+endfunction(do_test2)
+
 
 #looks for this string in the answer!
 set(TEST_ANS "guessed states")
+# really all this tests is that it didn't crash
+# we should also regex to make sure there are NO segfault messages
 
-do_test(2state hmm 2 ${TEST_ANS})
-do_test(3state hmm 3 ${TEST_ANS})
+# i think these all run 175 samples by default?
+do_test(2state eg_hmm 2 ${TEST_ANS})
+do_test(3state eg_hmm 3 ${TEST_ANS})
+do_test(4state eg_hmm 4 ${TEST_ANS})
+do_test(5state eg_hmm 5 ${TEST_ANS})
+do_test(6state eg_hmm 6 ${TEST_ANS})
+do_test(7state eg_hmm 7 ${TEST_ANS})
+do_test(8state eg_hmm 8 ${TEST_ANS})
+do_test(9state eg_hmm 9 ${TEST_ANS})
+do_test(10state eg_hmm 10 ${TEST_ANS})
 
-add_test(NAME Stress_2_1k COMMAND hmm 2 1000 PROPERTIES PASS_REGULAR_EXPRESSION ${TEST_ANS})
-add_test(NAME Stress_3_50k COMMAND hmm 3 50000 PROPERTIES PASS_REGULAR_EXPRESSION ${TEST_ANS})
+do_test2(2state_30samples eg_hmm 2 30 ${TEST_ANS})
+do_test2(2state_100samples eg_hmm 2 100 ${TEST_ANS})
+do_test2(2state_300samples eg_hmm 2 300 ${TEST_ANS})
+do_test2(2state_1000samples eg_hmm 2 1000 ${TEST_ANS})
+do_test2(2state_3000samples eg_hmm 2 3000 ${TEST_ANS})
+
+do_test2(5state_30samples eg_hmm 5 30 ${TEST_ANS})
+do_test2(5state_100samples eg_hmm 5 100 ${TEST_ANS})
+do_test2(5state_300samples eg_hmm 5 300 ${TEST_ANS})
+do_test2(5state_1000samples eg_hmm 5 1000 ${TEST_ANS})
+do_test2(5state_3000samples eg_hmm 5 3000 ${TEST_ANS})
+
+do_test2(Stress_2_1k eg_hmm 2 1000 ${TEST_ANS})
+do_test2(Stress_3_50k eg_hmm 3 50000 ${TEST_ANS})
+
+option(HMM_BUILD_TESTS "Build C++ unit tests" ON)
+if(HMM_BUILD_TESTS)
+  add_subdirectory(tests)
+endif()

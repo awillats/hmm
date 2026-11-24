@@ -20,6 +20,7 @@
 #include <iterator>
 
 #include <random>
+#include <stdexcept>
 #include <string>
 
 #include "printFuns.hpp"
@@ -51,17 +52,14 @@ struct HMMv {
     //https://stackoverflow.com/questions/18795776/error-no-matching-function-for-call-to-when-constructing-an-unintialized-stru
     HMMv(): nstates(2), nevents(2) { ;};
 
+
+
    //constructor where you just specify the firing and transition rate vectors, note should only work for 2 states...
     HMMv(int nstates, int nevents, std::vector< double> vTr, std::vector< double> vFr, std::vector<double> PI):
     nstates(nstates), nevents(nevents), PI(PI) {
-        //assert(nstates > 0); assert(nevents > 0);
-        //int q=5;
-        //std::cout<<'\n'<<'\n'<<'\n'<<'\n';
-
-        // //for now building the matrices only works for n=2
-        assert(nstates==2);assert(nevents==2);
-
-        assert(!vFr.empty()); assert(!vTr.empty()); assert(!PI.empty());
+        if (nstates != 2 || nevents != 2 || vTr.size() < 2 || vFr.size() < 2 || PI.size() < 2) {
+            throw std::invalid_argument("HMMv: 2-state constructor requires nstates==2, nevents==2, and vector sizes >= 2");
+        }
 
 	    std::vector<double> Av0;
 	    std::vector<double> Av1;
@@ -93,12 +91,21 @@ struct HMMv {
         //printMyParams();
     }
     //alternate more direct constructor? or just a consequence of the block above?
-    HMMv(int nstates, int nevents, std::vector< std::vector<double> > TR_, std::vector< std::vector<double> > EM, std::vector<double> PI):
-    nstates(nstates), nevents(nevents), TR(TR_), EM(EM),  PI(PI) {
-        assert(nstates > 0); assert(nevents > 0);
-        assert(TR[0].size()==nstates);
-        assert(EM[0].size()==nevents);
-        assert(!TR.empty()); assert(!EM.empty()); assert(!PI.empty());
+    //not sure what this TR_ is doing here...
+    HMMv(int nstates, int nevents, std::vector< std::vector<double> > TR_, std::vector< std::vector<double> > EM_, std::vector<double> PI):
+    nstates(nstates), nevents(nevents), TR(TR_), EM(EM_),  PI(PI) {
+        if (nstates <= 0 || nevents <= 0 ||
+            TR.size() != static_cast<size_t>(nstates) ||
+            EM.size() != static_cast<size_t>(nstates) ||
+            PI.size() != static_cast<size_t>(nstates)) {
+            throw std::invalid_argument("HMMv: invalid state/event counts or matrix/prior dimensions");
+        }
+        for (int i = 0; i < nstates; ++i) {
+            if (TR[i].size() != static_cast<size_t>(nstates) ||
+                EM[i].size() != static_cast<size_t>(nevents)) {
+                throw std::invalid_argument("HMMv: invalid TR or EM row size");
+            }
+        }
 
         //normalize row
         for (int i=0;i<nstates;i++)
@@ -125,16 +132,40 @@ struct HMMv {
         }
         //EM.push_back(EM[i])
         printMyParams();
-
     }
 
+    // https://stackoverflow.com/questions/308276/can-i-call-a-constructor-from-another-constructor-do-constructor-chaining-in-c
+    HMMv(int nstates, int nevents):HMMv(nstates, nevents, simpleTransMat(nstates), simpleEmissMat(nstates,nevents), simplePriorVec(nstates))
+    {
+        // std::vector< std::vector<double> > gTR, gEM;
+        // std::vector<double> gPI;
+        // gPI = HMMv::simplePriorVec(nstates);
+        // gTR = HMMv::simpleEmissMat(nstates,nevents);
+        // gEM = HMMv::simpleTransMat(nstates);
+        // std::cout<<endl<<"did params generate?";
+        // printMat(gEM);
+        // HMMv(nstates, nevents, gTR, gEM, gPI);
+    };
+
+
+//TO-DO: should these functions be explictly declared as public?
    //friend std::vector<int> genStates(HMMv const& hmm);
    friend int* viterbi(HMMv const& hmm, std::vector<int> observed, const int n);
    friend void printMat(std::vector< std::vector<double> >);
 
+
 public:
-    std::vector<int> genSeq(int);
-    //void setWarning(char *);
+
+    static std::vector< double > simplePriorVec(int); //nstates
+    static std::vector< std::vector<double> > simpleTransMat(int); //nstates
+    static std::vector< std::vector<double> > simpleEmissMat(int,int); //nstates, nemisions
+    //would be used like:
+    //    HMMv myHMM = HMMv(nStates, nEmission, simpleTransMat(nStates), simpleTransMat(nStates,nEmission), simplePriorVec(nStates));
+    // or could be broken into multiple lines to record generated parameters
+
+    std::vector<int> genSeq(int,int currentState=-1);    //second int is optional
+
+    void setWarning(char *);
     void printMyParams();
     void printSeqs(int);
     void exportSeqs(int *, int *);
